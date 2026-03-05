@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Big Box Outlet Store | Big Brands. Outlet Prices.</title>
+  <meta name="description" content="Shop name brands for less at 20 locations across BC & Alberta. Price Drops Daily — prices start at $15 every Thursday and drop as low as 50¢ by Wednesday." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & BASE ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      color: #0f172a;
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ── CSS VARIABLES ────────────────────────────── */
+    :root {
+      --blue:        #003DA5;
+      --blue-dark:   #00297a;
+      --blue-mid:    #0044c0;
+      --blue-light:  #1a56cc;
+      --yellow:      #FFD600;
+      --yellow-dark: #e6c200;
+      --white:       #ffffff;
+      --gray-50:     #f8fafc;
+      --gray-100:    #f1f5f9;
+      --gray-200:    #e2e8f0;
+      --gray-500:    #64748b;
+      --gray-600:    #475569;
+      --gray-800:    #1e293b;
+      --gray-900:    #0f172a;
+      --radius-sm:   8px;
+      --radius-md:   16px;
+      --radius-lg:   24px;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md:   0 4px 16px rgba(0,0,0,.10);
+      --shadow-lg:   0 8px 32px rgba(0,0,0,.14);
+      --shadow-xl:   0 20px 60px rgba(0,0,0,.18);
+    }
+
+    /* ── UTILITY ──────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Rubik', sans-serif; font-weight: 700;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: all .2s ease; white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--yellow); color: var(--blue-dark);
+      padding: 14px 28px; border-radius: 50px; font-size: 1rem;
+      box-shadow: 0 4px 16px rgba(255,214,0,.4);
+    }
+    .btn-primary:hover {
+      background: var(--yellow-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,214,0,.5);
+    }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      padding: 13px 28px; border-radius: 50px; font-size: 1rem;
+      border: 2px solid rgba(255,255,255,.5);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,.1); border-color: var(--white);
+      transform: translateY(-2px);
+    }
+    .tag {
+      display: inline-block; font-family: 'Rubik', sans-serif;
+      font-weight: 700; font-size: .75rem; letter-spacing: .08em;
+      text-transform: uppercase; padding: 6px 14px; border-radius: 50px;
+    }
+    .tag-yellow { background: var(--yellow); color: var(--blue-dark); }
+    .tag-blue   { background: var(--blue); color: var(--white); }
+    .section-label {
+      font-family: 'Rubik', sans-serif; font-weight: 800;
+      font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 12px; display: block;
+    }
+    .section-heading {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      line-height: 1.1; color: var(--gray-900);
+    }
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── NAVBAR ───────────────────────────────────── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: all .3s ease;
+    }
+    .navbar.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+    .navbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px; gap: 32px;
+    }
+    .navbar-logo img { height: 44px; width: auto; display: block; }
+    .navbar-nav {
+      display: flex; align-items: center; gap: 4px;
+      list-style: none;
+    }
+    .navbar-nav a {
+      font-family: 'Rubik', sans-serif; font-weight: 600;
+      font-size: .95rem; color: var(--gray-800); text-decoration: none;
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      transition: all .2s ease;
+    }
+    .navbar-nav a:hover { background: var(--gray-100); color: var(--blue); }
+    .navbar-cta { flex-shrink: 0; }
+    .navbar-cta .btn-primary { padding: 10px 22px; font-size: .9rem; }
+
+    /* Mobile nav toggle */
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 24px; height: 2.5px;
+      background: var(--blue); border-radius: 2px; transition: all .3s;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-nav, .navbar-cta { display: none; }
+      .nav-toggle { display: flex; }
+      .navbar-nav.open {
+        display: flex; flex-direction: column; align-items: flex-start;
+        position: absolute; top: 72px; left: 0; right: 0;
+        background: white; border-bottom: 1px solid var(--gray-200);
+        padding: 12px 24px 20px; box-shadow: var(--shadow-lg);
+        gap: 0;
+      }
+      .navbar-nav.open + .navbar-cta {
+        display: none;
+      }
+    }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      background: var(--blue-dark);
+      display: flex; align-items: center;
+      overflow: hidden; padding-top: 72px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('images/store-interior.jpg') center/cover no-repeat;
+      opacity: .18;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--blue-dark) 0%, #0044cc 60%, var(--blue-dark) 100%);
+      opacity: .88;
+    }
+    /* Animated geometric shapes */
+    .hero-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .shape {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,214,0,.07);
+      animation: float 8s ease-in-out infinite;
+    }
+    .shape-1 { width: 600px; height: 600px; right: -150px; top: -100px; animation-delay: 0s; }
+    .shape-2 { width: 400px; height: 400px; right: 200px; bottom: -100px; animation-delay: -3s; background: rgba(255,255,255,.04); }
+    .shape-3 { width: 200px; height: 200px; left: 5%; top: 30%; animation-delay: -5s; background: rgba(255,214,0,.05); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 480px;
+      gap: 64px; align-items: center;
+      padding: 80px 0;
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+    }
+    .hero-eyebrow-text {
+      font-family: 'Rubik', sans-serif; font-weight: 700;
+      font-size: .85rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--yellow);
+    }
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px; background: var(--yellow);
+      border-radius: 50%; animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.5); }
+    }
+    .hero-headline {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: .95; color: var(--white);
+      margin-bottom: 8px;
+    }
+    .hero-headline .yellow { color: var(--yellow); }
+    .hero-sub {
+      font-size: 1.2rem; color: rgba(255,255,255,.8);
+      line-height: 1.6; margin-bottom: 40px; max-width: 480px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 56px; }
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 32px;
+    }
+    .hero-stat {}
+    .hero-stat-num {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: 2rem; color: var(--yellow); display: block;
+    }
+    .hero-stat-label {
+      font-size: .85rem; color: rgba(255,255,255,.65);
+      font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+    }
+
+    /* Hero right panel */
+    .hero-panel {
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .hero-panel-title {
+      font-family: 'Rubik', sans-serif; font-weight: 800;
+      font-size: 1.1rem; color: var(--white); margin-bottom: 4px;
+    }
+    .hero-panel-sub { font-size: .9rem; color: rgba(255,255,255,.6); }
+    .hero-panel img {
+      width: 100%; border-radius: var(--radius-md); display: block;
+    }
+    .price-track {
+      display: flex; align-items: center; gap: 0;
+    }
+    .price-day {
+      flex: 1; text-align: center; padding: 10px 4px;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .price-day:last-child { border-right: none; }
+    .price-day-name {
+      font-size: .7rem; color: rgba(255,255,255,.5);
+      text-transform: uppercase; letter-spacing: .06em; font-weight: 700;
+    }
+    .price-day-val {
+      font-family: 'Rubik', sans-serif; font-weight: 800;
+      font-size: .9rem; color: var(--yellow); margin-top: 4px;
+    }
+    .price-day.active .price-day-name { color: var(--yellow); }
+    .price-day.active .price-day-val { color: white; font-size: 1rem; }
+    .price-day.low .price-day-val { color: #4ade80; }
+
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; gap: 48px; }
+      .hero-panel { max-width: 500px; }
+    }
+    @media (max-width: 640px) {
+      .hero-headline { font-size: clamp(2.8rem, 10vw, 3.5rem); }
+      .hero-stats { gap: 24px; }
+      .hero-panel { padding: 24px; }
+    }
+
+    /* ── MARQUEE ──────────────────────────────────── */
+    .marquee-section {
+      background: var(--yellow); padding: 14px 0; overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; align-items: center; gap: 0;
+      animation: marquee 28s linear infinite;
+      width: max-content;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 36px; white-space: nowrap;
+      font-family: 'Rubik', sans-serif; font-weight: 800;
+      font-size: .85rem; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--blue-dark);
+    }
+    .marquee-dot {
+      width: 6px; height: 6px; background: var(--blue-dark);
+      border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ── PRICE DROP SECTION ──────────────────────── */
+    .price-drop-section {
+      background: var(--blue);
+      padding: 100px 0; position: relative; overflow: hidden;
+    }
+    .price-drop-section::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: rgba(255,255,255,.04);
+    }
+    .price-drop-section::after {
+      content: ''; position: absolute; bottom: -120px; left: -60px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(255,214,0,.06);
+    }
+    .price-drop-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center; position: relative; z-index: 1;
+    }
+    .price-drop-text .section-label { color: rgba(255,255,255,.6); }
+    .price-drop-text .section-heading { color: white; font-size: clamp(2.4rem, 4vw, 3.6rem); }
+    .price-drop-desc {
+      color: rgba(255,255,255,.75); font-size: 1.1rem; line-height: 1.7;
+      margin: 20px 0 32px;
+    }
+    .how-it-works {
+      display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;
+    }
+    .how-step {
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .how-step-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,.12); display: flex;
+      align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .how-step-icon svg { width: 18px; height: 18px; fill: var(--yellow); }
+    .how-step-text strong {
+      font-family: 'Rubik', sans-serif; font-weight: 700;
+      color: var(--yellow); display: block; font-size: .95rem;
+    }
+    .how-step-text span { color: rgba(255,255,255,.7); font-size: .9rem; }
+    .price-drop-image {
+      position: relative;
+    }
+    .price-drop-image img {
+      width: 100%; border-radius: var(--radius-lg);
+      box-shadow: 0 24px 80px rgba(0,0,0,.3);
+    }
+    .pd-badge {
+      position: absolute; bottom: -16px; right: -16px;
+      background: var(--yellow); color: var(--blue-dark);
+      padding: 16px 20px; border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xl);
+      font-family: 'Rubik', sans-serif;
+    }
+    .pd-badge-num {
+      font-size: 2.2rem; font-weight: 900; line-height: 1;
+    }
+    .pd-badge-text { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+
+    @media (max-width: 768px) {
+      .price-drop-inner { grid-template-columns: 1fr; gap: 48px; }
+      .pd-badge { right: 0; bottom: -12px; }
+    }
+
+    /* ── CATEGORIES ──────────────────────────────── */
+    .categories-section { padding: 100px 0; background: var(--gray-50); }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header .section-heading { font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 16px; }
+    .section-header p { font-size: 1.1rem; color: var(--gray-600); max-width: 560px; margin: 0 auto; }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .category-card {
+      background: white; border-radius: var(--radius-lg);
+      overflow: hidden; box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      transition: all .3s ease; cursor: pointer;
+      display: flex; flex-direction: column;
+    }
+    .category-card:hover {
+      transform: translateY(-8px); box-shadow: var(--shadow-xl);
+      border-color: transparent;
+    }
+    .category-card-img {
+      overflow: hidden; background: #f0f4f8;
+      aspect-ratio: 1/1;
+    }
+    .category-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .category-card:hover .category-card-img img { transform: scale(1.06); }
+    .category-card-body {
+      padding: 20px 20px 24px; flex: 1;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .category-card-title {
+      font-family: 'Rubik', sans-serif; font-weight: 800;
+      font-size: 1.15rem; color: var(--gray-900); margin-bottom: 6px;
+    }
+    .category-card-desc { font-size: .875rem; color: var(--gray-600); line-height: 1.5; }
+    .category-card-link {
+      display: flex; align-items: center; gap: 8px; margin-top: 16px;
+      font-family: 'Rubik', sans-serif; font-weight: 700;
+      font-size: .875rem; color: var(--blue); text-decoration: none;
+      transition: gap .2s;
+    }
+    .category-card-link svg { width: 16px; height: 16px; transition: transform .2s; }
+    .category-card:hover .category-card-link svg { transform: translateX(4px); }
+
+    @media (max-width: 960px) { .categories-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .categories-grid { grid-template-columns: 1fr; } }
+
+    /* ── TRUST SECTION ───────────────────────────── */
+    .trust-section { padding: 80px 0; background: white; }
+    .trust-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .trust-text .section-heading { font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 20px; }
+    .trust-text p { font-size: 1.05rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 32px; }
+    .trust-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .trust-stat-card {
+      background: var(--gray-50); border-radius: var(--radius-md);
+      padding: 20px 24px; border: 1px solid var(--gray-200);
+    }
+    .trust-stat-card-num {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: 2rem; color: var(--blue); line-height: 1;
+    }
+    .trust-stat-card-label { font-size: .85rem; color: var(--gray-600); margin-top: 4px; font-weight: 600; }
+    .trust-image img {
+      width: 100%; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    @media (max-width: 768px) {
+      .trust-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── PRICE MATCH BANNER ──────────────────────── */
+    .price-match-banner {
+      background: linear-gradient(135deg, #fef9c3 0%, #fefce8 100%);
+      border-top: 3px solid var(--yellow); border-bottom: 3px solid var(--yellow);
+      padding: 48px 0;
+    }
+    .price-match-inner {
+      display: flex; align-items: center; gap: 48px;
+    }
+    .price-match-img { width: 240px; flex-shrink: 0; }
+    .price-match-img img { width: 100%; }
+    .price-match-text h2 {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem); color: var(--blue-dark); margin-bottom: 8px;
+    }
+    .price-match-text p { font-size: 1rem; color: var(--gray-600); max-width: 540px; line-height: 1.6; }
+    @media (max-width: 768px) {
+      .price-match-inner { flex-direction: column; gap: 24px; }
+      .price-match-img { width: 180px; }
+    }
+
+    /* ── STORE LOCATOR ───────────────────────────── */
+    .stores-section { padding: 100px 0; background: var(--gray-900); }
+    .stores-section .section-label { color: var(--yellow); }
+    .stores-section .section-heading { color: white; font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 16px; }
+    .stores-sub { color: rgba(255,255,255,.6); font-size: 1.05rem; margin-bottom: 48px; }
+
+    .store-filters {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 40px; flex-wrap: wrap;
+    }
+    .store-filter-btn {
+      font-family: 'Rubik', sans-serif; font-weight: 700;
+      font-size: .9rem; padding: 10px 22px; border-radius: 50px;
+      border: 2px solid rgba(255,255,255,.2); background: transparent;
+      color: rgba(255,255,255,.7); cursor: pointer;
+      transition: all .2s ease;
+    }
+    .store-filter-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+    .store-filter-btn.active {
+      background: var(--yellow); color: var(--blue-dark);
+      border-color: var(--yellow);
+    }
+    .store-count-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      font-size: .75rem; font-weight: 800;
+      background: rgba(255,255,255,.15); color: rgba(255,255,255,.8);
+      margin-left: 4px;
+    }
+    .store-filter-btn.active .store-count-badge { background: var(--blue-dark); color: var(--yellow); }
+
+    .stores-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    .store-card {
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-md); padding: 22px;
+      transition: all .25s ease; cursor: pointer;
+    }
+    .store-card:hover {
+      background: rgba(255,255,255,.1);
+      border-color: var(--yellow);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.3);
+    }
+    .store-card-province {
+      font-family: 'Rubik', sans-serif; font-size: .7rem; font-weight: 800;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--yellow); margin-bottom: 8px;
+    }
+    .store-card-name {
+      font-family: 'Rubik', sans-serif; font-weight: 800;
+      font-size: 1rem; color: white; margin-bottom: 8px;
+    }
+    .store-card-address {
+      font-size: .8rem; color: rgba(255,255,255,.55);
+      line-height: 1.5; margin-bottom: 12px;
+    }
+    .store-card-phone {
+      font-size: .8rem; color: rgba(255,255,255,.5);
+      margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
+    }
+    .store-card-phone svg { width: 13px; height: 13px; fill: rgba(255,255,255,.4); }
+    .store-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Rubik', sans-serif; font-weight: 700;
+      font-size: .8rem; color: var(--yellow); text-decoration: none;
+      transition: gap .2s;
+    }
+    .store-card-link svg { width: 14px; height: 14px; fill: var(--yellow); }
+    .store-card:hover .store-card-link { gap: 10px; }
+    .store-card.hidden { display: none; }
+
+    @media (max-width: 1024px) { .stores-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px)  { .stores-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px)  { .stores-grid { grid-template-columns: 1fr; } }
+
+    /* ── REWARDS SECTION ─────────────────────────── */
+    .rewards-section {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+      padding: 80px 0; position: relative; overflow: hidden;
+    }
+    .rewards-section::before {
+      content: ''; position: absolute; right: -60px; top: -60px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: rgba(255,255,255,.05);
+    }
+    .rewards-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center; position: relative; z-index: 1;
+    }
+    .rewards-text .section-label { color: rgba(255,255,255,.6); }
+    .rewards-text .section-heading { color: white; font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 16px; }
+    .rewards-text p { color: rgba(255,255,255,.75); font-size: 1rem; line-height: 1.7; margin-bottom: 32px; max-width: 440px; }
+    .rewards-perks { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .rewards-perk {
+      display: flex; align-items: center; gap: 14px;
+      color: rgba(255,255,255,.85); font-size: .95rem;
+    }
+    .rewards-perk-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(255,255,255,.12); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rewards-perk-icon svg { width: 17px; height: 17px; fill: var(--yellow); }
+    .rewards-image img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); }
+    @media (max-width: 768px) {
+      .rewards-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    .footer {
+      background: #060f1e; padding: 64px 0 0;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 260px 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footer-brand img { height: 48px; margin-bottom: 16px; }
+    .footer-brand p { font-size: .875rem; color: rgba(255,255,255,.45); line-height: 1.7; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .footer-social-link {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.08); display: flex;
+      align-items: center; justify-content: center;
+      transition: background .2s; text-decoration: none;
+    }
+    .footer-social-link:hover { background: var(--blue); }
+    .footer-social-link svg { width: 16px; height: 16px; fill: rgba(255,255,255,.7); }
+    .footer-col-title {
+      font-family: 'Rubik', sans-serif; font-weight: 800;
+      font-size: .875rem; letter-spacing: .06em; text-transform: uppercase;
+      color: white; margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a {
+      font-size: .875rem; color: rgba(255,255,255,.5);
+      text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--yellow); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom-text { font-size: .8rem; color: rgba(255,255,255,.3); }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-size: .8rem; color: rgba(255,255,255,.3); text-decoration: none; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,.6); }
+
+    @media (max-width: 960px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    /* ── SCROLL-TO-TOP ───────────────────────────── */
+    .scroll-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 50;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--blue); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,61,165,.5);
+      opacity: 0; pointer-events: none;
+      transition: all .3s ease; transform: translateY(10px);
+    }
+    .scroll-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .scroll-top:hover { background: var(--blue-mid); transform: translateY(-3px); }
+    .scroll-top svg { width: 20px; height: 20px; fill: white; }
+
+    /* ── PREFERS REDUCED MOTION ───────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .marquee-track { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║               NAVBAR                    ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="#" class="navbar-logo" aria-label="Big Box Outlet Store Home">
+        <img src="images/logo.png" alt="Big Box Outlet Store" />
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="#categories">Shop</a></li>
+        <li><a href="#price-drop">Price Drop</a></li>
+        <li><a href="#locations">Find a Store</a></li>
+        <li><a href="#rewards">Rewards</a></li>
+      </ul>
+      <div class="navbar-cta">
+        <a href="#locations" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Find My Store
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║               HERO                      ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-shapes" aria-hidden="true">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot" aria-hidden="true"></span>
+          <span class="hero-eyebrow-text">20 Stores Across Western Canada</span>
+        </div>
+        <h1 class="hero-headline">
+          BIG BRANDS.<br /><span class="yellow">OUTLET PRICES.</span>
+        </h1>
+        <p class="hero-sub">
+          Shop top name brands for a fraction of the retail price. Prices drop every single day — the longer you wait, the more you save.
+        </p>
+        <div class="hero-actions">
+          <a href="#locations" class="btn btn-primary" style="font-size:1.05rem; padding:16px 32px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Find Your Nearest Store
+          </a>
+          <a href="#price-drop" class="btn btn-outline" style="font-size:1.05rem; padding:15px 32px;">
+            How Price Drop Works
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="20">20</span>
+            <span class="hero-stat-label">Store Locations</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">50¢</span>
+            <span class="hero-stat-label">Prices Drop as Low As</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">4.5★</span>
+            <span class="hero-stat-label">Average Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero panel: Price Drop explainer -->
+      <div class="hero-panel" aria-label="Price Drop daily schedule">
+        <div>
+          <div class="hero-panel-title">Daily Price Drop Schedule</div>
+          <div class="hero-panel-sub">New stock every Thursday — prices drop daily</div>
+        </div>
+        <div class="price-track" role="list">
+          <div class="price-day active" role="listitem">
+            <div class="price-day-name">Thu</div>
+            <div class="price-day-val">$15</div>
+          </div>
+          <div class="price-day" role="listitem">
+            <div class="price-day-name">Fri</div>
+            <div class="price-day-val">$10</div>
+          </div>
+          <div class="price-day" role="listitem">
+            <div class="price-day-name">Sat</div>
+            <div class="price-day-val">$7</div>
+          </div>
+          <div class="price-day" role="listitem">
+            <div class="price-day-name">Sun</div>
+            <div class="price-day-val">$5</div>
+          </div>
+          <div class="price-day" role="listitem">
+            <div class="price-day-name">Mon</div>
+            <div class="price-day-val">$3</div>
+          </div>
+          <div class="price-day" role="listitem">
+            <div class="price-day-name">Tue</div>
+            <div class="price-day-val">$1</div>
+          </div>
+          <div class="price-day low" role="listitem">
+            <div class="price-day-name">Wed</div>
+            <div class="price-day-val">50¢</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,.12); padding-top: 16px;">
+          <div style="font-size:.8rem; color:rgba(255,255,255,.5); line-height:1.6;">
+            *Pricing starts at $15 on Thursday and decreases daily until Wednesday. Selection may vary by store.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║         BRAND MARQUEE                   ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<div class="marquee-section" aria-label="Featured brands" aria-hidden="true">
+  <div class="marquee-track">
+    <!-- Set 1 -->
+    <div class="marquee-item"><span class="marquee-dot"></span>Samsung</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>KitchenAid</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Ninja</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Cuisinart</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>General Electric</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Gourmia</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Dyson</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Shark</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>De'Longhi</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Breville</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Instant Pot</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>iRobot</div>
+    <!-- Set 2 (duplicate for seamless loop) -->
+    <div class="marquee-item"><span class="marquee-dot"></span>Samsung</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>KitchenAid</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Ninja</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Cuisinart</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>General Electric</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Gourmia</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Dyson</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Shark</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>De'Longhi</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Breville</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Instant Pot</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>iRobot</div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║           PRICE DROP                    ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section class="price-drop-section reveal" id="price-drop">
+  <div class="container">
+    <div class="price-drop-inner">
+      <div class="price-drop-text">
+        <span class="section-label">Our Unique System</span>
+        <h2 class="section-heading">Price Drops<br />Every Single Day</h2>
+        <p class="price-drop-desc">
+          Big Box Outlet Store runs on a one-of-a-kind pricing model. Fresh merchandise hits the floor every Thursday at $15 — and the price drops daily until Wednesday, when items go for as low as 50¢.
+        </p>
+        <div class="how-it-works">
+          <div class="how-step">
+            <div class="how-step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+            </div>
+            <div class="how-step-text">
+              <strong>New Stock Every Thursday</strong>
+              <span>Fresh inventory arrives at all 20 locations every week</span>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+            </div>
+            <div class="how-step-text">
+              <strong>Prices Start at Just $15</strong>
+              <span>Every item on the floor is affordable from day one</span>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z"/></svg>
+            </div>
+            <div class="how-step-text">
+              <strong>Drops Daily to 50¢ by Wednesday</strong>
+              <span>The longer you wait, the bigger the savings — select merchandise</span>
+            </div>
+          </div>
+        </div>
+        <a href="#locations" class="btn btn-primary" style="font-size:1rem;">
+          Find Your Store
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </a>
+      </div>
+      <div class="price-drop-image reveal">
+        <img src="images/price-drop.png" alt="Price Drop Daily — prices start at $15 Thursday and drop to 50¢ by Wednesday" loading="lazy" />
+        <div class="pd-badge">
+          <div class="pd-badge-num">50¢</div>
+          <div class="pd-badge-text">Lowest Price</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║          SHOP CATEGORIES                ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section class="categories-section" id="categories">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">What We Carry</span>
+      <h2 class="section-heading">Shop Our Departments</h2>
+      <p>Top name-brand merchandise at outlet prices — from kitchen appliances to furniture and beyond.</p>
+    </div>
+    <div class="categories-grid">
+
+      <article class="category-card reveal">
+        <div class="category-card-img">
+          <img src="images/small-appliances.png" alt="Small appliances from Gourmia, KitchenAid, Cuisinart and Ninja" loading="lazy" />
+        </div>
+        <div class="category-card-body">
+          <div>
+            <div class="category-card-title">Small Appliances</div>
+            <div class="category-card-desc">Air fryers, blenders, coffee makers, stand mixers &amp; more from top brands.</div>
+          </div>
+          <a href="https://bigboxoutletstore.ca" class="category-card-link" target="_blank" rel="noopener">
+            Shop Now
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="category-card reveal" style="transition-delay:.1s">
+        <div class="category-card-img">
+          <img src="images/large-appliances.png" alt="Large appliances from Samsung and General Electric" loading="lazy" />
+        </div>
+        <div class="category-card-body">
+          <div>
+            <div class="category-card-title">Large Appliances</div>
+            <div class="category-card-desc">Refrigerators, ranges, washers &amp; dryers from Samsung, GE and more.</div>
+          </div>
+          <a href="https://bigboxoutletstore.ca" class="category-card-link" target="_blank" rel="noopener">
+            Shop Now
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="category-card reveal" style="transition-delay:.2s">
+        <div class="category-card-img">
+          <img src="images/furniture.png" alt="Furniture" loading="lazy" />
+        </div>
+        <div class="category-card-body">
+          <div>
+            <div class="category-card-title">Furniture</div>
+            <div class="category-card-desc">Sofas, beds, dining sets, patio furniture &amp; home décor at outlet savings.</div>
+          </div>
+          <a href="https://bigboxoutletstore.ca" class="category-card-link" target="_blank" rel="noopener">
+            Shop Now
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="category-card reveal" style="transition-delay:.3s">
+        <div class="category-card-img">
+          <img src="images/clothing.png" alt="Clothing" loading="lazy" />
+        </div>
+        <div class="category-card-body">
+          <div>
+            <div class="category-card-title">Clothing</div>
+            <div class="category-card-desc">Name-brand apparel for the whole family — new styles hitting shelves weekly.</div>
+          </div>
+          <a href="https://bigboxoutletstore.ca" class="category-card-link" target="_blank" rel="noopener">
+            Shop Now
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║         TRUST / RATINGS                 ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section class="trust-section">
+  <div class="container">
+    <div class="trust-inner">
+      <div class="trust-text reveal">
+        <span class="section-label">Customer Love</span>
+        <h2 class="section-heading">Trusted by Thousands of Canadian Shoppers</h2>
+        <p>From single moms finding name-brand appliances on a budget to deal hunters who've made Thursday their favourite shopping day — our customers keep coming back.</p>
+        <div class="trust-stats">
+          <div class="trust-stat-card">
+            <div class="trust-stat-card-num">20</div>
+            <div class="trust-stat-card-label">Store Locations</div>
+          </div>
+          <div class="trust-stat-card">
+            <div class="trust-stat-card-num">4.5★</div>
+            <div class="trust-stat-card-label">Google Rating</div>
+          </div>
+          <div class="trust-stat-card">
+            <div class="trust-stat-card-num">BC+AB</div>
+            <div class="trust-stat-card-label">Provinces Served</div>
+          </div>
+          <div class="trust-stat-card">
+            <div class="trust-stat-card-num">Weekly</div>
+            <div class="trust-stat-card-label">New Inventory</div>
+          </div>
+        </div>
+      </div>
+      <div class="trust-image reveal" style="transition-delay:.15s">
+        <img src="images/google-stars.png" alt="Trusted by Thousands — 4.5 out of 5 Google stars" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║        FIND A BETTER PRICE              ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<div class="price-match-banner reveal">
+  <div class="container">
+    <div class="price-match-inner">
+      <div class="price-match-img">
+        <img src="images/price-match.png" alt="Find a better price guarantee" loading="lazy" />
+      </div>
+      <div class="price-match-text">
+        <h2>Find a Better Price? We'll Beat It.</h2>
+        <p>We're confident our outlet pricing beats the competition. If you find a better price on the same item, show us and we'll match it. Big Box Outlet Store — where savings are guaranteed.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║           STORE LOCATOR                 ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section class="stores-section" id="locations">
+  <div class="container">
+    <span class="section-label">Western Canada</span>
+    <h2 class="section-heading">Find a Store Near You</h2>
+    <p class="stores-sub">20 locations across British Columbia and Alberta — there's always a Big Box Outlet Store close by.</p>
+
+    <div class="store-filters" role="group" aria-label="Filter stores by province">
+      <button class="store-filter-btn active" data-filter="all" aria-pressed="true">
+        All Stores <span class="store-count-badge">20</span>
+      </button>
+      <button class="store-filter-btn" data-filter="BC" aria-pressed="false">
+        British Columbia <span class="store-count-badge">14</span>
+      </button>
+      <button class="store-filter-btn" data-filter="AB" aria-pressed="false">
+        Alberta <span class="store-count-badge">6</span>
+      </button>
+    </div>
+
+    <div class="stores-grid" id="storesGrid">
+
+      <!-- ── BRITISH COLUMBIA ── -->
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Abbotsford</div>
+        <div class="store-card-address">101-1777 Clearbrook Rd.<br />Abbotsford, BC V2T 5X5</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          604-756-1932
+        </div>
+        <a href="https://www.google.com/maps/search/101-1777+Clearbrook+Rd+Abbotsford+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Burquitlam</div>
+        <div class="store-card-address">301-552 Clarke Road<br />Coquitlam, BC V3J 3X6</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          778-831-0354
+        </div>
+        <a href="https://www.google.com/maps/search/301-552+Clarke+Road+Coquitlam+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Chilliwack</div>
+        <div class="store-card-address">5725 Vedder Rd<br />Chilliwack, BC V2R 3N3</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          604-847-0288
+        </div>
+        <a href="https://www.google.com/maps/search/5725+Vedder+Rd+Chilliwack+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Kamloops</div>
+        <div class="store-card-address">150 Oriole Rd<br />Kamloops, BC V2C 4N7</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          250-372-2226
+        </div>
+        <a href="https://www.google.com/maps/search/150+Oriole+Rd+Kamloops+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Kelowna</div>
+        <div class="store-card-address">1837 Spall Rd<br />Kelowna, BC V1Y 8H6</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          250-762-6999
+        </div>
+        <a href="https://www.google.com/maps/search/1837+Spall+Rd+Kelowna+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Maple Ridge</div>
+        <div class="store-card-address">21-11900 Haney Place<br />Maple Ridge, BC V2X 8R9</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          778-826-0850
+        </div>
+        <a href="https://www.google.com/maps/search/11900+Haney+Place+Maple+Ridge+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Mission</div>
+        <div class="store-card-address">33103 1 Ave<br />Mission, BC V2V 1G5</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          604-826-5586
+        </div>
+        <a href="https://www.google.com/maps/search/33103+1+Ave+Mission+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Murrayville</div>
+        <div class="store-card-address">22611 Fraser Hwy<br />Langley, BC V2Z 2T5</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          604-532-8199
+        </div>
+        <a href="https://www.google.com/maps/search/22611+Fraser+Hwy+Langley+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">New Westminster</div>
+        <div class="store-card-address">105-1015 Columbia Street<br />New Westminster, BC V3M 6H6</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          778-388-1177
+        </div>
+        <a href="https://www.google.com/maps/search/1015+Columbia+Street+New+Westminster+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Penticton</div>
+        <div class="store-card-address">1825 Main St<br />Penticton, BC V2A 5H2</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          250-493-2258
+        </div>
+        <a href="https://www.google.com/maps/search/1825+Main+St+Penticton+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Vernon</div>
+        <div class="store-card-address">5104 24 St<br />Vernon, BC V1T 8X2</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          250-542-6133
+        </div>
+        <a href="https://www.google.com/maps/search/5104+24+St+Vernon+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">Walnut Grove</div>
+        <div class="store-card-address">101-9680 201 St<br />Langley, BC V1M 3E8</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          604-888-4437
+        </div>
+        <a href="https://www.google.com/maps/search/9680+201+St+Langley+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">West Kelowna</div>
+        <div class="store-card-address">110-1135 Stevens Rd<br />West Kelowna, BC V1Z 2S8</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          236-582-2016
+        </div>
+        <a href="https://www.google.com/maps/search/1135+Stevens+Rd+West+Kelowna+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="BC">
+        <div class="store-card-province">British Columbia</div>
+        <div class="store-card-name">White Rock</div>
+        <div class="store-card-address">50-3033 King George Blvd<br />Surrey, BC V4P 1B8</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          604-536-0267
+        </div>
+        <a href="https://www.google.com/maps/search/3033+King+George+Blvd+Surrey+BC" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <!-- ── ALBERTA ── -->
+      <div class="store-card" data-province="AB">
+        <div class="store-card-province">Alberta</div>
+        <div class="store-card-name">Edmonton Central</div>
+        <div class="store-card-address">11311-120 St. NW<br />Edmonton, AB T5G 2Y1</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          780-652-2267
+        </div>
+        <a href="https://www.google.com/maps/search/11311-120+St+NW+Edmonton+AB" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="AB">
+        <div class="store-card-province">Alberta</div>
+        <div class="store-card-name">Edmonton South</div>
+        <div class="store-card-address">4150-101 Street<br />Edmonton, AB T6E 0A5</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          780-652-2273
+        </div>
+        <a href="https://www.google.com/maps/search/4150+101+Street+Edmonton+AB" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="AB">
+        <div class="store-card-province">Alberta</div>
+        <div class="store-card-name">Lethbridge</div>
+        <div class="store-card-address">1616 Mayor Magrath Dr<br />Lethbridge, AB T1K 2R5</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          403-694-1080
+        </div>
+        <a href="https://www.google.com/maps/search/1616+Mayor+Magrath+Dr+Lethbridge+AB" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="AB">
+        <div class="store-card-province">Alberta</div>
+        <div class="store-card-name">Red Deer</div>
+        <div class="store-card-address">6751 Gaetz Ave<br />Red Deer, AB T4N 4C9</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          403-713-1048
+        </div>
+        <a href="https://www.google.com/maps/search/6751+Gaetz+Ave+Red+Deer+AB" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="AB">
+        <div class="store-card-province">Alberta</div>
+        <div class="store-card-name">Sherwood Park</div>
+        <div class="store-card-address">600-2020 Sherwood Dr<br />Sherwood Park, AB T8A 3H9</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          587-200-0964
+        </div>
+        <a href="https://www.google.com/maps/search/600-2020+Sherwood+Dr+Sherwood+Park+AB" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+      <div class="store-card" data-province="AB">
+        <div class="store-card-province">Alberta</div>
+        <div class="store-card-name">St. Albert</div>
+        <div class="store-card-address">19 Bellerose Dr<br />St. Albert, AB T8N 5C9</div>
+        <div class="store-card-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          587-570-9980
+        </div>
+        <a href="https://www.google.com/maps/search/19+Bellerose+Dr+St+Albert+AB" target="_blank" rel="noopener" class="store-card-link">
+          Get Directions
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        </a>
+      </div>
+
+    </div><!-- /stores-grid -->
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║            REWARDS                      ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section class="rewards-section reveal" id="rewards">
+  <div class="container">
+    <div class="rewards-inner">
+      <div class="rewards-text">
+        <span class="section-label">Loyalty Program</span>
+        <h2 class="section-heading">Join the BBOS Rewards Club</h2>
+        <p>Earn points on every purchase and unlock exclusive deals, early access to new inventory, and member-only pricing across all 20 locations.</p>
+        <div class="rewards-perks">
+          <div class="rewards-perk">
+            <div class="rewards-perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            Earn points on every in-store purchase
+          </div>
+          <div class="rewards-perk">
+            <div class="rewards-perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+            </div>
+            Exclusive member deals and savings
+          </div>
+          <div class="rewards-perk">
+            <div class="rewards-perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+            </div>
+            Early access to new Thursday inventory
+          </div>
+        </div>
+        <a href="https://bigboxoutletstore.ca" class="btn btn-primary" target="_blank" rel="noopener">
+          Learn About Rewards
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </a>
+      </div>
+      <div class="rewards-image reveal" style="transition-delay:.15s">
+        <img src="images/rewards-banner.jpg" alt="BBOS Rewards Program" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║              FOOTER                     ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Big Box Outlet Store" />
+        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+        <div class="footer-socials">
+          <!-- Facebook -->
+          <a href="https://facebook.com/bigboxoutletstore" class="footer-social-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="https://instagram.com/bigboxoutletstore" class="footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="#060f1e"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#060f1e" stroke-width="2"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="https://tiktok.com/@bigboxoutlet" class="footer-social-link" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Shop</div>
+        <ul class="footer-links">
+          <li><a href="https://bigboxoutletstore.ca">Small Appliances</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Large Appliances</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Furniture</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Clothing</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Glass Cases</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links">
+          <li><a href="https://bigboxoutletstore.ca">Our Story</a></li>
+          <li><a href="https://bigboxoutletstore.ca">How Price Drop Works</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Careers</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Contact Us</a></li>
+          <li><a href="https://bigboxoutletstore.ca">BBOS Rewards</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Regions</div>
+        <ul class="footer-links">
+          <li><a href="https://bigboxoutletstore.ca">Lower Mainland</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Fraser Valley</a></li>
+          <li><a href="https://bigboxoutletstore.ca">BC Interior</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Edmonton Area</a></li>
+          <li><a href="https://bigboxoutletstore.ca">All Locations</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet Store. All rights reserved. Prices may vary by location.</div>
+      <div class="footer-bottom-links">
+        <a href="https://bigboxoutletstore.ca">Privacy Policy</a>
+        <a href="https://bigboxoutletstore.ca">Terms of Use</a>
+        <a href="https://bigboxoutletstore.ca">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll-to-top button -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║             JAVASCRIPT                  ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<script>
+  // ── NAVBAR SCROLL EFFECT ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // ── MOBILE NAV TOGGLE ──
+  const navToggle = document.getElementById('navToggle');
+  const navMenu   = document.getElementById('navMenu');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  // Close menu on link click
+  navMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── STORE FILTERS ──
+  const filterBtns  = document.querySelectorAll('.store-filter-btn');
+  const storeCards  = document.querySelectorAll('.store-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      storeCards.forEach(card => {
+        const prov = card.dataset.province;
+        const show = filter === 'all' || prov === filter;
+        card.classList.toggle('hidden', !show);
+      });
+    });
+  });
+
+  // ── SCROLL REVEAL ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ── SCROLL-TO-TOP ──
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ── HIGHLIGHT CURRENT PRICE DAY ──
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const today = new Date().getDay(); // 0=Sun
+  const priceDayMap = { 4:'Thu', 5:'Fri', 6:'Sat', 0:'Sun', 1:'Mon', 2:'Tue', 3:'Wed' };
+  const todayCode = priceDayMap[today];
+  document.querySelectorAll('.price-day').forEach(el => {
+    el.classList.remove('active');
+    if (el.querySelector('.price-day-name').textContent === todayCode) {
+      el.classList.add('active');
+    }
+  });
+</script>
+</body>
+</html>
