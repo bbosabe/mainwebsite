@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* ── Brand Token CSS Variables ─────────────────────────────── */
+:root {
+  --primary: 358 85% 52%;           /* Dealios Red  #ec1c24 */
+  --accent: 59 100% 58%;            /* Dealios Yellow #fffb2a */
+  --secondary: 220 25% 12%;         /* Deep charcoal */
+  --background: 0 0% 99%;           /* Near-white */
+  --foreground: 220 25% 10%;        /* Dark text */
+  --muted: 220 14% 96%;             /* Subtle bg */
+  --muted-foreground: 220 10% 46%;  /* Secondary text */
+  --border: 220 13% 88%;
+  --input: 220 13% 88%;
+  --ring: 358 85% 52%;
+  --destructive: 0 84% 60%;
+  /* Tag colors */
+  --tag-green: 145 63% 42%;
+  --tag-purple: 270 70% 55%;
+  --tag-blue: 217 91% 60%;
+  --tag-red: 0 84% 55%;
+  /* Radius */
+  --radius: 0.5rem;
+}
+
+.dark {
+  --primary: 358 85% 60%;
+  --accent: 59 100% 58%;
+  --secondary: 220 25% 8%;
+  --background: 220 25% 8%;
+  --foreground: 0 0% 95%;
+  --muted: 220 25% 16%;
+  --muted-foreground: 220 10% 60%;
+  --border: 220 25% 20%;
+  --input: 220 25% 20%;
+  --ring: 358 85% 60%;
+}
+
+/* ── Tailwind v4 Theme Mapping ──────────────────────────────── */
+@theme inline {
+  --color-primary: hsl(var(--primary));
+  --color-accent: hsl(var(--accent));
+  --color-secondary: hsl(var(--secondary));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-destructive: hsl(var(--destructive));
+  --color-tag-green: hsl(var(--tag-green));
+  --color-tag-purple: hsl(var(--tag-purple));
+  --color-tag-blue: hsl(var(--tag-blue));
+  --color-tag-red: hsl(var(--tag-red));
+  /* Typography */
+  --font-sans: 'Rubik', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Rubik', ui-sans-serif, system-ui, sans-serif;
+  --font-marker: 'Permanent Marker', cursive;
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+}
+
+/* ── Base Styles ────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Rubik', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Keyframe Animations ────────────────────────────────────── */
+@keyframes bob {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── Utility Classes ────────────────────────────────────────── */
+.animate-bob {
+  animation: bob 3s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+  will-change: transform;
+}
+
+.shimmer-btn {
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    90deg,
+    hsl(var(--accent)) 0%,
+    hsl(59 100% 78%) 40%,
+    hsl(var(--accent)) 100%
+  );
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: hsl(var(--muted)); }
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 3px;
+}
+
+/* ── Reduced Motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-bob,
+  .animate-marquee,
+  .shimmer-btn {
+    animation: none;
+  }
+}
