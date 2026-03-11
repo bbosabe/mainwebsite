@@ -57,3 +57,25 @@ images/          # Static assets (PNG/JPG)
 ## Git Remote
 
 GitHub: `bbosabe/mainwebsite`
+
+## Subprojects
+
+| Dir        | Site                  | Stack                              | Port |
+|------------|-----------------------|------------------------------------|------|
+| `/`        | Big Box Outlet Store  | Static HTML/CSS/JS (`index.html`)  | 3900 |
+| `dealios/` | Dealios.ca homepage   | React 19 + TS + Vite + Tailwind v4 | 3901 |
+
+See `docs/plans/2026-03-10-dealios-homepage-design.md` for Dealios architecture decisions.
+Dealios dev server must be started manually (`preview_start` fails on Windows — see MEMORY.md).
+
+## API Keys & Secrets
+
+- **Never** hardcode API keys in source files or paste them into chat
+- If a key is accidentally exposed, **revoke it immediately** at the provider dashboard
+- Store secrets in `dealios/.env.local` (git-ignored by Vite's default `.gitignore`)
+- Prefix client-side vars with `VITE_` so Vite exposes them to the bundle:
+  ```
+  VITE_GOOGLE_AI_KEY=your_key_here
+  ```
+- Access in code via `import.meta.env.VITE_GOOGLE_AI_KEY`
+- Server-side / build-only secrets use no prefix and are never sent to the browser
