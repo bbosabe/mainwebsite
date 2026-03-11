@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Big Box Outlet Store | Big Brands. Outlet Prices.</title>
-  <meta name="description" content="Shop name brands for less at 20 locations across BC & Alberta. Price Drops Daily — prices start at $15 every Thursday and drop as low as 50¢ by Wednesday." />
+  <title>Big Box Outlet | Big Brands. Outlet Prices.</title>
+  <meta name="description" content="Shop name brands for less at 20 Big Box Outlet locations across BC & Alberta. Price Drops Daily — prices start at $15 every Thursday and drop as low as 50¢ by Wednesday." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -642,6 +642,125 @@
     .scroll-top:hover { background: var(--blue-mid); transform: translateY(-3px); }
     .scroll-top svg { width: 20px; height: 20px; fill: white; }
 
+    /* ── NEWSLETTER POPUP ────────────────────────── */
+    .popup-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,.65);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s ease;
+    }
+    .popup-overlay.active { opacity: 1; pointer-events: auto; }
+    .popup-box {
+      background: white; border-radius: var(--radius-lg);
+      padding: 48px 40px; max-width: 460px; width: calc(100% - 40px);
+      position: relative; transform: translateY(20px);
+      transition: transform .35s ease;
+      box-shadow: 0 32px 80px rgba(0,0,0,.35);
+    }
+    .popup-overlay.active .popup-box { transform: translateY(0); }
+    .popup-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--gray-100); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--gray-600); transition: background .2s;
+    }
+    .popup-close:hover { background: var(--gray-200); }
+    .popup-tag {
+      display: inline-block; background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Rubik', sans-serif; font-weight: 800;
+      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 16px;
+    }
+    .popup-title {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: 1.75rem; color: var(--gray-900);
+      line-height: 1.15; margin-bottom: 8px;
+    }
+    .popup-sub { font-size: .95rem; color: var(--gray-600); margin-bottom: 28px; line-height: 1.5; }
+    .popup-form { display: flex; flex-direction: column; gap: 12px; }
+    .popup-input {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm);
+      font-family: 'Nunito Sans', sans-serif; font-size: .95rem;
+      color: var(--gray-900); outline: none; transition: border-color .2s;
+    }
+    .popup-input:focus { border-color: var(--blue); }
+    .popup-input::placeholder { color: var(--gray-500); }
+    .popup-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .popup-btn {
+      width: 100%; padding: 15px; border-radius: 50px; border: none;
+      background: var(--blue); color: white; cursor: pointer;
+      font-family: 'Rubik', sans-serif; font-weight: 800; font-size: 1rem;
+      transition: all .2s; margin-top: 4px;
+      box-shadow: 0 4px 16px rgba(0,61,165,.3);
+    }
+    .popup-btn:hover { background: var(--blue-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,61,165,.4); }
+    .popup-legal { font-size: .75rem; color: var(--gray-500); text-align: center; margin-top: 12px; line-height: 1.5; }
+    .popup-success {
+      text-align: center; padding: 20px 0;
+    }
+    .popup-success-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #d1fae5; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; font-size: 1.6rem; color: #059669; font-weight: 900;
+    }
+    .popup-success h3 { font-family: 'Rubik', sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 8px; }
+    .popup-success p { color: var(--gray-600); font-size: .9rem; }
+    .popup-badge {
+      display: inline-block; background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Rubik', sans-serif; font-weight: 800;
+      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 16px;
+    }
+    .popup-desc { font-size: .95rem; color: var(--gray-600); margin-bottom: 24px; line-height: 1.5; }
+    .popup-form input, .popup-form select {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm);
+      font-family: 'Nunito Sans', sans-serif; font-size: .95rem;
+      color: var(--gray-900); outline: none; transition: border-color .2s;
+      background: white;
+    }
+    .popup-form input:focus, .popup-form select:focus { border-color: var(--blue); }
+    .popup-form input::placeholder { color: var(--gray-500); }
+
+    /* ── HERO IMAGE PANEL ─────────────────────────── */
+    .hero-img-panel {
+      position: relative; flex-shrink: 0;
+    }
+    .hero-img-panel img {
+      width: 100%; max-width: 520px; border-radius: var(--radius-lg);
+      box-shadow: 0 32px 80px rgba(0,0,0,.5);
+      display: block;
+    }
+    .hero-img-badge {
+      position: absolute; bottom: -12px; left: 24px;
+      background: var(--yellow); color: var(--blue-dark);
+      padding: 12px 20px; border-radius: var(--radius-md);
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: .95rem; box-shadow: var(--shadow-xl);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hero-img-badge-tag {
+      background: var(--blue-dark); color: var(--yellow);
+      padding: 2px 10px; border-radius: 50px; font-size: .75rem;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .hero-img-badge-text { font-size: .88rem; font-weight: 700; }
+
+    /* ── FOOTER CONNECT ──────────────────────────── */
+    .footer-top { grid-template-columns: 240px 1fr 1fr 1fr 1fr !important; }
+    .footer-connect-icons { display: flex; gap: 10px; flex-wrap: wrap; }
+    .footer-connect-link {
+      width: 40px; height: 40px; border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.08); display: flex;
+      align-items: center; justify-content: center;
+      transition: background .2s; text-decoration: none;
+    }
+    .footer-connect-link:hover { background: var(--blue); }
+    .footer-connect-link svg { width: 18px; height: 18px; fill: rgba(255,255,255,.8); }
+
     /* ── PREFERS REDUCED MOTION ───────────────────── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -661,10 +780,12 @@
         <img src="images/logo.png" alt="Big Box Outlet Store" />
       </a>
       <ul class="navbar-nav" id="navMenu">
-        <li><a href="#categories">Shop</a></li>
-        <li><a href="#price-drop">Price Drop</a></li>
+        <li><a href="#categories">Weekly Deals</a></li>
         <li><a href="#locations">Find a Store</a></li>
-        <li><a href="#rewards">Rewards</a></li>
+        <li><a href="#rewards">Members</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Careers</a></li>
       </ul>
       <div class="navbar-cta">
         <a href="#locations" class="btn btn-primary">
@@ -728,46 +849,12 @@
         </div>
       </div>
 
-      <!-- Hero panel: Price Drop explainer -->
-      <div class="hero-panel" aria-label="Price Drop daily schedule">
-        <div>
-          <div class="hero-panel-title">Daily Price Drop Schedule</div>
-          <div class="hero-panel-sub">New stock every Thursday — prices drop daily</div>
-        </div>
-        <div class="price-track" role="list">
-          <div class="price-day active" role="listitem">
-            <div class="price-day-name">Thu</div>
-            <div class="price-day-val">$15</div>
-          </div>
-          <div class="price-day" role="listitem">
-            <div class="price-day-name">Fri</div>
-            <div class="price-day-val">$10</div>
-          </div>
-          <div class="price-day" role="listitem">
-            <div class="price-day-name">Sat</div>
-            <div class="price-day-val">$7</div>
-          </div>
-          <div class="price-day" role="listitem">
-            <div class="price-day-name">Sun</div>
-            <div class="price-day-val">$5</div>
-          </div>
-          <div class="price-day" role="listitem">
-            <div class="price-day-name">Mon</div>
-            <div class="price-day-val">$3</div>
-          </div>
-          <div class="price-day" role="listitem">
-            <div class="price-day-name">Tue</div>
-            <div class="price-day-val">$1</div>
-          </div>
-          <div class="price-day low" role="listitem">
-            <div class="price-day-name">Wed</div>
-            <div class="price-day-val">50¢</div>
-          </div>
-        </div>
-        <div style="border-top:1px solid rgba(255,255,255,.12); padding-top: 16px;">
-          <div style="font-size:.8rem; color:rgba(255,255,255,.5); line-height:1.6;">
-            *Pricing starts at $15 on Thursday and decreases daily until Wednesday. Selection may vary by store.
-          </div>
+      <!-- Hero image panel -->
+      <div class="hero-img-panel">
+        <img src="images/hero-banner-1.png" alt="Big Box Outlet — Big Brands at Outlet Prices" />
+        <div class="hero-img-badge">
+          <span class="hero-img-badge-tag">Price Drop</span>
+          <span class="hero-img-badge-text">Prices drop daily — as low as 50¢</span>
         </div>
       </div>
     </div>
@@ -818,7 +905,7 @@
         <span class="section-label">Our Unique System</span>
         <h2 class="section-heading">Price Drops<br />Every Single Day</h2>
         <p class="price-drop-desc">
-          Big Box Outlet Store runs on a one-of-a-kind pricing model. Fresh merchandise hits the floor every Thursday at $15 — and the price drops daily until Wednesday, when items go for as low as 50¢.
+          Big Box Outlet runs on a one-of-a-kind pricing model. Fresh merchandise hits the floor every Thursday at $15 — and the price drops daily until Wednesday, when items go for as low as 50¢.
         </p>
         <div class="how-it-works">
           <div class="how-step">
@@ -992,7 +1079,7 @@
       </div>
       <div class="price-match-text">
         <h2>Find a Better Price? We'll Beat It.</h2>
-        <p>We're confident our outlet pricing beats the competition. If you find a better price on the same item, show us and we'll match it. Big Box Outlet Store — where savings are guaranteed.</p>
+        <p>We're confident our outlet pricing beats the competition. If you find a better price on the same item, show us and we'll match it. Big Box Outlet — where savings are guaranteed.</p>
       </div>
     </div>
   </div>
@@ -1005,7 +1092,7 @@
   <div class="container">
     <span class="section-label">Western Canada</span>
     <h2 class="section-heading">Find a Store Near You</h2>
-    <p class="stores-sub">20 locations across British Columbia and Alberta — there's always a Big Box Outlet Store close by.</p>
+    <p class="stores-sub">20 locations across British Columbia and Alberta — there's always a Big Box Outlet close by.</p>
 
     <div class="store-filters" role="group" aria-label="Filter stores by province">
       <button class="store-filter-btn active" data-filter="all" aria-pressed="true">
@@ -1356,60 +1443,53 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="images/logo-white.png" alt="Big Box Outlet Store" />
+        <img src="images/logo-white.png" alt="Big Box Outlet" />
         <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
-        <div class="footer-socials">
-          <!-- Facebook -->
-          <a href="https://facebook.com/bigboxoutletstore" class="footer-social-link" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <!-- Instagram -->
-          <a href="https://instagram.com/bigboxoutletstore" class="footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="#060f1e"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#060f1e" stroke-width="2"/></svg>
-          </a>
-          <!-- TikTok -->
-          <a href="https://tiktok.com/@bigboxoutlet" class="footer-social-link" target="_blank" rel="noopener" aria-label="TikTok">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-          </a>
-        </div>
       </div>
 
       <div>
-        <div class="footer-col-title">Shop</div>
+        <div class="footer-col-title">Explore</div>
         <ul class="footer-links">
-          <li><a href="https://bigboxoutletstore.ca">Small Appliances</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Large Appliances</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Furniture</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Clothing</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Glass Cases</a></li>
+          <li><a href="#categories">Weekly Deals</a></li>
+          <li><a href="#locations">Find A Store</a></li>
+          <li><a href="#rewards">Become A Member</a></li>
         </ul>
       </div>
 
       <div>
-        <div class="footer-col-title">About</div>
+        <div class="footer-col-title">About Us</div>
         <ul class="footer-links">
           <li><a href="https://bigboxoutletstore.ca">Our Story</a></li>
-          <li><a href="https://bigboxoutletstore.ca">How Price Drop Works</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Careers</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Contact Us</a></li>
-          <li><a href="https://bigboxoutletstore.ca">BBOS Rewards</a></li>
         </ul>
       </div>
 
       <div>
-        <div class="footer-col-title">Regions</div>
+        <div class="footer-col-title">Customer Service</div>
         <ul class="footer-links">
-          <li><a href="https://bigboxoutletstore.ca">Lower Mainland</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Fraser Valley</a></li>
-          <li><a href="https://bigboxoutletstore.ca">BC Interior</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Edmonton Area</a></li>
-          <li><a href="https://bigboxoutletstore.ca">All Locations</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Contact Us</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Legal</a></li>
         </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Connect with BBO</div>
+        <div class="footer-connect-icons">
+          <a href="https://facebook.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://instagram.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="mailto:info@bigboxoutletstore.ca" class="footer-connect-link" aria-label="Email us">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet Store. All rights reserved. Prices may vary by location.</div>
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location.</div>
       <div class="footer-bottom-links">
         <a href="https://bigboxoutletstore.ca">Privacy Policy</a>
         <a href="https://bigboxoutletstore.ca">Terms of Use</a>
@@ -1418,6 +1498,63 @@
     </div>
   </div>
 </footer>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║         NEWSLETTER POPUP                ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<div class="popup-overlay" id="newsletterPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+  <div class="popup-box">
+    <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
+    <div class="popup-content" id="popupContent">
+      <div class="popup-badge">Members Get More</div>
+      <h2 class="popup-title" id="popupTitle">Stay in the Loop</h2>
+      <p class="popup-desc">Be the first to know about new arrivals, weekly deals, and exclusive member savings at your local Big Box Outlet.</p>
+      <form class="popup-form" id="popupForm" novalidate>
+        <div class="popup-row">
+          <input type="text" name="firstName" placeholder="First Name" required autocomplete="given-name" />
+          <input type="email" name="email" placeholder="Email Address" required autocomplete="email" />
+        </div>
+        <div class="popup-row">
+          <input type="text" name="postalCode" placeholder="Postal Code" maxlength="7" autocomplete="postal-code" />
+          <select name="store">
+            <option value="" disabled selected>Nearest Store</option>
+            <optgroup label="British Columbia">
+              <option>Abbotsford</option>
+              <option>Burnaby</option>
+              <option>Chilliwack</option>
+              <option>Cloverdale</option>
+              <option>Coquitlam</option>
+              <option>Delta (Tilbury)</option>
+              <option>Kamloops</option>
+              <option>Kelowna</option>
+              <option>Langley</option>
+              <option>Maple Ridge</option>
+              <option>Penticton</option>
+              <option>Prince George</option>
+              <option>Surrey (152nd)</option>
+              <option>Vernon</option>
+            </optgroup>
+            <optgroup label="Alberta">
+              <option>Calgary (Airdrie Trail)</option>
+              <option>Calgary (Barlow Trail)</option>
+              <option>Edmonton (Capilano)</option>
+              <option>Edmonton (Kingsway)</option>
+              <option>Lethbridge</option>
+              <option>Sherwood Park</option>
+            </optgroup>
+          </select>
+        </div>
+        <button type="submit" class="popup-btn">Sign me up today!</button>
+        <p class="popup-legal">By subscribing you agree to receive marketing emails from Big Box Outlet. Unsubscribe anytime.</p>
+      </form>
+    </div>
+    <div class="popup-success" id="popupSuccess" style="display:none;">
+      <div class="popup-success-icon">&#10003;</div>
+      <h3>You're in!</h3>
+      <p>Thanks for joining. Watch your inbox for weekly deals and exclusive member offers from Big Box Outlet.</p>
+    </div>
+  </div>
+</div>
 
 <!-- Scroll-to-top button -->
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
@@ -1493,17 +1630,47 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // ── HIGHLIGHT CURRENT PRICE DAY ──
-  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const today = new Date().getDay(); // 0=Sun
-  const priceDayMap = { 4:'Thu', 5:'Fri', 6:'Sat', 0:'Sun', 1:'Mon', 2:'Tue', 3:'Wed' };
-  const todayCode = priceDayMap[today];
-  document.querySelectorAll('.price-day').forEach(el => {
-    el.classList.remove('active');
-    if (el.querySelector('.price-day-name').textContent === todayCode) {
-      el.classList.add('active');
+  // ── NEWSLETTER POPUP ──
+  (function () {
+    const overlay  = document.getElementById('newsletterPopup');
+    const closeBtn = document.getElementById('popupClose');
+    const form     = document.getElementById('popupForm');
+    const content  = document.getElementById('popupContent');
+    const success  = document.getElementById('popupSuccess');
+    const COOKIE   = 'bbo_popup_seen';
+
+    function hasCookie() {
+      return document.cookie.split(';').some(c => c.trim().startsWith(COOKIE + '='));
     }
-  });
+    function setCookie() {
+      const exp = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
+      document.cookie = COOKIE + '=1; expires=' + exp + '; path=/';
+    }
+    function openPopup() {
+      overlay.classList.add('active');
+      closeBtn.focus();
+    }
+    function closePopup() {
+      overlay.classList.remove('active');
+      setCookie();
+    }
+
+    if (!hasCookie()) {
+      setTimeout(openPopup, 3000);
+    }
+
+    closeBtn.addEventListener('click', closePopup);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closePopup(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      content.style.display = 'none';
+      success.style.display = 'block';
+      setCookie();
+      setTimeout(closePopup, 3000);
+    });
+  })();
 </script>
 </body>
 </html>
