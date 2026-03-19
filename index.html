@@ -157,13 +157,12 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('images/store-interior.jpg') center/cover no-repeat;
-      opacity: .18;
+      background: url('images/store-front.jpg') center/cover no-repeat;
+      opacity: .35;
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, var(--blue-dark) 0%, #0044cc 60%, var(--blue-dark) 100%);
-      opacity: .88;
+      background: linear-gradient(100deg, rgba(0,20,80,.96) 0%, rgba(0,44,160,.82) 55%, rgba(0,20,80,.55) 100%);
     }
     /* Animated geometric shapes */
     .hero-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
@@ -181,9 +180,8 @@
     }
     .hero-content {
       position: relative; z-index: 2;
-      display: grid; grid-template-columns: 1fr 480px;
-      gap: 64px; align-items: center;
-      padding: 80px 0;
+      display: block; max-width: 760px;
+      padding: 100px 0;
     }
     .hero-eyebrow {
       display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
@@ -203,9 +201,9 @@
     }
     .hero-headline {
       font-family: 'Rubik', sans-serif; font-weight: 900;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      line-height: .95; color: var(--white);
-      margin-bottom: 8px;
+      font-size: clamp(3.8rem, 7vw, 6.5rem);
+      line-height: .92; color: var(--white);
+      margin-bottom: 12px;
     }
     .hero-headline .yellow { color: var(--yellow); }
     .hero-sub {
@@ -219,7 +217,7 @@
     .hero-stat {}
     .hero-stat-num {
       font-family: 'Rubik', sans-serif; font-weight: 900;
-      font-size: 2rem; color: var(--yellow); display: block;
+      font-size: 2.4rem; color: var(--yellow); display: block;
     }
     .hero-stat-label {
       font-size: .85rem; color: rgba(255,255,255,.65);
@@ -263,18 +261,10 @@
     .price-day.active .price-day-val { color: white; font-size: 1rem; }
     .price-day.low .price-day-val { color: #4ade80; }
 
-    @media (max-width: 1024px) {
-      .hero-content { grid-template-columns: 1fr; gap: 40px; }
-      .hero-panel { max-width: 500px; }
-      .hero-img-panel { max-width: 500px; }
-    }
-    @media (max-width: 768px) {
-      .hero-img-panel { display: none; }
-    }
     @media (max-width: 640px) {
-      .hero-headline { font-size: clamp(2.6rem, 10vw, 3.5rem); }
+      .hero-content { padding: 80px 0; }
+      .hero-headline { font-size: clamp(2.8rem, 11vw, 4rem); }
       .hero-stats { gap: 20px; }
-      .hero-panel { padding: 24px; }
       .hero-actions { flex-direction: column; gap: 12px; }
       .hero-actions .btn { justify-content: center; }
     }
@@ -417,6 +407,11 @@
       width: 360px; height: 360px; border-radius: 50%;
       background: rgba(255,255,255,.05);
     }
+    .rewards-section::after {
+      content: ''; position: absolute; left: -80px; bottom: -80px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(255,214,0,.06);
+    }
     .rewards-inner {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 64px; align-items: center; position: relative; z-index: 1;
@@ -435,9 +430,25 @@
       display: flex; align-items: center; justify-content: center;
     }
     .rewards-perk-icon svg { width: 17px; height: 17px; fill: var(--yellow); }
-    .rewards-image img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); }
+    .rewards-image {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rewards-image img {
+      width: 100%; max-width: 360px; border-radius: 14px;
+      transform: rotate(-6deg) translateY(-10px);
+      box-shadow: 0 24px 60px rgba(255,214,0,.30), 0 8px 32px rgba(0,0,0,.45);
+      transition: transform .35s ease, box-shadow .35s ease;
+      display: block;
+    }
+    .rewards-image img:hover {
+      transform: rotate(-3deg) translateY(-22px);
+      box-shadow: 0 40px 80px rgba(255,214,0,.45), 0 16px 48px rgba(0,0,0,.5);
+    }
     @media (max-width: 768px) {
       .rewards-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 640px) {
+      .rewards-image img { max-width: 280px; transform: rotate(-3deg) translateY(-6px); }
     }
 
     /* ── FOOTER ──────────────────────────────────── */
@@ -717,14 +728,6 @@
         </div>
       </div>
 
-      <!-- Hero image panel -->
-      <div class="hero-img-panel">
-        <img src="images/hero-banner-1.png" alt="Big Box Outlet — Big Brands at Outlet Prices" />
-        <div class="hero-img-badge">
-          <span class="hero-img-badge-tag">Price Drop</span>
-          <span class="hero-img-badge-text">Prices drop daily — as low as 50¢</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -931,7 +934,7 @@
         </a>
       </div>
       <div class="rewards-image reveal" style="transition-delay:.15s">
-        <img src="images/rewards-banner.jpg" alt="BBOS Rewards Program" loading="lazy" />
+        <img src="images/rewards-card.png" alt="BBOS Rewards Card" loading="lazy" />
       </div>
     </div>
   </div>
