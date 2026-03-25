@@ -7,7 +7,7 @@
   <meta name="description" content="Shop name brands for less at 20 Big Box Outlet locations across BC & Alberta. Price Drops Daily — prices start at $15 every Thursday and drop as low as 50¢ by Wednesday." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ── RESET & BASE ─────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,6 +42,17 @@
       --shadow-md:   0 4px 16px rgba(0,0,0,.10);
       --shadow-lg:   0 8px 32px rgba(0,0,0,.14);
       --shadow-xl:   0 20px 60px rgba(0,0,0,.18);
+      /* Category sub-brand colours (Pantone 2026 brand guide) */
+      --cat-home:           #A8CAEC;
+      --cat-home-dark:      #7AAED8;
+      --cat-furniture:      #9578C0;
+      --cat-furniture-dark: #7A5BA0;
+      --cat-kitchen:        #DA70C8;
+      --cat-kitchen-dark:   #BB52AA;
+      --cat-clothing:       #83C5A7;
+      --cat-clothing-dark:  #5EA888;
+      --cat-life:           #FF8040;
+      --cat-life-dark:      #E06020;
     }
 
     /* ── UTILITY ──────────────────────────────────── */
@@ -295,7 +306,7 @@
       border-radius: 50%; flex-shrink: 0;
     }
 
-    /* ── CATEGORIES ──────────────────────────────── */
+    /* ── CATEGORIES ──────────────────────────────────── */
     .categories-section { padding: 100px 0; background: var(--gray-50); }
     .section-header { text-align: center; margin-bottom: 56px; }
     .section-header .section-heading { font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 16px; }
@@ -303,49 +314,59 @@
 
     .categories-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 20px;
     }
-    .category-card {
-      background: white; border-radius: var(--radius-lg);
-      overflow: hidden; box-shadow: var(--shadow-sm);
-      border: 1px solid var(--gray-200);
-      transition: all .3s ease; cursor: pointer;
-      display: flex; flex-direction: column;
+    /* BIG BOX [Category] sub-brand card */
+    .cat-card {
+      background: #fff; border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200);
+      transition: all .3s ease; cursor: pointer; display: flex; flex-direction: column;
     }
-    .category-card:hover {
-      transform: translateY(-8px); box-shadow: var(--shadow-xl);
-      border-color: transparent;
+    .cat-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); border-color: transparent; }
+
+    .cat-card-header { display: flex; align-items: stretch; height: 56px; }
+    .cat-card-brand {
+      background: var(--blue); color: #fff; padding: 0 12px;
+      display: flex; align-items: center; flex-direction: column; justify-content: center;
+      font-family: 'Work Sans', sans-serif; font-weight: 900; font-size: .58rem;
+      letter-spacing: .06em; line-height: 1.15; text-transform: uppercase;
+      white-space: nowrap; min-width: 52px; text-align: center;
     }
-    .category-card-img {
-      overflow: hidden; background: #f0f4f8;
-      aspect-ratio: 1/1;
+    .cat-card-tab {
+      background: var(--cat-color, #A8CAEC); padding: 0 14px;
+      display: flex; align-items: center; gap: 7px; flex: 1;
+      font-family: 'Work Sans', sans-serif; font-weight: 800; font-size: .88rem;
+      color: var(--blue-dark);
     }
-    .category-card-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .4s ease;
+    .cat-card-tab svg { width: 16px; height: 16px; flex-shrink: 0; opacity: .65; }
+
+    .cat-card-icon {
+      padding: 24px 20px 12px; display: flex; align-items: center; justify-content: center;
     }
-    .category-card:hover .category-card-img img { transform: scale(1.06); }
-    .category-card-body {
-      padding: 20px 20px 24px; flex: 1;
+    .cat-card-icon svg { width: 56px; height: 56px; }
+
+    .cat-card-body {
+      padding: 0 20px 24px; flex: 1;
       display: flex; flex-direction: column; justify-content: space-between;
     }
-    .category-card-title {
+    .cat-card-title {
       font-family: 'Rubik', sans-serif; font-weight: 800;
-      font-size: 1.15rem; color: var(--gray-900); margin-bottom: 6px;
+      font-size: 1.05rem; color: var(--gray-900); margin-bottom: 6px;
     }
-    .category-card-desc { font-size: .875rem; color: var(--gray-600); line-height: 1.5; }
-    .category-card-link {
+    .cat-card-desc { font-size: .85rem; color: var(--gray-600); line-height: 1.5; }
+    .cat-card-link {
       display: flex; align-items: center; gap: 8px; margin-top: 16px;
-      font-family: 'Rubik', sans-serif; font-weight: 700;
-      font-size: .875rem; color: var(--blue); text-decoration: none;
+      font-family: 'Rubik', sans-serif; font-weight: 700; font-size: .85rem;
+      color: var(--cat-color-dark, var(--blue)); text-decoration: none;
       transition: gap .2s;
     }
-    .category-card-link svg { width: 16px; height: 16px; transition: transform .2s; }
-    .category-card:hover .category-card-link svg { transform: translateX(4px); }
+    .cat-card-link svg { width: 16px; height: 16px; transition: transform .2s; }
+    .cat-card:hover .cat-card-link svg { transform: translateX(4px); }
 
-    @media (max-width: 960px) { .categories-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px) { .categories-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1100px) { .categories-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px)  { .categories-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 440px)  { .categories-grid { grid-template-columns: 1fr; } }
 
     /* ── TRUST SECTION ───────────────────────────── */
     .trust-section { padding: 80px 0; background: white; }
@@ -661,9 +682,10 @@
       <ul class="navbar-nav" id="navMenu">
         <li><a href="#categories">Weekly Deals</a></li>
         <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find a Store</a></li>
+        <li><a href="flyer.html">Flyers</a></li>
         <li><a href="#rewards">Members</a></li>
         <li><a href="#">Community</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="#">Careers</a></li>
       </ul>
       <div class="navbar-cta">
@@ -773,70 +795,126 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="section-label">What We Carry</span>
-      <h2 class="section-heading">Shop Our Departments</h2>
-      <p>Top name-brand merchandise at outlet prices — from kitchen appliances to furniture and beyond.</p>
+      <h2 class="section-heading">Shop By Category</h2>
+      <p>At Big Box we have one goal: to help people afford everyday life.</p>
     </div>
     <div class="categories-grid">
 
-      <article class="category-card reveal">
-        <div class="category-card-img">
-          <img src="images/small-appliances.png" alt="Small appliances from Gourmia, KitchenAid, Cuisinart and Ninja" loading="lazy" />
-        </div>
-        <div class="category-card-body">
-          <div>
-            <div class="category-card-title">Small Appliances</div>
-            <div class="category-card-desc">Air fryers, blenders, coffee makers, stand mixers &amp; more from top brands.</div>
+      <!-- Home -->
+      <article class="cat-card reveal" style="--cat-color:#A8CAEC;--cat-color-dark:#7AAED8;">
+        <div class="cat-card-header">
+          <div class="cat-card-brand">BIG<br>BOX</div>
+          <div class="cat-card-tab">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            Home
           </div>
-          <a href="https://bigboxoutletstore.ca" class="category-card-link" target="_blank" rel="noopener">
-            Shop Now
+        </div>
+        <div class="cat-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#A8CAEC" aria-hidden="true"><path d="M3 9.5L12 3l9 6.5V21a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 22 9 12 15 12 15 22" fill="#7AAED8"/></svg>
+        </div>
+        <div class="cat-card-body">
+          <div>
+            <div class="cat-card-title">Big Box Home</div>
+            <div class="cat-card-desc">Appliances, décor &amp; everything for your home at outlet prices.</div>
+          </div>
+          <a href="home.html" class="cat-card-link">
+            Shop Home
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
           </a>
         </div>
       </article>
 
-      <article class="category-card reveal" style="transition-delay:.1s">
-        <div class="category-card-img">
-          <img src="images/large-appliances.png" alt="Large appliances from Samsung and General Electric" loading="lazy" />
-        </div>
-        <div class="category-card-body">
-          <div>
-            <div class="category-card-title">Large Appliances</div>
-            <div class="category-card-desc">Refrigerators, ranges, washers &amp; dryers from Samsung, GE and more.</div>
+      <!-- Furniture -->
+      <article class="cat-card reveal" style="--cat-color:#9578C0;--cat-color-dark:#7A5BA0;transition-delay:.08s">
+        <div class="cat-card-header">
+          <div class="cat-card-brand">BIG<br>BOX</div>
+          <div class="cat-card-tab">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            Furniture
           </div>
-          <a href="https://bigboxoutletstore.ca" class="category-card-link" target="_blank" rel="noopener">
-            Shop Now
+        </div>
+        <div class="cat-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#9578C0" aria-hidden="true"><rect x="2" y="9" width="3" height="10" rx="1"/><rect x="19" y="9" width="3" height="10" rx="1"/><rect x="2" y="14" width="20" height="5" rx="1"/><path d="M5 14V9a7 7 0 0 1 14 0v5"/></svg>
+        </div>
+        <div class="cat-card-body">
+          <div>
+            <div class="cat-card-title">Big Box Furniture</div>
+            <div class="cat-card-desc">Sofas, beds, dining sets &amp; patio furniture at a fraction of retail.</div>
+          </div>
+          <a href="furniture.html" class="cat-card-link">
+            Shop Furniture
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
           </a>
         </div>
       </article>
 
-      <article class="category-card reveal" style="transition-delay:.2s">
-        <div class="category-card-img">
-          <img src="images/furniture.png" alt="Furniture" loading="lazy" />
-        </div>
-        <div class="category-card-body">
-          <div>
-            <div class="category-card-title">Furniture</div>
-            <div class="category-card-desc">Sofas, beds, dining sets, patio furniture &amp; home décor at outlet savings.</div>
+      <!-- Kitchen -->
+      <article class="cat-card reveal" style="--cat-color:#DA70C8;--cat-color-dark:#BB52AA;transition-delay:.16s">
+        <div class="cat-card-header">
+          <div class="cat-card-brand">BIG<br>BOX</div>
+          <div class="cat-card-tab">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            Kitchen
           </div>
-          <a href="https://bigboxoutletstore.ca" class="category-card-link" target="_blank" rel="noopener">
-            Shop Now
+        </div>
+        <div class="cat-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#DA70C8" aria-hidden="true"><path d="M6 2v6a2 2 0 0 0 2 2h1v12h2V10h1a2 2 0 0 0 2-2V2h-2v5h-1V2h-2v5h-1V2H6z"/><path d="M19 2c0 0-3 2-3 6v1a2 2 0 0 0 2 2h1v11h2V2h-2z"/></svg>
+        </div>
+        <div class="cat-card-body">
+          <div>
+            <div class="cat-card-title">Big Box Kitchen</div>
+            <div class="cat-card-desc">Cookware, small appliances &amp; kitchen essentials from top brands.</div>
+          </div>
+          <a href="kitchen.html" class="cat-card-link">
+            Shop Kitchen
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
           </a>
         </div>
       </article>
 
-      <article class="category-card reveal" style="transition-delay:.3s">
-        <div class="category-card-img">
-          <img src="images/clothing.png" alt="Clothing" loading="lazy" />
-        </div>
-        <div class="category-card-body">
-          <div>
-            <div class="category-card-title">Clothing</div>
-            <div class="category-card-desc">Name-brand apparel for the whole family — new styles hitting shelves weekly.</div>
+      <!-- Clothing -->
+      <article class="cat-card reveal" style="--cat-color:#83C5A7;--cat-color-dark:#5EA888;transition-delay:.24s">
+        <div class="cat-card-header">
+          <div class="cat-card-brand">BIG<br>BOX</div>
+          <div class="cat-card-tab">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            Clothing
           </div>
-          <a href="https://bigboxoutletstore.ca" class="category-card-link" target="_blank" rel="noopener">
-            Shop Now
+        </div>
+        <div class="cat-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#83C5A7" aria-hidden="true"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+        </div>
+        <div class="cat-card-body">
+          <div>
+            <div class="cat-card-title">Big Box Clothing</div>
+            <div class="cat-card-desc">Name-brand apparel for the whole family, new arrivals weekly.</div>
+          </div>
+          <a href="clothing.html" class="cat-card-link">
+            Shop Clothing
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Life -->
+      <article class="cat-card reveal" style="--cat-color:#FF8040;--cat-color-dark:#E06020;transition-delay:.32s">
+        <div class="cat-card-header">
+          <div class="cat-card-brand">BIG<br>BOX</div>
+          <div class="cat-card-tab">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            Life
+          </div>
+        </div>
+        <div class="cat-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FF8040" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <div class="cat-card-body">
+          <div>
+            <div class="cat-card-title">Big Box Life</div>
+            <div class="cat-card-desc">Electronics, outdoor gear, sports &amp; more for everyday living.</div>
+          </div>
+          <a href="life.html" class="cat-card-link">
+            Shop Life
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
           </a>
         </div>
@@ -963,7 +1041,7 @@
       <div>
         <div class="footer-col-title">About Us</div>
         <ul class="footer-links">
-          <li><a href="https://bigboxoutletstore.ca">Our Story</a></li>
+          <li><a href="about.html">Our Story</a></li>
         </ul>
       </div>
 
