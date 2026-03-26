@@ -3,37 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us — Big Box Outlet Store</title>
+  <title>Big Box in the Community — Big Box Outlet Store</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="base.css" />
   <style>
-    :root { --page-color: #003DA5; --page-color-dark: #00297a; }
-
-    /* ── STORY SECTION ─────────────────────────────── */
-    .story-section { padding: 100px 0; background: #fff; }
-    .story-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: start;
-    }
-    .story-text .section-label { color: var(--blue); }
-    .story-text p {
-      font-size: 1.05rem; color: var(--gray-600);
-      line-height: 1.75; margin-bottom: 20px;
-    }
-    .story-text p:last-child { margin-bottom: 0; }
-    @media (max-width: 768px) {
-      .story-grid { grid-template-columns: 1fr; gap: 48px; }
-    }
-
-    /* ── OVERRIDE value-icon fill for about page icons ─ */
-    .value-icon svg[data-stroke] {
-      fill: none;
-      stroke: var(--blue);
-      stroke-width: 2;
-      stroke-linecap: round;
-    }
+    :root { --page-color: #003DA6; --page-color-dark: #00297a; }
   </style>
 </head>
 <body>
@@ -48,7 +24,7 @@
       <ul class="navbar-nav" id="navMenu">
         <li><a href="flyer.html">Weekly Deals</a></li>
         <li><a href="index.html#rewards">Rewards</a></li>
-        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="careers.html">Careers</a></li>
       </ul>
       <div class="navbar-actions">
@@ -76,36 +52,46 @@
       <div class="sub-hero-inner">
         <div class="sub-hero-brand">
           <div class="sub-hero-brand-box">BIG<br>BOX</div>
-          <div class="sub-hero-brand-tab">Outlet</div>
+          <div class="sub-hero-brand-tab">Community</div>
         </div>
-        <h1 class="sub-hero-headline">Western Canada's<br><span style="color:var(--yellow)">Favourite Outlet Store</span></h1>
-        <p class="sub-hero-sub">Family-owned and Canadian-operated since 1985. Twenty locations across BC and Alberta — and one simple goal.</p>
+        <h1 class="sub-hero-headline">Big Box in the<br><span style="color:var(--yellow)">Community</span></h1>
+        <p class="sub-hero-sub">We're proud to give back to the communities across BC and Alberta that we call home.</p>
         <div class="sub-hero-actions">
-          <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
-          <a href="index.html#categories" class="btn btn-outline">Shop Now</a>
+          <a href="https://instagram.com/bigboxoutletstore" class="btn btn-primary" target="_blank" rel="noopener">Follow Us on Instagram</a>
+          <a href="https://bigboxoutletstore.ca/locations" class="btn btn-outline" target="_blank" rel="noopener">Find a Store</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 2. Our Story -->
-  <section class="story-section">
+  <!-- 2. Community Initiatives -->
+  <section class="value-section">
     <div class="container">
-      <div class="story-grid">
-        <div class="story-text reveal">
-          <span class="section-label">Our Story</span>
-          <h2 class="section-heading">Built on a Simple Promise</h2>
-          <p>Big Box Outlet Store has been a fixture in Western Canada since 1985. What started as a single family-owned store has grown into 20 locations across British Columbia and Alberta — all united by one simple goal: to help people afford everyday life.</p>
-          <p>We buy overstock, open-box, and recertified merchandise directly from major brands and retailers, then pass those savings directly to you. No middlemen. No markups. Just honest prices on products you know and trust.</p>
-          <p>Every item we sell is personally inspected, tested, and cleared for resale by our team — so you get the quality you expect at a price that actually makes sense.</p>
-        </div>
-        <div class="reveal" style="transition-delay:.15s">
-          <div class="stats-row" style="grid-template-columns:1fr 1fr;margin-top:0;">
-            <div class="stat-card"><div class="stat-num">20</div><div class="stat-label">Store Locations</div></div>
-            <div class="stat-card"><div class="stat-num">BC+AB</div><div class="stat-label">Provinces Served</div></div>
-            <div class="stat-card"><div class="stat-num">1985</div><div class="stat-label">Founded</div></div>
-            <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">Canadian Owned</div></div>
+      <div class="section-header reveal">
+        <span class="section-label">Giving Back</span>
+        <h2 class="section-heading">How We Give Back</h2>
+      </div>
+      <div class="value-grid">
+        <div class="value-card reveal">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
           </div>
+          <div class="value-title">Food Bank Partnerships</div>
+          <div class="value-desc">We partner with local food banks across BC and Alberta to donate overstocked non-perishable goods. Every item helps a neighbour in need.</div>
+        </div>
+        <div class="value-card reveal" style="transition-delay:.1s">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          </div>
+          <div class="value-title">Youth Sports Sponsorships</div>
+          <div class="value-desc">Big Box Outlet is proud to sponsor youth sports leagues and community teams. We believe every kid deserves a chance to play.</div>
+        </div>
+        <div class="value-card reveal" style="transition-delay:.2s">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <div class="value-title">Local Event Support</div>
+          <div class="value-desc">From community festivals to school fundraisers, Big Box Outlet shows up to support the events that make our communities great.</div>
         </div>
       </div>
     </div>
@@ -116,52 +102,18 @@
     <div class="container">
       <div class="brand-promise-eyebrow">Our Mission</div>
       <h2>At Big Box we have one goal:<br>To help people afford everyday life.</h2>
-      <p>From appliances to clothing, furniture to food — we believe everyone deserves access to quality products at prices that don't break the bank.</p>
-      <a href="index.html#categories" class="btn btn-primary">Shop All Categories</a>
+      <a href="index.html#categories" class="btn btn-primary">Shop Now</a>
     </div>
   </section>
 
-  <!-- 4. Our Values -->
-  <section class="value-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">What We Stand For</span>
-        <h2 class="section-heading">Our Values</h2>
-      </div>
-      <div class="value-grid">
-        <div class="value-card reveal">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-stroke="1"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="value-title">Quality You Can Trust</div>
-          <div class="value-desc">Every single item we sell is personally inspected and tested by our team before it ever reaches the floor. Open-box doesn't mean lesser quality — it means smarter savings.</div>
-        </div>
-        <div class="value-card reveal" style="transition-delay:.1s">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <div class="value-title">Savings Every Day</div>
-          <div class="value-desc">We buy direct from brands and retailers — overstock, recertified, and open-box merchandise — and pass every dollar of savings straight to you. Up to 70% off regular retail.</div>
-        </div>
-        <div class="value-card reveal" style="transition-delay:.2s">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div class="value-title">Community First</div>
-          <div class="value-desc">Twenty stores. Hundreds of local jobs. Real neighbours serving real communities across BC and Alberta. We're proud to be Canadian — and proud to give back to the communities we call home.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Find a Store CTA -->
+  <!-- 4. Stay Connected CTA -->
   <section class="cta-strip">
     <div class="container">
-      <h2>Find Your Nearest Big Box</h2>
-      <p>With 20 locations across BC and Alberta, there's a Big Box Outlet Store near you.</p>
+      <h2>Stay Connected</h2>
+      <p>Follow Big Box Outlet on social media for community updates, local events, and store news.</p>
       <div class="cta-strip-actions">
-        <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
-        <a href="index.html#categories" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Browse Categories</a>
+        <a href="https://instagram.com/bigboxoutletstore" class="btn btn-primary" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://facebook.com/bigboxoutletstore" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;" target="_blank" rel="noopener">Facebook</a>
       </div>
     </div>
   </section>
@@ -233,11 +185,9 @@
   </div>
 </footer>
 
-<!-- ── SCROLL TO TOP ──────────────────────────────────── -->
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
 </button>
-
 <script>
 (function(){
   var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');

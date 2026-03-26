@@ -21,12 +21,12 @@
 
     /* ── CSS VARIABLES ────────────────────────────── */
     :root {
-      --blue:        #003DA5;
+      --blue:        #003DA6;
       --blue-dark:   #00297a;
       --blue-mid:    #0044c0;
       --blue-light:  #1a56cc;
-      --yellow:      #FFD600;
-      --yellow-dark: #e6c200;
+      --yellow:      #FFDA00;
+      --yellow-dark: #c8b000;
       --white:       #ffffff;
       --gray-50:     #f8fafc;
       --gray-100:    #f1f5f9;
@@ -131,8 +131,26 @@
       transition: all .2s ease;
     }
     .navbar-nav a:hover { background: var(--gray-100); color: var(--blue); }
-    .navbar-cta { flex-shrink: 0; }
-    .navbar-cta .btn-primary { padding: 10px 22px; font-size: .9rem; }
+    .navbar-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-find-store {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yellow); color: var(--blue-dark);
+      padding: 10px 20px; border-radius: 50px;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .875rem; text-decoration: none;
+      white-space: nowrap; transition: background .2s, transform .15s;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    }
+    .btn-find-store:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+    .btn-signin {
+      display: inline-flex; align-items: center;
+      background: transparent; color: rgba(255,255,255,.9);
+      border: 1.5px solid rgba(255,255,255,.35); border-radius: 50px;
+      padding: 9px 18px; font-family: 'Work Sans', sans-serif;
+      font-weight: 700; font-size: .875rem; text-decoration: none;
+      white-space: nowrap; transition: border-color .2s, color .2s;
+    }
+    .btn-signin:hover { border-color: rgba(255,255,255,.8); color: #fff; }
 
     /* Mobile nav toggle */
     .nav-toggle {
@@ -145,7 +163,7 @@
     }
 
     @media (max-width: 768px) {
-      .navbar-nav, .navbar-cta { display: none; }
+      .navbar-nav, .navbar-actions { display: none; }
       .nav-toggle { display: flex; }
       .navbar-nav.open {
         display: flex; flex-direction: column; align-items: flex-start;
@@ -154,131 +172,144 @@
         padding: 12px 24px 20px; box-shadow: var(--shadow-lg);
         gap: 0;
       }
-      .navbar-nav.open + .navbar-cta {
+      .navbar-nav.open + .navbar-actions {
         display: none;
       }
     }
 
-    /* ── HERO ─────────────────────────────────────── */
-    .hero {
-      position: relative; min-height: 100vh;
+    /* ── HERO CAROUSEL ──────────────────────────────── */
+    .hero-carousel {
+      position: relative; overflow: hidden;
+      height: clamp(480px, 65vh, 720px);
       background: var(--blue-dark);
+    }
+    .hero-track {
+      display: flex; height: 100%;
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+    }
+    .hero-slide {
+      flex: 0 0 100%; height: 100%; position: relative;
       display: flex; align-items: center;
-      overflow: hidden; padding-top: 72px;
+      background-size: cover; background-position: center;
     }
-    .hero-bg {
+    /* Slide colour placeholders (replaced by background-image when assets arrive) */
+    .hero-slide:nth-child(1) { background-color: #003DA6; }
+    .hero-slide:nth-child(2) { background-color: #1a3a6b; }
+    .hero-slide:nth-child(3) { background-color: #00297a; }
+    .hero-slide:nth-child(4) { background-color: #1a4a2a; }
+    .hero-slide:nth-child(5) { background-color: #2a1a4a; }
+    .hero-slide:nth-child(6) { background-color: #1a2a4a; }
+    .hero-slide-overlay {
       position: absolute; inset: 0;
-      background: url('images/store-front.jpg') center/cover no-repeat;
-      opacity: .35;
+      background: linear-gradient(100deg, rgba(0,10,40,.75) 0%, rgba(0,10,40,.25) 100%);
     }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(100deg, rgba(0,20,80,.96) 0%, rgba(0,44,160,.82) 55%, rgba(0,20,80,.55) 100%);
-    }
-    /* Animated geometric shapes */
-    .hero-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-    .shape {
-      position: absolute; border-radius: 50%;
-      background: rgba(255,214,0,.07);
-      animation: float 8s ease-in-out infinite;
-    }
-    .shape-1 { width: 600px; height: 600px; right: -150px; top: -100px; animation-delay: 0s; }
-    .shape-2 { width: 400px; height: 400px; right: 200px; bottom: -100px; animation-delay: -3s; background: rgba(255,255,255,.04); }
-    .shape-3 { width: 200px; height: 200px; left: 5%; top: 30%; animation-delay: -5s; background: rgba(255,214,0,.05); }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-30px) scale(1.05); }
-    }
-    .hero-content {
+    .hero-slide-content {
       position: relative; z-index: 2;
-      display: block; max-width: 760px;
-      padding: 100px 0;
+      max-width: 700px; padding: 0 40px;
     }
-    .hero-eyebrow {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+    .hero-slide-eyebrow {
+      display: inline-block;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 20px;
     }
-    .hero-eyebrow-text {
-      font-family: 'Rubik', sans-serif; font-weight: 700;
-      font-size: .85rem; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--yellow);
-    }
-    .hero-eyebrow-dot {
-      width: 6px; height: 6px; background: var(--yellow);
-      border-radius: 50%; animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: .5; transform: scale(1.5); }
-    }
-    .hero-headline {
+    .hero-slide-title {
       font-family: 'Rubik', sans-serif; font-weight: 900;
-      font-size: clamp(3.8rem, 7vw, 6.5rem);
-      line-height: .92; color: var(--white);
-      margin-bottom: 12px;
+      font-size: clamp(2.4rem, 5.5vw, 4.5rem); line-height: .95;
+      color: #fff; margin-bottom: 16px;
     }
-    .hero-headline .yellow { color: var(--yellow); }
-    .hero-sub {
-      font-size: 1.2rem; color: rgba(255,255,255,.8);
-      line-height: 1.6; margin-bottom: 40px; max-width: 480px;
+    .hero-slide-sub {
+      font-size: clamp(1rem, 1.8vw, 1.2rem); color: rgba(255,255,255,.8);
+      line-height: 1.55; margin-bottom: 32px; max-width: 520px;
     }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 56px; }
-    .hero-stats {
-      display: flex; flex-wrap: wrap; gap: 32px;
+    .hero-slide-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1rem; padding: 14px 28px; border-radius: 50px;
+      text-decoration: none; transition: background .2s, transform .15s;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
     }
-    .hero-stat {}
-    .hero-stat-num {
-      font-family: 'Rubik', sans-serif; font-weight: 900;
-      font-size: 2.4rem; color: var(--yellow); display: block;
+    .hero-slide-cta:hover { background: var(--yellow-dark); transform: translateY(-2px); }
+    /* Arrows */
+    .hero-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 10; background: rgba(255,255,255,.15); border: none;
+      width: 48px; height: 48px; border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; transition: background .2s;
+      backdrop-filter: blur(4px);
     }
-    .hero-stat-label {
-      font-size: .85rem; color: rgba(255,255,255,.65);
-      font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+    .hero-arrow:hover { background: rgba(255,255,255,.3); }
+    .hero-arrow svg { width: 24px; height: 24px; }
+    .hero-arrow-prev { left: 20px; }
+    .hero-arrow-next { right: 20px; }
+    /* Dots */
+    .hero-dots {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+      z-index: 10; display: flex; gap: 8px;
+    }
+    .hero-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.4); border: none; cursor: pointer;
+      padding: 0; transition: background .25s, transform .25s;
+    }
+    .hero-dot.active { background: var(--yellow); transform: scale(1.3); }
+    /* Shapes decorative */
+    .hero-shape {
+      position: absolute; border-radius: 50%; pointer-events: none;
+    }
+    .hero-shape-1 {
+      width: 400px; height: 400px; right: 8%; top: -100px;
+      background: rgba(255,218,0,.08);
+    }
+    .hero-shape-2 {
+      width: 260px; height: 260px; right: 22%; bottom: -60px;
+      background: rgba(255,255,255,.05);
+    }
+    @media (max-width: 768px) {
+      .hero-carousel { height: clamp(400px, 60vh, 560px); }
+      .hero-slide-content { padding: 0 24px; }
+      .hero-arrow { width: 38px; height: 38px; }
+      .hero-arrow svg { width: 18px; height: 18px; }
+    }
+    @media (max-width: 480px) {
+      .hero-slide-content { padding: 0 18px; }
+      .hero-arrow { display: none; }
     }
 
-    /* Hero right panel */
-    .hero-panel {
-      background: rgba(255,255,255,.06);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: var(--radius-lg);
-      padding: 36px;
-      display: flex; flex-direction: column; gap: 20px;
+    /* ── WHY CHOOSE ──────────────────────────────── */
+    .why-section {
+      padding: 80px 0; background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
     }
-    .hero-panel-title {
+    .why-section .section-header { margin-bottom: 48px; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .why-panel {
+      text-align: center; padding: 40px 28px;
+      background: #fff; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .why-panel:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .why-panel-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--blue); display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 20px;
+    }
+    .why-panel-icon svg { width: 32px; height: 32px; fill: var(--yellow); }
+    .why-panel-title {
       font-family: 'Rubik', sans-serif; font-weight: 800;
-      font-size: 1.1rem; color: var(--white); margin-bottom: 4px;
+      font-size: 1.15rem; color: var(--gray-900); margin-bottom: 12px;
     }
-    .hero-panel-sub { font-size: .9rem; color: rgba(255,255,255,.6); }
-    .hero-panel img {
-      width: 100%; border-radius: var(--radius-md); display: block;
+    .why-panel-copy {
+      font-size: .95rem; color: var(--gray-600); line-height: 1.65;
     }
-    .price-track {
-      display: flex; align-items: center; gap: 0;
-    }
-    .price-day {
-      flex: 1; text-align: center; padding: 10px 4px;
-      border-right: 1px solid rgba(255,255,255,.1);
-    }
-    .price-day:last-child { border-right: none; }
-    .price-day-name {
-      font-size: .7rem; color: rgba(255,255,255,.5);
-      text-transform: uppercase; letter-spacing: .06em; font-weight: 700;
-    }
-    .price-day-val {
-      font-family: 'Rubik', sans-serif; font-weight: 800;
-      font-size: .9rem; color: var(--yellow); margin-top: 4px;
-    }
-    .price-day.active .price-day-name { color: var(--yellow); }
-    .price-day.active .price-day-val { color: white; font-size: 1rem; }
-    .price-day.low .price-day-val { color: #4ade80; }
-
-    @media (max-width: 640px) {
-      .hero-content { padding: 80px 0; }
-      .hero-headline { font-size: clamp(2.8rem, 11vw, 4rem); }
-      .hero-stats { gap: 20px; }
-      .hero-actions { flex-direction: column; gap: 12px; }
-      .hero-actions .btn { justify-content: center; }
-    }
+    @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; gap: 20px; } }
 
     /* ── MARQUEE ──────────────────────────────────── */
     .marquee-section {
@@ -365,36 +396,94 @@
     .cat-card:hover .cat-card-link svg { transform: translateX(4px); }
 
     @media (max-width: 1100px) { .categories-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 700px)  { .categories-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 440px)  { .categories-grid { grid-template-columns: 1fr; } }
-
-    /* ── TRUST SECTION ───────────────────────────── */
-    .trust-section { padding: 80px 0; background: white; }
-    .trust-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
-    }
-    .trust-text .section-heading { font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 20px; }
-    .trust-text p { font-size: 1.05rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 32px; }
-    .trust-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-    }
-    .trust-stat-card {
-      background: var(--gray-50); border-radius: var(--radius-md);
-      padding: 20px 24px; border: 1px solid var(--gray-200);
-    }
-    .trust-stat-card-num {
-      font-family: 'Rubik', sans-serif; font-weight: 900;
-      font-size: 2rem; color: var(--blue); line-height: 1;
-    }
-    .trust-stat-card-label { font-size: .85rem; color: var(--gray-600); margin-top: 4px; font-weight: 600; }
-    .trust-image img {
-      width: 100%; border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
-    }
-
     @media (max-width: 768px) {
-      .trust-inner { grid-template-columns: 1fr; gap: 40px; }
+      .categories-grid {
+        display: flex; overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 16px; gap: 14px;
+        scrollbar-width: none;
+      }
+      .categories-grid::-webkit-scrollbar { display: none; }
+      .cat-card {
+        flex: 0 0 72vw; scroll-snap-align: start; max-width: 280px;
+      }
+    }
+
+    /* ── REVIEWS ─────────────────────────────────── */
+    .reviews-section {
+      padding: 100px 0; background: #fff; overflow: hidden;
+    }
+    .reviews-header { text-align: center; margin-bottom: 48px; }
+    .reviews-rating-display {
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      margin-top: 16px;
+    }
+    .reviews-rating-num {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: 3rem; color: var(--gray-900); line-height: 1;
+    }
+    .reviews-rating-info { text-align: left; }
+    .reviews-stars-row { display: flex; gap: 3px; }
+    .reviews-stars-row svg { width: 22px; height: 22px; fill: #FFDA00; }
+    .reviews-rating-label { font-size: .85rem; color: var(--gray-500); margin-top: 2px; }
+    .reviews-carousel-wrap {
+      position: relative; margin-top: 48px;
+    }
+    .reviews-track-outer { overflow: hidden; }
+    .reviews-track {
+      display: flex; gap: 24px;
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+    }
+    .review-card {
+      flex: 0 0 calc(33.333% - 16px); background: var(--gray-50);
+      border: 1px solid var(--gray-200); border-radius: var(--radius-md);
+      padding: 28px; box-shadow: var(--shadow-sm);
+    }
+    .review-card-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+    .review-card-stars svg { width: 16px; height: 16px; fill: #FFDA00; }
+    .review-card-text {
+      font-size: .95rem; color: var(--gray-700); line-height: 1.65;
+      margin-bottom: 20px; display: -webkit-box;
+      -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .review-card-footer { display: flex; align-items: center; gap: 12px; }
+    .review-card-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--blue); display: flex; align-items: center;
+      justify-content: center; font-family: 'Work Sans', sans-serif;
+      font-weight: 800; font-size: .9rem; color: #fff; flex-shrink: 0;
+    }
+    .review-card-author { font-family: 'Rubik', sans-serif; font-weight: 700; font-size: .9rem; color: var(--gray-900); }
+    .review-card-location { font-size: .8rem; color: var(--gray-500); }
+    .review-card-g {
+      margin-left: auto; width: 24px; height: 24px; flex-shrink: 0;
+    }
+    .reviews-nav {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-top: 36px;
+    }
+    .reviews-arrow {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2px solid var(--gray-200); background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: border-color .2s, background .2s;
+    }
+    .reviews-arrow:hover { border-color: var(--blue); background: var(--blue); color: #fff; }
+    .reviews-arrow svg { width: 20px; height: 20px; }
+    .reviews-arrow:hover svg { fill: #fff; }
+    .reviews-dots-row { display: flex; gap: 7px; }
+    .reviews-dot {
+      width: 8px; height: 8px; border-radius: 50%; border: none;
+      background: var(--gray-200); cursor: pointer; padding: 0;
+      transition: background .2s, transform .2s;
+    }
+    .reviews-dot.active { background: var(--blue); transform: scale(1.3); }
+    @media (max-width: 900px) {
+      .review-card { flex: 0 0 calc(50% - 12px); }
+    }
+    @media (max-width: 600px) {
+      .review-card { flex: 0 0 85vw; }
     }
 
     /* ── PRICE MATCH BANNER ──────────────────────── */
@@ -472,13 +561,57 @@
       .rewards-image img { max-width: 280px; transform: rotate(-3deg) translateY(-6px); }
     }
 
+    /* ── EMAIL SIGNUP ────────────────────────────── */
+    .email-signup-section {
+      padding: 80px 0; background: var(--blue);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .email-signup-section::before {
+      content: ''; position: absolute; top: -100px; right: -80px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(255,218,0,.08); pointer-events: none;
+    }
+    .email-signup-section .section-label { color: rgba(255,218,0,.8); }
+    .email-signup-section h2 {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: #fff;
+      margin-bottom: 12px; line-height: 1.1;
+    }
+    .email-signup-section > .container > p {
+      color: rgba(255,255,255,.75); font-size: 1.05rem;
+      margin-bottom: 36px; max-width: 520px; margin-left: auto; margin-right: auto;
+    }
+    .klav-slot {
+      background: rgba(255,255,255,.08); border: 1px dashed rgba(255,255,255,.25);
+      border-radius: var(--radius-md); padding: 24px; margin-bottom: 20px;
+      color: rgba(255,255,255,.5); font-size: .85rem; font-family: monospace;
+    }
+    .klav-fallback { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 680px; margin: 0 auto; }
+    .klav-fallback input {
+      flex: 1 1 200px; padding: 14px 18px; border-radius: 50px;
+      border: none; font-size: .95rem; font-family: 'Nunito Sans', sans-serif;
+      background: rgba(255,255,255,.95); color: var(--gray-900); outline: none;
+    }
+    .klav-fallback input:focus { box-shadow: 0 0 0 3px rgba(255,218,0,.5); }
+    .klav-fallback button {
+      padding: 14px 32px; border-radius: 50px; border: none;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1rem; cursor: pointer; transition: background .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .klav-fallback button:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+    .klav-note { font-size: .78rem; color: rgba(255,255,255,.45); margin-top: 14px; }
+
     /* ── FOOTER ──────────────────────────────────── */
     .footer {
       background: #060f1e; padding: 64px 0 0;
     }
     .footer-top {
-      display: grid; grid-template-columns: 220px 1fr 1fr 1fr 1fr;
-      gap: 40px; padding-bottom: 48px;
+      display: grid;
+      grid-template-columns: 200px repeat(5, 1fr);
+      gap: 32px;
+      padding-bottom: 48px;
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
     .footer-brand img { height: 48px; margin-bottom: 16px; }
@@ -513,10 +646,10 @@
     .footer-bottom-links a:hover { color: rgba(255,255,255,.6); }
 
     @media (max-width: 1100px) {
-      .footer-top { grid-template-columns: 1fr 1fr 1fr; }
+      .footer-top { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 680px) {
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-top { grid-template-columns: repeat(2, 1fr); gap: 32px; }
     }
     @media (max-width: 480px) {
       .footer-top { grid-template-columns: 1fr; gap: 28px; }
@@ -667,6 +800,12 @@
       .marquee-track { animation: none; }
     }
   </style>
+  <!-- ── KLAVIYO INTEGRATION ──────────────────────────────────────────────
+       Replace KLAVIYO_COMPANY_ID below with your account ID from:
+       Klaviyo → Settings → Account → API Keys → Public API Key
+       Then uncomment the script tag to activate onsite popup forms.
+  ─────────────────────────────────────────────────────────────────────── -->
+  <!-- <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=KLAVIYO_COMPANY_ID"></script> -->
 </head>
 <body>
 
@@ -680,19 +819,17 @@
         <img src="images/logo.png" alt="Big Box Outlet Store" />
       </a>
       <ul class="navbar-nav" id="navMenu">
-        <li><a href="#categories">Weekly Deals</a></li>
-        <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find a Store</a></li>
-        <li><a href="flyer.html">Flyers</a></li>
-        <li><a href="#rewards">Members</a></li>
-        <li><a href="#">Community</a></li>
+        <li><a href="flyer.html">Weekly Deals</a></li>
+        <li><a href="#rewards">Rewards</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="#">Careers</a></li>
+        <li><a href="careers.html">Careers</a></li>
       </ul>
-      <div class="navbar-cta">
-        <a href="#categories" class="btn btn-primary">
+      <div class="navbar-actions">
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          Shop Now
+          Find a Store
         </a>
+        <a href="#" class="btn btn-signin" aria-label="Sign in to your account">Sign In</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -701,55 +838,150 @@
   </div>
 </nav>
 
-<!-- ╔══════════════════════════════════════════╗ -->
-<!-- ║               HERO                      ║ -->
-<!-- ╚══════════════════════════════════════════╝ -->
-<section class="hero" id="home">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-overlay" aria-hidden="true"></div>
-  <div class="hero-shapes" aria-hidden="true">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-  </div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-left">
-        <div class="hero-eyebrow">
-          <span class="hero-eyebrow-dot" aria-hidden="true"></span>
-          <span class="hero-eyebrow-text">20 Stores Across Western Canada</span>
-        </div>
-        <h1 class="hero-headline">
-          BIG BRANDS.<br /><span class="yellow">OUTLET PRICES.</span>
-        </h1>
-        <p class="hero-sub">
-          Shop top name brands for a fraction of the retail price. Prices drop every single day — the longer you wait, the more you save.
-        </p>
-        <div class="hero-actions">
-          <a href="#categories" class="btn btn-primary" style="font-size:1.05rem; padding:16px 32px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-            Shop Weekly Deals
-          </a>
-          <a href="#rewards" class="btn btn-outline" style="font-size:1.05rem; padding:15px 32px;">
-            Join the Rewards Club
-          </a>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="hero-stat-num" data-count="20">20</span>
-            <span class="hero-stat-label">Store Locations</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">50¢</span>
-            <span class="hero-stat-label">Prices Drop as Low As</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">4.5★</span>
-            <span class="hero-stat-label">Average Rating</span>
-          </div>
-        </div>
-      </div>
+<!-- ── HERO CAROUSEL ──────────────────────────── -->
+<section class="hero-carousel" id="home" aria-label="Homepage hero carousel">
+  <div class="hero-track" id="heroTrack">
 
+    <!-- Slide 1: Current Flyer -->
+    <div class="hero-slide" role="group" aria-label="Slide 1 of 6">
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="hero-shape hero-shape-2"></div>
+      <div class="container hero-slide-content">
+        <span class="hero-slide-eyebrow">This Week</span>
+        <h1 class="hero-slide-title">Current Flyer<br><span style="color:var(--yellow)">New Deals Every Week</span></h1>
+        <p class="hero-slide-sub">Big brands at outlet prices. New deals drop every Thursday — don't miss out.</p>
+        <a href="flyer.html" class="hero-slide-cta">
+          View Flyer
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 2: Seniors Day -->
+    <div class="hero-slide" role="group" aria-label="Slide 2 of 6">
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="container hero-slide-content">
+        <span class="hero-slide-eyebrow">Every Week</span>
+        <h1 class="hero-slide-title">Seniors Day<br><span style="color:var(--yellow)">Extra Savings</span></h1>
+        <p class="hero-slide-sub">Special member discounts for seniors — ask in-store for details and eligibility.</p>
+        <a href="#" class="hero-slide-cta" aria-disabled="true" style="opacity:.7;pointer-events:none;">
+          More Info Coming Soon
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 3: Best Price Promise -->
+    <div class="hero-slide" role="group" aria-label="Slide 3 of 6">
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="container hero-slide-content">
+        <span class="hero-slide-eyebrow">Our Promise</span>
+        <h1 class="hero-slide-title">Best Price<br><span style="color:var(--yellow)">Guaranteed</span></h1>
+        <p class="hero-slide-sub">Find a lower price anywhere? We'll beat it. Every time, no questions asked.</p>
+        <a href="best-price-promise.html" class="hero-slide-cta">
+          Learn More
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 4: Patio Season -->
+    <div class="hero-slide" role="group" aria-label="Slide 4 of 6">
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="container hero-slide-content">
+        <span class="hero-slide-eyebrow">Seasonal</span>
+        <h1 class="hero-slide-title">Patio Season<br><span style="color:var(--yellow)">Starts Here</span></h1>
+        <p class="hero-slide-sub">Outdoor furniture, BBQs, and patio accessories at outlet prices. Summer ready.</p>
+        <a href="#categories" class="hero-slide-cta">
+          Shop Patio
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 5: Discover More In Store -->
+    <div class="hero-slide" role="group" aria-label="Slide 5 of 6">
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="container hero-slide-content">
+        <span class="hero-slide-eyebrow">20 Locations</span>
+        <h1 class="hero-slide-title">Discover More<br><span style="color:var(--yellow)">In Store</span></h1>
+        <p class="hero-slide-sub">The best finds are in person. Visit any of our 20 locations across BC and Alberta.</p>
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="hero-slide-cta">
+          Find a Store
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 6: Community -->
+    <div class="hero-slide" role="group" aria-label="Slide 6 of 6">
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="container hero-slide-content">
+        <span class="hero-slide-eyebrow">Community</span>
+        <h1 class="hero-slide-title">Giving Back<br><span style="color:var(--yellow)">Where We Live</span></h1>
+        <p class="hero-slide-sub">Big Box Outlet is proud to support the communities across BC and Alberta that we call home.</p>
+        <a href="community.html" class="hero-slide-cta">
+          Learn More
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /.hero-track -->
+
+  <!-- Arrows -->
+  <button class="hero-arrow hero-arrow-prev" id="heroPrev" aria-label="Previous slide">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>
+  </button>
+  <button class="hero-arrow hero-arrow-next" id="heroNext" aria-label="Next slide">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+  </button>
+
+  <!-- Dots -->
+  <div class="hero-dots" id="heroDots" role="tablist" aria-label="Slide navigation">
+    <button class="hero-dot active" role="tab" aria-label="Go to slide 1" aria-selected="true" data-slide="0"></button>
+    <button class="hero-dot" role="tab" aria-label="Go to slide 2" aria-selected="false" data-slide="1"></button>
+    <button class="hero-dot" role="tab" aria-label="Go to slide 3" aria-selected="false" data-slide="2"></button>
+    <button class="hero-dot" role="tab" aria-label="Go to slide 4" aria-selected="false" data-slide="3"></button>
+    <button class="hero-dot" role="tab" aria-label="Go to slide 5" aria-selected="false" data-slide="4"></button>
+    <button class="hero-dot" role="tab" aria-label="Go to slide 6" aria-selected="false" data-slide="5"></button>
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE ──────────────────────────── -->
+<section class="why-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Why Shop With Us</span>
+      <h2 class="section-heading">Why Choose Big Box Outlet</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-panel reveal">
+        <div class="why-panel-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="why-panel-title">Brand Names. Great Savings.</div>
+        <p class="why-panel-copy">Shop name brands you know and trust — at a fraction of the retail price. We source directly from manufacturers and retailers so the savings go straight to you.</p>
+      </div>
+      <div class="why-panel reveal" style="transition-delay:.1s">
+        <div class="why-panel-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+        </div>
+        <div class="why-panel-title">New Arrivals Every Week</div>
+        <p class="why-panel-copy">Fresh inventory arrives every Thursday. Deals change constantly and stock moves fast — so there's always a reason to come back and discover something new.</p>
+      </div>
+      <div class="why-panel reveal" style="transition-delay:.2s">
+        <div class="why-panel-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <div class="why-panel-title">Best Price Promise</div>
+        <p class="why-panel-copy">Found a better price anywhere? We'll beat it — guaranteed. Every item we sell comes backed by our Best Price Promise, saving you up to 20% more.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -878,7 +1110,7 @@
           <div class="cat-card-brand">BIG<br>BOX</div>
           <div class="cat-card-tab">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            Clothing
+            Apparel
           </div>
         </div>
         <div class="cat-card-icon">
@@ -886,11 +1118,11 @@
         </div>
         <div class="cat-card-body">
           <div>
-            <div class="cat-card-title">Big Box Clothing</div>
-            <div class="cat-card-desc">Name-brand apparel for the whole family, new arrivals weekly.</div>
+            <div class="cat-card-title">Big Box Apparel</div>
+            <div class="cat-card-desc">Name-brand apparel for men, women, and kids — new styles every week.</div>
           </div>
           <a href="clothing.html" class="cat-card-link">
-            Shop Clothing
+            Shop Apparel
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
           </a>
         </div>
@@ -902,7 +1134,7 @@
           <div class="cat-card-brand">BIG<br>BOX</div>
           <div class="cat-card-tab">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            Life
+            Electronics
           </div>
         </div>
         <div class="cat-card-icon">
@@ -910,11 +1142,11 @@
         </div>
         <div class="cat-card-body">
           <div>
-            <div class="cat-card-title">Big Box Life</div>
-            <div class="cat-card-desc">Electronics, outdoor gear, sports &amp; more for everyday living.</div>
+            <div class="cat-card-title">Big Box Electronics</div>
+            <div class="cat-card-desc">TVs, audio, smart home, and tech essentials at outlet prices.</div>
           </div>
           <a href="life.html" class="cat-card-link">
-            Shop Life
+            Shop Electronics
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
           </a>
         </div>
@@ -924,37 +1156,141 @@
   </div>
 </section>
 
-<!-- ╔══════════════════════════════════════════╗ -->
-<!-- ║         TRUST / RATINGS                 ║ -->
-<!-- ╚══════════════════════════════════════════╝ -->
-<section class="trust-section">
+<!-- ── GOOGLE REVIEWS ────────────────────────── -->
+<section class="reviews-section" id="reviews">
   <div class="container">
-    <div class="trust-inner">
-      <div class="trust-text reveal">
-        <span class="section-label">Customer Love</span>
-        <h2 class="section-heading">Trusted by Thousands of Canadian Shoppers</h2>
-        <p>From single moms finding name-brand appliances on a budget to deal hunters who've made Thursday their favourite shopping day — our customers keep coming back.</p>
-        <div class="trust-stats">
-          <div class="trust-stat-card">
-            <div class="trust-stat-card-num">20</div>
-            <div class="trust-stat-card-label">Store Locations</div>
+    <div class="reviews-header reveal">
+      <span class="section-label">Customer Love</span>
+      <h2 class="section-heading">What Our Customers Are Saying</h2>
+      <div class="reviews-rating-display">
+        <div class="reviews-rating-num">4.5</div>
+        <div class="reviews-rating-info">
+          <div class="reviews-stars-row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
-          <div class="trust-stat-card">
-            <div class="trust-stat-card-num">4.5★</div>
-            <div class="trust-stat-card-label">Google Rating</div>
-          </div>
-          <div class="trust-stat-card">
-            <div class="trust-stat-card-num">BC+AB</div>
-            <div class="trust-stat-card-label">Provinces Served</div>
-          </div>
-          <div class="trust-stat-card">
-            <div class="trust-stat-card-num">Weekly</div>
-            <div class="trust-stat-card-label">New Inventory</div>
-          </div>
+          <div class="reviews-rating-label">Google Reviews · 500+ ratings</div>
         </div>
       </div>
-      <div class="trust-image reveal" style="transition-delay:.15s">
-        <img src="images/google-stars.png" alt="Trusted by Thousands — 4.5 out of 5 Google stars" loading="lazy" />
+    </div>
+
+    <div class="reviews-carousel-wrap reveal">
+      <div class="reviews-track-outer" id="reviewsOuter">
+        <div class="reviews-track" id="reviewsTrack">
+
+          <div class="review-card">
+            <div class="review-card-stars">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-card-text">"Great prices on brand-name appliances. Found a KitchenAid stand mixer for half the retail price. The staff were super helpful and even helped me load it into my car."</p>
+            <div class="review-card-footer">
+              <div class="review-card-avatar">SM</div>
+              <div><div class="review-card-author">Sarah M.</div><div class="review-card-location">Surrey, BC</div></div>
+              <svg class="review-card-g" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-stars">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-card-text">"I go every Thursday when new inventory comes in. Always find something incredible. This week it was a Ninja air fryer for $40. I've told everyone I know about this place."</p>
+            <div class="review-card-footer">
+              <div class="review-card-avatar">KL</div>
+              <div><div class="review-card-author">Kevin L.</div><div class="review-card-location">Abbotsford, BC</div></div>
+              <svg class="review-card-g" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-stars">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-card-text">"Picked up a full sectional for my living room at an unbelievable price. The quality is excellent and the whole experience from finding it to getting it home was smooth."</p>
+            <div class="review-card-footer">
+              <div class="review-card-avatar">PS</div>
+              <div><div class="review-card-author">Priya S.</div><div class="review-card-location">Burnaby, BC</div></div>
+              <svg class="review-card-g" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-stars">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-card-text">"The Best Price Promise is real. They matched and actually beat a competitor price without any hassle whatsoever. I'll definitely be bringing my receipt back next time too."</p>
+            <div class="review-card-footer">
+              <div class="review-card-avatar">JT</div>
+              <div><div class="review-card-author">James T.</div><div class="review-card-location">Calgary, AB</div></div>
+              <svg class="review-card-g" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-stars">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-card-text">"The Rewards program is genuinely worth signing up for. I've saved hundreds of dollars this year just shopping at places I'd normally shop anyway. It adds up fast."</p>
+            <div class="review-card-footer">
+              <div class="review-card-avatar">MG</div>
+              <div><div class="review-card-author">Maria G.</div><div class="review-card-location">Langley, BC</div></div>
+              <svg class="review-card-g" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-stars">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-card-text">"Huge selection, really friendly staff, and the deals are genuinely amazing. Not outlet-store-dusty — it's clean, well-organized, and the inventory is fresh. My new favourite store."</p>
+            <div class="review-card-footer">
+              <div class="review-card-avatar">DF</div>
+              <div><div class="review-card-author">Derek F.</div><div class="review-card-location">Vancouver, BC</div></div>
+              <svg class="review-card-g" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+          </div>
+
+        </div><!-- /.reviews-track -->
+      </div><!-- /.reviews-track-outer -->
+
+      <div class="reviews-nav">
+        <button class="reviews-arrow" id="reviewsPrev" aria-label="Previous reviews">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>
+        </button>
+        <div class="reviews-dots-row" id="reviewsDots">
+          <button class="reviews-dot active" data-rslide="0" aria-label="Review set 1"></button>
+          <button class="reviews-dot" data-rslide="1" aria-label="Review set 2"></button>
+        </div>
+        <button class="reviews-arrow" id="reviewsNext" aria-label="Next reviews">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -1018,52 +1354,84 @@
   </div>
 </section>
 
+<!-- ── EMAIL SIGNUP ──────────────────────────── -->
+<section class="email-signup-section" id="email-signup">
+  <div class="container">
+    <span class="section-label">Stay in the Loop</span>
+    <h2>Get Early Access to Deals &amp;<br>Member-Only Offers</h2>
+    <p>Be first to know about new arrivals, exclusive flyers, and member pricing across all 20 locations.</p>
+    <!-- Klaviyo embedded form renders here once integrated -->
+    <!-- <div class="klaviyo-form-XXXXXXX"></div> -->
+    <!-- Fallback form (shown until Klaviyo is active) -->
+    <form class="klav-fallback" id="emailSignupForm" novalidate>
+      <input type="text" name="firstName" placeholder="First Name" autocomplete="given-name" />
+      <input type="text" name="lastName" placeholder="Last Name" autocomplete="family-name" />
+      <input type="email" name="email" placeholder="Email Address" required autocomplete="email" />
+      <input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel" />
+      <input type="text" name="postal" placeholder="Postal Code" autocomplete="postal-code" maxlength="7" />
+      <button type="submit">Subscribe &amp; Save</button>
+    </form>
+    <p class="klav-note">By subscribing you agree to receive marketing emails from Big Box Outlet Store. Unsubscribe anytime.</p>
+  </div>
+</section>
+
 <!-- ╔══════════════════════════════════════════╗ -->
 <!-- ║              FOOTER                     ║ -->
 <!-- ╚══════════════════════════════════════════╝ -->
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-top">
+      <!-- Brand column -->
       <div class="footer-brand">
         <img src="images/logo-white.png" alt="Big Box Outlet" />
         <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
       </div>
-
+      <!-- Explore -->
       <div>
         <div class="footer-col-title">Explore</div>
         <ul class="footer-links">
-          <li><a href="#categories">Weekly Deals</a></li>
-          <li><a href="#locations">Find A Store</a></li>
-          <li><a href="#rewards">Become A Member</a></li>
+          <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
+          <li><a href="#rewards">Rewards</a></li>
         </ul>
       </div>
-
+      <!-- About -->
       <div>
-        <div class="footer-col-title">About Us</div>
+        <div class="footer-col-title">About</div>
         <ul class="footer-links">
           <li><a href="about.html">Our Story</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
         </ul>
       </div>
-
+      <!-- Customer Service -->
       <div>
         <div class="footer-col-title">Customer Service</div>
         <ul class="footer-links">
           <li><a href="https://bigboxoutletstore.ca">Contact Us</a></li>
           <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Legal</a></li>
         </ul>
       </div>
-
+      <!-- Legal -->
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="https://bigboxoutletstore.ca">Privacy Policy</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Terms of Use</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Accessibility</a></li>
+        </ul>
+      </div>
+      <!-- Connect -->
       <div>
         <div class="footer-col-title">Connect with BBO</div>
         <div class="footer-connect-icons">
-          <a href="https://facebook.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
           <a href="https://instagram.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          <a href="mailto:info@bigboxoutletstore.ca" class="footer-connect-link" aria-label="Email us">
+          <a href="https://facebook.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@bigboxoutlet.ca" class="footer-connect-link" aria-label="Email us">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </a>
         </div>
@@ -1089,8 +1457,9 @@
     <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
     <div class="popup-content" id="popupContent">
       <div class="popup-badge">Members Get More</div>
-      <h2 class="popup-title" id="popupTitle">Stay in the Loop</h2>
+      <h2 class="popup-title" id="popupTitle">Get Member Deals &amp; Early Access</h2>
       <p class="popup-desc">Be the first to know about new arrivals, weekly deals, and exclusive member savings at your local Big Box Outlet.</p>
+      <!-- Klaviyo popup form renders here: <div class="klaviyo-form-XXXXXXX"></div> -->
       <form class="popup-form" id="popupForm" novalidate>
         <div class="popup-row">
           <input type="text" name="firstName" placeholder="First Name" required autocomplete="given-name" />
@@ -1147,6 +1516,110 @@
 <!-- ║             JAVASCRIPT                  ║ -->
 <!-- ╚══════════════════════════════════════════╝ -->
 <script>
+  // ── HERO CAROUSEL ──────────────────────────────────────────
+  (function(){
+    var track = document.getElementById('heroTrack');
+    var dots = document.querySelectorAll('.hero-dot');
+    var total = 6, current = 0, timer = null;
+
+    function goTo(n) {
+      current = (n + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === current);
+        d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+      });
+    }
+
+    function start() { timer = setInterval(function(){ goTo(current + 1); }, 2500); }
+    function stop()  { clearInterval(timer); }
+
+    document.getElementById('heroNext').addEventListener('click', function(){ stop(); goTo(current + 1); start(); });
+    document.getElementById('heroPrev').addEventListener('click', function(){ stop(); goTo(current - 1); start(); });
+
+    dots.forEach(function(d) {
+      d.addEventListener('click', function(){ stop(); goTo(+this.dataset.slide); start(); });
+    });
+
+    var carousel = document.querySelector('.hero-carousel');
+    if (carousel) {
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', start);
+    }
+
+    // Touch / swipe
+    var txStart = 0;
+    if (carousel) {
+      carousel.addEventListener('touchstart', function(e){ txStart = e.touches[0].clientX; }, {passive:true});
+      carousel.addEventListener('touchend', function(e){
+        var dx = e.changedTouches[0].clientX - txStart;
+        if (Math.abs(dx) > 50) { stop(); goTo(current + (dx < 0 ? 1 : -1)); start(); }
+      }, {passive:true});
+    }
+
+    start();
+  })();
+
+  // ── REVIEWS CAROUSEL ───────────────────────────────────────
+  (function(){
+    var track = document.getElementById('reviewsTrack');
+    var outer = document.getElementById('reviewsOuter');
+    var dots = document.querySelectorAll('.reviews-dot');
+    if (!track || !outer) return;
+
+    var rCurrent = 0, rTimer = null;
+    var perView = window.innerWidth > 900 ? 3 : window.innerWidth > 600 ? 2 : 1;
+    var total = track.children.length;
+    var pages = Math.ceil(total / perView);
+
+    function rGoTo(n) {
+      rCurrent = (n + pages) % pages;
+      var cardW = track.children[0] ? track.children[0].offsetWidth + 24 : 0;
+      track.style.transform = 'translateX(-' + (rCurrent * perView * cardW) + 'px)';
+      dots.forEach(function(d, i){
+        d.classList.toggle('active', i === rCurrent);
+      });
+    }
+
+    function rStart() { rTimer = setInterval(function(){ rGoTo(rCurrent + 1); }, 3500); }
+    function rStop()  { clearInterval(rTimer); }
+
+    var rSection = document.querySelector('.reviews-section');
+    if (rSection) {
+      rSection.addEventListener('mouseenter', rStop);
+      rSection.addEventListener('mouseleave', rStart);
+    }
+
+    var rPrev = document.getElementById('reviewsPrev');
+    var rNext = document.getElementById('reviewsNext');
+    if (rPrev) rPrev.addEventListener('click', function(){ rStop(); rGoTo(rCurrent-1); rStart(); });
+    if (rNext) rNext.addEventListener('click', function(){ rStop(); rGoTo(rCurrent+1); rStart(); });
+    dots.forEach(function(d){ d.addEventListener('click', function(){ rStop(); rGoTo(+this.dataset.rslide); rStart(); }); });
+
+    // Swipe
+    var rTx = 0;
+    if (rSection) {
+      rSection.addEventListener('touchstart', function(e){ rTx = e.touches[0].clientX; }, {passive:true});
+      rSection.addEventListener('touchend', function(e){
+        var dx = e.changedTouches[0].clientX - rTx;
+        if (Math.abs(dx) > 50){ rStop(); rGoTo(rCurrent + (dx < 0 ? 1 : -1)); rStart(); }
+      }, {passive:true});
+    }
+
+    rStart();
+  })();
+
+// ── EMAIL SIGNUP FALLBACK FORM ──────────────────────────────
+(function(){
+  var form = document.getElementById('emailSignupForm');
+  if (!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = form.querySelector('button');
+    if (btn) { btn.textContent = 'Thanks! You\'re subscribed.'; btn.disabled = true; }
+  });
+})();
+
   // ── NAVBAR SCROLL EFFECT ──
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
