@@ -180,7 +180,7 @@
     /* ── HERO CAROUSEL ──────────────────────────────── */
     .hero-carousel {
       position: relative; overflow: hidden;
-      height: clamp(200px, 35vw, 520px);
+      height: auto; aspect-ratio: 2/1; max-height: 680px;
       background: var(--blue-dark);
     }
     .hero-track {
@@ -206,6 +206,7 @@
     .hero-slide-4 { background-image: url("images/NEW Homepgae_Web Banner_Lower Prices.png"); }
     .hero-slide-5 { background-image: url("images/NEW Homepgae_Web Banner_Patio.png"); }
     .hero-slide-6 { background-image: url("images/NEW Homepgae_Web Banner_Discover More.png"); }
+    .hero-slide-7 { background-image: url("images/NEW Homepgae_Web Banner_Lower Prices (1).png"); }
     /* Slide 1 mobile version */
     @media (max-width: 768px) {
       .hero-slide-1 { background-image: url("images/March Markdown Madness_Mobile Hero Banner.png"); }
@@ -246,7 +247,7 @@
     }
     .hero-dot.active { background: var(--yellow); transform: scale(1.3); }
     @media (max-width: 768px) {
-      .hero-carousel { height: clamp(160px, 45vw, 380px); }
+      .hero-carousel { aspect-ratio: 1.8/1; max-height: none; }
       .hero-arrow { width: 38px; height: 38px; }
       .hero-arrow svg { width: 18px; height: 18px; }
     }
@@ -571,21 +572,30 @@
       border-radius: var(--radius-md); padding: 24px; margin-bottom: 20px;
       color: rgba(255,255,255,.5); font-size: .85rem; font-family: monospace;
     }
-    .klav-fallback { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 680px; margin: 0 auto; }
+    .klav-fallback {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; max-width: 560px; margin: 0 auto;
+    }
     .klav-fallback input {
-      flex: 1 1 200px; padding: 14px 18px; border-radius: 50px;
+      padding: 14px 18px; border-radius: 50px;
       border: none; font-size: .95rem; font-family: 'Nunito Sans', sans-serif;
       background: rgba(255,255,255,.95); color: var(--gray-900); outline: none;
+      width: 100%;
     }
+    .klav-fallback input[name="email"] { grid-column: 1 / -1; }
     .klav-fallback input:focus { box-shadow: 0 0 0 3px rgba(255,218,0,.5); }
     .klav-fallback button {
-      padding: 14px 32px; border-radius: 50px; border: none;
+      grid-column: 1 / -1;
+      padding: 15px 32px; border-radius: 50px; border: none;
       background: var(--yellow); color: var(--blue-dark);
       font-family: 'Work Sans', sans-serif; font-weight: 800;
       font-size: 1rem; cursor: pointer; transition: background .2s, transform .15s;
-      white-space: nowrap;
     }
-    .klav-fallback button:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+    .klav-fallback button:hover { background: var(--yellow-dark); transform: translateY(-2px); }
+    @media (max-width: 560px) {
+      .klav-fallback { grid-template-columns: 1fr; }
+      .klav-fallback input[name="email"] { grid-column: 1; }
+    }
     .klav-note { font-size: .78rem; color: rgba(255,255,255,.45); margin-top: 14px; }
 
     /* ── FOOTER ──────────────────────────────────── */
@@ -828,39 +838,45 @@
   <div class="hero-track" id="heroTrack">
 
     <!-- Slide 1: Current Flyer -->
-    <div class="hero-slide hero-slide-1" role="group" aria-label="Slide 1 of 6">
+    <div class="hero-slide hero-slide-1" role="group" aria-label="Slide 1 of 7">
       <div class="hero-slide-overlay"></div>
       <a href="flyer.html" class="hero-slide-link" aria-label="View current flyer — March Markdown Madness"></a>
     </div>
 
     <!-- Slide 2: Weekly Deals -->
-    <div class="hero-slide hero-slide-2" role="group" aria-label="Slide 2 of 6">
+    <div class="hero-slide hero-slide-2" role="group" aria-label="Slide 2 of 7">
       <div class="hero-slide-overlay"></div>
       <a href="flyer.html" class="hero-slide-link" aria-label="View weekly deals"></a>
     </div>
 
     <!-- Slide 3: Seniors Day -->
-    <div class="hero-slide hero-slide-3" role="group" aria-label="Slide 3 of 6">
+    <div class="hero-slide hero-slide-3" role="group" aria-label="Slide 3 of 7">
       <div class="hero-slide-overlay"></div>
       <div class="hero-slide-link" aria-label="Seniors Day — every last Wednesday of the month"></div>
     </div>
 
     <!-- Slide 4: Lower Prices -->
-    <div class="hero-slide hero-slide-4" role="group" aria-label="Slide 4 of 6">
+    <div class="hero-slide hero-slide-4" role="group" aria-label="Slide 4 of 7">
       <div class="hero-slide-overlay"></div>
       <a href="best-price-promise.html" class="hero-slide-link" aria-label="Learn about our lower prices guarantee"></a>
     </div>
 
     <!-- Slide 5: Patio -->
-    <div class="hero-slide hero-slide-5" role="group" aria-label="Slide 5 of 6">
+    <div class="hero-slide hero-slide-5" role="group" aria-label="Slide 5 of 7">
       <div class="hero-slide-overlay"></div>
       <a href="#categories" class="hero-slide-link" aria-label="Shop patio and outdoor"></a>
     </div>
 
     <!-- Slide 6: Discover More In Store -->
-    <div class="hero-slide hero-slide-6" role="group" aria-label="Slide 6 of 6">
+    <div class="hero-slide hero-slide-6" role="group" aria-label="Slide 6 of 7">
       <div class="hero-slide-overlay"></div>
       <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="hero-slide-link" aria-label="Find a Big Box Outlet store near you"></a>
+    </div>
+
+    <!-- Slide 7: Lower Prices (2) -->
+    <div class="hero-slide hero-slide-7" role="group" aria-label="Slide 7 of 7">
+      <div class="hero-slide-overlay"></div>
+      <a href="best-price-promise.html" class="hero-slide-link" aria-label="Discover our everyday lower prices"></a>
     </div>
 
   </div><!-- /.hero-track -->
@@ -881,6 +897,7 @@
     <button class="hero-dot" role="tab" aria-label="Go to slide 4" aria-selected="false" data-slide="3"></button>
     <button class="hero-dot" role="tab" aria-label="Go to slide 5" aria-selected="false" data-slide="4"></button>
     <button class="hero-dot" role="tab" aria-label="Go to slide 6" aria-selected="false" data-slide="5"></button>
+    <button class="hero-dot" role="tab" aria-label="Go to slide 7" aria-selected="false" data-slide="6"></button>
   </div>
 </section>
 
@@ -1451,7 +1468,7 @@
   (function(){
     var track = document.getElementById('heroTrack');
     var dots = document.querySelectorAll('.hero-dot');
-    var total = 6, current = 0, timer = null;
+    var total = 7, current = 0, timer = null;
 
     function goTo(n) {
       current = (n + total) % total;
