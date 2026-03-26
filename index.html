@@ -180,7 +180,7 @@
     /* ── HERO CAROUSEL ──────────────────────────────── */
     .hero-carousel {
       position: relative; overflow: hidden;
-      height: auto; aspect-ratio: 2/1; max-height: 680px;
+      width: 100%; height: auto; aspect-ratio: 2/1; max-height: 680px;
       background: var(--blue-dark);
     }
     .hero-track {
@@ -324,62 +324,65 @@
       grid-template-columns: repeat(5, 1fr);
       gap: 20px;
     }
-    /* BIG BOX [Category] sub-brand card */
+    /* Category card — media-first design */
     .cat-card {
       background: #fff; border-radius: var(--radius-lg); overflow: hidden;
-      box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200);
-      transition: all .3s ease; cursor: pointer; display: flex; flex-direction: column;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07); border: 1px solid var(--gray-200);
+      transition: transform .3s ease, box-shadow .3s ease;
+      cursor: pointer; display: flex; flex-direction: column;
     }
-    .cat-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); border-color: transparent; }
+    .cat-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,.13); border-color: transparent; }
 
-    .cat-card-header { display: flex; align-items: stretch; height: 56px; }
-    .cat-card-brand {
-      background: var(--blue); color: #fff; padding: 0 12px;
-      display: flex; align-items: center; flex-direction: column; justify-content: center;
-      font-family: 'Work Sans', sans-serif; font-weight: 900; font-size: .58rem;
-      letter-spacing: .06em; line-height: 1.15; text-transform: uppercase;
-      white-space: nowrap; min-width: 52px; text-align: center;
+    .cat-card-media {
+      position: relative; height: 200px; overflow: hidden;
+      background: var(--gray-100);
     }
-    .cat-card-tab {
-      background: var(--cat-color, #A8CAEC); padding: 0 14px;
-      display: flex; align-items: center; gap: 7px; flex: 1;
-      font-family: 'Work Sans', sans-serif; font-weight: 800; font-size: .88rem;
-      color: var(--blue-dark);
+    .cat-card-media img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .45s ease;
     }
-    .cat-card-tab svg { width: 16px; height: 16px; flex-shrink: 0; opacity: .65; }
+    .cat-card:hover .cat-card-media img { transform: scale(1.06); }
 
-    .cat-card-icon {
-      padding: 24px 20px 12px; display: flex; align-items: center; justify-content: center;
+    /* Brand badge overlaid top-left of image */
+    .cat-card-badge {
+      position: absolute; top: 12px; left: 12px; z-index: 2;
+      display: inline-flex; align-items: stretch;
+      border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
     }
-    .cat-card-icon svg { width: 56px; height: 56px; }
+    .cat-badge-bb {
+      background: var(--blue); color: #fff;
+      padding: 5px 9px;
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: .56rem; letter-spacing: .07em; line-height: 1.15;
+      text-transform: uppercase; text-align: center;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cat-badge-name {
+      background: var(--cat-color, #A8CAEC); color: var(--blue-dark);
+      padding: 5px 10px;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .8rem; line-height: 1;
+      display: flex; align-items: center;
+    }
 
     .cat-card-body {
-      padding: 0 20px 24px; flex: 1;
+      padding: 18px 20px 22px; flex: 1;
       display: flex; flex-direction: column; justify-content: space-between;
     }
     .cat-card-title {
       font-family: 'Rubik', sans-serif; font-weight: 800;
       font-size: 1.05rem; color: var(--gray-900); margin-bottom: 6px;
     }
-    .cat-card-desc { font-size: .85rem; color: var(--gray-600); line-height: 1.5; }
+    .cat-card-desc { font-size: .85rem; color: var(--gray-600); line-height: 1.5; margin-bottom: 14px; }
     .cat-card-link {
-      display: flex; align-items: center; gap: 8px; margin-top: 16px;
+      display: inline-flex; align-items: center; gap: 6px; margin-top: auto;
       font-family: 'Rubik', sans-serif; font-weight: 700; font-size: .85rem;
       color: var(--cat-color-dark, var(--blue)); text-decoration: none;
-      transition: gap .2s;
+      transition: gap .18s;
     }
-    .cat-card-link svg { width: 16px; height: 16px; transition: transform .2s; }
+    .cat-card-link svg { width: 16px; height: 16px; transition: transform .18s; }
     .cat-card:hover .cat-card-link svg { transform: translateX(4px); }
-    .cat-card-img {
-      height: 160px; overflow: hidden;
-      border-bottom: 1px solid var(--gray-200);
-    }
-    .cat-card-img img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform .4s ease;
-    }
-    .cat-card:hover .cat-card-img img { transform: scale(1.04); }
 
     @media (max-width: 1100px) { .categories-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 768px) {
@@ -981,16 +984,13 @@
     <div class="categories-grid">
 
       <!-- Home -->
-      <article class="cat-card reveal" style="--cat-color:#A8CAEC;--cat-color-dark:#7AAED8;">
-        <div class="cat-card-header">
-          <div class="cat-card-brand">BIG<br>BOX</div>
-          <div class="cat-card-tab">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            Home
-          </div>
-        </div>
-        <div class="cat-card-img">
+      <article class="cat-card reveal" style="--cat-color:#A8CAEC;--cat-color-dark:#2B6CB0;">
+        <div class="cat-card-media">
           <img src="images/Category Tile Card_Home.png" alt="Big Box Home — appliances and home essentials" loading="lazy" />
+          <div class="cat-card-badge">
+            <span class="cat-badge-bb">BIG<br>BOX</span>
+            <span class="cat-badge-name">Home</span>
+          </div>
         </div>
         <div class="cat-card-body">
           <div>
@@ -1005,16 +1005,13 @@
       </article>
 
       <!-- Furniture -->
-      <article class="cat-card reveal" style="--cat-color:#9578C0;--cat-color-dark:#7A5BA0;transition-delay:.08s">
-        <div class="cat-card-header">
-          <div class="cat-card-brand">BIG<br>BOX</div>
-          <div class="cat-card-tab">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            Furniture
-          </div>
-        </div>
-        <div class="cat-card-img">
+      <article class="cat-card reveal" style="--cat-color:#9578C0;--cat-color-dark:#6B46C1;transition-delay:.08s">
+        <div class="cat-card-media">
           <img src="images/Category Tile Card_Furniture.png" alt="Big Box Furniture — sofas, beds and dining" loading="lazy" />
+          <div class="cat-card-badge">
+            <span class="cat-badge-bb">BIG<br>BOX</span>
+            <span class="cat-badge-name">Furniture</span>
+          </div>
         </div>
         <div class="cat-card-body">
           <div>
@@ -1029,16 +1026,13 @@
       </article>
 
       <!-- Kitchen -->
-      <article class="cat-card reveal" style="--cat-color:#DA70C8;--cat-color-dark:#BB52AA;transition-delay:.16s">
-        <div class="cat-card-header">
-          <div class="cat-card-brand">BIG<br>BOX</div>
-          <div class="cat-card-tab">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            Kitchen
-          </div>
-        </div>
-        <div class="cat-card-img">
+      <article class="cat-card reveal" style="--cat-color:#DA70C8;--cat-color-dark:#B83280;transition-delay:.16s">
+        <div class="cat-card-media">
           <img src="images/Category Tile Card_Appliances.png" alt="Big Box Kitchen — cookware and appliances" loading="lazy" />
+          <div class="cat-card-badge">
+            <span class="cat-badge-bb">BIG<br>BOX</span>
+            <span class="cat-badge-name">Kitchen</span>
+          </div>
         </div>
         <div class="cat-card-body">
           <div>
@@ -1052,17 +1046,14 @@
         </div>
       </article>
 
-      <!-- Clothing -->
-      <article class="cat-card reveal" style="--cat-color:#83C5A7;--cat-color-dark:#5EA888;transition-delay:.24s">
-        <div class="cat-card-header">
-          <div class="cat-card-brand">BIG<br>BOX</div>
-          <div class="cat-card-tab">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            Apparel
-          </div>
-        </div>
-        <div class="cat-card-img">
+      <!-- Apparel -->
+      <article class="cat-card reveal" style="--cat-color:#83C5A7;--cat-color-dark:#276749;transition-delay:.24s">
+        <div class="cat-card-media">
           <img src="images/Category Tile Card_Apparel.png" alt="Big Box Apparel — name-brand clothing" loading="lazy" />
+          <div class="cat-card-badge">
+            <span class="cat-badge-bb">BIG<br>BOX</span>
+            <span class="cat-badge-name">Apparel</span>
+          </div>
         </div>
         <div class="cat-card-body">
           <div>
@@ -1076,17 +1067,14 @@
         </div>
       </article>
 
-      <!-- Life -->
-      <article class="cat-card reveal" style="--cat-color:#FF8040;--cat-color-dark:#E06020;transition-delay:.32s">
-        <div class="cat-card-header">
-          <div class="cat-card-brand">BIG<br>BOX</div>
-          <div class="cat-card-tab">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            Electronics
-          </div>
-        </div>
-        <div class="cat-card-img">
+      <!-- Electronics -->
+      <article class="cat-card reveal" style="--cat-color:#FF8040;--cat-color-dark:#C05020;transition-delay:.32s">
+        <div class="cat-card-media">
           <img src="images/Category Tile Card_Electronics.png" alt="Big Box Electronics — TVs, audio and tech" loading="lazy" />
+          <div class="cat-card-badge">
+            <span class="cat-badge-bb">BIG<br>BOX</span>
+            <span class="cat-badge-name">Electronics</span>
+          </div>
         </div>
         <div class="cat-card-body">
           <div>
