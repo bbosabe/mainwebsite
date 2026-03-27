@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Big Box Outlet Landing Page",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server"],
+      "port": 3900,
+      "autoPort": true
+    },
+    {
+      "name": "Dealios Landing Page",
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+      "runtimeArgs": ["run", "dev", "--", "--port", "3901"],
+      "cwd": "${workspaceFolder}/dealios",
+      "port": 3901
+    }
+  ]
+}
