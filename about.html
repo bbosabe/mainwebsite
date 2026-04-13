@@ -11,79 +11,191 @@
   <link rel="stylesheet" href="base.css" />
   <style>
 
-    /* ── NAV OVERRIDE: white nav for this page ──────── */
-    .navbar {
-      background: #ffffff !important;
-      box-shadow: 0 1px 0 rgba(0,0,0,.08);
-    }
-    .navbar.scrolled {
-      background: #ffffff !important;
-      box-shadow: 0 2px 20px rgba(0,0,0,.1) !important;
-    }
+    /* ── NAV: white for this page ───────────────────── */
+    .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09); }
+    .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
     .navbar-nav a { color: var(--blue) !important; }
-    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.07) !important; }
+    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
     .navbar-nav a.active { color: var(--blue-dark) !important; font-weight: 700; }
     .btn-signin { color: var(--blue) !important; border-color: rgba(0,61,165,.3) !important; }
-    .btn-signin:hover { border-color: var(--blue) !important; background: rgba(0,61,165,.05) !important; }
     .nav-toggle span { background: var(--blue) !important; }
 
     /* ── HERO ───────────────────────────────────────── */
     .about-hero {
       position: relative;
-      min-height: 500px;
-      background: #003DA6;
-      overflow: hidden;
+      min-height: 480px;
+      background: var(--blue);
       display: flex;
       align-items: flex-end;
-      padding-top: 72px; /* navbar height */
+      padding-top: 72px;
+      overflow: hidden;
     }
     .about-hero-bg {
       position: absolute; inset: 0;
       background-image: url('images/hero-banner.jpg');
       background-size: cover;
-      background-position: center 30%;
-      opacity: 0.38;
+      background-position: center 35%;
+      opacity: .38;
     }
     .about-hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(160deg, rgba(0,30,100,.55) 0%, rgba(0,61,165,.72) 100%);
+      background: linear-gradient(160deg, rgba(0,25,90,.60) 0%, rgba(0,61,165,.70) 100%);
     }
     .about-hero-content {
       position: relative; z-index: 2;
-      padding: 80px 0 88px;
+      padding: 72px 0 84px;
     }
     .about-hero-content h1 {
       font-family: 'Rubik', sans-serif;
       font-weight: 900;
-      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-size: clamp(2.8rem, 5.5vw, 5.2rem);
       color: #fff;
       line-height: 1.0;
-      max-width: 720px;
-      letter-spacing: -.02em;
+      max-width: 680px;
+      letter-spacing: -.025em;
     }
 
-    /* ── SHARED SECTION STYLES ──────────────────────── */
+    /* ── TIMELINE SECTION ───────────────────────────── */
+    .timeline-section {
+      background: #fff;
+      padding: 96px 0 80px;
+    }
+    .timeline-header {
+      margin-bottom: 64px;
+    }
+    .timeline-eyebrow {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--yellow-dark);
+      background: #FFFBDD;
+      border: 1.5px solid #FFE055;
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 18px;
+    }
+    .timeline-heading {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      color: var(--gray-900);
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .timeline-intro {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      line-height: 1.72;
+      max-width: 640px;
+    }
+
+    /* Timeline track */
+    .timeline-track {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    /* Vertical line */
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      left: 148px;
+      top: 24px;
+      bottom: 24px;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--yellow) 0%, var(--blue) 100%);
+      border-radius: 2px;
+      z-index: 0;
+    }
+
+    .timeline-entry {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 24px 0;
+      position: relative;
+    }
+    .timeline-left {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      position: relative;
+    }
+    /* Yellow dot */
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--yellow);
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px var(--yellow);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      margin-left: 139px;  /* aligns to the line at left:148px */
+    }
+    .timeline-year-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      /* sit to the left of the dot */
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 120px;
+    }
+    .timeline-year {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 900;
+      font-size: 2.2rem;
+      color: #fff;
+      line-height: 1;
+      background: var(--blue);
+      padding: 10px 18px;
+      border-radius: 10px;
+      display: inline-block;
+      text-align: center;
+    }
+    .timeline-label {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--gray-600);
+      line-height: 1.4;
+      padding-left: 2px;
+    }
+    .timeline-right img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+      box-shadow: 0 6px 28px rgba(0,0,0,.10);
+    }
+
+    /* ── SHARED CONTENT SECTION STYLES ─────────────── */
     .about-section {
-      padding: 90px 0;
+      padding: 88px 0;
     }
-    .about-section:nth-child(even) {
-      background: #f8fafc;
-    }
+    .about-section.alt-bg { background: #f8fafc; }
+
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 72px;
       align-items: center;
     }
-    .about-grid.reverse { direction: rtl; }
-    .about-grid.reverse > * { direction: ltr; }
-
     .about-eyebrow {
       display: inline-block;
       font-family: 'Work Sans', sans-serif;
       font-weight: 800;
-      font-size: .72rem;
-      letter-spacing: .15em;
+      font-size: .7rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
       color: var(--blue);
       margin-bottom: 14px;
@@ -91,58 +203,61 @@
     .about-heading {
       font-family: 'Rubik', sans-serif;
       font-weight: 900;
-      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      font-size: clamp(1.9rem, 2.8vw, 2.6rem);
       color: var(--gray-900);
       line-height: 1.08;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .about-body {
-      font-size: 1.05rem;
+      font-size: 1.03rem;
       color: var(--gray-600);
-      line-height: 1.78;
+      line-height: 1.80;
     }
     .about-img {
       width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
-      border-radius: 16px;
+      border-radius: 18px;
       display: block;
-      box-shadow: 0 12px 48px rgba(0,0,0,.12);
+      box-shadow: 0 16px 56px rgba(0,0,0,.11);
     }
 
     /* ── COMMUNITY SECTION ──────────────────────────── */
     .community-section {
-      background: #0a1f3d;
-      padding: 90px 0;
-      overflow: hidden;
+      background: #071e3d;
+      padding: 96px 0 80px;
     }
     .community-inner {
       text-align: center;
-      max-width: 760px;
-      margin: 0 auto 56px;
+      max-width: 740px;
+      margin: 0 auto 52px;
     }
     .community-eyebrow {
       display: inline-block;
       font-family: 'Work Sans', sans-serif;
       font-weight: 800;
-      font-size: .72rem;
-      letter-spacing: .15em;
+      font-size: .7rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
       color: var(--yellow);
-      margin-bottom: 16px;
+      background: rgba(255,218,0,.12);
+      border: 1px solid rgba(255,218,0,.25);
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 18px;
     }
     .community-heading {
       font-family: 'Rubik', sans-serif;
       font-weight: 900;
-      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
       color: #fff;
-      line-height: 1.1;
-      margin-bottom: 20px;
+      line-height: 1.08;
+      margin-bottom: 18px;
     }
     .community-body {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,.65);
-      line-height: 1.75;
+      font-size: 1.03rem;
+      color: rgba(255,255,255,.62);
+      line-height: 1.78;
       margin-bottom: 36px;
     }
     .community-photos {
@@ -151,118 +266,30 @@
       gap: 16px;
     }
     .community-photo {
+      width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: 14px;
       display: block;
-      width: 100%;
-      filter: brightness(.85);
-      transition: filter .25s;
+      filter: brightness(.82);
+      transition: filter .25s, transform .25s;
     }
-    .community-photo:hover { filter: brightness(1); }
-
-    /* ── REVIEWS SECTION ────────────────────────────── */
-    .reviews-section {
-      background: #f1f5f9;
-      padding: 90px 0;
-    }
-    .reviews-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 48px;
-      gap: 24px;
-    }
-    .reviews-title {
-      font-family: 'Rubik', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      color: var(--gray-900);
-      line-height: 1.0;
-    }
-    .reviews-google-badge {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-    .reviews-google-badge img {
-      height: 40px;
-      display: block;
-    }
-    .reviews-google-text {
-      font-size: .8rem;
-      color: var(--gray-500);
-      line-height: 1.4;
-    }
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .review-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 28px 26px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.07);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .review-stars {
-      display: flex;
-      gap: 3px;
-    }
-    .review-stars svg {
-      width: 18px; height: 18px; fill: #FBBC05;
-    }
-    .review-text {
-      font-size: .975rem;
-      color: var(--gray-600);
-      line-height: 1.7;
-      flex: 1;
-      font-style: italic;
-    }
-    .review-author {
-      border-top: 1px solid var(--gray-200);
-      padding-top: 14px;
-    }
-    .review-name {
-      font-family: 'Rubik', sans-serif;
-      font-weight: 700;
-      font-size: .9rem;
-      color: var(--gray-900);
-    }
-    .review-location {
-      font-size: .8rem;
-      color: var(--gray-500);
-      margin-top: 2px;
-    }
-    .reviews-google-logo {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
+    .community-photo:hover { filter: brightness(1); transform: scale(1.02); }
 
     /* ── RESPONSIVE ─────────────────────────────────── */
-    @media (max-width: 860px) {
-      .about-grid,
-      .about-grid.reverse {
-        grid-template-columns: 1fr;
-        direction: ltr;
-        gap: 36px;
-      }
-      .about-grid.reverse .about-text { order: 0; }
-      .about-grid.reverse .about-img-wrap { order: 1; }
-      .community-photos { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-      .reviews-grid { grid-template-columns: 1fr; }
-      .reviews-header { flex-direction: column; align-items: flex-start; }
+    @media (max-width: 900px) {
+      .timeline-track::before { display: none; }
+      .timeline-entry { grid-template-columns: 1fr; gap: 16px; }
+      .timeline-left { gap: 16px; }
+      .timeline-dot { display: none; }
+      .timeline-year-block { position: static; transform: none; width: auto; }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .community-photos { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
-      .about-hero-content h1 { font-size: 2.6rem; }
-      .about-section { padding: 64px 0; }
+      .about-hero-content h1 { font-size: 2.5rem; }
       .community-photos { grid-template-columns: 1fr; }
-      .reviews-grid { grid-template-columns: 1fr; }
+      .timeline-entry { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -283,7 +310,7 @@
       </ul>
       <div class="navbar-actions">
         <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           Find My Store
         </a>
       </div>
@@ -305,16 +332,83 @@
     </div>
   </section>
 
+  <!-- ── 40 YEARS TIMELINE ──────────────────────────────────── -->
+  <section class="timeline-section">
+    <div class="container">
+      <div class="timeline-header reveal">
+        <span class="timeline-eyebrow">Our History</span>
+        <h2 class="timeline-heading">40 Years in the Making</h2>
+        <p class="timeline-intro">From MTT Price Matters to Big Box Outlet, it's been a journey we're proud of. We grew from a small idea in the '80s to helping people across BC and Alberta stores shop smarter everyday.</p>
+      </div>
+
+      <div class="timeline-track">
+
+        <div class="timeline-entry reveal">
+          <div class="timeline-left">
+            <div class="timeline-year-block">
+              <span class="timeline-year">1984</span>
+              <span class="timeline-label">Doors open<br>in Abbotsford</span>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-right">
+            <img src="images/store-front.jpg" alt="First Big Box Outlet store in Abbotsford, 1984" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="timeline-entry reveal" style="transition-delay:.08s">
+          <div class="timeline-left">
+            <div class="timeline-year-block">
+              <span class="timeline-year">1992</span>
+              <span class="timeline-label">First store<br>expansion</span>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-right">
+            <img src="images/store-interior.jpg" alt="Store expansion in 1992" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="timeline-entry reveal" style="transition-delay:.16s">
+          <div class="timeline-left">
+            <div class="timeline-year-block">
+              <span class="timeline-year">2008</span>
+              <span class="timeline-label">Rebranded as<br>Big Box Outlet Store</span>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-right">
+            <img src="images/hero-banner-1.png" alt="Rebrand to Big Box Outlet Store in 2008" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="timeline-entry reveal" style="transition-delay:.24s">
+          <div class="timeline-left">
+            <div class="timeline-year-block">
+              <span class="timeline-year">2025</span>
+              <span class="timeline-label">Celebrating 40<br>years of savings</span>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-right">
+            <img src="images/rewards-banner.jpg" alt="40 years of Big Box Outlet Store" loading="lazy" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ── WHO WE ARE ─────────────────────────────────────────── -->
-  <section class="about-section">
+  <section class="about-section alt-bg">
     <div class="container">
       <div class="about-grid">
-        <div class="about-text reveal">
+        <div class="reveal">
           <span class="about-eyebrow">Who We Are</span>
           <h2 class="about-heading">Who We Are</h2>
           <p class="about-body">Big Box Outlet is a proudly Canadian retailer serving communities across BC and Alberta with quality brand-name finds at prices that make everyday life easier. We're here for people who want good products without the usual markup. No fuss, no gimmicks — just real value, helpful people, and a shopping experience that feels honest.</p>
         </div>
-        <div class="about-img-wrap reveal" style="transition-delay:.12s">
+        <div class="reveal" style="transition-delay:.12s">
           <img src="images/store-front.jpg" alt="Big Box Outlet store exterior" class="about-img" loading="lazy" />
         </div>
       </div>
@@ -324,30 +418,30 @@
   <!-- ── WHAT WE DO ─────────────────────────────────────────── -->
   <section class="about-section">
     <div class="container">
-      <div class="about-grid reverse">
-        <div class="about-text reveal">
+      <div class="about-grid">
+        <div class="reveal" style="transition-delay:.12s">
+          <img src="images/store-interior.jpg" alt="Big Box Outlet store interior" class="about-img" loading="lazy" />
+        </div>
+        <div class="reveal">
           <span class="about-eyebrow">What We Do</span>
           <h2 class="about-heading">What We Do</h2>
           <p class="about-body">We source overstock, closeout, and end-of-line products from brands people already know and trust, then pass those savings along in store. That means everything from furniture and appliances to clothing, patio, and everyday home essentials. Because our inventory changes all the time, every visit brings something new to discover.</p>
-        </div>
-        <div class="about-img-wrap reveal" style="transition-delay:.12s">
-          <img src="images/store-interior.jpg" alt="Big Box Outlet store interior" class="about-img" loading="lazy" />
         </div>
       </div>
     </div>
   </section>
 
   <!-- ── WHY WE DO IT ───────────────────────────────────────── -->
-  <section class="about-section">
+  <section class="about-section alt-bg">
     <div class="container">
       <div class="about-grid">
-        <div class="about-text reveal">
+        <div class="reveal">
           <span class="about-eyebrow">Why We Do It</span>
           <h2 class="about-heading">Why We Do It</h2>
           <p class="about-body">We started because we saw an opportunity to do retail differently. We believe smart shopping shouldn't mean sacrificing quality. By giving great products a second chance at reaching customers, we reduce waste and make quality accessible. Every dollar saved by our customers is proof that this model works.</p>
         </div>
-        <div class="about-img-wrap reveal" style="transition-delay:.12s">
-          <img src="images/rewards-banner.jpg" alt="Big Box Outlet team member" class="about-img" loading="lazy" />
+        <div class="reveal" style="transition-delay:.12s">
+          <img src="images/rewards-banner.jpg" alt="Big Box Outlet team" class="about-img" loading="lazy" />
         </div>
       </div>
     </div>
@@ -363,79 +457,9 @@
         <a href="community.html" class="btn btn-primary">Learn More</a>
       </div>
       <div class="community-photos reveal" style="transition-delay:.15s">
-        <img src="images/hero-banner-1.png" alt="Community involvement" class="community-photo" loading="lazy" />
-        <img src="images/store-interior.jpg"  alt="Community event" class="community-photo" loading="lazy" />
-        <img src="images/rewards-banner.jpg"  alt="Community giving back" class="community-photo" loading="lazy" />
-      </div>
-    </div>
-  </section>
-
-  <!-- ── REVIEWS ────────────────────────────────────────────── -->
-  <section class="reviews-section">
-    <div class="container">
-      <div class="reviews-header">
-        <h2 class="reviews-title">Real People.<br>Real Discoveries.</h2>
-        <div class="reviews-google-badge">
-          <!-- Google "G" logo inline SVG -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 48 48" aria-label="Google">
-            <path fill="#4285F4" d="M43.6 20.5H24v7h11.3c-1.1 5.1-5.5 8.5-11.3 8.5-6.9 0-12.5-5.6-12.5-12.5S17.1 11 24 11c3.1 0 5.8 1.1 8 2.9l5.3-5.3C33.9 5.5 29.2 3.5 24 3.5 12.7 3.5 3.5 12.7 3.5 24S12.7 44.5 24 44.5c11 0 20-8 20-20.5 0-1.3-.1-2.7-.4-3.5z"/>
-            <path fill="#34A853" d="M6.3 14.7l6.2 4.5C14 15.5 18.7 12 24 12c3.1 0 5.8 1.1 8 2.9l5.3-5.3C33.9 5.5 29.2 3.5 24 3.5c-7.6 0-14.2 4.3-17.7 10.7z" transform="translate(-1.5 1)"/>
-            <path fill="#FBBC05" d="M24 44.5c5.1 0 9.8-1.9 13.3-5.1l-6.2-5.1c-2 1.4-4.5 2.2-7.1 2.2-5.7 0-10.1-3.4-11.3-8.4l-6.2 4.8C8 39.9 15.4 44.5 24 44.5z"/>
-            <path fill="#EA4335" d="M43.6 20.5H24v7h11.3c-.5 2.4-1.9 4.4-3.8 5.8l6.2 5.1c3.6-3.4 5.8-8.4 5.8-14.4 0-1.3-.1-2.7-.4-3.5z" transform="translate(.5 0)"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="reviews-grid">
-
-        <!-- Review 1 -->
-        <div class="review-card reveal">
-          <div class="review-stars">
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-          </div>
-          <p class="review-text">"The Best Price Promise is real. They matched and actually beat a competitor price without any hassle whatsoever. I'll definitely be bringing my receipt back next time too."</p>
-          <div class="review-author">
-            <div class="review-name">James T.</div>
-            <div class="review-location">Edmonton, AB</div>
-          </div>
-        </div>
-
-        <!-- Review 2 -->
-        <div class="review-card reveal" style="transition-delay:.1s">
-          <div class="review-stars">
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-          </div>
-          <p class="review-text">"The Rewards program is genuinely worth signing up for. I've saved hundreds of dollars this year shopping at places I'd normally shop anyways. It adds up fast."</p>
-          <div class="review-author">
-            <div class="review-name">Maria G.</div>
-            <div class="review-location">Langley, BC</div>
-          </div>
-        </div>
-
-        <!-- Review 3 -->
-        <div class="review-card reveal" style="transition-delay:.2s">
-          <div class="review-stars">
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-          </div>
-          <p class="review-text">"Huge selection, really friendly staff, and the deals are genuinely amazing. Not outlet store dusty. It's clean, organized, and the inventory is fresh. My new favourite store."</p>
-          <div class="review-author">
-            <div class="review-name">Derek F.</div>
-            <div class="review-location">Chilliwack, BC</div>
-          </div>
-        </div>
-
+        <img src="images/hero-banner-1.png"   alt="Community involvement" class="community-photo" loading="lazy" />
+        <img src="images/store-interior.jpg"  alt="Community event"       class="community-photo" loading="lazy" />
+        <img src="images/rewards-banner.jpg"  alt="Giving back"           class="community-photo" loading="lazy" />
       </div>
     </div>
   </section>
@@ -448,7 +472,18 @@
     <div class="footer-top">
       <div class="footer-brand">
         <img src="images/logo-white.png" alt="Big Box Outlet" />
-        <p>Helping People Afford Everyday Life.</p>
+        <p style="margin-bottom:18px;">Helping People Afford Everyday Life.</p>
+        <div class="footer-connect-icons">
+          <a href="https://instagram.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://facebook.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@bigboxoutlet.ca" class="footer-connect-link" aria-label="Email us">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
       </div>
       <div>
         <div class="footer-col-title">Explore</div>
@@ -473,20 +508,6 @@
           <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
         </ul>
       </div>
-      <div>
-        <div class="footer-col-title">Stay Connected</div>
-        <div class="footer-connect-icons">
-          <a href="https://instagram.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="https://facebook.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="mailto:info@bigboxoutlet.ca" class="footer-connect-link" aria-label="Email us">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </a>
-        </div>
-      </div>
     </div>
     <div class="footer-bottom">
       <div class="footer-bottom-text">Big Box Outlet sources overstock, closeout, and end-of-line products from top brands and passes the savings directly to customers. Product availability, pricing, and selection vary by store and are subject to change without notice. &copy; 2026 Big Box Outlet. All rights reserved.</div>
@@ -496,6 +517,7 @@
         <a href="https://bigboxoutletstore.ca">Accessibility</a>
       </div>
     </div>
+    <div style="text-align:center;padding:20px 0 4px;font-size:.85rem;color:rgba(255,255,255,.3);letter-spacing:.06em;">Helping People Afford Everyday Life</div>
   </div>
 </footer>
 
@@ -509,9 +531,19 @@
   if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
   window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
   var reveals=document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
+    },{threshold:.1});
+    reveals.forEach(function(el){obs.observe(el);});
+  } else {
+    reveals.forEach(function(el){el.classList.add('visible');});
+  }
   var btn=document.getElementById('scrollTop');
-  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+  if(btn){
+    window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});
+    btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  }
 })();
 </script>
 
