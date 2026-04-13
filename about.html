@@ -4,161 +4,271 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us — Big Box Outlet Store</title>
+  <meta name="description" content="Big Box Outlet is a proudly Canadian retailer serving communities across BC and Alberta with quality brand-name finds at prices that make everyday life more affordable." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="base.css" />
   <style>
-    :root { --page-color: #003DA5; --page-color-dark: #00297a; }
 
-    /* ── STORY SECTION ─────────────────────────────── */
-    .story-section { padding: 100px 0; background: #fff; }
-    .story-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: start;
+    /* ── NAV OVERRIDE: white nav for this page ──────── */
+    .navbar {
+      background: #ffffff !important;
+      box-shadow: 0 1px 0 rgba(0,0,0,.08);
     }
-    .story-text .section-label { color: var(--blue); }
-    .story-text p {
-      font-size: 1.05rem; color: var(--gray-600);
-      line-height: 1.75; margin-bottom: 20px;
+    .navbar.scrolled {
+      background: #ffffff !important;
+      box-shadow: 0 2px 20px rgba(0,0,0,.1) !important;
     }
-    .story-text p:last-child { margin-bottom: 0; }
-    @media (max-width: 768px) {
-      .story-grid { grid-template-columns: 1fr; gap: 48px; }
+    .navbar-nav a { color: var(--blue) !important; }
+    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.07) !important; }
+    .navbar-nav a.active { color: var(--blue-dark) !important; font-weight: 700; }
+    .btn-signin { color: var(--blue) !important; border-color: rgba(0,61,165,.3) !important; }
+    .btn-signin:hover { border-color: var(--blue) !important; background: rgba(0,61,165,.05) !important; }
+    .nav-toggle span { background: var(--blue) !important; }
+
+    /* ── HERO ───────────────────────────────────────── */
+    .about-hero {
+      position: relative;
+      min-height: 500px;
+      background: #003DA6;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding-top: 72px; /* navbar height */
+    }
+    .about-hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('images/hero-banner.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      opacity: 0.38;
+    }
+    .about-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(0,30,100,.55) 0%, rgba(0,61,165,.72) 100%);
+    }
+    .about-hero-content {
+      position: relative; z-index: 2;
+      padding: 80px 0 88px;
+    }
+    .about-hero-content h1 {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      color: #fff;
+      line-height: 1.0;
+      max-width: 720px;
+      letter-spacing: -.02em;
     }
 
-    /* ── OVERRIDE value-icon fill for about page icons ─ */
-    .value-icon svg[data-stroke] {
-      fill: none; stroke: var(--blue); stroke-width: 2; stroke-linecap: round;
+    /* ── SHARED SECTION STYLES ──────────────────────── */
+    .about-section {
+      padding: 90px 0;
     }
+    .about-section:nth-child(even) {
+      background: #f8fafc;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-grid.reverse { direction: rtl; }
+    .about-grid.reverse > * { direction: ltr; }
 
-    /* ── MEMBERSHIP SECTION ────────────────────────── */
-    .membership-section {
-      background: #060f1e;
-      padding: 100px 0;
-      position: relative; overflow: hidden;
-    }
-    .membership-section::before {
-      content: ''; position: absolute;
-      right: -120px; top: -120px;
-      width: 500px; height: 500px; border-radius: 50%;
-      background: rgba(0,61,165,.18); pointer-events: none;
-    }
-    .membership-section::after {
-      content: ''; position: absolute;
-      left: -80px; bottom: -80px;
-      width: 340px; height: 340px; border-radius: 50%;
-      background: rgba(255,218,0,.05); pointer-events: none;
-    }
-    .membership-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-      position: relative; z-index: 1;
-    }
-    .membership-eyebrow {
-      font-family: 'Work Sans', sans-serif; font-weight: 800;
-      font-size: .8rem; letter-spacing: .15em; text-transform: uppercase;
-      color: var(--yellow); margin-bottom: 16px; display: block;
-    }
-    .membership-headline {
-      font-family: 'Rubik', sans-serif; font-weight: 900;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      color: #fff; line-height: 1.1; margin-bottom: 16px;
-    }
-    .membership-sub {
-      font-size: 1.05rem; color: rgba(255,255,255,.65);
-      line-height: 1.7; margin-bottom: 40px; max-width: 480px;
-    }
-    .membership-benefits {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 16px; margin-bottom: 40px;
-    }
-    .benefit-card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 16px; padding: 24px 20px;
-      transition: background .2s, border-color .2s;
-    }
-    .benefit-card:hover {
-      background: rgba(255,255,255,.1);
-      border-color: rgba(255,218,0,.3);
-    }
-    .benefit-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: var(--yellow); display: flex;
-      align-items: center; justify-content: center;
+    .about-eyebrow {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--blue);
       margin-bottom: 14px;
     }
-    .benefit-icon svg { width: 22px; height: 22px; fill: var(--blue-dark); }
-    .benefit-title {
-      font-family: 'Rubik', sans-serif; font-weight: 800;
-      font-size: 1rem; color: #fff; margin-bottom: 6px;
+    .about-heading {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      color: var(--gray-900);
+      line-height: 1.08;
+      margin-bottom: 20px;
     }
-    .benefit-desc { font-size: .875rem; color: rgba(255,255,255,.55); line-height: 1.55; }
-    .membership-cta { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-join {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--yellow); color: var(--blue-dark);
-      font-family: 'Work Sans', sans-serif; font-weight: 800;
-      font-size: 1rem; padding: 15px 30px; border-radius: 50px;
-      text-decoration: none; transition: background .2s, transform .15s;
-      box-shadow: 0 4px 20px rgba(255,218,0,.35);
+    .about-body {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      line-height: 1.78;
     }
-    .btn-join:hover { background: var(--yellow-dark); transform: translateY(-2px); }
-    .btn-join-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: rgba(255,255,255,.75);
-      font-family: 'Work Sans', sans-serif; font-weight: 700;
-      font-size: 1rem; padding: 14px 28px; border-radius: 50px;
-      border: 2px solid rgba(255,255,255,.25); text-decoration: none;
-      transition: border-color .2s, color .2s;
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 12px 48px rgba(0,0,0,.12);
     }
-    .btn-join-ghost:hover { border-color: #fff; color: #fff; }
-    .membership-visual {
-      display: flex; flex-direction: column; align-items: center; gap: 32px;
+
+    /* ── COMMUNITY SECTION ──────────────────────────── */
+    .community-section {
+      background: #0a1f3d;
+      padding: 90px 0;
+      overflow: hidden;
     }
-    .membership-card-wrap {
-      position: relative; width: 100%; max-width: 380px;
+    .community-inner {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 56px;
     }
-    .membership-card-wrap img {
-      width: 100%; border-radius: 20px;
-      transform: rotate(-4deg) translateY(-8px);
-      box-shadow: 0 28px 64px rgba(255,218,0,.25), 0 8px 32px rgba(0,0,0,.5);
-      transition: transform .35s ease, box-shadow .35s ease;
+    .community-eyebrow {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 16px;
+    }
+    .community-heading {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .community-body {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .community-photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .community-photo {
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      width: 100%;
+      filter: brightness(.85);
+      transition: filter .25s;
+    }
+    .community-photo:hover { filter: brightness(1); }
+
+    /* ── REVIEWS SECTION ────────────────────────────── */
+    .reviews-section {
+      background: #f1f5f9;
+      padding: 90px 0;
+    }
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      gap: 24px;
+    }
+    .reviews-title {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      color: var(--gray-900);
+      line-height: 1.0;
+    }
+    .reviews-google-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .reviews-google-badge img {
+      height: 40px;
       display: block;
     }
-    .membership-card-wrap:hover img {
-      transform: rotate(-1deg) translateY(-18px);
-      box-shadow: 0 44px 80px rgba(255,218,0,.38), 0 16px 48px rgba(0,0,0,.55);
+    .reviews-google-text {
+      font-size: .8rem;
+      color: var(--gray-500);
+      line-height: 1.4;
     }
-    .membership-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 12px; width: 100%; max-width: 380px;
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
-    .mstat {
-      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
-      border-radius: 14px; padding: 18px 12px; text-align: center;
+    .review-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 26px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
-    .mstat-num {
-      font-family: 'Rubik', sans-serif; font-weight: 900;
-      font-size: 1.5rem; color: var(--yellow); line-height: 1;
-      margin-bottom: 4px;
+    .review-stars {
+      display: flex;
+      gap: 3px;
     }
-    .mstat-label { font-size: .75rem; color: rgba(255,255,255,.45); line-height: 1.3; }
-    @media (max-width: 900px) {
-      .membership-inner { grid-template-columns: 1fr; gap: 56px; }
-      .membership-visual { order: -1; }
-      .membership-card-wrap { max-width: 320px; }
+    .review-stars svg {
+      width: 18px; height: 18px; fill: #FBBC05;
+    }
+    .review-text {
+      font-size: .975rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      flex: 1;
+      font-style: italic;
+    }
+    .review-author {
+      border-top: 1px solid var(--gray-200);
+      padding-top: 14px;
+    }
+    .review-name {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--gray-900);
+    }
+    .review-location {
+      font-size: .8rem;
+      color: var(--gray-500);
+      margin-top: 2px;
+    }
+    .reviews-google-logo {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 860px) {
+      .about-grid,
+      .about-grid.reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: 36px;
+      }
+      .about-grid.reverse .about-text { order: 0; }
+      .about-grid.reverse .about-img-wrap { order: 1; }
+      .community-photos { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-header { flex-direction: column; align-items: flex-start; }
     }
     @media (max-width: 600px) {
-      .membership-benefits { grid-template-columns: 1fr; }
-      .membership-stats { grid-template-columns: repeat(3, 1fr); }
+      .about-hero-content h1 { font-size: 2.6rem; }
+      .about-section { padding: 64px 0; }
+      .community-photos { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── NAVBAR ─────────────────────────────────────────── -->
+<!-- ── NAVBAR ─────────────────────────────────────────────── -->
 <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
   <div class="container">
     <div class="navbar-inner">
@@ -174,9 +284,8 @@
       <div class="navbar-actions">
         <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          Find a Store
+          Find My Store
         </a>
-        <a href="#" class="btn btn-signin" aria-label="Sign in to your account">Sign In</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -185,192 +294,161 @@
   </div>
 </nav>
 
-<!-- ── MAIN CONTENT ──────────────────────────────────── -->
 <main>
 
-  <!-- 1. Hero -->
-  <section class="sub-hero">
-    <div class="sub-hero-accent sub-hero-accent-1"></div>
-    <div class="sub-hero-accent sub-hero-accent-2"></div>
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <section class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-overlay"></div>
+    <div class="container about-hero-content">
+      <h1>Helping<br>People<br>Afford<br>Everyday<br>Life.</h1>
+    </div>
+  </section>
+
+  <!-- ── WHO WE ARE ─────────────────────────────────────────── -->
+  <section class="about-section">
     <div class="container">
-      <div class="sub-hero-inner">
-        <div class="sub-hero-brand">
-          <div class="sub-hero-brand-box">BIG<br>BOX</div>
-          <div class="sub-hero-brand-tab">Outlet</div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="about-eyebrow">Who We Are</span>
+          <h2 class="about-heading">Who We Are</h2>
+          <p class="about-body">Big Box Outlet is a proudly Canadian retailer serving communities across BC and Alberta with quality brand-name finds at prices that make everyday life easier. We're here for people who want good products without the usual markup. No fuss, no gimmicks — just real value, helpful people, and a shopping experience that feels honest.</p>
         </div>
-        <h1 class="sub-hero-headline">Western Canada's<br><span style="color:var(--yellow)">Favourite Outlet Store</span></h1>
-        <p class="sub-hero-sub">Family-owned and Canadian-operated since 1985. Twenty locations across BC and Alberta — and one simple goal.</p>
-        <div class="sub-hero-actions">
-          <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
-          <a href="index.html#categories" class="btn btn-outline">Shop Now</a>
+        <div class="about-img-wrap reveal" style="transition-delay:.12s">
+          <img src="images/store-front.jpg" alt="Big Box Outlet store exterior" class="about-img" loading="lazy" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 2. Our Story -->
-  <section class="story-section">
+  <!-- ── WHAT WE DO ─────────────────────────────────────────── -->
+  <section class="about-section">
     <div class="container">
-      <div class="story-grid">
-        <div class="story-text reveal">
-          <span class="section-label">Our Story</span>
-          <h2 class="section-heading">Built on a Simple Promise</h2>
-          <p>Big Box Outlet Store has been a fixture in Western Canada since 1985. What started as a single family-owned store has grown into 20 locations across British Columbia and Alberta — all united by one simple goal: to help people afford everyday life.</p>
-          <p>We buy overstock, open-box, and recertified merchandise directly from major brands and retailers, then pass those savings directly to you. No middlemen. No markups. Just honest prices on products you know and trust.</p>
-          <p>Every item we sell is personally inspected, tested, and cleared for resale by our team — so you get the quality you expect at a price that actually makes sense.</p>
+      <div class="about-grid reverse">
+        <div class="about-text reveal">
+          <span class="about-eyebrow">What We Do</span>
+          <h2 class="about-heading">What We Do</h2>
+          <p class="about-body">We source overstock, closeout, and end-of-line products from brands people already know and trust, then pass those savings along in store. That means everything from furniture and appliances to clothing, patio, and everyday home essentials. Because our inventory changes all the time, every visit brings something new to discover.</p>
         </div>
-        <div class="reveal" style="transition-delay:.15s">
-          <div class="stats-row" style="grid-template-columns:1fr 1fr;margin-top:0;">
-            <div class="stat-card"><div class="stat-num">20</div><div class="stat-label">Store Locations</div></div>
-            <div class="stat-card"><div class="stat-num">BC+AB</div><div class="stat-label">Provinces Served</div></div>
-            <div class="stat-card"><div class="stat-num">1985</div><div class="stat-label">Founded</div></div>
-            <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">Canadian Owned</div></div>
-          </div>
+        <div class="about-img-wrap reveal" style="transition-delay:.12s">
+          <img src="images/store-interior.jpg" alt="Big Box Outlet store interior" class="about-img" loading="lazy" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. Brand Promise -->
-  <section class="brand-promise">
+  <!-- ── WHY WE DO IT ───────────────────────────────────────── -->
+  <section class="about-section">
     <div class="container">
-      <div class="brand-promise-eyebrow">Our Mission</div>
-      <h2>At Big Box we have one goal:<br>To help people afford everyday life.</h2>
-      <p>From appliances to clothing, furniture to food — we believe everyone deserves access to quality products at prices that don't break the bank.</p>
-      <a href="index.html#categories" class="btn btn-primary">Shop All Categories</a>
-    </div>
-  </section>
-
-  <!-- 4. Our Values -->
-  <section class="value-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">What We Stand For</span>
-        <h2 class="section-heading">Our Values</h2>
-      </div>
-      <div class="value-grid">
-        <div class="value-card reveal">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-stroke="1"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="value-title">Quality You Can Trust</div>
-          <div class="value-desc">Every single item we sell is personally inspected and tested by our team before it ever reaches the floor. Open-box doesn't mean lesser quality — it means smarter savings.</div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="about-eyebrow">Why We Do It</span>
+          <h2 class="about-heading">Why We Do It</h2>
+          <p class="about-body">We started because we saw an opportunity to do retail differently. We believe smart shopping shouldn't mean sacrificing quality. By giving great products a second chance at reaching customers, we reduce waste and make quality accessible. Every dollar saved by our customers is proof that this model works.</p>
         </div>
-        <div class="value-card reveal" style="transition-delay:.1s">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <div class="value-title">Savings Every Day</div>
-          <div class="value-desc">We buy direct from brands and retailers — overstock, recertified, and open-box merchandise — and pass every dollar of savings straight to you. Up to 70% off regular retail.</div>
-        </div>
-        <div class="value-card reveal" style="transition-delay:.2s">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div class="value-title">Community First</div>
-          <div class="value-desc">Twenty stores. Hundreds of local jobs. Real neighbours serving real communities across BC and Alberta. We're proud to be Canadian — and proud to give back to the communities we call home.</div>
+        <div class="about-img-wrap reveal" style="transition-delay:.12s">
+          <img src="images/rewards-banner.jpg" alt="Big Box Outlet team member" class="about-img" loading="lazy" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. Rewards & Membership -->
-  <section class="membership-section" id="membership">
+  <!-- ── COMMUNITY ──────────────────────────────────────────── -->
+  <section class="community-section">
     <div class="container">
-      <div class="membership-inner">
-
-        <!-- Left: Copy + benefits -->
-        <div>
-          <span class="membership-eyebrow">Membership</span>
-          <h2 class="membership-headline">Join the BBOS<br>Rewards Club</h2>
-          <p class="membership-sub">Join thousands of members who save more on every shop. Earn points, unlock member pricing, and be first in line when new inventory drops every Thursday.</p>
-
-          <div class="membership-benefits">
-            <div class="benefit-card reveal">
-              <div class="benefit-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              </div>
-              <div class="benefit-title">Earn Points</div>
-              <div class="benefit-desc">Every in-store purchase earns Rewards points redeemable on future visits.</div>
-            </div>
-            <div class="benefit-card reveal" style="transition-delay:.08s">
-              <div class="benefit-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12V22H4V12M22 7H2v5h20V7zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-              </div>
-              <div class="benefit-title">Member Deals</div>
-              <div class="benefit-desc">Exclusive pricing and special offers available only to Rewards Club members.</div>
-            </div>
-            <div class="benefit-card reveal" style="transition-delay:.12s">
-              <div class="benefit-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <div class="benefit-title">Early Access</div>
-              <div class="benefit-desc">Be first through the door on Thursdays. Members get the best picks before the rush.</div>
-            </div>
-            <div class="benefit-card reveal" style="transition-delay:.18s">
-              <div class="benefit-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
-              </div>
-              <div class="benefit-title">Weekly Alerts</div>
-              <div class="benefit-desc">Get the week's best deals delivered to your inbox before anyone else knows about them.</div>
-            </div>
-          </div>
-
-          <div class="membership-cta">
-            <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener" class="btn-join">
-              Join Free — It's Free
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-            </a>
-            <a href="index.html#email-signup" class="btn-join-ghost">Get Weekly Deals</a>
-          </div>
-        </div>
-
-        <!-- Right: Card + stats -->
-        <div class="membership-visual reveal" style="transition-delay:.1s">
-          <div class="membership-card-wrap">
-            <img src="images/rewards-card.png" alt="BBOS Rewards Card" loading="lazy" />
-          </div>
-          <div class="membership-stats">
-            <div class="mstat">
-              <div class="mstat-num">Free</div>
-              <div class="mstat-label">To Join</div>
-            </div>
-            <div class="mstat">
-              <div class="mstat-num">20</div>
-              <div class="mstat-label">Locations</div>
-            </div>
-            <div class="mstat">
-              <div class="mstat-num">Thu</div>
-              <div class="mstat-label">New Stock</div>
-            </div>
-          </div>
-        </div>
-
+      <div class="community-inner reveal">
+        <span class="community-eyebrow">Community</span>
+        <h2 class="community-heading">We Show Up For<br>Our Communities</h2>
+        <p class="community-body">From school food programs and student initiatives to partnering with organizations like Habitat for Humanity, Big Box Outlet is proud to give back to the neighbourhoods we call home. Because caring about our communities isn't extra — it's who we are.</p>
+        <a href="community.html" class="btn btn-primary">Learn More</a>
+      </div>
+      <div class="community-photos reveal" style="transition-delay:.15s">
+        <img src="images/hero-banner-1.png" alt="Community involvement" class="community-photo" loading="lazy" />
+        <img src="images/store-interior.jpg"  alt="Community event" class="community-photo" loading="lazy" />
+        <img src="images/rewards-banner.jpg"  alt="Community giving back" class="community-photo" loading="lazy" />
       </div>
     </div>
   </section>
 
-  <!-- 6. Find a Store CTA -->
-  <section class="cta-strip">
+  <!-- ── REVIEWS ────────────────────────────────────────────── -->
+  <section class="reviews-section">
     <div class="container">
-      <h2>Find Your Nearest Big Box</h2>
-      <p>With 20 locations across BC and Alberta, there's a Big Box Outlet Store near you.</p>
-      <div class="cta-strip-actions">
-        <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
-        <a href="index.html#categories" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Browse Categories</a>
+      <div class="reviews-header">
+        <h2 class="reviews-title">Real People.<br>Real Discoveries.</h2>
+        <div class="reviews-google-badge">
+          <!-- Google "G" logo inline SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 48 48" aria-label="Google">
+            <path fill="#4285F4" d="M43.6 20.5H24v7h11.3c-1.1 5.1-5.5 8.5-11.3 8.5-6.9 0-12.5-5.6-12.5-12.5S17.1 11 24 11c3.1 0 5.8 1.1 8 2.9l5.3-5.3C33.9 5.5 29.2 3.5 24 3.5 12.7 3.5 3.5 12.7 3.5 24S12.7 44.5 24 44.5c11 0 20-8 20-20.5 0-1.3-.1-2.7-.4-3.5z"/>
+            <path fill="#34A853" d="M6.3 14.7l6.2 4.5C14 15.5 18.7 12 24 12c3.1 0 5.8 1.1 8 2.9l5.3-5.3C33.9 5.5 29.2 3.5 24 3.5c-7.6 0-14.2 4.3-17.7 10.7z" transform="translate(-1.5 1)"/>
+            <path fill="#FBBC05" d="M24 44.5c5.1 0 9.8-1.9 13.3-5.1l-6.2-5.1c-2 1.4-4.5 2.2-7.1 2.2-5.7 0-10.1-3.4-11.3-8.4l-6.2 4.8C8 39.9 15.4 44.5 24 44.5z"/>
+            <path fill="#EA4335" d="M43.6 20.5H24v7h11.3c-.5 2.4-1.9 4.4-3.8 5.8l6.2 5.1c3.6-3.4 5.8-8.4 5.8-14.4 0-1.3-.1-2.7-.4-3.5z" transform="translate(.5 0)"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+
+        <!-- Review 1 -->
+        <div class="review-card reveal">
+          <div class="review-stars">
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="review-text">"The Best Price Promise is real. They matched and actually beat a competitor price without any hassle whatsoever. I'll definitely be bringing my receipt back next time too."</p>
+          <div class="review-author">
+            <div class="review-name">James T.</div>
+            <div class="review-location">Edmonton, AB</div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-card reveal" style="transition-delay:.1s">
+          <div class="review-stars">
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="review-text">"The Rewards program is genuinely worth signing up for. I've saved hundreds of dollars this year shopping at places I'd normally shop anyways. It adds up fast."</p>
+          <div class="review-author">
+            <div class="review-name">Maria G.</div>
+            <div class="review-location">Langley, BC</div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card reveal" style="transition-delay:.2s">
+          <div class="review-stars">
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="review-text">"Huge selection, really friendly staff, and the deals are genuinely amazing. Not outlet store dusty. It's clean, organized, and the inventory is fresh. My new favourite store."</p>
+          <div class="review-author">
+            <div class="review-name">Derek F.</div>
+            <div class="review-location">Chilliwack, BC</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
 </main>
 
-<!-- ── FOOTER ────────────────────────────────────────── -->
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
         <img src="images/logo-white.png" alt="Big Box Outlet" />
-        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+        <p>Helping People Afford Everyday Life.</p>
       </div>
       <div>
         <div class="footer-col-title">Explore</div>
@@ -381,7 +459,7 @@
         </ul>
       </div>
       <div>
-        <div class="footer-col-title">About</div>
+        <div class="footer-col-title">About Us</div>
         <ul class="footer-links">
           <li><a href="about.html">Our Story</a></li>
           <li><a href="community.html">Community</a></li>
@@ -396,15 +474,7 @@
         </ul>
       </div>
       <div>
-        <div class="footer-col-title">Legal</div>
-        <ul class="footer-links">
-          <li><a href="https://bigboxoutletstore.ca">Privacy Policy</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Terms of Use</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Accessibility</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Connect with BBO</div>
+        <div class="footer-col-title">Stay Connected</div>
         <div class="footer-connect-icons">
           <a href="https://instagram.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -419,7 +489,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location.</div>
+      <div class="footer-bottom-text">Big Box Outlet sources overstock, closeout, and end-of-line products from top brands and passes the savings directly to customers. Product availability, pricing, and selection vary by store and are subject to change without notice. &copy; 2026 Big Box Outlet. All rights reserved.</div>
       <div class="footer-bottom-links">
         <a href="https://bigboxoutletstore.ca">Privacy Policy</a>
         <a href="https://bigboxoutletstore.ca">Terms of Use</a>
@@ -429,7 +499,6 @@
   </div>
 </footer>
 
-<!-- ── SCROLL TO TOP ──────────────────────────────────── -->
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
 </button>
