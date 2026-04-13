@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us — Big Box Outlet Store</title>
-  <meta name="description" content="Big Box Outlet is a proudly Canadian retailer serving communities across BC and Alberta with quality brand-name finds at prices that make everyday life more affordable." />
+  <meta name="description" content="Big Box Outlet is a proudly Canadian retailer. 40 years of helping people across BC and Alberta afford everyday life." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="base.css" />
   <style>
 
-    /* ── NAV: white for this page ───────────────────── */
+    /* ── NAV: white ─────────────────────────────────── */
     .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09); }
     .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
     .navbar-nav a { color: var(--blue) !important; }
@@ -20,216 +20,322 @@
     .btn-signin { color: var(--blue) !important; border-color: rgba(0,61,165,.3) !important; }
     .nav-toggle span { background: var(--blue) !important; }
 
-    /* ── HERO ───────────────────────────────────────── */
-    .about-hero {
-      position: relative;
-      min-height: 480px;
-      background: var(--blue);
-      display: flex;
-      align-items: flex-end;
-      padding-top: 72px;
-      overflow: hidden;
-    }
-    .about-hero-bg {
-      position: absolute; inset: 0;
-      background-image: url('images/hero-banner.jpg');
-      background-size: cover;
-      background-position: center 35%;
-      opacity: .38;
-    }
-    .about-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(160deg, rgba(0,25,90,.60) 0%, rgba(0,61,165,.70) 100%);
-    }
-    .about-hero-content {
-      position: relative; z-index: 2;
-      padding: 72px 0 84px;
-    }
-    .about-hero-content h1 {
-      font-family: 'Rubik', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.8rem, 5.5vw, 5.2rem);
-      color: #fff;
-      line-height: 1.0;
-      max-width: 680px;
-      letter-spacing: -.025em;
+    /* ═══════════════════════════════════════════════════
+       TIMELINE HERO — the page opens here
+    ═══════════════════════════════════════════════════ */
+    .timeline-hero {
+      background: #fff;
+      padding-top: calc(72px + 72px); /* nav + top space */
+      padding-bottom: 0;
     }
 
-    /* ── TIMELINE SECTION ───────────────────────────── */
-    .timeline-section {
-      background: #fff;
-      padding: 96px 0 80px;
+    /* Intro block above the track */
+    .timeline-intro-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 80px;
+      align-items: end;
+      padding-bottom: 72px;
+      border-bottom: 2px solid var(--gray-200);
+      margin-bottom: 80px;
     }
-    .timeline-header {
-      margin-bottom: 64px;
-    }
-    .timeline-eyebrow {
+    .timeline-intro-left {}
+    .timeline-page-eyebrow {
       display: inline-block;
       font-family: 'Work Sans', sans-serif;
       font-weight: 800;
-      font-size: .7rem;
-      letter-spacing: .16em;
+      font-size: .72rem;
+      letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--yellow-dark);
       background: #FFFBDD;
       border: 1.5px solid #FFE055;
       border-radius: 20px;
       padding: 4px 14px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
-    .timeline-heading {
+    .timeline-page-headline {
       font-family: 'Rubik', sans-serif;
       font-weight: 900;
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-size: clamp(3rem, 5.5vw, 5rem);
       color: var(--gray-900);
-      line-height: 1.05;
-      margin-bottom: 16px;
+      line-height: .98;
+      letter-spacing: -.03em;
+      margin-bottom: 0;
     }
-    .timeline-intro {
-      font-size: 1.05rem;
+    .timeline-page-headline span {
+      color: var(--blue);
+    }
+    .timeline-intro-right {
+      padding-bottom: 8px;
+    }
+    .timeline-tagline {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--gray-900);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .timeline-intro-body {
+      font-size: 1.02rem;
       color: var(--gray-600);
-      line-height: 1.72;
-      max-width: 640px;
+      line-height: 1.76;
     }
 
-    /* Timeline track */
+    /* ── THE TRACK ──────────────────────────────────── */
     .timeline-track {
       position: relative;
       display: flex;
       flex-direction: column;
       gap: 0;
+      padding-bottom: 80px;
     }
-    /* Vertical line */
+    /* Vertical spine */
     .timeline-track::before {
       content: '';
       position: absolute;
-      left: 148px;
-      top: 24px;
-      bottom: 24px;
-      width: 3px;
-      background: linear-gradient(to bottom, var(--yellow) 0%, var(--blue) 100%);
-      border-radius: 2px;
-      z-index: 0;
+      left: 0;
+      top: 20px;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom,
+        var(--yellow)   0%,
+        var(--yellow)  30%,
+        var(--blue)    70%,
+        #0a1f3d       100%
+      );
+      border-radius: 4px;
     }
 
     .timeline-entry {
       display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 40px;
-      align-items: center;
-      padding: 24px 0;
+      grid-template-columns: 380px 1fr;
+      gap: 48px;
+      align-items: start;
+      padding: 0 0 72px 36px;
       position: relative;
     }
-    .timeline-left {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      position: relative;
-    }
-    /* Yellow dot */
-    .timeline-dot {
-      width: 20px;
-      height: 20px;
+    /* dot on spine */
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: var(--yellow);
-      border: 3px solid #fff;
+      border: 4px solid #fff;
       box-shadow: 0 0 0 3px var(--yellow);
-      flex-shrink: 0;
-      position: relative;
       z-index: 1;
-      margin-left: 139px;  /* aligns to the line at left:148px */
     }
-    .timeline-year-block {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      /* sit to the left of the dot */
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 120px;
-    }
+
+    .timeline-left {}
     .timeline-year {
       font-family: 'Rubik', sans-serif;
       font-weight: 900;
-      font-size: 2.2rem;
-      color: #fff;
-      line-height: 1;
-      background: var(--blue);
-      padding: 10px 18px;
-      border-radius: 10px;
-      display: inline-block;
-      text-align: center;
+      font-size: clamp(4.5rem, 8vw, 7rem);
+      color: var(--blue);
+      line-height: .9;
+      letter-spacing: -.04em;
+      margin-bottom: 16px;
     }
-    .timeline-label {
-      font-size: .9rem;
-      font-weight: 700;
+    .timeline-milestone-title {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--gray-900);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .timeline-milestone-body {
+      font-size: .975rem;
       color: var(--gray-600);
-      line-height: 1.4;
-      padding-left: 2px;
+      line-height: 1.78;
     }
-    .timeline-right img {
+    .timeline-right {}
+    .timeline-photo {
       width: 100%;
-      height: 200px;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
-      border-radius: 14px;
+      border-radius: 16px;
       display: block;
-      box-shadow: 0 6px 28px rgba(0,0,0,.10);
+      box-shadow: 0 12px 48px rgba(0,0,0,.12);
+    }
+    .timeline-photo.brighten {
+      filter: brightness(1.15) contrast(1.04);
     }
 
-    /* ── SHARED CONTENT SECTION STYLES ─────────────── */
-    .about-section {
-      padding: 88px 0;
-    }
-    .about-section.alt-bg { background: #f8fafc; }
-
-    .about-grid {
+    /* ── "Story continues" closer ───────────────────── */
+    .timeline-continues {
+      margin-left: 36px;
+      background: #0a1f3d;
+      border-radius: 20px;
+      padding: 56px 56px 56px 56px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 72px;
+      gap: 48px;
       align-items: center;
+      position: relative;
     }
-    .about-eyebrow {
+    .timeline-continues::before {
+      content: '';
+      position: absolute;
+      left: -46px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 4px solid #fff;
+      box-shadow: 0 0 0 3px var(--blue);
+      z-index: 1;
+    }
+    .continues-eyebrow {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .continues-heading {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+    .continues-body {
+      font-size: 1rem;
+      color: rgba(255,255,255,.62);
+      line-height: 1.76;
+      margin-bottom: 28px;
+    }
+    .continues-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .continues-stat {
+      border-left: 3px solid var(--yellow);
+      padding-left: 20px;
+    }
+    .continues-stat-num {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -.02em;
+    }
+    .continues-stat-label {
+      font-size: .875rem;
+      color: rgba(255,255,255,.50);
+      margin-top: 4px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       WHO / WHAT / WHY  — condensed digest strip
+    ═══════════════════════════════════════════════════ */
+    .pillars-section {
+      padding: 96px 0;
+      background: #f8fafc;
+    }
+    .pillars-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .pillars-eyebrow {
       display: inline-block;
       font-family: 'Work Sans', sans-serif;
       font-weight: 800;
-      font-size: .7rem;
+      font-size: .72rem;
       letter-spacing: .16em;
       text-transform: uppercase;
       color: var(--blue);
       margin-bottom: 14px;
     }
-    .about-heading {
+    .pillars-heading {
       font-family: 'Rubik', sans-serif;
       font-weight: 900;
-      font-size: clamp(1.9rem, 2.8vw, 2.6rem);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
       color: var(--gray-900);
       line-height: 1.08;
-      margin-bottom: 18px;
     }
-    .about-body {
-      font-size: 1.03rem;
-      color: var(--gray-600);
-      line-height: 1.80;
+
+    /* Three-up pillar cards */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
-    .about-img {
+    .pillar-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.07);
+      display: flex;
+      flex-direction: column;
+      transition: transform .22s, box-shadow .22s;
+    }
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.11);
+    }
+    .pillar-img {
       width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
-      border-radius: 18px;
       display: block;
-      box-shadow: 0 16px 56px rgba(0,0,0,.11);
+    }
+    .pillar-img.brighten { filter: brightness(1.18) contrast(1.04); }
+    .pillar-body {
+      padding: 28px 28px 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .pillar-label {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .pillar-title {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--gray-900);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .pillar-text {
+      font-size: .94rem;
+      color: var(--gray-600);
+      line-height: 1.72;
+      flex: 1;
     }
 
-    /* ── COMMUNITY SECTION ──────────────────────────── */
+    /* ═══════════════════════════════════════════════════
+       COMMUNITY
+    ═══════════════════════════════════════════════════ */
     .community-section {
       background: #071e3d;
       padding: 96px 0 80px;
     }
     .community-inner {
       text-align: center;
-      max-width: 740px;
+      max-width: 720px;
       margin: 0 auto 52px;
     }
     .community-eyebrow {
@@ -255,9 +361,9 @@
       margin-bottom: 18px;
     }
     .community-body {
-      font-size: 1.03rem;
-      color: rgba(255,255,255,.62);
-      line-height: 1.78;
+      font-size: 1.02rem;
+      color: rgba(255,255,255,.60);
+      line-height: 1.76;
       margin-bottom: 36px;
     }
     .community-photos {
@@ -276,20 +382,34 @@
     }
     .community-photo:hover { filter: brightness(1); transform: scale(1.02); }
 
-    /* ── RESPONSIVE ─────────────────────────────────── */
-    @media (max-width: 900px) {
-      .timeline-track::before { display: none; }
-      .timeline-entry { grid-template-columns: 1fr; gap: 16px; }
-      .timeline-left { gap: 16px; }
-      .timeline-dot { display: none; }
-      .timeline-year-block { position: static; transform: none; width: auto; }
-      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    /* ═══════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .timeline-entry { grid-template-columns: 300px 1fr; }
+    }
+    @media (max-width: 860px) {
+      .timeline-intro-block { grid-template-columns: 1fr; gap: 28px; }
+      .timeline-entry {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding-left: 28px;
+      }
+      .timeline-track::before { left: 0; }
+      .timeline-entry::before { left: -14px; }
+      .timeline-continues { grid-template-columns: 1fr; padding: 40px; }
+      .timeline-continues::before { left: -38px; }
+      .pillars-grid { grid-template-columns: 1fr; gap: 20px; }
       .community-photos { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
-      .about-hero-content h1 { font-size: 2.5rem; }
+      .timeline-hero { padding-top: calc(72px + 40px); }
+      .timeline-track { padding-left: 0; }
+      .timeline-entry { padding-left: 24px; }
+      .timeline-track::before { display: none; }
+      .timeline-entry::before { display: none; }
+      .timeline-continues { margin-left: 0; }
       .community-photos { grid-template-columns: 1fr; }
-      .timeline-entry { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -323,75 +443,138 @@
 
 <main>
 
-  <!-- ── HERO ──────────────────────────────────────────────── -->
-  <section class="about-hero">
-    <div class="about-hero-bg"></div>
-    <div class="about-hero-overlay"></div>
-    <div class="container about-hero-content">
-      <h1>Helping<br>People<br>Afford<br>Everyday<br>Life.</h1>
-    </div>
-  </section>
-
-  <!-- ── 40 YEARS TIMELINE ──────────────────────────────────── -->
-  <section class="timeline-section">
+  <!-- ══════════════════════════════════════════════════
+       TIMELINE HERO — opens the page
+  ══════════════════════════════════════════════════ -->
+  <section class="timeline-hero">
     <div class="container">
-      <div class="timeline-header reveal">
-        <span class="timeline-eyebrow">Our History</span>
-        <h2 class="timeline-heading">40 Years in the Making</h2>
-        <p class="timeline-intro">From MTT Price Matters to Big Box Outlet, it's been a journey we're proud of. We grew from a small idea in the '80s to helping people across BC and Alberta stores shop smarter everyday.</p>
+
+      <!-- Intro: headline + context -->
+      <div class="timeline-intro-block reveal">
+        <div class="timeline-intro-left">
+          <span class="timeline-page-eyebrow">Our Story</span>
+          <h1 class="timeline-page-headline">40 Years<br>in the<br><span>Making.</span></h1>
+        </div>
+        <div class="timeline-intro-right">
+          <p class="timeline-tagline">Helping People Afford Everyday Life — that's not a tagline. It's what we've been doing since 1984.</p>
+          <p class="timeline-intro-body">From a single Abbotsford warehouse to 20 locations across BC and Alberta, every year of this story was written by the customers who walked through our doors and left with more than they expected. Here's how we got here.</p>
+        </div>
       </div>
 
+      <!-- The track -->
       <div class="timeline-track">
 
+        <!-- 1984 -->
         <div class="timeline-entry reveal">
           <div class="timeline-left">
-            <div class="timeline-year-block">
-              <span class="timeline-year">1984</span>
-              <span class="timeline-label">Doors open<br>in Abbotsford</span>
-            </div>
-            <div class="timeline-dot"></div>
+            <div class="timeline-year">1984</div>
+            <div class="timeline-milestone-title">One store. One big idea.</div>
+            <p class="timeline-milestone-body">We opened our doors in Abbotsford with a simple belief: that everyday Canadians shouldn't have to choose between quality and affordability. Word spread faster than we expected. That first customer who walked out saving $200 on a fridge they couldn't otherwise afford — that was the whole point, right there. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
           <div class="timeline-right">
-            <img src="images/store-front.jpg" alt="First Big Box Outlet store in Abbotsford, 1984" loading="lazy" />
+            <img src="images/store-front.jpg" alt="First Big Box Outlet store, Abbotsford 1984" class="timeline-photo" loading="lazy" />
           </div>
         </div>
 
-        <div class="timeline-entry reveal" style="transition-delay:.08s">
+        <!-- 1992 -->
+        <div class="timeline-entry reveal" style="transition-delay:.06s">
           <div class="timeline-left">
-            <div class="timeline-year-block">
-              <span class="timeline-year">1992</span>
-              <span class="timeline-label">First store<br>expansion</span>
-            </div>
-            <div class="timeline-dot"></div>
+            <div class="timeline-year">1992</div>
+            <div class="timeline-milestone-title">Word got out. Then the walls got bigger.</div>
+            <p class="timeline-milestone-body">As demand grew, so did we. Our first expansion proved the model worked — that people across BC were looking for exactly what we offered. More locations meant more families in more communities finding real value on the brands they already trusted. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</p>
           </div>
           <div class="timeline-right">
-            <img src="images/store-interior.jpg" alt="Store expansion in 1992" loading="lazy" />
+            <img src="images/store-interior.jpg" alt="Store expansion, 1992" class="timeline-photo brighten" loading="lazy" />
           </div>
         </div>
 
-        <div class="timeline-entry reveal" style="transition-delay:.16s">
+        <!-- 2008 -->
+        <div class="timeline-entry reveal" style="transition-delay:.12s">
           <div class="timeline-left">
-            <div class="timeline-year-block">
-              <span class="timeline-year">2008</span>
-              <span class="timeline-label">Rebranded as<br>Big Box Outlet Store</span>
-            </div>
-            <div class="timeline-dot"></div>
+            <div class="timeline-year">2008</div>
+            <div class="timeline-milestone-title">A new name. The same promise.</div>
+            <p class="timeline-milestone-body">Rebranding to Big Box Outlet Store wasn't a pivot — it was a declaration. We were committing to this model for the long haul. The name said it plainly: big brands, outlet prices, no pretense. Customers who'd known us for years barely skipped a beat. They already knew what we stood for. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
           </div>
           <div class="timeline-right">
-            <img src="images/hero-banner-1.png" alt="Rebrand to Big Box Outlet Store in 2008" loading="lazy" />
+            <img src="images/hero-banner-1.png" alt="Rebrand to Big Box Outlet Store, 2008" class="timeline-photo" loading="lazy" />
           </div>
         </div>
 
-        <div class="timeline-entry reveal" style="transition-delay:.24s">
+        <!-- 2025 -->
+        <div class="timeline-entry reveal" style="transition-delay:.18s">
           <div class="timeline-left">
-            <div class="timeline-year-block">
-              <span class="timeline-year">2025</span>
-              <span class="timeline-label">Celebrating 40<br>years of savings</span>
-            </div>
-            <div class="timeline-dot"></div>
+            <div class="timeline-year">2025</div>
+            <div class="timeline-milestone-title">Forty years. Still day one.</div>
+            <p class="timeline-milestone-body">Twenty locations. Hundreds of thousands of customers who've made us part of their routine. We marked 40 years not with fanfare but with the same thing we've always had: great products at prices that actually move the needle for families. The numbers are real. The impact is more so. Lorem ipsum dolor sit amet, consectetur adipiscing elit ut labore et dolore magna.</p>
           </div>
           <div class="timeline-right">
-            <img src="images/rewards-banner.jpg" alt="40 years of Big Box Outlet Store" loading="lazy" />
+            <img src="images/rewards-banner.jpg" alt="40 years of Big Box Outlet, 2025" class="timeline-photo" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Story continues card -->
+        <div class="timeline-continues reveal" style="transition-delay:.22s">
+          <div>
+            <span class="continues-eyebrow">What's Next</span>
+            <h2 class="continues-heading">The next chapter<br>is already underway.</h2>
+            <p class="continues-body">A fresh look. A bigger footprint. And the same belief we showed up with in 1984 — that quality shouldn't be a privilege. We're not done. We're just getting to the good part. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            <a href="community.html" class="btn btn-primary" style="align-self:flex-start;">See What We're Building</a>
+          </div>
+          <div class="continues-right">
+            <div class="continues-stat">
+              <div class="continues-stat-num">20</div>
+              <div class="continues-stat-label">Locations across BC &amp; Alberta</div>
+            </div>
+            <div class="continues-stat">
+              <div class="continues-stat-num">40+</div>
+              <div class="continues-stat-label">Years of helping families save</div>
+            </div>
+            <div class="continues-stat">
+              <div class="continues-stat-num">Thu</div>
+              <div class="continues-stat-label">New inventory drops every Thursday</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /timeline-track -->
+    </div><!-- /container -->
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       WHO / WHAT / WHY — three-up card digest
+  ══════════════════════════════════════════════════ -->
+  <section class="pillars-section">
+    <div class="container">
+      <div class="pillars-header reveal">
+        <span class="pillars-eyebrow">The Way We Work</span>
+        <h2 class="pillars-heading">What Makes Us Different</h2>
+      </div>
+      <div class="pillars-grid">
+
+        <div class="pillar-card reveal">
+          <img src="images/store-front.jpg" alt="Who we are" class="pillar-img" loading="lazy" />
+          <div class="pillar-body">
+            <span class="pillar-label">Who We Are</span>
+            <div class="pillar-title">A proudly Canadian retailer, built for real people.</div>
+            <p class="pillar-text">Big Box Outlet serves communities across BC and Alberta with quality brand-name finds at prices that make everyday life easier. No fuss, no gimmicks — just honest value and a shopping experience that feels like it was designed for you, not around you.</p>
+          </div>
+        </div>
+
+        <div class="pillar-card reveal" style="transition-delay:.08s">
+          <img src="images/store-interior.jpg" alt="What we do" class="pillar-img brighten" loading="lazy" />
+          <div class="pillar-body">
+            <span class="pillar-label">What We Do</span>
+            <div class="pillar-title">We source smart so you can shop smart.</div>
+            <p class="pillar-text">We buy overstock, closeout, and end-of-line products directly from the brands you already trust — and pass every dollar of savings straight to you. Furniture, appliances, clothing, patio, and more. Because our inventory turns constantly, every visit is different.</p>
+          </div>
+        </div>
+
+        <div class="pillar-card reveal" style="transition-delay:.16s">
+          <img src="images/rewards-banner.jpg" alt="Why we do it" class="pillar-img" loading="lazy" />
+          <div class="pillar-body">
+            <span class="pillar-label">Why We Do It</span>
+            <div class="pillar-title">Because smart shopping shouldn't require sacrifice.</div>
+            <p class="pillar-text">We started because we believed retail could work differently. By giving great products a second chance at reaching customers, we reduce waste and make quality accessible. Every dollar saved by our customers is proof that this model works — and keeps us motivated to grow it.</p>
           </div>
         </div>
 
@@ -399,55 +582,9 @@
     </div>
   </section>
 
-  <!-- ── WHO WE ARE ─────────────────────────────────────────── -->
-  <section class="about-section alt-bg">
-    <div class="container">
-      <div class="about-grid">
-        <div class="reveal">
-          <span class="about-eyebrow">Who We Are</span>
-          <h2 class="about-heading">Who We Are</h2>
-          <p class="about-body">Big Box Outlet is a proudly Canadian retailer serving communities across BC and Alberta with quality brand-name finds at prices that make everyday life easier. We're here for people who want good products without the usual markup. No fuss, no gimmicks — just real value, helpful people, and a shopping experience that feels honest.</p>
-        </div>
-        <div class="reveal" style="transition-delay:.12s">
-          <img src="images/store-front.jpg" alt="Big Box Outlet store exterior" class="about-img" loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── WHAT WE DO ─────────────────────────────────────────── -->
-  <section class="about-section">
-    <div class="container">
-      <div class="about-grid">
-        <div class="reveal" style="transition-delay:.12s">
-          <img src="images/store-interior.jpg" alt="Big Box Outlet store interior" class="about-img" loading="lazy" />
-        </div>
-        <div class="reveal">
-          <span class="about-eyebrow">What We Do</span>
-          <h2 class="about-heading">What We Do</h2>
-          <p class="about-body">We source overstock, closeout, and end-of-line products from brands people already know and trust, then pass those savings along in store. That means everything from furniture and appliances to clothing, patio, and everyday home essentials. Because our inventory changes all the time, every visit brings something new to discover.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── WHY WE DO IT ───────────────────────────────────────── -->
-  <section class="about-section alt-bg">
-    <div class="container">
-      <div class="about-grid">
-        <div class="reveal">
-          <span class="about-eyebrow">Why We Do It</span>
-          <h2 class="about-heading">Why We Do It</h2>
-          <p class="about-body">We started because we saw an opportunity to do retail differently. We believe smart shopping shouldn't mean sacrificing quality. By giving great products a second chance at reaching customers, we reduce waste and make quality accessible. Every dollar saved by our customers is proof that this model works.</p>
-        </div>
-        <div class="reveal" style="transition-delay:.12s">
-          <img src="images/rewards-banner.jpg" alt="Big Box Outlet team" class="about-img" loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── COMMUNITY ──────────────────────────────────────────── -->
+  <!-- ══════════════════════════════════════════════════
+       COMMUNITY
+  ══════════════════════════════════════════════════ -->
   <section class="community-section">
     <div class="container">
       <div class="community-inner reveal">
@@ -517,7 +654,7 @@
         <a href="https://bigboxoutletstore.ca">Accessibility</a>
       </div>
     </div>
-    <div style="text-align:center;padding:20px 0 4px;font-size:.85rem;color:rgba(255,255,255,.3);letter-spacing:.06em;">Helping People Afford Everyday Life</div>
+    <div style="text-align:center;padding:20px 0 4px;font-size:.85rem;color:rgba(255,255,255,.25);letter-spacing:.05em;">Helping People Afford Everyday Life</div>
   </div>
 </footer>
 
@@ -534,7 +671,7 @@
   if('IntersectionObserver' in window){
     var obs=new IntersectionObserver(function(entries){
       entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
-    },{threshold:.1});
+    },{threshold:.08});
     reveals.forEach(function(el){obs.observe(el);});
   } else {
     reveals.forEach(function(el){el.classList.add('visible');});
