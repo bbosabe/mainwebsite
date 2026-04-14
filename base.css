@@ -61,7 +61,7 @@ body {
   color: var(--page-color, var(--blue)); margin-bottom: 12px;
 }
 .section-heading {
-  font-family: 'Rubik', sans-serif; font-weight: 900;
+  font-family: 'Work Sans', sans-serif; font-weight: 900;
   font-size: clamp(2rem, 3.5vw, 3rem); color: var(--gray-900);
   line-height: 1.05; margin-bottom: 16px;
 }
@@ -70,7 +70,7 @@ body {
 /* ── BUTTONS ────────────────────────────────────────── */
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Rubik', sans-serif; font-weight: 700;
+  font-family: 'Work Sans', sans-serif; font-weight: 700;
   border: none; cursor: pointer; text-decoration: none;
   transition: all .2s ease; white-space: nowrap;
 }
@@ -288,7 +288,7 @@ body {
 .sub-hero-brand-tab svg { width: 16px; height: 16px; opacity: .7; }
 
 .sub-hero-headline {
-  font-family: 'Rubik', sans-serif; font-weight: 900;
+  font-family: 'Work Sans', sans-serif; font-weight: 900;
   font-size: clamp(2.6rem, 5vw, 4.2rem);
   line-height: .95; margin-bottom: 20px; color: #fff;
 }
@@ -336,7 +336,7 @@ body {
 }
 .value-icon svg { width: 26px; height: 26px; fill: var(--blue); }
 .value-title {
-  font-family: 'Rubik', sans-serif; font-weight: 800;
+  font-family: 'Work Sans', sans-serif; font-weight: 800;
   font-size: 1.1rem; color: var(--gray-900); margin-bottom: 10px;
 }
 .value-desc { font-size: .9rem; color: var(--gray-600); line-height: 1.65; }
@@ -351,7 +351,7 @@ body {
   color: var(--yellow); margin-bottom: 16px;
 }
 .brand-promise h2 {
-  font-family: 'Rubik', sans-serif; font-weight: 900;
+  font-family: 'Work Sans', sans-serif; font-weight: 900;
   font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05;
   max-width: 700px; margin: 0 auto 16px;
 }
@@ -363,7 +363,7 @@ body {
 /* ── FIND A STORE CTA ──────────────────────────────── */
 .cta-strip { padding: 72px 0; background: var(--gray-100); text-align: center; }
 .cta-strip h2 {
-  font-family: 'Rubik', sans-serif; font-weight: 900;
+  font-family: 'Work Sans', sans-serif; font-weight: 900;
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
   color: var(--gray-900); margin-bottom: 12px;
 }
@@ -381,7 +381,7 @@ body {
   box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200);
 }
 .stat-num {
-  font-family: 'Rubik', sans-serif; font-weight: 900;
+  font-family: 'Work Sans', sans-serif; font-weight: 900;
   font-size: 2.4rem; color: var(--blue); line-height: 1; margin-bottom: 6px;
 }
 .stat-label { font-size: .85rem; color: var(--gray-600); font-weight: 600; }

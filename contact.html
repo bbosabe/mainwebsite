@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Big Box Outlet Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="base.css" />
+  <style>
+    :root { --page-color: #003DA5; --page-color-dark: #00297a; }
+
+    /* ── CONTACT SECTION ──────────────────────────────── */
+    .contact-section { padding: 100px 0; background: #fff; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 400px;
+      gap: 64px; align-items: start;
+    }
+    .contact-form-card {
+      background: #fff; border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-md); padding: 48px 40px;
+    }
+    .contact-form-card h2 {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+    .contact-form-card .form-intro { font-size: .95rem; color: var(--gray-600); margin-bottom: 32px; line-height: 1.6; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block; font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .8rem; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--gray-600); margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm);
+      font-family: 'Nunito Sans', sans-serif; font-size: .95rem;
+      color: var(--gray-800); background: #fff;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,61,165,.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+    .btn-submit {
+      width: 100%; padding: 16px; border-radius: 50px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1rem; border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 16px rgba(255,218,0,.4);
+    }
+    .btn-submit:hover { background: var(--yellow-dark); transform: translateY(-2px); }
+
+    /* Info stack */
+    .contact-info-stack { display: flex; flex-direction: column; gap: 20px; }
+    .contact-info-card {
+      background: #060f1e; border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-md); padding: 28px 24px;
+      display: flex; gap: 18px; align-items: flex-start;
+    }
+    .contact-info-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--yellow); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .contact-info-icon svg { width: 22px; height: 22px; fill: var(--blue-dark); }
+    .contact-info-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .9rem; color: #fff; margin-bottom: 6px;
+    }
+    .contact-info-detail { font-size: .875rem; color: rgba(255,255,255,.6); line-height: 1.55; }
+    .contact-info-detail a { color: var(--yellow); text-decoration: none; }
+    .contact-info-detail a:hover { text-decoration: underline; }
+    .contact-social-links { display: flex; gap: 12px; margin-top: 10px; }
+    .contact-social-link {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(255,255,255,.08); display: flex;
+      align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .contact-social-link:hover { background: rgba(255,255,255,.15); }
+    .contact-social-link svg { width: 18px; height: 18px; }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-form-card { padding: 32px 24px; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── FAQ SECTION ──────────────────────────────────── */
+    .faq-section { padding: 100px 0; background: var(--gray-50); }
+    .faq-section .section-header { text-align: center; margin-bottom: 56px; }
+    .faq-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
+    .faq-card {
+      background: #fff; border-radius: var(--radius-md);
+      padding: 32px 28px; border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .3s, transform .3s;
+    }
+    .faq-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .faq-q {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1.05rem; color: var(--gray-900); margin-bottom: 12px;
+    }
+    .faq-a { font-size: .9rem; color: var(--gray-600); line-height: 1.65; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ─────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="Big Box Outlet Store Home">
+        <img src="images/logo.png" alt="Big Box Outlet Store" />
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="flyer.html">Weekly Deals</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Find a Store
+        </a>
+        <a href="#" class="btn btn-signin" aria-label="Sign in to your account">Sign In</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── MAIN CONTENT ──────────────────────────────────── -->
+<main>
+
+  <!-- 1. Sub-hero -->
+  <section class="sub-hero">
+    <div class="sub-hero-accent sub-hero-accent-1"></div>
+    <div class="sub-hero-accent sub-hero-accent-2"></div>
+    <div class="container">
+      <div class="sub-hero-inner">
+        <div class="sub-hero-brand">
+          <div class="sub-hero-brand-box">BIG<br>BOX</div>
+          <div class="sub-hero-brand-tab">Contact</div>
+        </div>
+        <h1 class="sub-hero-headline">We'd Love to<br><span style="color:var(--yellow)">Hear From You</span></h1>
+        <p class="sub-hero-sub">Questions about a product, a store, or your rewards account? Our team is here to help.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Contact Form + Info -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Left: Form -->
+        <div class="contact-form-card reveal">
+          <h2>Send Us a Message</h2>
+          <p class="form-intro">Fill out the form below and our team will get back to you within 1–2 business days.</p>
+          <!-- Wire up action/method when backend is ready -->
+          <form action="#" method="post">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">Full Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Jane Smith" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="604-555-0100" />
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" required>
+                  <option value="" disabled selected>Select a topic</option>
+                  <option>General Inquiry</option>
+                  <option>Returns &amp; Exchanges</option>
+                  <option>Rewards Program</option>
+                  <option>Store Feedback</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us how we can help…" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Right: Info cards -->
+        <div class="contact-info-stack">
+          <div class="contact-info-card reveal">
+            <div class="contact-info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-title">Email Us</div>
+              <div class="contact-info-detail"><a href="mailto:info@bigboxoutlet.ca">info@bigboxoutlet.ca</a><br>We reply within 1–2 business days.</div>
+            </div>
+          </div>
+          <div class="contact-info-card reveal" style="transition-delay:.08s">
+            <div class="contact-info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 2H3v16h5l4 4 4-4h5V2z"/><path d="M9.5 9.5h5M9.5 13h3"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-title">Follow Us</div>
+              <div class="contact-info-detail">
+                Stay up to date with deals and new arrivals.
+                <div class="contact-social-links">
+                  <a href="https://instagram.com/bigboxoutletstore" class="contact-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                  </a>
+                  <a href="https://facebook.com/bigboxoutletstore" class="contact-social-link" target="_blank" rel="noopener" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-info-card reveal" style="transition-delay:.16s">
+            <div class="contact-info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-title">Response Time</div>
+              <div class="contact-info-detail">Our team typically responds within 1–2 business days. For urgent matters, visit any of our 20 store locations.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Common Questions</span>
+        <h2 class="section-heading">We've Got Answers</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-card reveal">
+          <div class="faq-q">What's your return policy?</div>
+          <div class="faq-a">Most items can be returned within 30 days with a receipt. Visit your nearest store for details — our team will be happy to help.</div>
+        </div>
+        <div class="faq-card reveal" style="transition-delay:.08s">
+          <div class="faq-q">Do you sell online?</div>
+          <div class="faq-a">We're primarily in-store only. Check our weekly flyer for current deals and visit us at any of our 20 BC and Alberta locations.</div>
+        </div>
+        <div class="faq-card reveal" style="transition-delay:.12s">
+          <div class="faq-q">How do I join Rewards?</div>
+          <div class="faq-a">Sign up for free at any Big Box Outlet Store location or online at bigboxoutletstore.ca. It takes less than a minute and there's no cost to join.</div>
+        </div>
+        <div class="faq-card reveal" style="transition-delay:.18s">
+          <div class="faq-q">When does new stock arrive?</div>
+          <div class="faq-a">Fresh inventory drops every Thursday. Rewards Club members get early access — sign up to be first in line for the best deals.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Store Locator CTA Strip -->
+  <section class="cta-strip">
+    <div class="container">
+      <h2>Find Your Nearest Big Box</h2>
+      <p>20 locations across BC and Alberta — there's always one near you.</p>
+      <div class="cta-strip-actions">
+        <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
+        <a href="rewards.html" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Join Rewards</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Big Box Outlet" />
+        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Customer Service</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="https://bigboxoutletstore.ca">Privacy Policy</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Terms of Use</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Accessibility</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect with BBO</div>
+        <div class="footer-connect-icons">
+          <a href="https://instagram.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://facebook.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@bigboxoutlet.ca" class="footer-connect-link" aria-label="Email us">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location.</div>
+      <div class="footer-bottom-links">
+        <a href="https://bigboxoutletstore.ca">Privacy Policy</a>
+        <a href="https://bigboxoutletstore.ca">Terms of Use</a>
+        <a href="https://bigboxoutletstore.ca">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── SCROLL TO TOP ──────────────────────────────────── -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<script>
+(function(){
+  var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
+  if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
+  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
+  var btn=document.getElementById('scrollTop');
+  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+})();
+</script>
+
+</body>
+</html>

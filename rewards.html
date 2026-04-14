@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us — Big Box Outlet Store</title>
+  <title>Rewards Club — Big Box Outlet Store</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -11,28 +11,53 @@
   <style>
     :root { --page-color: #003DA5; --page-color-dark: #00297a; }
 
-    /* ── STORY SECTION ─────────────────────────────── */
-    .story-section { padding: 100px 0; background: #fff; }
-    .story-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: start;
+    /* ── EXCLUSIVE PERKS SECTION ───────────────────────── */
+    .perks-split-section { padding: 100px 0; background: #fff; }
+    .perks-split-section .section-heading { font-size: clamp(2rem, 4vw, 3.4rem); margin-bottom: 40px; }
+    .perks-split { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .perks-checklist { list-style: none; display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
+    .perks-checklist li { display: flex; align-items: flex-start; gap: 18px; }
+    .perks-check {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: var(--yellow); display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
     }
-    .story-text .section-label { color: var(--blue); }
-    .story-text p {
-      font-size: 1.05rem; color: var(--gray-600);
-      line-height: 1.75; margin-bottom: 20px;
-    }
-    .story-text p:last-child { margin-bottom: 0; }
-    @media (max-width: 768px) {
-      .story-grid { grid-template-columns: 1fr; gap: 48px; }
+    .perks-check svg { width: 18px; height: 18px; fill: none; stroke: var(--blue-dark); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .perks-checklist-text { font-size: 1.1rem; color: var(--gray-800); line-height: 1.5; }
+    .perks-checklist-text strong { color: var(--gray-900); font-weight: 700; }
+    .perks-photo { position: relative; border-radius: var(--radius-lg); overflow: hidden; }
+    .perks-photo img { width: 100%; height: 440px; object-fit: cover; display: block; }
+    @media (max-width: 900px) {
+      .perks-split { grid-template-columns: 1fr; gap: 48px; }
+      .perks-photo { order: -1; }
+      .perks-photo img { height: 300px; }
     }
 
-    /* ── OVERRIDE value-icon fill for about page icons ─ */
-    .value-icon svg[data-stroke] {
-      fill: none; stroke: var(--blue); stroke-width: 2; stroke-linecap: round;
+    /* ── HOW IT WORKS SECTION ──────────────────────────── */
+    .how-section { padding: 100px 0; background: var(--gray-50); }
+    .how-section .section-heading { font-size: clamp(2rem, 4vw, 3.4rem); margin-bottom: 56px; }
+    .how-steps { display: flex; flex-direction: column; gap: 0; max-width: 600px; margin: 0 auto; }
+    .how-step { display: flex; gap: 28px; align-items: flex-start; position: relative; }
+    .how-step:not(:last-child)::after {
+      content: ''; position: absolute;
+      left: 27px; top: 60px;
+      width: 2px; height: calc(100% + 0px);
+      background: var(--gray-200);
     }
+    .how-step-num {
+      width: 56px; height: 56px; border-radius: 14px; flex-shrink: 0;
+      background: var(--blue); display: flex; align-items: center; justify-content: center;
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.5rem; color: #fff; position: relative; z-index: 1;
+    }
+    .how-step-body { padding: 8px 0 48px; }
+    .how-step:last-child .how-step-body { padding-bottom: 0; }
+    .how-step-title { font-family: 'Work Sans', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--blue); margin-bottom: 6px; }
+    .how-step-desc { font-size: .95rem; color: var(--gray-600); line-height: 1.65; }
+    .how-step-desc a { color: var(--blue); text-decoration: underline; }
+    @media (max-width: 640px) { .how-step-num { width: 46px; height: 46px; font-size: 1.2rem; border-radius: 10px; } .how-step:not(:last-child)::after { left: 22px; } }
 
-    /* ── MEMBERSHIP SECTION ────────────────────────── */
+    /* ── MEMBERSHIP SECTION ────────────────────────────── */
     .membership-section {
       background: #060f1e;
       padding: 100px 0;
@@ -154,6 +179,22 @@
       .membership-benefits { grid-template-columns: 1fr; }
       .membership-stats { grid-template-columns: repeat(3, 1fr); }
     }
+
+    /* ── FAQ SECTION ───────────────────────────────────── */
+    .faq-section { padding: 100px 0; background: #dce9f5; }
+    .faq-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
+    .faq-card {
+      background: #fff; border-radius: var(--radius-md);
+      padding: 32px 28px; border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm); transition: box-shadow .3s, transform .3s;
+    }
+    .faq-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .faq-q {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1.05rem; color: var(--blue); margin-bottom: 12px;
+    }
+    .faq-a { font-size: .9rem; color: var(--gray-600); line-height: 1.65; }
+    @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -167,8 +208,8 @@
       </a>
       <ul class="navbar-nav" id="navMenu">
         <li><a href="flyer.html">Weekly Deals</a></li>
-        <li><a href="rewards.html">Rewards</a></li>
-        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="rewards.html" class="active">Rewards</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="careers.html">Careers</a></li>
       </ul>
       <div class="navbar-actions">
@@ -188,7 +229,7 @@
 <!-- ── MAIN CONTENT ──────────────────────────────────── -->
 <main>
 
-  <!-- 1. Hero -->
+  <!-- 1. Sub-hero -->
   <section class="sub-hero">
     <div class="sub-hero-accent sub-hero-accent-1"></div>
     <div class="sub-hero-accent sub-hero-accent-2"></div>
@@ -196,85 +237,82 @@
       <div class="sub-hero-inner">
         <div class="sub-hero-brand">
           <div class="sub-hero-brand-box">BIG<br>BOX</div>
-          <div class="sub-hero-brand-tab">Outlet</div>
+          <div class="sub-hero-brand-tab">Rewards</div>
         </div>
-        <h1 class="sub-hero-headline">Western Canada's<br><span style="color:var(--yellow)">Favourite Outlet Store</span></h1>
-        <p class="sub-hero-sub">Family-owned and Canadian-operated since 1985. Twenty locations across BC and Alberta — and one simple goal.</p>
+        <h1 class="sub-hero-headline">Shop. Earn.<br><span style="color:var(--yellow)">Save.</span></h1>
+        <p class="sub-hero-sub">Join thousands of members saving more every day at Big Box Outlet. It's free to join — no credit card needed.</p>
         <div class="sub-hero-actions">
-          <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
-          <a href="index.html#categories" class="btn btn-outline">Shop Now</a>
+          <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener" class="btn btn-primary">Start Saving</a>
+          <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-outline">Find a Store</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 2. Our Story -->
-  <section class="story-section">
+  <!-- 2. Your Exclusive Perks -->
+  <section class="perks-split-section">
     <div class="container">
-      <div class="story-grid">
-        <div class="story-text reveal">
-          <span class="section-label">Our Story</span>
-          <h2 class="section-heading">Built on a Simple Promise</h2>
-          <p>Big Box Outlet Store has been a fixture in Western Canada since 1985. What started as a single family-owned store has grown into 20 locations across British Columbia and Alberta — all united by one simple goal: to help people afford everyday life.</p>
-          <p>We buy overstock, open-box, and recertified merchandise directly from major brands and retailers, then pass those savings directly to you. No middlemen. No markups. Just honest prices on products you know and trust.</p>
-          <p>Every item we sell is personally inspected, tested, and cleared for resale by our team — so you get the quality you expect at a price that actually makes sense.</p>
+      <div class="perks-split">
+        <div class="reveal">
+          <span class="section-label">Member Benefits</span>
+          <h2 class="section-heading">Your Exclusive Perks</h2>
+          <ul class="perks-checklist">
+            <li>
+              <div class="perks-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="perks-checklist-text">Latest deals &amp; new arrivals <strong>first</strong></div>
+            </li>
+            <li>
+              <div class="perks-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="perks-checklist-text">Exclusive <strong>members-only offers</strong></div>
+            </li>
+            <li>
+              <div class="perks-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="perks-checklist-text"><strong>30 days</strong> extended returns</div>
+            </li>
+          </ul>
+          <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener" class="btn btn-primary">Start Saving</a>
         </div>
-        <div class="reveal" style="transition-delay:.15s">
-          <div class="stats-row" style="grid-template-columns:1fr 1fr;margin-top:0;">
-            <div class="stat-card"><div class="stat-num">20</div><div class="stat-label">Store Locations</div></div>
-            <div class="stat-card"><div class="stat-num">BC+AB</div><div class="stat-label">Provinces Served</div></div>
-            <div class="stat-card"><div class="stat-num">1985</div><div class="stat-label">Founded</div></div>
-            <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">Canadian Owned</div></div>
-          </div>
+        <div class="perks-photo reveal" style="transition-delay:.12s">
+          <img src="images/store-interior.jpg" alt="Shopping at Big Box Outlet Store" loading="lazy" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. Brand Promise -->
-  <section class="brand-promise">
+  <!-- 3. How It Works -->
+  <section class="how-section">
     <div class="container">
-      <div class="brand-promise-eyebrow">Our Mission</div>
-      <h2>At Big Box we have one goal:<br>To help people afford everyday life.</h2>
-      <p>From appliances to clothing, furniture to food — we believe everyone deserves access to quality products at prices that don't break the bank.</p>
-      <a href="index.html#categories" class="btn btn-primary">Shop All Categories</a>
-    </div>
-  </section>
-
-  <!-- 4. Our Values -->
-  <section class="value-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">What We Stand For</span>
-        <h2 class="section-heading">Our Values</h2>
+      <div style="text-align:center;margin-bottom:56px" class="reveal">
+        <span class="section-label">Getting Started</span>
+        <h2 class="section-heading">How It Works</h2>
       </div>
-      <div class="value-grid">
-        <div class="value-card reveal">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-stroke="1"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <div class="how-steps">
+        <div class="how-step reveal">
+          <div class="how-step-num">1</div>
+          <div class="how-step-body">
+            <div class="how-step-title">Sign up for FREE</div>
+            <p class="how-step-desc">It's easy. <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener">Sign up here.</a></p>
           </div>
-          <div class="value-title">Quality You Can Trust</div>
-          <div class="value-desc">Every single item we sell is personally inspected and tested by our team before it ever reaches the floor. Open-box doesn't mean lesser quality — it means smarter savings.</div>
         </div>
-        <div class="value-card reveal" style="transition-delay:.1s">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div class="how-step reveal" style="transition-delay:.1s">
+          <div class="how-step-num">2</div>
+          <div class="how-step-body">
+            <div class="how-step-title">Shop in store</div>
+            <p class="how-step-desc">Visit <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">your local BBO</a> and shop amazing deals.</p>
           </div>
-          <div class="value-title">Savings Every Day</div>
-          <div class="value-desc">We buy direct from brands and retailers — overstock, recertified, and open-box merchandise — and pass every dollar of savings straight to you. Up to 70% off regular retail.</div>
         </div>
-        <div class="value-card reveal" style="transition-delay:.2s">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div class="how-step reveal" style="transition-delay:.2s">
+          <div class="how-step-num">3</div>
+          <div class="how-step-body">
+            <div class="how-step-title">Enjoy your benefits</div>
+            <p class="how-step-desc">Earn BBO Rewards Points to use toward future savings.</p>
           </div>
-          <div class="value-title">Community First</div>
-          <div class="value-desc">Twenty stores. Hundreds of local jobs. Real neighbours serving real communities across BC and Alberta. We're proud to be Canadian — and proud to give back to the communities we call home.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. Rewards & Membership -->
+  <!-- 3. Membership Benefits -->
   <section class="membership-section" id="membership">
     <div class="container">
       <div class="membership-inner">
@@ -282,7 +320,7 @@
         <!-- Left: Copy + benefits -->
         <div>
           <span class="membership-eyebrow">Membership</span>
-          <h2 class="membership-headline">Join the BBOS<br>Rewards Club</h2>
+          <h2 class="membership-headline">Everything You Get<br><span style="color:var(--yellow)">As a Member</span></h2>
           <p class="membership-sub">Join thousands of members who save more on every shop. Earn points, unlock member pricing, and be first in line when new inventory drops every Thursday.</p>
 
           <div class="membership-benefits">
@@ -350,14 +388,42 @@
     </div>
   </section>
 
-  <!-- 6. Find a Store CTA -->
+  <!-- 4. FAQs -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="reveal" style="margin-bottom:48px">
+        <span class="section-label">Got Questions?</span>
+        <h2 class="section-heading">FAQs</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-card reveal">
+          <div class="faq-q">What purchases do I receive points on?</div>
+          <div class="faq-a">You receive points on every item you purchase except for gift cards.</div>
+        </div>
+        <div class="faq-card reveal" style="transition-delay:.08s">
+          <div class="faq-q">Do I need a BBO Rewards card?</div>
+          <div class="faq-a">No. Just use your email or phone number at checkout — no physical card required.</div>
+        </div>
+        <div class="faq-card reveal" style="transition-delay:.12s">
+          <div class="faq-q">How do I redeem my points?</div>
+          <div class="faq-a">Points are applied automatically at checkout. Just let the cashier know you're a Rewards member.</div>
+        </div>
+        <div class="faq-card reveal" style="transition-delay:.18s">
+          <div class="faq-q">Can I use my points at any location?</div>
+          <div class="faq-a">Yes — your Rewards points work at all 20 Big Box Outlet Store locations across BC and Alberta.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CTA Strip -->
   <section class="cta-strip">
     <div class="container">
-      <h2>Find Your Nearest Big Box</h2>
-      <p>With 20 locations across BC and Alberta, there's a Big Box Outlet Store near you.</p>
+      <h2>Ready to Start Saving?</h2>
+      <p>Join thousands of BBOS members across BC and Alberta.</p>
       <div class="cta-strip-actions">
-        <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
-        <a href="index.html#categories" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Browse Categories</a>
+        <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener" class="btn btn-primary">Start Saving</a>
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Find a Store</a>
       </div>
     </div>
   </section>
@@ -377,7 +443,7 @@
         <ul class="footer-links">
           <li><a href="flyer.html">Weekly Deals</a></li>
           <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
-          <li><a href="rewards.html">Rewards</a></li>
+          <li><a href="index.html#rewards">Rewards</a></li>
         </ul>
       </div>
       <div>
