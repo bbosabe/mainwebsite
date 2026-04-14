@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flash Sale — Apr 17–19 | Big Box Outlet Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="base.css" />
+  <style>
+    :root { --page-color: #003DA5; --page-color-dark: #00297a; }
+
+    /* ── FLASH SALE HERO ───────────────────────────────── */
+    .sale-hero {
+      background: var(--blue);
+      color: #fff;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .sale-hero-banner {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .sale-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,29,80,.75) 0%, rgba(0,29,80,.1) 60%);
+      display: flex;
+      align-items: center;
+    }
+    .sale-hero-copy {
+      padding: 60px 0;
+      position: relative; z-index: 1;
+    }
+    .sale-eyebrow {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .8rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--yellow); margin-bottom: 14px; display: block;
+    }
+    .sale-headline {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: .92; color: #fff; margin-bottom: 16px;
+    }
+    .sale-dates {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: 1.1rem; color: rgba(255,255,255,.8);
+      margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
+    }
+    .sale-dates-badge {
+      background: var(--yellow); color: var(--blue-dark);
+      padding: 5px 14px; border-radius: 50px;
+      font-size: .875rem; font-weight: 800;
+    }
+    @media (max-width: 768px) {
+      .sale-hero-banner { max-height: 280px; }
+      .sale-hero-overlay { position: relative; background: var(--blue); }
+      .sale-hero-copy { padding: 48px 0; }
+    }
+
+    /* ── DEALS GRID ────────────────────────────────────── */
+    .deals-section { padding: 80px 0 100px; background: var(--gray-50); }
+    .deals-header { margin-bottom: 48px; }
+    .deals-header .section-label { color: var(--blue); }
+    .deals-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .deal-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      transition: box-shadow .3s, transform .3s;
+      cursor: pointer;
+    }
+    .deal-card:hover {
+      box-shadow: var(--shadow-xl);
+      transform: translateY(-6px);
+    }
+    .deal-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    /* Featured (banner-wide) card */
+    .deal-card.featured {
+      grid-column: span 2;
+    }
+    .deal-card.featured img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.9);
+      display: none; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img {
+      max-width: 90vw; max-height: 90vh;
+      object-fit: contain; border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      background: none; border: none; color: #fff;
+      font-size: 2rem; cursor: pointer; line-height: 1;
+      opacity: .7; transition: opacity .2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-prev, .lightbox-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.12); border: none; color: #fff;
+      width: 52px; height: 52px; border-radius: 50%;
+      font-size: 1.4rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,.25); }
+
+    @media (max-width: 1024px) { .deals-grid { grid-template-columns: repeat(3, 1fr); } .deal-card.featured { grid-column: span 3; } }
+    @media (max-width: 640px)  { .deals-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } .deal-card.featured { grid-column: span 2; } }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ─────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="Big Box Outlet Store Home">
+        <img src="images/logo.png" alt="Big Box Outlet Store" />
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="flyer.html" class="active">Weekly Deals</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Find a Store
+        </a>
+        <a href="#" class="btn btn-signin" aria-label="Sign in to your account">Sign In</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── FLASH SALE HERO ────────────────────────────── -->
+  <section class="sale-hero">
+    <img class="sale-hero-banner" src="images/flash-sale/banner.png" alt="Apr 17–19 Flash Sale — Big Box Outlet Store" />
+    <div class="sale-hero-overlay">
+      <div class="container">
+        <div class="sale-hero-copy reveal">
+          <span class="sale-eyebrow">Limited Time Event</span>
+          <h1 class="sale-headline">Flash<br>Sale</h1>
+          <div class="sale-dates">
+            <span class="sale-dates-badge">Apr 17–19</span>
+            In-Store Only · All Locations
+          </div>
+          <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-primary">Find a Store Near You</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DEALS GRID ─────────────────────────────────── -->
+  <section class="deals-section">
+    <div class="container">
+      <div class="deals-header reveal">
+        <span class="section-label">Apr 17–19 Only</span>
+        <h2 class="section-heading">This Week's Flash Deals</h2>
+        <p style="color:var(--gray-600);font-size:1rem;margin-top:8px;max-width:560px">Click any deal to see it full size. Available in-store only while quantities last.</p>
+      </div>
+      <div class="deals-grid" id="dealsGrid">
+
+        <div class="deal-card reveal" data-idx="0">
+          <img src="images/flash-sale/large-appliances.png" alt="Large Appliances Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.04s" data-idx="1">
+          <img src="images/flash-sale/robot-vacuum.png" alt="Robot Vacuum Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.08s" data-idx="2">
+          <img src="images/flash-sale/lawnmower.png" alt="Lawnmower Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.12s" data-idx="3">
+          <img src="images/flash-sale/bikes.png" alt="Bikes Flash Sale" loading="lazy" />
+        </div>
+
+        <div class="deal-card reveal" style="transition-delay:.04s" data-idx="4">
+          <img src="images/flash-sale/sink-faucet.png" alt="Sink &amp; Faucet Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.08s" data-idx="5">
+          <img src="images/flash-sale/blower-trimmer.png" alt="Blower &amp; Trimmer Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.12s" data-idx="6">
+          <img src="images/flash-sale/solar-lights.png" alt="Solar Lights Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.16s" data-idx="7">
+          <img src="images/flash-sale/ove-darcy-light.png" alt="Ove Darcy Light Flash Sale" loading="lazy" />
+        </div>
+
+        <div class="deal-card reveal" data-idx="8">
+          <img src="images/flash-sale/dynatrap-xl.png" alt="DynaTrap XL Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.04s" data-idx="9">
+          <img src="images/flash-sale/dynatrap.png" alt="DynaTrap Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.08s" data-idx="10">
+          <img src="images/flash-sale/dynatrap-2.png" alt="DynaTrap 2 Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.12s" data-idx="11">
+          <img src="images/flash-sale/grass.png" alt="Artificial Grass Flash Sale" loading="lazy" />
+        </div>
+
+        <div class="deal-card reveal" data-idx="12">
+          <img src="images/flash-sale/bedding.png" alt="Bedding Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.04s" data-idx="13">
+          <img src="images/flash-sale/curtains.png" alt="Curtains Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.08s" data-idx="14">
+          <img src="images/flash-sale/dresses.png" alt="Dresses Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.12s" data-idx="15">
+          <img src="images/flash-sale/pants.png" alt="Pants Flash Sale" loading="lazy" />
+        </div>
+
+        <div class="deal-card reveal" data-idx="16">
+          <img src="images/flash-sale/brentwood.png" alt="Brentwood Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.04s" data-idx="17">
+          <img src="images/flash-sale/hudson.png" alt="Hudson Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.08s" data-idx="18">
+          <img src="images/flash-sale/toto-washlet.png" alt="Toto Washlet Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.12s" data-idx="19">
+          <img src="images/flash-sale/hydrorail.png" alt="Hydrorail Flash Sale" loading="lazy" />
+        </div>
+
+        <div class="deal-card reveal" data-idx="20">
+          <img src="images/flash-sale/bath-fan.png" alt="Bath Fan Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.04s" data-idx="21">
+          <img src="images/flash-sale/open-box-pots-pans-etc.png" alt="Open Box Pots &amp; Pans Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.08s" data-idx="22">
+          <img src="images/flash-sale/piano.png" alt="Piano Flash Sale" loading="lazy" />
+        </div>
+        <div class="deal-card reveal" style="transition-delay:.12s" data-idx="23">
+          <img src="images/flash-sale/umbrella.png" alt="Umbrella Flash Sale" loading="lazy" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA STRIP ──────────────────────────────────── -->
+  <section class="cta-strip">
+    <div class="container">
+      <h2>Find Your Nearest Big Box</h2>
+      <p>Flash Sale deals are in-store only at all 20 BC and Alberta locations — April 17–19 while quantities last.</p>
+      <div class="cta-strip-actions">
+        <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
+        <a href="rewards.html" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Join Rewards</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Big Box Outlet" />
+        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Customer Service</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="https://bigboxoutletstore.ca">Privacy Policy</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Terms of Use</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Accessibility</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect with BBO</div>
+        <div class="footer-connect-icons">
+          <a href="https://instagram.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://facebook.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@bigboxoutlet.ca" class="footer-connect-link" aria-label="Email us">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location. While quantities last.</div>
+      <div class="footer-bottom-links">
+        <a href="https://bigboxoutletstore.ca">Privacy Policy</a>
+        <a href="https://bigboxoutletstore.ca">Terms of Use</a>
+        <a href="https://bigboxoutletstore.ca">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── LIGHTBOX ───────────────────────────────────────── -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Deal image viewer">
+  <button class="lightbox-close" id="lbClose" aria-label="Close">&#10005;</button>
+  <button class="lightbox-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <img class="lightbox-img" id="lbImg" src="" alt="" />
+  <button class="lightbox-next" id="lbNext" aria-label="Next">&#8250;</button>
+</div>
+
+<!-- ── SCROLL TO TOP ──────────────────────────────────── -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<script>
+(function(){
+  // Navbar
+  var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
+  if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
+  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
+
+  // Reveal
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
+
+  // Scroll to top
+  var btn=document.getElementById('scrollTop');
+  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+
+  // Lightbox
+  var cards=Array.from(document.querySelectorAll('.deal-card'));
+  var lb=document.getElementById('lightbox');
+  var lbImg=document.getElementById('lbImg');
+  var currentIdx=0;
+
+  function openLb(idx){
+    currentIdx=idx;
+    var img=cards[idx].querySelector('img');
+    lbImg.src=img.src; lbImg.alt=img.alt;
+    lb.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeLb(){lb.classList.remove('open');document.body.style.overflow='';}
+  function prev(){openLb((currentIdx-1+cards.length)%cards.length);}
+  function next(){openLb((currentIdx+1)%cards.length);}
+
+  cards.forEach(function(c,i){c.addEventListener('click',function(){openLb(i);});});
+  document.getElementById('lbClose').addEventListener('click',closeLb);
+  document.getElementById('lbPrev').addEventListener('click',prev);
+  document.getElementById('lbNext').addEventListener('click',next);
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb();});
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')closeLb();
+    if(e.key==='ArrowLeft')prev();
+    if(e.key==='ArrowRight')next();
+  });
+})();
+</script>
+
+</body>
+</html>
