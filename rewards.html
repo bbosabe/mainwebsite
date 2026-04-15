@@ -12,29 +12,50 @@
     :root { --page-color: #003DA5; --page-color-dark: #00297a; }
 
     /* ── EXCLUSIVE PERKS SECTION ───────────────────────── */
-    .perks-split-section { padding: 100px 0; background: #fff; }
-    .perks-split-section .section-heading { font-size: clamp(2rem, 4vw, 3.4rem); margin-bottom: 40px; }
-    .perks-split { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
-    .perks-checklist { list-style: none; display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
-    .perks-checklist li { display: flex; align-items: flex-start; gap: 18px; }
-    .perks-check {
-      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
-      background: var(--yellow); display: flex; align-items: center; justify-content: center;
-      margin-top: 2px;
+    .perks-split-section { padding: 80px 0 100px; background: #fff; }
+    .perks-section-heading {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      color: var(--blue); text-transform: uppercase;
+      line-height: 1; letter-spacing: -.02em; margin-bottom: 56px;
     }
-    .perks-check svg { width: 18px; height: 18px; fill: none; stroke: var(--blue-dark); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-    .perks-checklist-text { font-size: 1.1rem; color: var(--gray-800); line-height: 1.5; }
-    .perks-checklist-text strong { color: var(--gray-900); font-weight: 700; }
-    .perks-photo { position: relative; border-radius: var(--radius-lg); overflow: hidden; }
-    .perks-photo img { width: 100%; height: 440px; object-fit: cover; display: block; }
+    .perks-split { display: grid; grid-template-columns: 90px 1fr; gap: 0; align-items: stretch; }
+    .perks-checks {
+      display: flex; flex-direction: column; justify-content: space-evenly;
+      padding: 36px 20px 36px 0;
+    }
+    .perks-check-mark svg { width: 68px; height: 68px; display: block; }
+    .perks-photo { position: relative; border-radius: var(--radius-lg); overflow: hidden; flex: 1; }
+    .perks-photo img { width: 100%; height: 460px; object-fit: cover; display: block; }
+    .perks-text-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(0,15,50,.62) 0%, rgba(0,15,50,.28) 100%);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 40px 48px; gap: 0;
+    }
+    .perks-overlay-line {
+      color: #fff; font-size: clamp(1.05rem, 2.2vw, 1.35rem); line-height: 1.35;
+      padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,.22);
+    }
+    .perks-overlay-line:first-child { padding-top: 0; }
+    .perks-overlay-line:last-child { border-bottom: none; padding-bottom: 0; }
+    .perks-overlay-line strong { font-weight: 800; }
     @media (max-width: 900px) {
-      .perks-split { grid-template-columns: 1fr; gap: 48px; }
-      .perks-photo { order: -1; }
+      .perks-split { grid-template-columns: 60px 1fr; }
+      .perks-check-mark svg { width: 48px; height: 48px; }
+      .perks-photo img { height: 360px; }
+      .perks-text-overlay { padding: 28px 28px; }
+    }
+    @media (max-width: 600px) {
+      .perks-split { grid-template-columns: 48px 1fr; gap: 0; }
+      .perks-check-mark svg { width: 38px; height: 38px; }
       .perks-photo img { height: 300px; }
+      .perks-text-overlay { padding: 20px 20px; }
+      .perks-overlay-line { font-size: .95rem; padding: 16px 0; }
     }
 
     /* ── HOW IT WORKS SECTION ──────────────────────────── */
-    .how-section { padding: 100px 0; background: var(--gray-50); }
+    .how-section { padding: 100px 0; background: #fff; }
     .how-section .section-heading { font-size: clamp(2rem, 4vw, 3.4rem); margin-bottom: 56px; }
     .how-steps { display: flex; flex-direction: column; gap: 0; max-width: 600px; margin: 0 auto; }
     .how-step { display: flex; gap: 28px; align-items: flex-start; position: relative; }
@@ -243,7 +264,6 @@
         <p class="sub-hero-sub">Join thousands of members saving more every day at Big Box Outlet. It's free to join — no credit card needed.</p>
         <div class="sub-hero-actions">
           <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener" class="btn btn-primary">Start Saving</a>
-          <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-outline">Find a Store</a>
         </div>
       </div>
     </div>
@@ -252,28 +272,28 @@
   <!-- 2. Your Exclusive Perks -->
   <section class="perks-split-section">
     <div class="container">
+      <h2 class="perks-section-heading reveal">Your Exclusive Perks</h2>
       <div class="perks-split">
-        <div class="reveal">
-          <span class="section-label">Member Benefits</span>
-          <h2 class="section-heading">Your Exclusive Perks</h2>
-          <ul class="perks-checklist">
-            <li>
-              <div class="perks-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="perks-checklist-text">Latest deals &amp; new arrivals <strong>first</strong></div>
-            </li>
-            <li>
-              <div class="perks-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="perks-checklist-text">Exclusive <strong>members-only offers</strong></div>
-            </li>
-            <li>
-              <div class="perks-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="perks-checklist-text"><strong>30 days</strong> extended returns</div>
-            </li>
-          </ul>
-          <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener" class="btn btn-primary">Start Saving</a>
+        <!-- Left: large checkmarks only -->
+        <div class="perks-checks reveal">
+          <div class="perks-check-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#FFDA00" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="perks-check-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#FFDA00" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="perks-check-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#FFDA00" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
         </div>
-        <div class="perks-photo reveal" style="transition-delay:.12s">
+        <!-- Right: image with text overlay -->
+        <div class="perks-photo reveal" style="transition-delay:.1s">
           <img src="images/store-interior.jpg" alt="Shopping at Big Box Outlet Store" loading="lazy" />
+          <div class="perks-text-overlay">
+            <div class="perks-overlay-line">Latest deals &amp; new arrivals <strong>first</strong></div>
+            <div class="perks-overlay-line">Exclusive <strong>members-only offers</strong></div>
+            <div class="perks-overlay-line"><strong>30 days</strong> extended returns</div>
+          </div>
         </div>
       </div>
     </div>
@@ -282,9 +302,8 @@
   <!-- 3. How It Works -->
   <section class="how-section">
     <div class="container">
-      <div style="text-align:center;margin-bottom:56px" class="reveal">
-        <span class="section-label">Getting Started</span>
-        <h2 class="section-heading">How It Works</h2>
+      <div style="margin-bottom:56px" class="reveal">
+        <h2 class="section-heading" style="font-size:clamp(2.6rem,7vw,5.5rem);text-transform:uppercase;letter-spacing:-.02em;">How It Works</h2>
       </div>
       <div class="how-steps">
         <div class="how-step reveal">
@@ -312,119 +331,31 @@
     </div>
   </section>
 
-  <!-- 3. Membership Benefits -->
-  <section class="membership-section" id="membership">
-    <div class="container">
-      <div class="membership-inner">
-
-        <!-- Left: Copy + benefits -->
-        <div>
-          <span class="membership-eyebrow">Membership</span>
-          <h2 class="membership-headline">Everything You Get<br><span style="color:var(--yellow)">As a Member</span></h2>
-          <p class="membership-sub">Join thousands of members who save more on every shop. Earn points, unlock member pricing, and be first in line when new inventory drops every Thursday.</p>
-
-          <div class="membership-benefits">
-            <div class="benefit-card reveal">
-              <div class="benefit-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              </div>
-              <div class="benefit-title">Earn Points</div>
-              <div class="benefit-desc">Every in-store purchase earns Rewards points redeemable on future visits.</div>
-            </div>
-            <div class="benefit-card reveal" style="transition-delay:.08s">
-              <div class="benefit-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12V22H4V12M22 7H2v5h20V7zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-              </div>
-              <div class="benefit-title">Member Deals</div>
-              <div class="benefit-desc">Exclusive pricing and special offers available only to Rewards Club members.</div>
-            </div>
-            <div class="benefit-card reveal" style="transition-delay:.12s">
-              <div class="benefit-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <div class="benefit-title">Early Access</div>
-              <div class="benefit-desc">Be first through the door on Thursdays. Members get the best picks before the rush.</div>
-            </div>
-            <div class="benefit-card reveal" style="transition-delay:.18s">
-              <div class="benefit-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
-              </div>
-              <div class="benefit-title">Weekly Alerts</div>
-              <div class="benefit-desc">Get the week's best deals delivered to your inbox before anyone else knows about them.</div>
-            </div>
-          </div>
-
-          <div class="membership-cta">
-            <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener" class="btn-join">
-              Join Free — It's Free
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-            </a>
-            <a href="index.html#email-signup" class="btn-join-ghost">Get Weekly Deals</a>
-          </div>
-        </div>
-
-        <!-- Right: Card + stats -->
-        <div class="membership-visual reveal" style="transition-delay:.1s">
-          <div class="membership-card-wrap">
-            <img src="images/rewards-card.png" alt="BBOS Rewards Card" loading="lazy" />
-          </div>
-          <div class="membership-stats">
-            <div class="mstat">
-              <div class="mstat-num">Free</div>
-              <div class="mstat-label">To Join</div>
-            </div>
-            <div class="mstat">
-              <div class="mstat-num">20</div>
-              <div class="mstat-label">Locations</div>
-            </div>
-            <div class="mstat">
-              <div class="mstat-num">Thu</div>
-              <div class="mstat-label">New Stock</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- 4. FAQs -->
   <section class="faq-section">
     <div class="container">
       <div class="reveal" style="margin-bottom:48px">
-        <span class="section-label">Got Questions?</span>
-        <h2 class="section-heading">FAQs</h2>
+        <h2 class="section-heading" style="font-size:clamp(2.6rem,7vw,5.5rem);text-transform:uppercase;letter-spacing:-.02em;color:var(--blue);">FAQs</h2>
       </div>
       <div class="faq-grid">
         <div class="faq-card reveal">
           <div class="faq-q">What purchases do I receive points on?</div>
-          <div class="faq-a">You receive points on every item you purchase except for gift cards.</div>
+          <div class="faq-a">You receive points on every item you purchase except for giftcards.</div>
         </div>
         <div class="faq-card reveal" style="transition-delay:.08s">
           <div class="faq-q">Do I need a BBO Rewards card?</div>
-          <div class="faq-a">No. Just use your email or phone number at checkout — no physical card required.</div>
+          <div class="faq-a">No. Just use your email or phone number at checkout.</div>
         </div>
         <div class="faq-card reveal" style="transition-delay:.12s">
-          <div class="faq-q">How do I redeem my points?</div>
-          <div class="faq-a">Points are applied automatically at checkout. Just let the cashier know you're a Rewards member.</div>
+          <div class="faq-q">How many points do I earn?</div>
+          <div class="faq-a">You earn 1 point for every $2 spent.</div>
         </div>
         <div class="faq-card reveal" style="transition-delay:.18s">
-          <div class="faq-q">Can I use my points at any location?</div>
-          <div class="faq-a">Yes — your Rewards points work at all 20 Big Box Outlet Store locations across BC and Alberta.</div>
+          <div class="faq-q">How do I check my points?</div>
+          <div class="faq-a">Ask in store for your current points balance. Find your <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline;">local BBO here.</a></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- 5. CTA Strip -->
-  <section class="cta-strip">
-    <div class="container">
-      <h2>Ready to Start Saving?</h2>
-      <p>Join thousands of BBOS members across BC and Alberta.</p>
-      <div class="cta-strip-actions">
-        <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener" class="btn btn-primary">Start Saving</a>
-        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Find a Store</a>
-      </div>
+      <p class="reveal" style="margin-top:40px;font-size:1rem;color:var(--gray-600);line-height:1.7;max-width:700px;">We value great customer service. If you don't find what you need in our FAQ section, please <a href="contact.html" style="color:var(--blue);text-decoration:underline;">contact us</a> and we'll be delighted to assist you.</p>
     </div>
   </section>
 
