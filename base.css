@@ -4,10 +4,8 @@
    ==================================================== */
 
 /* ── SELF-HOSTED WORK SANS ─────────────────────────── */
-@font-face { font-family: 'Work Sans'; src: url('fonts/WorkSans-Thin.ttf') format('truetype'); font-weight: 100; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Work Sans'; src: url('fonts/WorkSans-ThinItalic.ttf') format('truetype'); font-weight: 100; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Work Sans'; src: url('fonts/WorkSans-ExtraLight.ttf') format('truetype'); font-weight: 200; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Work Sans'; src: url('fonts/WorkSans-ExtraLightItalic.ttf') format('truetype'); font-weight: 200; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Work Sans'; src: url('fonts/WorkSans-Light.ttf') format('truetype'); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Work Sans'; src: url('fonts/WorkSans-Light.ttf') format('truetype'); font-weight: 200; font-style: normal; font-display: swap; }
 @font-face { font-family: 'Work Sans'; src: url('fonts/WorkSans-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
 @font-face { font-family: 'Work Sans'; src: url('fonts/WorkSans-LightItalic.ttf') format('truetype'); font-weight: 300; font-style: italic; font-display: swap; }
 @font-face { font-family: 'Work Sans'; src: url('fonts/WorkSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
@@ -27,10 +25,13 @@
 
 html { scroll-behavior: smooth; }
 
+/* Kill all italics site-wide */
+em, i, cite, address { font-style: normal; }
+
 body {
   font-family: 'Work Sans', sans-serif;
   font-weight: 400;
-  color: #1e293b;
+  color: #111827;
   background: #fff;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -48,10 +49,10 @@ body {
   --gray-50:     #f8fafc;
   --gray-100:    #f1f5f9;
   --gray-200:    #e2e8f0;
-  --gray-500:    #64748b;
-  --gray-600:    #475569;
-  --gray-800:    #1e293b;
-  --gray-900:    #0f172a;
+  --gray-500:    #374151;
+  --gray-600:    #1f2937;
+  --gray-800:    #111827;
+  --gray-900:    #0a0f1a;
   --radius-sm:   8px;
   --radius-md:   16px;
   --radius-lg:   24px;
@@ -210,15 +211,15 @@ body {
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 .footer-brand img { height: 36px; margin-bottom: 16px; display: block; }
-.footer-brand p { line-height: 1.7; color: rgba(255,255,255,.55); font-size: .875rem; max-width: 260px; }
+.footer-brand p { line-height: 1.7; color: rgba(255,255,255,.8); font-size: .875rem; max-width: 260px; }
 .footer-col-title {
   font-family: 'Work Sans', sans-serif; font-weight: 800;
   font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
-  color: rgba(255,255,255,.4); margin-bottom: 16px;
+  color: rgba(255,255,255,.7); margin-bottom: 16px;
 }
 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .footer-links a {
-  color: rgba(255,255,255,.65); text-decoration: none;
+  color: rgba(255,255,255,.9); text-decoration: none;
   font-size: .875rem; transition: color .2s;
 }
 .footer-links a:hover { color: #fff; }
@@ -235,10 +236,10 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px 0; flex-wrap: wrap; gap: 12px;
 }
-.footer-bottom-text { font-size: .8rem; color: rgba(255,255,255,.3); }
+.footer-bottom-text { font-size: .8rem; color: rgba(255,255,255,.65); }
 .footer-bottom-links { display: flex; gap: 20px; }
-.footer-bottom-links a { font-size: .8rem; color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; }
-.footer-bottom-links a:hover { color: rgba(255,255,255,.7); }
+.footer-bottom-links a { font-size: .8rem; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
+.footer-bottom-links a:hover { color: #fff; }
 
 @media (max-width: 900px) {
   .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
