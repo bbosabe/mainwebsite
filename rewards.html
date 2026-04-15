@@ -75,20 +75,26 @@
 
     /* ── HOW IT WORKS SECTION ──────────────────────────── */
     .how-section { padding: 56px 0 64px; background: #fff; }
-    .how-steps { display: flex; flex-direction: column; gap: 0; max-width: 640px; }
-    .how-step { display: flex; gap: 28px; align-items: flex-start; }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .how-step { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
     .how-step-num {
-      width: 60px; height: 60px; border-radius: 14px; flex-shrink: 0;
+      width: 72px; height: 72px; border-radius: 16px; flex-shrink: 0;
       background: var(--blue); display: flex; align-items: center; justify-content: center;
       font-family: 'Work Sans', sans-serif; font-weight: 900;
-      font-size: 1.6rem; color: #fff;
+      font-size: 2rem; color: #fff;
     }
-    .how-step-body { padding: 10px 0 36px; }
-    .how-step:last-child .how-step-body { padding-bottom: 0; }
-    .how-step-title { font-family: 'Work Sans', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--blue); margin-bottom: 4px; }
-    .how-step-desc { font-size: .95rem; color: var(--gray-600); line-height: 1.65; }
+    .how-step-title { font-family: 'Work Sans', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--blue); margin-bottom: 6px; }
+    .how-step-desc { font-size: 1rem; color: var(--gray-600); line-height: 1.65; }
     .how-step-desc a { color: var(--blue); text-decoration: underline; }
-    @media (max-width: 640px) { .how-step-num { width: 48px; height: 48px; font-size: 1.2rem; border-radius: 10px; } }
+    @media (max-width: 768px) {
+      .how-steps { grid-template-columns: 1fr; gap: 24px; }
+      .how-step { flex-direction: row; align-items: flex-start; }
+      .how-step-num { width: 52px; height: 52px; font-size: 1.4rem; border-radius: 12px; flex-shrink: 0; }
+    }
 
     /* ── MEMBERSHIP SECTION ────────────────────────────── */
     .membership-section {
@@ -314,21 +320,21 @@
       <div class="how-steps">
         <div class="how-step reveal">
           <div class="how-step-num">1</div>
-          <div class="how-step-body">
+          <div>
             <div class="how-step-title">Sign up for FREE</div>
             <p class="how-step-desc">It's easy. <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener">Sign up here.</a></p>
           </div>
         </div>
         <div class="how-step reveal" style="transition-delay:.1s">
           <div class="how-step-num">2</div>
-          <div class="how-step-body">
+          <div>
             <div class="how-step-title">Shop in store</div>
             <p class="how-step-desc">Visit <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">your local BBO</a> and shop amazing deals.</p>
           </div>
         </div>
         <div class="how-step reveal" style="transition-delay:.2s">
           <div class="how-step-num">3</div>
-          <div class="how-step-body">
+          <div>
             <div class="how-step-title">Enjoy your benefits</div>
             <p class="how-step-desc">Earn BBO Rewards Points to use toward future savings.</p>
           </div>
