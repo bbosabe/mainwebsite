@@ -155,15 +155,15 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.15);
     }
     .btn-find-store:hover { background: var(--blue-dark); transform: translateY(-1px); }
-    .btn-signin {
-      display: inline-flex; align-items: center;
-      background: transparent; color: var(--gray-700);
-      border: 1.5px solid var(--gray-300); border-radius: 50px;
-      padding: 9px 20px; font-family: 'Work Sans', sans-serif;
-      font-weight: 700; font-size: .95rem; text-decoration: none;
-      white-space: nowrap; transition: border-color .2s, color .2s;
+    .btn-member {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yellow); color: var(--blue-dark);
+      border-radius: 50px; padding: 10px 22px;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .875rem; text-decoration: none;
+      white-space: nowrap; transition: background .2s, transform .15s;
     }
-    .btn-signin:hover { border-color: var(--blue); color: var(--blue); }
+    .btn-member:hover { background: var(--yellow-dark); transform: translateY(-1px); }
 
     /* Mobile nav toggle */
     .nav-toggle {
@@ -905,11 +905,11 @@
         <li><a href="careers.html">Careers</a></li>
       </ul>
       <div class="navbar-actions">
+        <a href="rewards.html" class="btn btn-member">Become a Member</a>
         <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          Find a Store
+          Store Locator
         </a>
-        <a href="#" class="btn btn-signin" aria-label="Sign in to your account">Sign In</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
