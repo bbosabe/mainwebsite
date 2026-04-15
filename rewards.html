@@ -11,6 +11,27 @@
   <style>
     :root { --page-color: #003DA5; --page-color-dark: #00297a; }
 
+    /* ── REWARDS HERO OVERRIDES ────────────────────────── */
+    .rewards-hero {
+      background: var(--blue);
+      padding: 160px 0 100px;
+    }
+    .rewards-hero::before { display: none; } /* remove gradient overlay */
+    .rewards-headline {
+      font-size: clamp(4rem, 10vw, 7.5rem);
+      line-height: .9;
+      margin-bottom: 28px;
+    }
+    .rewards-sub {
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      max-width: 600px;
+      color: rgba(255,255,255,.85);
+    }
+    @media (max-width: 640px) {
+      .rewards-hero { padding: 120px 0 72px; }
+      .rewards-headline { font-size: clamp(3.2rem, 14vw, 5rem); }
+    }
+
     /* ── EXCLUSIVE PERKS SECTION ───────────────────────── */
     .perks-split-section { padding: 80px 0 100px; background: #fff; }
     .perks-section-heading {
@@ -251,17 +272,11 @@
 <main>
 
   <!-- 1. Sub-hero -->
-  <section class="sub-hero">
-    <div class="sub-hero-accent sub-hero-accent-1"></div>
-    <div class="sub-hero-accent sub-hero-accent-2"></div>
+  <section class="sub-hero rewards-hero">
     <div class="container">
       <div class="sub-hero-inner">
-        <div class="sub-hero-brand">
-          <div class="sub-hero-brand-box">BIG<br>BOX</div>
-          <div class="sub-hero-brand-tab">Rewards</div>
-        </div>
-        <h1 class="sub-hero-headline">Shop. Earn.<br><span style="color:var(--yellow)">Save.</span></h1>
-        <p class="sub-hero-sub">Join thousands of members saving more every day at Big Box Outlet. It's free to join — no credit card needed.</p>
+        <h1 class="sub-hero-headline rewards-headline">Shop. Earn.<br><span style="color:var(--yellow)">Save.</span></h1>
+        <p class="sub-hero-sub rewards-sub">Join thousands of members saving more every day at Big Box Outlet. It's free to join —</p>
         <div class="sub-hero-actions">
           <a href="https://bigboxoutletstore.ca" target="_blank" rel="noopener" class="btn btn-primary">Start Saving</a>
         </div>
