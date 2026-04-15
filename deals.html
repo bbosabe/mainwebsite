@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flash Sale — Big Box Outlet Store</title>
+  <link rel="stylesheet" href="base.css" />
+  <style>
+    :root { --page-color: #003DA6; --page-color-dark: #00297a; }
+    .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
+    .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
+    .navbar-nav a { color: var(--blue) !important; }
+    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
+    .navbar-nav a.active { color: var(--blue-dark) !important; }
+    .btn-find-store { background: var(--blue) !important; color: #fff !important; }
+    .btn-member { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .nav-toggle span { background: var(--blue) !important; }
+    /* Flash Sale nav pill */
+    .navbar-nav a.nav-sale {
+      background: var(--yellow) !important;
+      color: var(--blue-dark) !important;
+      font-weight: 900 !important;
+      border-radius: 6px;
+    }
+
+    /* ── HERO ─────────────────────────────────── */
+    .flash-hero { padding-top: 72px; background: #0d1b2a; }
+    .flash-hero img { width: 100%; display: block; max-height: 520px; object-fit: cover; }
+
+    /* ── IN-STORE BAR ─────────────────────────── */
+    .instore-bar {
+      background: #0d1b2a; padding: 11px 0; text-align: center;
+    }
+    .instore-bar p {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .8rem; color: rgba(255,255,255,.8);
+      letter-spacing: .1em; text-transform: uppercase;
+    }
+    .instore-bar span { color: var(--yellow); }
+
+    /* ── FLEXITI STRIP ────────────────────────── */
+    .flexiti-strip { background: var(--yellow); padding: 14px 0; }
+    .flexiti-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; flex-wrap: wrap; text-align: center;
+    }
+    .flexiti-brand {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.25rem; color: var(--blue-dark); letter-spacing: -.01em;
+    }
+    .flexiti-sep { width: 2px; height: 22px; background: rgba(0,40,120,.2); }
+    .flexiti-msg {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .98rem; color: var(--blue-dark);
+    }
+    .flexiti-badge {
+      background: var(--blue-dark); color: var(--yellow);
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px;
+    }
+
+    /* ── STOREWIDE INTRO ──────────────────────── */
+    .storewide-intro {
+      background: #fff; padding: 48px 0 32px;
+    }
+    .storewide-intro-inner {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .storewide-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 8px;
+    }
+    .storewide-heading {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem); color: #0d1b2a;
+      line-height: 1.05; margin: 0;
+    }
+    .storewide-sub {
+      font-size: 1rem; color: var(--gray-600); line-height: 1.65;
+      max-width: 480px; align-self: flex-end;
+    }
+
+    /* ── SECTION DIVIDER HEADER ───────────────── */
+    .sale-section { padding: 0 0 56px; }
+    .sale-hdr { background: #0d1b2a; padding: 22px 0; margin-bottom: 28px; }
+    .sale-hdr-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .sale-eyebrow {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .65rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--yellow); margin-bottom: 4px;
+    }
+    .sale-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(1.4rem, 2.8vw, 2rem); color: #fff;
+      line-height: 1.1; margin: 0;
+    }
+    .sale-hdr-pct {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 2.6rem; color: var(--yellow); flex-shrink: 0; line-height: 1;
+    }
+
+    /* ── SUB-SECTION (Greenworks, DynaTrap) ────── */
+    .sub-hdr {
+      grid-column: 1 / -1;
+      background: var(--blue); border-radius: 12px;
+      padding: 16px 22px; display: flex; align-items: center;
+      justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .sub-hdr-left {}
+    .sub-hdr-name {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.1rem; color: #fff; line-height: 1.2;
+    }
+    .sub-hdr-note {
+      font-size: .78rem; color: rgba(255,255,255,.62); margin-top: 3px;
+    }
+    .sub-hdr-pct {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 2rem; color: var(--yellow); flex-shrink: 0;
+    }
+
+    /* ── DEAL CARDS ───────────────────────────── */
+    .deals-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    }
+    .deal-card {
+      background: #fff; border-radius: 14px; overflow: hidden;
+      border: 1.5px solid #e5e7eb;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      display: flex; flex-direction: column;
+    }
+    .deal-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.13);
+      border-color: var(--blue);
+    }
+    .deal-img {
+      position: relative; background: #f8fafc;
+      aspect-ratio: 4 / 3; overflow: hidden;
+    }
+    .deal-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .4s ease;
+    }
+    .deal-card:hover .deal-img img { transform: scale(1.04); }
+
+    /* Percent badge */
+    .pct-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: var(--blue); color: #fff;
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1rem; padding: 6px 10px; border-radius: 8px; line-height: 1;
+    }
+    .pct-badge.hot { background: #c5192d; }
+    .pct-badge.xl  { font-size: 1.2rem; padding: 8px 12px; }
+
+    /* Save badge */
+    .save-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: #15803d; color: #fff;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .75rem; padding: 5px 10px; border-radius: 6px;
+      line-height: 1.3; text-align: center;
+    }
+
+    .deal-body {
+      padding: 14px 16px 18px; flex: 1;
+      display: flex; flex-direction: column;
+    }
+    .deal-name {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .88rem; color: #0d1b2a;
+      line-height: 1.3; margin-bottom: 5px;
+    }
+    .deal-sku {
+      font-size: .7rem; color: #9ca3af; margin-bottom: 10px;
+    }
+    .deal-pricing {
+      display: flex; align-items: baseline; gap: 8px; margin-top: auto;
+      flex-wrap: wrap;
+    }
+    .deal-sale {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.25rem; color: var(--blue);
+    }
+    .deal-reg {
+      font-size: .85rem; color: #9ca3af; text-decoration: line-through;
+    }
+    .deal-note {
+      font-size: .72rem; color: var(--blue);
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      margin-top: 6px;
+    }
+    .deal-instore {
+      display: inline-block; background: #eff6ff; color: var(--blue);
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 20px; margin-top: 8px;
+    }
+
+    /* ── CLEARANCE ────────────────────────────── */
+    .clearance-section {
+      background: linear-gradient(135deg, #060f1e 0%, #00297a 60%, var(--blue) 100%);
+      padding: 72px 0; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .clearance-section::before {
+      content: ''; position: absolute; right: -80px; top: -80px;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: rgba(255,218,0,.07); pointer-events: none;
+    }
+    .clearance-section::after {
+      content: ''; position: absolute; left: -60px; bottom: -60px;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: rgba(255,255,255,.04); pointer-events: none;
+    }
+    .clearance-inner { position: relative; z-index: 1; }
+    .clearance-eyebrow {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--yellow); margin-bottom: 12px;
+    }
+    .clearance-num {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(6rem, 18vw, 11rem); color: var(--yellow);
+      line-height: .9; letter-spacing: -.04em; margin-bottom: 8px;
+    }
+    .clearance-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(1.5rem, 3vw, 2.4rem); color: #fff;
+      margin-bottom: 12px; line-height: 1.1;
+    }
+    .clearance-sub {
+      font-size: 1rem; color: rgba(255,255,255,.6);
+      max-width: 480px; margin: 0 auto 36px; line-height: 1.65;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 1100px) {
+      .deals-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .deals-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .sale-hdr-pct { font-size: 1.8rem; }
+      .storewide-intro-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .deals-grid { gap: 10px; }
+      .deal-body { padding: 10px 12px 14px; }
+      .deal-name { font-size: .82rem; }
+      .deal-sale { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ─────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="Big Box Outlet Store Home">
+        <img src="images/logo.png" alt="Big Box Outlet Store" />
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="flyer.html">Weekly Deals</a></li>
+        <li><a href="deals.html" class="nav-sale active">Flash Sale</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="rewards.html" class="btn btn-member">Become a Member</a>
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Store Locator
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── HERO ───────────────────────────────────────── -->
+  <section class="flash-hero">
+    <img src="images/flash-sale/banner.png" alt="Big Box Outlet Flash Sale" />
+  </section>
+
+  <!-- ── IN-STORE ONLY ──────────────────────────────── -->
+  <div class="instore-bar">
+    <p>⚡ <span>Flash Sale</span> — In-Store Only · While Quantities Last · Prices Vary by Location</p>
+  </div>
+
+  <!-- ── FLEXITI ─────────────────────────────────────── -->
+  <div class="flexiti-strip">
+    <div class="container">
+      <div class="flexiti-inner">
+        <span class="flexiti-brand">Flexiti</span>
+        <div class="flexiti-sep"></div>
+        <span class="flexiti-msg">Finance your purchase with <strong>No Admin Fee!</strong> Ask in store for details.</span>
+        <span class="flexiti-badge">Available In-Store</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       STOREWIDE FLASH DEALS
+  ══════════════════════════════════════════ -->
+  <section class="storewide-intro">
+    <div class="container">
+      <div class="storewide-intro-inner">
+        <div>
+          <div class="storewide-label">Storewide Flash Deals</div>
+          <h2 class="storewide-heading">Big Savings.<br>Right Now.</h2>
+        </div>
+        <p class="storewide-sub">These deals are in-store only and available while quantities last. Visit any of our 20 BC &amp; Alberta locations to shop.</p>
+      </div>
+      <div class="deals-grid">
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/large-appliances.png" alt="Large Appliances" />
+            <span class="pct-badge">10% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">All Large Appliances</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/brentwood.png" alt="Brentwood Small Appliances" />
+            <span class="pct-badge">35% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Brentwood Small Appliances</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/bikes.png" alt="E-Bikes" />
+            <span class="pct-badge">20% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">E-Bikes</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/bikes.png" alt="Bicycles" />
+            <span class="pct-badge">20% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Bicycles</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/dresses.png" alt="Dresses" />
+            <span class="pct-badge">30% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Dresses</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/pants.png" alt="Pants" />
+            <span class="pct-badge hot xl">50% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Pants Pants Pants!</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/bedding.png" alt="Bedding" />
+            <span class="pct-badge hot">40% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Bedding <span style="font-weight:500;font-size:.78rem;color:#6b7280">*Excl. B Comfort Plus</span></div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       LIVE OUTSIDE. LOVE YOUR SPACE.
+  ══════════════════════════════════════════ -->
+  <section class="sale-section">
+    <div class="sale-hdr">
+      <div class="container">
+        <div class="sale-hdr-inner">
+          <div>
+            <div class="sale-eyebrow">Outdoor Living</div>
+            <h2 class="sale-title">Live Outside. Love Your Space.</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="deals-grid">
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/hudson.png" alt="Hudson 7pc Dining Set" />
+            <span class="save-badge">SAVE<br>$50</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Hudson 7pc Dining Set</div>
+            <div class="deal-pricing">
+              <span class="deal-sale">$249.99</span>
+              <span class="deal-reg">$299.99</span>
+            </div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/hudson.png" alt="Wilder 4pc Conversation Set" />
+            <span class="save-badge">SAVE<br>$499</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Wilder 4pc Conversation Set</div>
+            <div class="deal-pricing">
+              <span class="deal-sale">$999.99</span>
+              <span class="deal-reg">$1,499.00</span>
+            </div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/umbrella.png" alt="Sunbrella Umbrellas" />
+            <span class="pct-badge">20% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Season Sentry &amp; Sunbrella Umbrellas</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/solar-lights.png" alt="Solar Lights" />
+            <span class="pct-badge">20% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Solar Lights</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/grass.png" alt="Grass Seed and Fertilizer" />
+            <span class="pct-badge">30% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Grass Seed &amp; Fertilizer</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <!-- Greenworks sub-header -->
+        <div class="sub-hdr">
+          <div class="sub-hdr-left">
+            <div class="sub-hdr-name">Greenworks Lawnmowers</div>
+            <div class="sub-hdr-note">New Permanent Markdowns + Additional 20% Off</div>
+          </div>
+          <div class="sub-hdr-pct">+20% OFF</div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/lawnmower.png" alt="Self Propelled Lawnmower" />
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Self Propelled Lawnmower</div>
+            <div class="deal-sku">SKU: 1660508</div>
+            <div class="deal-pricing">
+              <span class="deal-sale">$549.99</span>
+            </div>
+            <div class="deal-note">+ Additional 20% Off in store</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/blower-trimmer.png" alt="Greenworks Blowers and Trimmers" />
+            <span class="pct-badge">30% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Greenworks Blowers &amp; Trimmers</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <!-- Dyna Trap sub-header -->
+        <div class="sub-hdr">
+          <div class="sub-hdr-left">
+            <div class="sub-hdr-name">Dyna Traps</div>
+            <div class="sub-hdr-note">New Permanent Markdowns + Additional 30% Off!</div>
+          </div>
+          <div class="sub-hdr-pct">+30% OFF</div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/dynatrap.png" alt="Dynatrap" />
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Dynatrap</div>
+            <div class="deal-sku">SKU: 795230</div>
+            <div class="deal-pricing"><span class="deal-sale">$59.99</span></div>
+            <div class="deal-note">+ Additional 30% Off in store</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/dynatrap-2.png" alt="Dyna Trap" />
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Dyna Trap</div>
+            <div class="deal-sku">SKU: 1698532</div>
+            <div class="deal-pricing"><span class="deal-sale">$74.99</span></div>
+            <div class="deal-note">+ Additional 30% Off in store</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/dynatrap-xl.png" alt="Dynatrap XL" />
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Dynatrap XL</div>
+            <div class="deal-sku">SKU: 8982346 / 1218921</div>
+            <div class="deal-pricing"><span class="deal-sale">$99.99</span></div>
+            <div class="deal-note">+ Additional 30% Off in store</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SOMETHING TO DO WITH YOUR HOME
+  ══════════════════════════════════════════ -->
+  <section class="sale-section" style="background:#f8fafc; padding-top:1px;">
+    <div class="sale-hdr">
+      <div class="container">
+        <div class="sale-hdr-inner">
+          <div>
+            <div class="sale-eyebrow">Home Essentials</div>
+            <h2 class="sale-title">Something to Do With Your Home</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="deals-grid">
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/robot-vacuum.png" alt="yeedi by ecovacs Vacuum and Mop" />
+            <span class="save-badge">SAVE<br>$200</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">yeedi by ecovacs Vacuum &amp; Mop</div>
+            <div class="deal-pricing">
+              <span class="deal-sale">$299.99</span>
+              <span class="deal-reg">$499.99</span>
+            </div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/piano.png" alt="Pianos" />
+            <span class="pct-badge">30% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Pianos</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/curtains.png" alt="Curtains" />
+            <span class="pct-badge hot">40% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Curtains</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PLUMBING & LIGHTING
+  ══════════════════════════════════════════ -->
+  <section class="sale-section">
+    <div class="sale-hdr">
+      <div class="container">
+        <div class="sale-hdr-inner">
+          <div>
+            <div class="sale-eyebrow">Bathroom &amp; Home Improvement</div>
+            <h2 class="sale-title">Plumbing &amp; Lighting</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="deals-grid">
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/toto-washlet.png" alt="Toto Washlet" />
+            <span class="save-badge">SAVE<br>$175</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Toto Washlet</div>
+            <div class="deal-sku">SKU: 1806250</div>
+            <div class="deal-pricing">
+              <span class="deal-sale">$264.99</span>
+              <span class="deal-reg">$439.99</span>
+            </div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/bath-fan.png" alt="Dewstop Bath Fan" />
+            <span class="save-badge">SAVE<br>$25</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Dewstop Bath Fan</div>
+            <div class="deal-sku">SKU: 2195227 / 5195227</div>
+            <div class="deal-pricing">
+              <span class="deal-sale">$44.99</span>
+              <span class="deal-reg">$69.99</span>
+            </div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/ove-darcy-light.png" alt="Ove Darcy" />
+            <span class="save-badge">SAVE<br>$30</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Ove Darcy</div>
+            <div class="deal-sku">SKU: 1834462</div>
+            <div class="deal-pricing">
+              <span class="deal-sale">$49.99</span>
+              <span class="deal-reg">$79.99</span>
+            </div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/sink-faucet.png" alt="Stainless Steel Sinks" />
+            <span class="pct-badge">30% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Stainless Steel Sinks</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/sink-faucet.png" alt="All Faucets" />
+            <span class="pct-badge">30% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">All Faucets</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/hydrorail.png" alt="Kohler Hydrorail" />
+            <span class="save-badge">SAVE<br>$40.50</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Kohler Hydrorail</div>
+            <div class="deal-sku">SKU: 1908718</div>
+            <div class="deal-pricing">
+              <span class="deal-sale">$94.49</span>
+              <span class="deal-reg">$134.99</span>
+            </div>
+            <div class="deal-note">Price after 30% off</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       KITCHEN
+  ══════════════════════════════════════════ -->
+  <section class="sale-section" style="background:#f8fafc; padding-top:1px;">
+    <div class="sale-hdr">
+      <div class="container">
+        <div class="sale-hdr-inner">
+          <div>
+            <div class="sale-eyebrow">Kitchen &amp; Dining</div>
+            <h2 class="sale-title">Cook. Serve. Entertain.</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="deals-grid">
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/open-box-pots-pans-etc.png" alt="Open Stock Pots and Pans" />
+            <span class="pct-badge">30% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Open Stock Pots &amp; Pans</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+        <div class="deal-card">
+          <div class="deal-img">
+            <img src="images/flash-sale/open-box-pots-pans-etc.png" alt="Open Stock Dishes and Drinkware" />
+            <span class="pct-badge">30% OFF</span>
+          </div>
+          <div class="deal-body">
+            <div class="deal-name">Open Stock Dishes &amp; Drinkware</div>
+            <span class="deal-instore">In-Store Only</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CLEARANCE — 50% OFF
+  ══════════════════════════════════════════ -->
+  <section class="clearance-section">
+    <div class="clearance-inner">
+      <div class="clearance-eyebrow">Designated Clearance Section</div>
+      <div class="clearance-num">50%</div>
+      <h2 class="clearance-title">Off All Clearance Items</h2>
+      <p class="clearance-sub">Head to the designated clearance section in store and take an additional 50% off already-reduced prices. Your biggest savings are waiting.</p>
+      <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-primary">Find My Store</a>
+    </div>
+  </section>
+
+  <!-- ── FIND A STORE CTA ────────────────────────────── -->
+  <section class="cta-strip">
+    <div class="container">
+      <h2>All Deals Are In-Store Only</h2>
+      <p>Visit any of our 20 locations across BC and Alberta to shop these Flash Sale prices. While quantities last.</p>
+      <div class="cta-strip-actions">
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-primary">Find My Nearest Store</a>
+        <a href="flyer.html" class="btn btn-outline" style="color:var(--gray-800);border-color:var(--gray-300);">View Weekly Flyer</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Big Box Outlet" />
+        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="deals.html">Flash Sale</a></li>
+          <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About Us</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Customer Service</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location. While quantities last.</div>
+      <div class="footer-bottom-links">
+        <a href="https://bigboxoutletstore.ca">Privacy Policy</a>
+        <a href="https://bigboxoutletstore.ca">Terms of Use</a>
+        <a href="https://bigboxoutletstore.ca">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<script>
+(function(){
+  var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
+  if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
+  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
+  var btn=document.getElementById('scrollTop');
+  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+})();
+</script>
+
+</body>
+</html>
