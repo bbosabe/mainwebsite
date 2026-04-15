@@ -56,10 +56,8 @@
     }
     .perks-overlay-line {
       color: #fff; font-size: clamp(1.05rem, 2.2vw, 1.35rem); line-height: 1.35;
-      padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,.22);
+      padding: 20px 0;
     }
-    .perks-overlay-line:first-child { padding-top: 0; }
-    .perks-overlay-line:last-child { border-bottom: none; padding-bottom: 0; }
     .perks-overlay-line strong { font-weight: 800; }
     @media (max-width: 900px) {
       .perks-split { grid-template-columns: 60px 1fr; }
@@ -76,28 +74,21 @@
     }
 
     /* ── HOW IT WORKS SECTION ──────────────────────────── */
-    .how-section { padding: 100px 0; background: #fff; }
-    .how-section .section-heading { font-size: clamp(2rem, 4vw, 3.4rem); margin-bottom: 56px; }
-    .how-steps { display: flex; flex-direction: column; gap: 0; max-width: 600px; margin: 0 auto; }
-    .how-step { display: flex; gap: 28px; align-items: flex-start; position: relative; }
-    .how-step:not(:last-child)::after {
-      content: ''; position: absolute;
-      left: 27px; top: 60px;
-      width: 2px; height: calc(100% + 0px);
-      background: var(--gray-200);
-    }
+    .how-section { padding: 56px 0 64px; background: #fff; }
+    .how-steps { display: flex; flex-direction: column; gap: 0; max-width: 640px; }
+    .how-step { display: flex; gap: 28px; align-items: flex-start; }
     .how-step-num {
-      width: 56px; height: 56px; border-radius: 14px; flex-shrink: 0;
+      width: 60px; height: 60px; border-radius: 14px; flex-shrink: 0;
       background: var(--blue); display: flex; align-items: center; justify-content: center;
       font-family: 'Work Sans', sans-serif; font-weight: 900;
-      font-size: 1.5rem; color: #fff; position: relative; z-index: 1;
+      font-size: 1.6rem; color: #fff;
     }
-    .how-step-body { padding: 8px 0 48px; }
+    .how-step-body { padding: 10px 0 36px; }
     .how-step:last-child .how-step-body { padding-bottom: 0; }
-    .how-step-title { font-family: 'Work Sans', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--blue); margin-bottom: 6px; }
+    .how-step-title { font-family: 'Work Sans', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--blue); margin-bottom: 4px; }
     .how-step-desc { font-size: .95rem; color: var(--gray-600); line-height: 1.65; }
     .how-step-desc a { color: var(--blue); text-decoration: underline; }
-    @media (max-width: 640px) { .how-step-num { width: 46px; height: 46px; font-size: 1.2rem; border-radius: 10px; } .how-step:not(:last-child)::after { left: 22px; } }
+    @media (max-width: 640px) { .how-step-num { width: 48px; height: 48px; font-size: 1.2rem; border-radius: 10px; } }
 
     /* ── MEMBERSHIP SECTION ────────────────────────────── */
     .membership-section {
