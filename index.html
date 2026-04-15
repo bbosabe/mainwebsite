@@ -164,13 +164,6 @@
       white-space: nowrap; transition: background .2s, transform .15s;
     }
     .btn-member:hover { background: var(--yellow-dark); transform: translateY(-1px); }
-    /* Flash Sale nav pill */
-    .navbar-nav a.nav-sale {
-      background: var(--yellow) !important;
-      color: var(--blue-dark) !important;
-      font-weight: 900 !important;
-      border-radius: 6px;
-    }
 
     /* Mobile nav toggle */
     .nav-toggle {
@@ -227,6 +220,7 @@
     .hero-slide-5 { background-image: url("images/NEW Homepgae_Web Banner_Patio.png"); }
     .hero-slide-6 { background-image: url("images/NEW Homepgae_Web Banner_Discover More.png"); }
     .hero-slide-7 { background-image: url("images/NEW Homepgae_Web Banner_Lower Prices (1).png"); }
+    .hero-slide-8 { background-image: url("images/flash-sale/banner.png"); background-color: #0d1b2a; }
     /* Slide 1 mobile version */
     @media (max-width: 768px) {
       .hero-slide-1 { background-image: url("images/March Markdown Madness_Mobile Hero Banner.png"); }
@@ -907,7 +901,6 @@
       </a>
       <ul class="navbar-nav" id="navMenu">
         <li><a href="flyer.html">Weekly Deals</a></li>
-        <li><a href="deals.html" class="nav-sale">Flash Sale</a></li>
         <li><a href="rewards.html">Rewards</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="careers.html">Careers</a></li>
@@ -931,7 +924,7 @@
   <div class="hero-track" id="heroTrack">
 
     <!-- Slide 1: Current Flyer -->
-    <div class="hero-slide hero-slide-1" role="group" aria-label="Slide 1 of 7">
+    <div class="hero-slide hero-slide-1" role="group" aria-label="Slide 1 of 8">
       <div class="hero-slide-overlay"></div>
       <a href="flyer.html" class="hero-slide-link" aria-label="View current flyer — March Markdown Madness"></a>
       <div class="hero-info-card">
@@ -941,7 +934,7 @@
     </div>
 
     <!-- Slide 2: Weekly Deals -->
-    <div class="hero-slide hero-slide-2" role="group" aria-label="Slide 2 of 7">
+    <div class="hero-slide hero-slide-2" role="group" aria-label="Slide 2 of 8">
       <div class="hero-slide-overlay"></div>
       <a href="flyer.html" class="hero-slide-link" aria-label="View weekly deals"></a>
       <div class="hero-info-card">
@@ -951,7 +944,7 @@
     </div>
 
     <!-- Slide 3: Seniors Day -->
-    <div class="hero-slide hero-slide-3" role="group" aria-label="Slide 3 of 7">
+    <div class="hero-slide hero-slide-3" role="group" aria-label="Slide 3 of 8">
       <div class="hero-slide-overlay"></div>
       <div class="hero-slide-link" aria-label="Seniors Day — every last Wednesday of the month"></div>
       <div class="hero-info-card">
@@ -961,7 +954,7 @@
     </div>
 
     <!-- Slide 4: Lower Prices -->
-    <div class="hero-slide hero-slide-4" role="group" aria-label="Slide 4 of 7">
+    <div class="hero-slide hero-slide-4" role="group" aria-label="Slide 4 of 8">
       <div class="hero-slide-overlay"></div>
       <a href="best-price-promise.html" class="hero-slide-link" aria-label="Learn about our lower prices guarantee"></a>
       <div class="hero-info-card">
@@ -971,7 +964,7 @@
     </div>
 
     <!-- Slide 5: Patio -->
-    <div class="hero-slide hero-slide-5" role="group" aria-label="Slide 5 of 7">
+    <div class="hero-slide hero-slide-5" role="group" aria-label="Slide 5 of 8">
       <div class="hero-slide-overlay"></div>
       <a href="#categories" class="hero-slide-link" aria-label="Shop patio and outdoor"></a>
       <div class="hero-info-card">
@@ -981,7 +974,7 @@
     </div>
 
     <!-- Slide 6: Discover More In Store -->
-    <div class="hero-slide hero-slide-6" role="group" aria-label="Slide 6 of 7">
+    <div class="hero-slide hero-slide-6" role="group" aria-label="Slide 6 of 8">
       <div class="hero-slide-overlay"></div>
       <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="hero-slide-link" aria-label="Find a Big Box Outlet store near you"></a>
       <div class="hero-info-card">
@@ -991,13 +984,19 @@
     </div>
 
     <!-- Slide 7: Lower Prices (2) -->
-    <div class="hero-slide hero-slide-7" role="group" aria-label="Slide 7 of 7">
+    <div class="hero-slide hero-slide-7" role="group" aria-label="Slide 7 of 8">
       <div class="hero-slide-overlay"></div>
       <a href="best-price-promise.html" class="hero-slide-link" aria-label="Discover our everyday lower prices"></a>
       <div class="hero-info-card">
         <div class="hero-info-card-text">Best Price Promise — We'll Beat It</div>
         <a href="#" class="hero-info-card-btn">Discover In-Store <span>›</span></a>
       </div>
+    </div>
+
+    <!-- Slide 8: Flash Sale -->
+    <div class="hero-slide hero-slide-8" role="group" aria-label="Slide 8 of 8">
+      <div class="hero-slide-overlay"></div>
+      <a href="deals.html" class="hero-slide-link" aria-label="Shop the Flash Sale — Apr 17–19"></a>
     </div>
 
   </div><!-- /.hero-track -->
@@ -1019,6 +1018,7 @@
     <button class="hero-dot" role="tab" aria-label="Go to slide 5" aria-selected="false" data-slide="4"></button>
     <button class="hero-dot" role="tab" aria-label="Go to slide 6" aria-selected="false" data-slide="5"></button>
     <button class="hero-dot" role="tab" aria-label="Go to slide 7" aria-selected="false" data-slide="6"></button>
+    <button class="hero-dot" role="tab" aria-label="Go to slide 8" aria-selected="false" data-slide="7"></button>
   </div>
 </section>
 
@@ -1417,66 +1417,6 @@
   </div>
 </div>
 
-<!-- ║            REWARDS                      ║ -->
-<!-- ╚══════════════════════════════════════════╝ -->
-<section class="rewards-section reveal" id="rewards">
-  <div class="container">
-    <div class="rewards-inner">
-      <div class="rewards-text">
-        <span class="section-label">Loyalty Program</span>
-        <h2 class="section-heading">Join the BBOS Rewards Club</h2>
-        <p>Earn points on every purchase and unlock exclusive deals, early access to new inventory, and member-only pricing across all 20 locations.</p>
-        <div class="rewards-perks">
-          <div class="rewards-perk">
-            <div class="rewards-perk-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </div>
-            Earn points on every in-store purchase
-          </div>
-          <div class="rewards-perk">
-            <div class="rewards-perk-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
-            </div>
-            Exclusive member deals and savings
-          </div>
-          <div class="rewards-perk">
-            <div class="rewards-perk-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-            </div>
-            Early access to new Thursday inventory
-          </div>
-        </div>
-        <a href="https://bigboxoutletstore.ca" class="btn btn-primary" target="_blank" rel="noopener">
-          Learn About Rewards
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-        </a>
-      </div>
-      <div class="rewards-image reveal" style="transition-delay:.15s">
-        <img src="images/rewards-card.png" alt="BBOS Rewards Card" loading="lazy" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── EMAIL SIGNUP ──────────────────────────── -->
-<section class="email-signup-section" id="email-signup">
-  <div class="container">
-    <h2>Good finds go fast.<br>Get the deals first.</h2>
-    <p>Join thousands of smart shoppers. Weekly deals, no spam.</p>
-    <!-- Klaviyo embedded form renders here once integrated -->
-    <!-- <div class="klaviyo-form-XXXXXXX"></div> -->
-    <!-- Fallback form (shown until Klaviyo is active) -->
-    <form class="klav-fallback" id="emailSignupForm" novalidate>
-      <input type="text" name="firstName" placeholder="First Name" autocomplete="given-name" />
-      <input type="text" name="lastName" placeholder="Last Name" autocomplete="family-name" />
-      <input type="email" name="email" placeholder="email address" required autocomplete="email" />
-      <input type="text" name="postal" placeholder="Postal Code" autocomplete="postal-code" maxlength="7" />
-      <button type="submit">Sign Me Up!</button>
-    </form>
-    <p class="klav-note">By subscribing you agree to receive marketing emails from Big Box Outlet Store. Unsubscribe anytime.</p>
-  </div>
-</section>
-
 <!-- ╔══════════════════════════════════════════╗ -->
 <!-- ║              FOOTER                     ║ -->
 <!-- ╚══════════════════════════════════════════╝ -->
@@ -1620,7 +1560,7 @@
   (function(){
     var track = document.getElementById('heroTrack');
     var dots = document.querySelectorAll('.hero-dot');
-    var total = 7, current = 0, timer = null;
+    var total = 8, current = 0, timer = null;
 
     function goTo(n) {
       current = (n + total) % total;
