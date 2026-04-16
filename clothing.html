@@ -16,86 +16,85 @@
     .btn-member { background: var(--yellow) !important; color: var(--blue-dark) !important; }
     .nav-toggle span { background: var(--blue) !important; }
 
-    /* ── PAGE HERO ──────────────────────────────────── */
+    /* ── PAGE HERO (white editorial — matches about.html) ── */
     .cat-hero {
-      background: linear-gradient(135deg, #060f1e 0%, #0a1a35 55%, #003DA6 100%);
-      padding: 128px 0 64px;
-      position: relative; overflow: hidden;
-    }
-    .cat-hero::before {
-      content: ''; position: absolute; right: -120px; top: -120px;
-      width: 500px; height: 500px; border-radius: 50%;
-      background: rgba(0,61,165,.25); pointer-events: none;
-    }
-    .cat-hero::after {
-      content: ''; position: absolute; left: -80px; bottom: -80px;
-      width: 320px; height: 320px; border-radius: 50%;
-      background: rgba(255,218,0,.06); pointer-events: none;
+      background: #fff;
+      padding-top: calc(72px + 48px);
+      padding-bottom: 0;
     }
     .cat-hero-inner {
-      position: relative; z-index: 1;
-      display: flex; align-items: flex-end; gap: 48px; flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 80px;
+      align-items: end;
+      padding-bottom: 48px;
+      border-bottom: 2px solid #e5e7eb;
     }
-    .cat-hero-badge {
-      display: flex; flex-direction: column; flex-shrink: 0;
-      font-family: 'Work Sans', sans-serif; font-weight: 900;
-    }
-    .cat-hero-badge-box {
-      background: var(--yellow); color: var(--blue-dark);
-      font-size: 1.1rem; line-height: 1; padding: 10px 14px;
-      border-radius: 8px 8px 0 0; text-align: center; letter-spacing: -.01em;
-    }
-    .cat-hero-badge-tab {
-      background: var(--blue); color: #fff;
-      font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
-      padding: 6px 14px; border-radius: 0 0 8px 8px; text-align: center;
-    }
-    .cat-hero-text { flex: 1; min-width: 260px; }
-    .cat-hero-eyebrow {
+    .cat-hero-eyebrow-pill {
+      display: inline-block;
       font-family: 'Work Sans', sans-serif; font-weight: 800;
-      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--yellow); margin-bottom: 12px;
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: #8B6914;
+      background: #FFFBDD; border: 1.5px solid #FFE055;
+      border-radius: 20px; padding: 4px 14px; margin-bottom: 20px;
     }
     .cat-hero-headline {
       font-family: 'Work Sans', sans-serif; font-weight: 900;
-      font-size: clamp(2.6rem, 6vw, 5rem);
-      color: #fff; line-height: .95; margin-bottom: 20px; letter-spacing: -.02em;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      color: #0d1b2a; line-height: .98; letter-spacing: -.03em; margin: 0;
     }
-    .cat-hero-headline span { color: var(--yellow); }
+    .cat-hero-headline span { color: var(--blue); }
+    .cat-hero-right { padding-bottom: 8px; }
+    .cat-hero-tagline {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1.25rem; color: #0d1b2a; line-height: 1.25; margin-bottom: 12px;
+    }
     .cat-hero-sub {
-      font-size: 1.05rem; color: rgba(255,255,255,.72);
-      line-height: 1.7; margin-bottom: 28px; max-width: 520px;
+      font-size: 1.02rem; color: #6b7280; line-height: 1.76; margin-bottom: 28px;
     }
     .cat-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-yellow {
+    .btn-blue {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--yellow); color: var(--blue-dark);
+      background: var(--blue); color: #fff;
       font-family: 'Work Sans', sans-serif; font-weight: 800;
       font-size: .95rem; padding: 13px 28px; border-radius: 50px;
       text-decoration: none; transition: background .2s, transform .15s;
     }
-    .btn-yellow:hover { background: #e6c400; transform: translateY(-2px); }
-    .btn-outline-white {
+    .btn-blue:hover { background: var(--blue-dark); transform: translateY(-2px); }
+    .btn-outline-blue {
       display: inline-flex; align-items: center;
-      border: 2px solid rgba(255,255,255,.35); color: #fff;
+      border: 2px solid var(--blue); color: var(--blue);
       font-family: 'Work Sans', sans-serif; font-weight: 700;
       font-size: .95rem; padding: 13px 28px; border-radius: 50px;
       text-decoration: none; transition: border-color .2s, background .2s;
     }
-    .btn-outline-white:hover { border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.06); }
+    .btn-outline-blue:hover { background: rgba(0,61,165,.06); }
+
+    /* ── SECTION NAV PILLS ──────────────────────────── */
+    .cat-section-nav {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding: 20px 0 0;
+    }
+    .cat-section-nav a {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .82rem; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--blue); text-decoration: none;
+      padding: 7px 18px; border-radius: 50px;
+      border: 1.5px solid #c7d4ef;
+      transition: background .2s, border-color .2s;
+    }
+    .cat-section-nav a:hover { background: #e8edf8; border-color: var(--blue); }
 
     /* ── BIG LIFESTYLE IMAGE ────────────────────────── */
     .cat-lifestyle-hero {
-      width: 100%; max-height: 560px; overflow: hidden;
-      display: block;
+      width: 100%; overflow: hidden; display: block;
     }
     .cat-lifestyle-hero img {
-      width: 100%; height: 560px; object-fit: cover;
-      display: block;
+      width: 100%; height: 580px; object-fit: cover; display: block;
     }
 
     /* ── CATEGORY SECTION ───────────────────────────── */
-    .cat-section { padding: 64px 0 56px; }
+    .cat-section { padding: 72px 0 60px; }
     .cat-section:nth-child(odd) { background: #fff; }
     .cat-section:nth-child(even) { background: #f5f7fc; }
 
@@ -212,9 +211,13 @@
     }
     .cat-scroll-hint svg { width: 16px; height: 16px; fill: var(--blue); }
 
+    @media (max-width: 900px) {
+      .cat-hero-inner { grid-template-columns: 1fr; gap: 24px; }
+    }
     @media (max-width: 768px) {
-      .cat-hero { padding: 100px 0 48px; }
-      .cat-section-img, .cat-section-img-placeholder { height: 260px; }
+      .cat-hero { padding-top: calc(64px + 32px); }
+      .cat-section-img { height: 260px; }
+      .cat-lifestyle-hero img { height: 360px; }
       .cat-item { flex: 0 0 150px; }
       .cat-item-visual, .cat-item-ph { width: 120px; height: 96px; }
     }
@@ -255,26 +258,33 @@
   <section class="cat-hero">
     <div class="container">
       <div class="cat-hero-inner">
-        <div class="cat-hero-badge">
-          <div class="cat-hero-badge-box">BIG<br>BOX</div>
-          <div class="cat-hero-badge-tab">Apparel</div>
-        </div>
-        <div class="cat-hero-text">
-          <div class="cat-hero-eyebrow">Big Box Apparel</div>
+
+        <div>
+          <div class="cat-hero-eyebrow-pill">Big Box Apparel</div>
           <h1 class="cat-hero-headline">Style that fits<br><span>your budget.</span></h1>
-          <p class="cat-hero-sub">Brand-name clothing for the whole family — men's, women's, and kids — all at outlet prices. In-store at all 20 Big Box Outlet locations across BC and Alberta.</p>
+        </div>
+
+        <div class="cat-hero-right">
+          <p class="cat-hero-tagline">Brand-name clothing for the whole family.</p>
+          <p class="cat-hero-sub">Men's, women's, and kids — name brands you know at outlet prices you'll love. New arrivals hit the floor every Thursday at all 20 Big Box Outlet locations across BC and Alberta.</p>
           <div class="cat-hero-actions">
-            <a href="https://bigboxoutletstore.ca/locations" class="btn-yellow" target="_blank" rel="noopener">Find a Store</a>
-            <a href="flyer.html" class="btn-outline-white">Weekly Deals</a>
+            <a href="https://bigboxoutletstore.ca/locations" class="btn-blue" target="_blank" rel="noopener">Find a Store</a>
+            <a href="flyer.html" class="btn-outline-blue">Weekly Deals</a>
           </div>
         </div>
+
       </div>
+      <nav class="cat-section-nav" aria-label="Jump to section">
+        <a href="#mens">Men's</a>
+        <a href="#womens">Women's</a>
+        <a href="#kids">Kids</a>
+      </nav>
     </div>
   </section>
 
   <!-- ── BIG LIFESTYLE PHOTO ───────────────────────── -->
   <div class="cat-lifestyle-hero">
-    <img src="images/clothing.png" alt="Big Box Outlet Apparel — brand name clothing at outlet prices" />
+    <img src="images/store/IMG_9207.jpg" alt="Big Box Outlet apparel floor — brand name clothing" />
   </div>
 
   <!-- ══════════════════════════════════════════════ -->
@@ -292,7 +302,7 @@
       </div>
 
       <div class="cat-section-img">
-        <img src="images/store-interior.jpg" alt="Men's apparel at Big Box Outlet" />
+        <img src="images/store/IMG_9144.jpg" alt="Men's shirts and apparel at Big Box Outlet" />
       </div>
 
       <div class="cat-scroll-hint">
@@ -360,8 +370,8 @@
         </div>
 
         <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M4 44 Q8 36 18 34 L34 32 L50 35 Q58 38 58 44 L58 52 Q40 58 4 52 Z"/><path d="M18 34 L22 20 L34 22 L34 32" fill="none" stroke="#003DA6" stroke-width="3" opacity=".55"/></svg>
+          <div class="cat-item-visual">
+            <img src="images/store/IMG_9150.jpg" alt="Shoes and Footwear" loading="lazy" />
           </div>
           <span class="cat-item-label">Shoes &amp; Footwear</span>
         </div>
@@ -392,7 +402,7 @@
       </div>
 
       <div class="cat-section-img">
-        <img src="images/Category Tile Card_Apparel.png" alt="Women's apparel at Big Box Outlet" style="object-position: center top;" />
+        <img src="images/store/IMG_9075.jpg" alt="Women's clothing at Big Box Outlet" />
       </div>
 
       <div class="cat-scroll-hint">
@@ -485,7 +495,7 @@
       </div>
 
       <div class="cat-section-img">
-        <img src="images/store-front.jpg" alt="Kids' apparel at Big Box Outlet" />
+        <img src="images/store/IMG_9070.jpg" alt="Kids' outerwear and jackets at Big Box Outlet" />
       </div>
 
       <div class="cat-scroll-hint">

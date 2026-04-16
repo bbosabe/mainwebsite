@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Big Box Furniture — Sofas, Beds &amp; Dining | Big Box Outlet</title>
+  <title>Big Box Appliances — Fridges, Ranges &amp; Laundry | Big Box Outlet</title>
   <link rel="stylesheet" href="base.css" />
   <style>
     :root { --page-color: #003DA6; --page-color-dark: #00297a; }
@@ -16,7 +16,7 @@
     .btn-member { background: var(--yellow) !important; color: var(--blue-dark) !important; }
     .nav-toggle span { background: var(--blue) !important; }
 
-    /* ── PAGE HERO (white editorial — matches about.html) ── */
+    /* ── PAGE HERO (white editorial) ──────────────────── */
     .cat-hero {
       background: #fff;
       padding-top: calc(72px + 48px);
@@ -84,6 +84,31 @@
       transition: background .2s, border-color .2s;
     }
     .cat-section-nav a:hover { background: #e8edf8; border-color: var(--blue); }
+
+    /* ── HIGHLIGHT BAND ─────────────────────────────── */
+    .appliance-highlight {
+      background: #060f1e; padding: 28px 0;
+    }
+    .appliance-highlight-inner {
+      display: flex; align-items: center; gap: 48px;
+      flex-wrap: wrap;
+    }
+    .appliance-highlight-stat {
+      text-align: center; flex: 1; min-width: 120px;
+    }
+    .appliance-highlight-num {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem); color: var(--yellow);
+      line-height: 1; display: block;
+    }
+    .appliance-highlight-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .8rem; color: rgba(255,255,255,.65);
+      text-transform: uppercase; letter-spacing: .1em;
+    }
+    .appliance-highlight-divider {
+      width: 1px; height: 48px; background: rgba(255,255,255,.12);
+    }
 
     /* ── BIG LIFESTYLE IMAGE ────────────────────────── */
     .cat-lifestyle-hero {
@@ -196,11 +221,12 @@
 
     @media (max-width: 900px) {
       .cat-hero-inner { grid-template-columns: 1fr; gap: 24px; }
+      .appliance-highlight-divider { display: none; }
     }
     @media (max-width: 768px) {
       .cat-hero { padding-top: calc(64px + 32px); }
       .cat-section-img { height: 280px; }
-      .cat-lifestyle-hero img { height: 380px; }
+      .cat-lifestyle-hero img { height: 360px; }
       .cat-item { flex: 0 0 158px; }
       .cat-item-visual, .cat-item-ph { width: 126px; height: 104px; }
     }
@@ -242,16 +268,14 @@
     <div class="container">
       <div class="cat-hero-inner">
 
-        <!-- Left: eyebrow + headline -->
         <div>
-          <div class="cat-hero-eyebrow-pill">Big Box Furniture</div>
-          <h1 class="cat-hero-headline">Furnish your space<br><span>your way.</span></h1>
+          <div class="cat-hero-eyebrow-pill">Big Box Appliances</div>
+          <h1 class="cat-hero-headline">Big brands.<br><span>Outlet prices.</span></h1>
         </div>
 
-        <!-- Right: tagline + sub + CTAs -->
         <div class="cat-hero-right">
-          <p class="cat-hero-tagline">Brand-name pieces at outlet prices.</p>
-          <p class="cat-hero-sub">Sofas, beds, dining sets, and everything in between — all from names you trust, at a fraction of retail. In-store at 20 Big Box Outlet locations across BC and Alberta.</p>
+          <p class="cat-hero-tagline">Brand-name appliances at a fraction of retail.</p>
+          <p class="cat-hero-sub">From Samsung fridges to Maytag washers — shop name-brand large appliances, ranges, and laundry at outlet prices. Open-box, overstock, and closeout deals in-store every week.</p>
           <div class="cat-hero-actions">
             <a href="https://bigboxoutletstore.ca/locations" class="btn-blue" target="_blank" rel="noopener">Find a Store</a>
             <a href="flyer.html" class="btn-outline-blue">Weekly Deals</a>
@@ -260,36 +284,62 @@
 
       </div>
 
-      <!-- Section nav pills -->
       <nav class="cat-section-nav" aria-label="Jump to section">
-        <a href="#living-room">Living Room</a>
-        <a href="#dining-kitchen">Dining &amp; Kitchen</a>
-        <a href="#bedroom">Bedroom</a>
+        <a href="#large-appliances">Large Appliances</a>
+        <a href="#refrigeration">Refrigeration</a>
+        <a href="#laundry">Laundry</a>
       </nav>
     </div>
   </section>
 
+  <!-- ── STATS BAND ─────────────────────────────────────── -->
+  <div class="appliance-highlight">
+    <div class="container">
+      <div class="appliance-highlight-inner">
+        <div class="appliance-highlight-stat">
+          <span class="appliance-highlight-num">20</span>
+          <span class="appliance-highlight-label">Locations BC &amp; AB</span>
+        </div>
+        <div class="appliance-highlight-divider"></div>
+        <div class="appliance-highlight-stat">
+          <span class="appliance-highlight-num">New</span>
+          <span class="appliance-highlight-label">Stock Every Thursday</span>
+        </div>
+        <div class="appliance-highlight-divider"></div>
+        <div class="appliance-highlight-stat">
+          <span class="appliance-highlight-num">Best</span>
+          <span class="appliance-highlight-label">Price Promise</span>
+        </div>
+        <div class="appliance-highlight-divider"></div>
+        <div class="appliance-highlight-stat">
+          <span class="appliance-highlight-num">Open</span>
+          <span class="appliance-highlight-label">Box Deals Available</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── BIG LIFESTYLE PHOTO ───────────────────────────── -->
   <div class="cat-lifestyle-hero">
-    <img src="images/store/IMG_9004.jpg" alt="Big Box Outlet furniture showroom floor — sofas and sectionals" />
+    <img src="images/store/IMG_9096.jpg" alt="Ranges and stoves at Big Box Outlet" />
   </div>
 
   <!-- ══════════════════════════════════════════════════ -->
-  <!-- SECTION 1: LIVING ROOM                            -->
+  <!-- SECTION 1: LARGE APPLIANCES                       -->
   <!-- ══════════════════════════════════════════════════ -->
-  <section class="cat-section" id="living-room">
+  <section class="cat-section" id="large-appliances">
     <div class="container">
       <div class="cat-section-intro">
         <div class="cat-section-num">01</div>
         <div class="cat-section-titles">
-          <div class="cat-section-label">Living Room</div>
-          <h2 class="cat-section-title">For Living</h2>
-          <p class="cat-section-sub">the way you want.</p>
+          <div class="cat-section-label">Large Appliances</div>
+          <h2 class="cat-section-title">For Cooking</h2>
+          <p class="cat-section-sub">brand names, outlet prices.</p>
         </div>
       </div>
 
       <div class="cat-section-img">
-        <img src="images/store/IMG_9066.jpg" alt="Living room furniture — sectionals and sofas at Big Box Outlet" />
+        <img src="images/store/IMG_9096.jpg" alt="Ranges and stoves at Big Box Outlet" />
       </div>
 
       <div class="cat-scroll-hint">
@@ -298,112 +348,83 @@
           Scroll to explore
         </span>
       </div>
-      <div class="cat-carousel" role="list" aria-label="Living Room products">
+      <div class="cat-carousel" role="list" aria-label="Large Appliances">
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-visual">
-            <img src="images/store/IMG_9176.jpg" alt="Sofas" loading="lazy" />
+            <img src="images/store/IMG_9096.jpg" alt="Ranges" loading="lazy" />
           </div>
-          <span class="cat-item-label">Sofas</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/store/IMG_9004.jpg" alt="Sectionals" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Sectionals</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/store/IMG_9280.jpg" alt="Recliners and chairs" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Recliners &amp; Chairs</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/store/DSC_8522.jpg" alt="Living room sets" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Living Room Sets</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/store/IMG_9114.jpg" alt="Area Rugs" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Area Rugs</span>
+          <span class="cat-item-label">Ranges &amp; Stoves</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="32" width="56" height="20" rx="3"/><rect x="8" y="36" width="16" height="12" rx="2"/><rect x="28" y="36" width="16" height="12" rx="2"/><rect x="4" y="26" width="56" height="8" rx="2"/></svg>
+            <!-- Oven icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="16" width="52" height="40" rx="4"/><rect x="10" y="20" width="44" height="26" rx="2" opacity=".5"/><circle cx="18" cy="11" r="4"/><circle cx="32" cy="11" r="4"/><circle cx="46" cy="11" r="4"/><rect x="20" y="50" width="24" height="4" rx="2"/></svg>
           </div>
-          <span class="cat-item-label">TV Stands</span>
+          <span class="cat-item-label">Wall Ovens</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="30" width="52" height="10" rx="3"/><rect x="10" y="40" width="6" height="14" rx="2"/><rect x="48" y="40" width="6" height="14" rx="2"/></svg>
+            <!-- Dishwasher icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="48" height="52" rx="4"/><rect x="12" y="14" width="40" height="34" rx="2" opacity=".45"/><circle cx="32" cy="55" r="3"/><rect x="24" y="11" width="16" height="4" rx="2" opacity=".6"/></svg>
           </div>
-          <span class="cat-item-label">Coffee Tables</span>
+          <span class="cat-item-label">Dishwashers</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="28" width="36" height="8" rx="3"/><rect x="18" y="36" width="6" height="18" rx="2"/><rect x="40" y="36" width="6" height="18" rx="2"/></svg>
+            <!-- Hood/ventilation icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M8 32 L16 16 L48 16 L56 32 Z"/><rect x="18" y="32" width="28" height="18" rx="2"/><rect x="10" y="34" width="8" height="4" rx="2" opacity=".6"/><rect x="46" y="34" width="8" height="4" rx="2" opacity=".6"/></svg>
           </div>
-          <span class="cat-item-label">End Tables</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/flash-sale/curtains.png" alt="Curtains and Drapes" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Curtains &amp; Drapes</span>
+          <span class="cat-item-label">Range Hoods</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="12" width="20" height="4" rx="2"/><rect x="29" y="16" width="6" height="30" rx="2"/><ellipse cx="32" cy="50" rx="12" ry="4"/></svg>
+            <!-- Microwave icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="16" width="52" height="32" rx="4"/><rect x="8" y="20" width="34" height="24" rx="2" opacity=".45"/><rect x="48" y="22" width="6" height="6" rx="1" opacity=".6"/><rect x="48" y="32" width="6" height="6" rx="1" opacity=".6"/></svg>
           </div>
-          <span class="cat-item-label">Lamps &amp; Lighting</span>
+          <span class="cat-item-label">Microwaves</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="48" height="50" rx="3"/><line x1="8" y1="22" x2="56" y2="22" stroke="#003DA6" stroke-width="3"/><line x1="8" y1="36" x2="56" y2="36" stroke="#003DA6" stroke-width="3"/><line x1="8" y1="50" x2="56" y2="50" stroke="#003DA6" stroke-width="3"/></svg>
+            <!-- Small appliance / toaster oven -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="20" width="52" height="30" rx="4"/><rect x="10" y="24" width="36" height="20" rx="2" opacity=".45"/><rect x="50" y="24" width="6" height="4" rx="1" opacity=".6"/><rect x="8" y="50" width="8" height="6" rx="2"/><rect x="48" y="50" width="8" height="6" rx="2"/></svg>
           </div>
-          <span class="cat-item-label">Bookcases</span>
+          <span class="cat-item-label">Countertop Appliances</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="36" rx="3"/><rect x="12" y="20" width="16" height="14" rx="2" opacity=".5"/><rect x="36" y="20" width="16" height="14" rx="2" opacity=".5"/><rect x="12" y="38" width="40" height="4" rx="2" opacity=".4"/></svg>
+            <!-- Cooktop -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="18" width="56" height="28" rx="4"/><circle cx="18" cy="30" r="8" opacity=".4"/><circle cx="18" cy="30" r="4" opacity=".6"/><circle cx="46" cy="30" r="8" opacity=".4"/><circle cx="46" cy="30" r="4" opacity=".6"/><circle cx="32" cy="30" r="6" opacity=".4"/></svg>
           </div>
-          <span class="cat-item-label">Storage Units</span>
+          <span class="cat-item-label">Cooktops</span>
         </div>
 
-      </div><!-- /carousel -->
+      </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════════════ -->
-  <!-- SECTION 2: DINING & KITCHEN                       -->
+  <!-- SECTION 2: REFRIGERATION                          -->
   <!-- ══════════════════════════════════════════════════ -->
-  <section class="cat-section" id="dining-kitchen">
+  <section class="cat-section" id="refrigeration">
     <div class="container">
       <div class="cat-section-intro">
         <div class="cat-section-num">02</div>
         <div class="cat-section-titles">
-          <div class="cat-section-label">Dining &amp; Kitchen</div>
-          <h2 class="cat-section-title">For Enjoying</h2>
-          <p class="cat-section-sub">moments shared together.</p>
+          <div class="cat-section-label">Refrigeration</div>
+          <h2 class="cat-section-title">For Keeping</h2>
+          <p class="cat-section-sub">everything fresh.</p>
         </div>
       </div>
 
       <div class="cat-section-img">
-        <img src="images/store/IMG_9179.jpg" alt="Dining table set at Big Box Outlet" style="object-position: center 40%;" />
+        <img src="images/store/DSC_8423.jpg" alt="Refrigerators and freezers at Big Box Outlet" style="object-position: left center;" />
       </div>
 
       <div class="cat-scroll-hint">
@@ -412,91 +433,83 @@
           Scroll to explore
         </span>
       </div>
-      <div class="cat-carousel" role="list" aria-label="Dining and Kitchen products">
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><ellipse cx="32" cy="24" rx="28" ry="8"/><rect x="28" y="30" width="8" height="22" rx="3"/><ellipse cx="32" cy="52" rx="18" ry="4" opacity=".4"/></svg>
-          </div>
-          <span class="cat-item-label">Dining Tables</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="18" y="24" width="28" height="16" rx="5"/><rect x="26" y="40" width="6" height="16" rx="2"/><rect x="12" y="20" width="40" height="6" rx="3"/></svg>
-          </div>
-          <span class="cat-item-label">Dining Chairs</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="20" width="32" height="14" rx="4"/><rect x="28" y="34" width="8" height="22" rx="2"/><rect x="16" y="55" width="32" height="4" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Bar Stools</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="22" width="56" height="30" rx="4"/><rect x="8" y="28" width="16" height="18" rx="2" opacity=".5"/><rect x="28" y="28" width="14" height="18" rx="2" opacity=".5"/><rect x="4" y="18" width="56" height="6" rx="3" opacity=".7"/></svg>
-          </div>
-          <span class="cat-item-label">Buffets &amp; Sideboards</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="20" width="48" height="32" rx="4"/><rect x="12" y="24" width="18" height="12" rx="2" opacity=".5"/><rect x="34" y="24" width="18" height="12" rx="2" opacity=".5"/><rect x="8" y="52" width="48" height="4" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Kitchen Islands</span>
-        </div>
+      <div class="cat-carousel" role="list" aria-label="Refrigeration products">
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-visual">
-            <img src="images/flash-sale/open-box-pots-pans-etc.png" alt="Cookware" loading="lazy" />
+            <img src="images/store/DSC_8423.jpg" alt="French door refrigerators" loading="lazy" />
           </div>
-          <span class="cat-item-label">Cookware</span>
+          <span class="cat-item-label">French Door Fridges</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="18" y="10" width="28" height="44" rx="4"/><rect x="22" y="14" width="20" height="14" rx="2" opacity=".5"/><rect x="22" y="32" width="20" height="14" rx="2" opacity=".5"/><circle cx="32" cy="55" r="3"/></svg>
+            <!-- Side by side fridge -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="52" height="52" rx="4"/><line x1="32" y1="8" x2="32" y2="60" stroke="#003DA6" stroke-width="2" opacity=".4"/><rect x="26" y="18" width="4" height="24" rx="2" opacity=".4"/><rect x="34" y="18" width="4" height="24" rx="2" opacity=".4"/></svg>
           </div>
-          <span class="cat-item-label">China Cabinets</span>
+          <span class="cat-item-label">Side-by-Side Fridges</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><ellipse cx="32" cy="36" rx="20" ry="16"/><rect x="28" y="12" width="8" height="24" rx="3"/><ellipse cx="32" cy="36" rx="12" ry="8" opacity=".4"/></svg>
+            <!-- Top mount fridge -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="6" width="44" height="52" rx="4"/><line x1="10" y1="26" x2="54" y2="26" stroke="#003DA6" stroke-width="2" opacity=".4"/><rect x="28" y="13" width="8" height="10" rx="2" opacity=".4"/><rect x="28" y="32" width="8" height="20" rx="2" opacity=".4"/></svg>
           </div>
-          <span class="cat-item-label">Serving Carts</span>
+          <span class="cat-item-label">Top Mount Fridges</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="30" r="18"/><circle cx="32" cy="30" r="10" opacity=".4"/><rect x="30" y="48" width="4" height="10" rx="2"/></svg>
+            <!-- Chest freezer -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="20" width="56" height="36" rx="4"/><rect x="4" y="14" width="56" height="8" rx="3" opacity=".6"/><rect x="24" y="10" width="16" height="6" rx="2" opacity=".7"/></svg>
           </div>
-          <span class="cat-item-label">Table Lamps</span>
+          <span class="cat-item-label">Chest Freezers</span>
         </div>
 
-      </div><!-- /carousel -->
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Upright freezer -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="6" width="44" height="54" rx="4"/><rect x="28" y="14" width="8" height="30" rx="2" opacity=".4"/><rect x="28" y="52" width="8" height="4" rx="2" opacity=".6"/></svg>
+          </div>
+          <span class="cat-item-label">Upright Freezers</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Wine fridge -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="6" width="40" height="54" rx="4"/><rect x="16" y="14" width="32" height="4" rx="1" opacity=".4"/><rect x="16" y="22" width="32" height="4" rx="1" opacity=".4"/><rect x="16" y="30" width="32" height="4" rx="1" opacity=".4"/><rect x="16" y="38" width="32" height="4" rx="1" opacity=".4"/></svg>
+          </div>
+          <span class="cat-item-label">Wine Coolers</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Mini fridge -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="8" width="36" height="52" rx="4"/><line x1="14" y1="32" x2="50" y2="32" stroke="#003DA6" stroke-width="2" opacity=".4"/><rect x="28" y="18" width="8" height="10" rx="2" opacity=".4"/></svg>
+          </div>
+          <span class="cat-item-label">Mini Fridges</span>
+        </div>
+
+      </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════════════ -->
-  <!-- SECTION 3: BEDROOM & MATTRESSES                   -->
+  <!-- SECTION 3: LAUNDRY                                -->
   <!-- ══════════════════════════════════════════════════ -->
-  <section class="cat-section" id="bedroom">
+  <section class="cat-section" id="laundry">
     <div class="container">
       <div class="cat-section-intro">
         <div class="cat-section-num">03</div>
         <div class="cat-section-titles">
-          <div class="cat-section-label">Bedroom &amp; Mattresses</div>
-          <h2 class="cat-section-title">For Dreaming</h2>
-          <p class="cat-section-sub">of all the possibilities.</p>
+          <div class="cat-section-label">Laundry</div>
+          <h2 class="cat-section-title">For Clean Living</h2>
+          <p class="cat-section-sub">every load, every day.</p>
         </div>
       </div>
 
       <div class="cat-section-img">
-        <img src="images/store/IMG_9032.jpg" alt="Bedroom furniture and cozy living at Big Box Outlet" style="object-position: center 60%;" />
+        <img src="images/store/DSC_8419.jpg" alt="Washers and dryers at Big Box Outlet" />
       </div>
 
       <div class="cat-scroll-hint">
@@ -505,83 +518,66 @@
           Scroll to explore
         </span>
       </div>
-      <div class="cat-carousel" role="list" aria-label="Bedroom and Mattress products">
+      <div class="cat-carousel" role="list" aria-label="Laundry products">
 
         <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="32" width="56" height="20" rx="4"/><rect x="4" y="20" width="56" height="14" rx="4" opacity=".5"/><rect x="4" y="48" width="8" height="10" rx="2"/><rect x="52" y="48" width="8" height="10" rx="2"/><rect x="4" y="14" width="56" height="8" rx="3"/></svg>
+          <div class="cat-item-visual">
+            <img src="images/store/DSC_8419.jpg" alt="Front load washers" loading="lazy" />
           </div>
-          <span class="cat-item-label">Beds &amp; Frames</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="24" width="52" height="28" rx="6"/><rect x="6" y="18" width="52" height="8" rx="4" opacity=".6"/><rect x="6" y="48" width="8" height="10" rx="2"/><rect x="50" y="48" width="8" height="10" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Mattresses</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="12" width="48" height="44" rx="4"/><rect x="12" y="16" width="18" height="14" rx="2" opacity=".5"/><rect x="34" y="16" width="18" height="14" rx="2" opacity=".5"/><rect x="12" y="34" width="40" height="14" rx="2" opacity=".4"/></svg>
-          </div>
-          <span class="cat-item-label">Dressers</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="20" width="36" height="34" rx="4"/><rect x="18" y="24" width="12" height="10" rx="2" opacity=".5"/><rect x="34" y="24" width="12" height="10" rx="2" opacity=".5"/><rect x="14" y="54" width="10" height="6" rx="2"/><rect x="40" y="54" width="10" height="6" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Nightstands</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="8" width="44" height="50" rx="4"/><rect x="14" y="12" width="36" height="20" rx="3" opacity=".5"/><rect x="14" y="36" width="36" height="16" rx="3" opacity=".4"/></svg>
-          </div>
-          <span class="cat-item-label">Wardrobes</span>
+          <span class="cat-item-label">Front Load Washers</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-visual">
-            <img src="images/flash-sale/bedding.png" alt="Pillows and Bedding" loading="lazy" />
+            <img src="images/store/DSC_8396.jpg" alt="Dryers" loading="lazy" />
           </div>
-          <span class="cat-item-label">Pillows &amp; Bedding</span>
+          <span class="cat-item-label">Dryers</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="18" width="44" height="30" rx="4"/><rect x="10" y="8" width="44" height="12" rx="3" opacity=".6"/><rect x="14" y="48" width="8" height="10" rx="2"/><rect x="42" y="48" width="8" height="10" rx="2"/></svg>
+            <!-- Top load washer -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="10" width="52" height="50" rx="4"/><rect x="6" y="10" width="52" height="14" rx="4" opacity=".5"/><circle cx="32" cy="38" r="14" opacity=".35"/><circle cx="32" cy="38" r="8" opacity=".45"/></svg>
           </div>
-          <span class="cat-item-label">Platform Beds</span>
+          <span class="cat-item-label">Top Load Washers</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="14" width="48" height="40" rx="4"/><circle cx="32" cy="34" r="10" opacity=".5"/><circle cx="32" cy="34" r="5" opacity=".3"/></svg>
+            <!-- Washer dryer pair -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="10" width="28" height="50" rx="3"/><rect x="34" y="10" width="28" height="50" rx="3"/><circle cx="16" cy="38" r="10" opacity=".4"/><circle cx="48" cy="38" r="10" opacity=".4"/></svg>
           </div>
-          <span class="cat-item-label">Mirrors</span>
+          <span class="cat-item-label">Washer &amp; Dryer Sets</span>
         </div>
 
         <div class="cat-item" role="listitem">
           <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="20" width="36" height="36" rx="4"/><rect x="18" y="24" width="28" height="4" rx="2" opacity=".5"/><rect x="18" y="32" width="28" height="4" rx="2" opacity=".5"/><rect x="18" y="40" width="28" height="4" rx="2" opacity=".5"/></svg>
+            <!-- Laundry pedestal -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="30" width="48" height="28" rx="4"/><rect x="12" y="36" width="18" height="16" rx="2" opacity=".45"/><rect x="34" y="36" width="18" height="16" rx="2" opacity=".45"/><rect x="8" y="24" width="48" height="8" rx="3" opacity=".6"/></svg>
           </div>
-          <span class="cat-item-label">Chest of Drawers</span>
+          <span class="cat-item-label">Laundry Pedestals</span>
         </div>
 
-      </div><!-- /carousel -->
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Laundry accessories -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="20" width="32" height="36" rx="6"/><path d="M20 20 L20 16 Q20 10 32 10 Q44 10 44 16 L44 20" fill="none" stroke="#003DA6" stroke-width="3" opacity=".5"/><circle cx="32" cy="38" r="6" opacity=".4"/></svg>
+          </div>
+          <span class="cat-item-label">Laundry Accessories</span>
+        </div>
+
+      </div>
     </div>
   </section>
 
   <!-- ── CTA STRIP ──────────────────────────────────────── -->
   <section class="cta-strip">
     <div class="container">
-      <h2>Find Big Box Furniture Near You</h2>
-      <p>Shop in-store at any of our 20 locations across BC and Alberta.</p>
+      <h2>Find Big Box Appliances Near You</h2>
+      <p>Open-box deals and brand-name appliances in-store at all 20 locations.</p>
       <div class="cta-strip-actions">
         <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
-        <a href="index.html#categories" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Browse All Categories</a>
+        <a href="best-price-promise.html" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Best Price Promise</a>
       </div>
     </div>
   </section>
