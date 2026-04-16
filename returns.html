@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Returns &amp; Exchanges — Big Box Outlet Store</title>
+  <link rel="stylesheet" href="base.css" />
+  <style>
+    :root { --page-color: #003DA6; --page-color-dark: #00297a; }
+    .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
+    .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
+    .navbar-nav a { color: var(--blue) !important; }
+    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
+    .navbar-nav a.active { color: var(--blue-dark) !important; }
+    .btn-find-store { background: var(--blue) !important; color: #fff !important; }
+    .btn-member { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .nav-toggle span { background: var(--blue) !important; }
+
+    /* ── POLICY HERO ──────────────────────────────────── */
+    .policy-hero {
+      background: linear-gradient(135deg, #060f1e 0%, #0d1f3c 60%, #003DA6 100%);
+      padding: 130px 0 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .policy-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(0,61,165,.35) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .policy-hero-inner {
+      display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+    }
+    .policy-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,218,0,.12); border: 1px solid rgba(255,218,0,.25);
+      border-radius: 8px; padding: 10px 18px; flex-shrink: 0;
+    }
+    .policy-badge-icon { width: 32px; height: 32px; flex-shrink: 0; }
+    .policy-badge-icon svg { width: 32px; height: 32px; fill: var(--yellow); }
+    .policy-badge-text { display: flex; flex-direction: column; gap: 1px; }
+    .policy-badge-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--yellow); line-height: 1;
+    }
+    .policy-badge-name {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1rem; color: #fff; line-height: 1;
+    }
+    .policy-hero-text { flex: 1; min-width: 260px; }
+    .policy-hero-text h1 {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2rem, 4.5vw, 3.2rem); color: #fff;
+      line-height: 1.05; margin: 0 0 12px;
+    }
+    .policy-hero-text p {
+      font-size: 1rem; color: rgba(255,255,255,.72);
+      line-height: 1.7; margin: 0 0 20px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-ctas .btn-hero-primary {
+      display: inline-block; padding: 13px 28px; border-radius: 8px;
+      background: var(--blue); color: #fff;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .9rem; text-decoration: none; border: 2px solid var(--blue);
+      transition: background .2s, transform .15s;
+    }
+    .hero-ctas .btn-hero-primary:hover { background: var(--blue-dark); border-color: var(--blue-dark); transform: translateY(-1px); }
+    .hero-ctas .btn-hero-outline {
+      display: inline-block; padding: 13px 28px; border-radius: 8px;
+      background: transparent; color: #fff;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .9rem; text-decoration: none; border: 2px solid rgba(255,255,255,.45);
+      transition: border-color .2s, background .2s, transform .15s;
+    }
+    .hero-ctas .btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); transform: translateY(-1px); }
+
+    /* ── RETURNS LAYOUT ──────────────────────────────── */
+    .returns-section {
+      background: #f5f7fc;
+      padding: 60px 0 72px;
+    }
+    .returns-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .returns-card {
+      background: #fff; border-radius: 14px;
+      border: 1.5px solid #e5e7eb;
+      padding: 32px 34px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      scroll-margin-top: 96px;
+    }
+    .returns-card-header {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-bottom: 20px; padding-bottom: 20px;
+      border-bottom: 1.5px solid #f0f2f8;
+    }
+    .returns-card-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: #e8edf8; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .returns-card-icon svg { width: 22px; height: 22px; stroke: var(--blue); fill: none; stroke-width: 1.8; }
+    .returns-card-icon.yellow { background: #fff9d6; }
+    .returns-card-icon.yellow svg { stroke: #b8960a; }
+    .returns-card-icon.red { background: #fef2f2; }
+    .returns-card-icon.red svg { stroke: #dc2626; }
+    .returns-card-icon.green { background: #f0fdf4; }
+    .returns-card-icon.green svg { stroke: #16a34a; }
+    .returns-card-meta { flex: 1; }
+    .returns-card-num {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 4px;
+    }
+    .returns-card-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.2rem; color: #0d1b2a; line-height: 1.2; margin: 0;
+    }
+    .returns-card p {
+      font-size: .95rem; color: var(--gray-700);
+      line-height: 1.8; margin: 0 0 10px;
+    }
+    .returns-card p:last-child { margin-bottom: 0; }
+
+    /* Item lists */
+    .returns-list {
+      list-style: none; margin: 8px 0 0; padding: 0;
+      display: flex; flex-direction: column; gap: 9px;
+    }
+    .returns-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .93rem; color: var(--gray-700); line-height: 1.6;
+    }
+    .returns-list li::before {
+      content: '';
+      display: block; width: 18px; height: 18px; border-radius: 50%;
+      background: #e8edf8; flex-shrink: 0; margin-top: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23003DA6' stroke-width='2.5'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: 11px; background-repeat: no-repeat; background-position: center;
+    }
+    .returns-list.no-go li::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dc2626' stroke-width='2.5'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+      background-color: #fef2f2;
+    }
+
+    /* Highlight box */
+    .returns-highlight {
+      background: #e8edf8; border-radius: 10px;
+      padding: 14px 18px; margin: 16px 0 0;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .returns-highlight svg { width: 18px; height: 18px; stroke: var(--blue); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 2px; }
+    .returns-highlight p {
+      margin: 0 !important; font-size: .9rem !important;
+      color: var(--blue-dark) !important; font-weight: 600 !important;
+    }
+
+    /* Full-width card */
+    .returns-card.full { grid-column: 1 / -1; }
+
+    /* Contact CTA card */
+    .returns-contact-card {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #003DA6 0%, #00297a 100%);
+      border-radius: 14px; padding: 36px 40px;
+      display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap;
+    }
+    .returns-contact-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .returns-contact-icon svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 1.8; }
+    .returns-contact-body h3 {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.3rem; color: #fff; margin: 0 0 8px;
+    }
+    .returns-contact-body p {
+      font-size: .95rem; color: rgba(255,255,255,.78);
+      line-height: 1.7; margin: 0 0 8px;
+    }
+    .returns-contact-body address {
+      font-style: normal; font-size: .88rem;
+      color: rgba(255,255,255,.6); line-height: 1.8; margin-bottom: 18px;
+    }
+    .returns-contact-body a.btn-contact {
+      display: inline-block; background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .875rem; padding: 12px 26px; border-radius: 8px;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .returns-contact-body a.btn-contact:hover { opacity: .88; }
+
+    @media (max-width: 900px) {
+      .returns-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .returns-card { padding: 24px 20px; }
+      .policy-hero { padding: 110px 0 44px; }
+      .returns-contact-card { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ─────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="Big Box Outlet Store Home">
+        <img src="images/logo.png" alt="Big Box Outlet Store" />
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="flyer.html">Weekly Deals</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="rewards.html" class="btn btn-member">Become a Member</a>
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Store Locator
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="policy-hero">
+    <div class="container">
+      <div class="policy-hero-inner">
+        <div class="policy-badge">
+          <div class="policy-badge-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="policy-badge-text">
+            <span class="policy-badge-label">Big Box</span>
+            <span class="policy-badge-name">Returns</span>
+          </div>
+        </div>
+        <div class="policy-hero-text">
+          <h1>Simple Returns. No Hassle.</h1>
+          <p>Not happy with your purchase? We make returns easy. Here's everything you need to know.</p>
+          <div class="hero-ctas">
+            <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn-hero-primary">Find a Store</a>
+            <a href="contact.html" class="btn-hero-outline">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RETURNS BODY ───────────────────────────────────── -->
+  <section class="returns-section">
+    <div class="container">
+      <div class="returns-grid">
+
+        <!-- Section 1: Return Window -->
+        <div class="returns-card reveal" id="section-window">
+          <div class="returns-card-header">
+            <div class="returns-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="returns-card-meta">
+              <div class="returns-card-num">Section 1</div>
+              <h2 class="returns-card-title">Standard Return Window</h2>
+            </div>
+          </div>
+          <ul class="returns-list">
+            <li>30 days from date of purchase with original receipt</li>
+            <li>Items must be in original condition with tags attached</li>
+            <li>In-store returns only — we do not accept returns by mail</li>
+          </ul>
+          <div class="returns-highlight">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p>Please keep your original receipt — it's required to process any return or exchange.</p>
+          </div>
+        </div>
+
+        <!-- Section 2: What Can Be Returned -->
+        <div class="returns-card reveal" id="section-eligible" style="transition-delay:.06s">
+          <div class="returns-card-header">
+            <div class="returns-card-icon green">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <div class="returns-card-meta">
+              <div class="returns-card-num">Section 2</div>
+              <h2 class="returns-card-title">What Can Be Returned</h2>
+            </div>
+          </div>
+          <ul class="returns-list">
+            <li>Most items in original, unused condition with receipt</li>
+            <li>Appliances (unopened/unused) within 30 days</li>
+            <li>Furniture and home goods within 30 days</li>
+            <li>Clothing and footwear with tags attached</li>
+            <li>Seasonal items within 30 days while season applies</li>
+          </ul>
+        </div>
+
+        <!-- Section 3: What Cannot Be Returned -->
+        <div class="returns-card reveal" id="section-excluded" style="transition-delay:.1s">
+          <div class="returns-card-header">
+            <div class="returns-card-icon red">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div class="returns-card-meta">
+              <div class="returns-card-num">Section 3</div>
+              <h2 class="returns-card-title">What Cannot Be Returned</h2>
+            </div>
+          </div>
+          <ul class="returns-list no-go">
+            <li>Opened or used electronics and personal care items</li>
+            <li>Items without original receipt</li>
+            <li>Final sale / clearance items (marked as non-returnable at time of purchase)</li>
+            <li>Assembled furniture</li>
+            <li>Gift cards</li>
+          </ul>
+        </div>
+
+        <!-- Section 4: Exchanges -->
+        <div class="returns-card reveal" id="section-exchanges" style="transition-delay:.14s">
+          <div class="returns-card-header">
+            <div class="returns-card-icon yellow">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            </div>
+            <div class="returns-card-meta">
+              <div class="returns-card-num">Section 4</div>
+              <h2 class="returns-card-title">Exchanges</h2>
+            </div>
+          </div>
+          <ul class="returns-list">
+            <li>Exchange items for a different size, colour, or product of equal or lesser value</li>
+            <li>Exchanges follow the same conditions as returns</li>
+            <li>Exchanges handled in-store only</li>
+          </ul>
+        </div>
+
+        <!-- Section 5: Damaged or Defective Items -->
+        <div class="returns-card full reveal" id="section-damaged" style="transition-delay:.18s">
+          <div class="returns-card-header">
+            <div class="returns-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div class="returns-card-meta">
+              <div class="returns-card-num">Section 5</div>
+              <h2 class="returns-card-title">Damaged or Defective Items</h2>
+            </div>
+          </div>
+          <p>If your item arrives damaged or is defective, bring it in with your receipt and we will exchange it or provide store credit at our discretion. We want you to be completely satisfied with your purchase.</p>
+          <p>Contact us if you have questions before coming in — our team is happy to help you determine the best resolution before you make the trip.</p>
+          <div class="returns-highlight">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p>Damaged or defective claims must still be accompanied by the original receipt and brought in within the 30-day window where possible.</p>
+          </div>
+        </div>
+
+        <!-- Contact CTA -->
+        <div class="returns-contact-card reveal" id="section-contact" style="transition-delay:.22s">
+          <div class="returns-contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.9-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="returns-contact-body">
+            <h3>Have a Question About Your Return?</h3>
+            <p>Our team is happy to help. Bring your receipt and item to any Big Box Outlet Store location and we'll take care of you.</p>
+            <address>
+              <strong style="color:#fff;">Head Office:</strong> 101-1777 Clearbrook Rd, Abbotsford, BC&nbsp;V2T 5X5
+            </address>
+            <a href="contact.html" class="btn-contact">Contact Us</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Big Box Outlet" />
+        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Customer Service</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="returns.html" class="active">Return Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect with BBO</div>
+        <div class="footer-connect-icons">
+          <a href="https://instagram.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://facebook.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@bigboxoutlet.ca" class="footer-connect-link" aria-label="Email us">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location.</div>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<script>
+(function(){
+  var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
+  if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
+  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
+  var btn=document.getElementById('scrollTop');
+  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+})();
+</script>
+
+</body>
+</html>

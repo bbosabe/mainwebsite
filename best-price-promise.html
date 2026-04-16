@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Price Promise — Big Box Outlet Store</title>
+  <meta name="description" content="Found a lower price? We'll beat it. Big Box Outlet Store's Best Price Promise guarantees you the lowest price — every day, in every store." />
+  <link rel="stylesheet" href="base.css" />
+  <style>
+    :root { --page-color: #003DA6; --page-color-dark: #00297a; }
+    .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
+    .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
+    .navbar-nav a { color: var(--blue) !important; }
+    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
+    .navbar-nav a.active { color: var(--blue-dark) !important; }
+    .btn-find-store { background: var(--blue) !important; color: #fff !important; }
+    .btn-member { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .nav-toggle span { background: var(--blue) !important; }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .bpp-hero {
+      background: linear-gradient(135deg, #00297a 0%, #003DA6 55%, #0055cc 100%);
+      padding: 140px 0 96px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bpp-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 30%, rgba(255,218,0,.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,255,255,.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .bpp-hero-inner {
+      position: relative;
+      max-width: 720px;
+    }
+    .bpp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,218,0,.12);
+      border: 1.5px solid rgba(255,218,0,.35);
+      border-radius: 8px;
+      padding: 8px 18px;
+      margin-bottom: 28px;
+    }
+    .bpp-badge-block {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .bpp-badge-block.main { background: #FFDA00; color: #00297a; }
+    .bpp-badge-block.sub { background: rgba(255,255,255,.15); color: #fff; }
+    .bpp-hero h1 {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      color: #fff;
+      line-height: 1.0;
+      letter-spacing: -.02em;
+      margin-bottom: 24px;
+    }
+    .bpp-hero h1 em {
+      font-style: normal;
+      color: #FFDA00;
+    }
+    .bpp-hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,.82);
+      line-height: 1.72;
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+    .bpp-hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFDA00;
+      color: #00297a;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 15px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+      box-shadow: 0 4px 20px rgba(255,218,0,.35);
+    }
+    .bpp-hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(255,218,0,.45);
+    }
+
+    /* ── HOW IT WORKS ────────────────────────────────── */
+    .hiw-section {
+      background: #f4f6f9;
+      padding: 96px 0;
+    }
+    .section-eyebrow {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .section-heading {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #111827;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 56px;
+    }
+    .hiw-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .hiw-step {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 36px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .hiw-step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,.10);
+    }
+    .hiw-step-num {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: 4.5rem;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 2.5px #003DA6;
+      opacity: .25;
+      margin-bottom: 20px;
+      letter-spacing: -.03em;
+    }
+    .hiw-step-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(0,61,166,.08);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .hiw-step-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: var(--blue);
+    }
+    .hiw-step-title {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+    .hiw-step-body {
+      font-size: .97rem;
+      color: #4b5563;
+      line-height: 1.7;
+    }
+
+    /* ── WHAT QUALIFIES ──────────────────────────────── */
+    .qualifies-section {
+      background: #fff;
+      padding: 96px 0;
+    }
+    .qualifies-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 56px;
+    }
+    .qual-card {
+      border-radius: 16px;
+      padding: 40px 40px;
+      border: 2px solid transparent;
+    }
+    .qual-card.included {
+      background: #f0faf4;
+      border-color: #86efac;
+    }
+    .qual-card.excluded {
+      background: #fff5f5;
+      border-color: #fca5a5;
+    }
+    .qual-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .qual-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .qual-card.included .qual-card-icon { background: #16a34a; color: #fff; }
+    .qual-card.excluded .qual-card-icon { background: #dc2626; color: #fff; }
+    .qual-card-title {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #111827;
+    }
+    .qual-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .qual-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .97rem;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .qual-marker {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .qual-card.included .qual-marker { background: #dcfce7; color: #16a34a; }
+    .qual-card.excluded .qual-marker { background: #fee2e2; color: #dc2626; }
+
+    /* ── WHY WE DO THIS ──────────────────────────────── */
+    .why-section {
+      background: #060f1e;
+      padding: 96px 0;
+    }
+    .why-eyebrow {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #FFDA00;
+      margin-bottom: 18px;
+    }
+    .why-headline {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -.025em;
+      max-width: 800px;
+      margin-bottom: 24px;
+    }
+    .why-body {
+      font-size: 1.08rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.78;
+      max-width: 640px;
+      margin-bottom: 64px;
+    }
+    .why-stats {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 48px;
+    }
+    .why-stat {
+      flex: 1;
+      padding-right: 40px;
+      border-right: 1px solid rgba(255,255,255,.1);
+      margin-right: 40px;
+    }
+    .why-stat:last-child {
+      border-right: none;
+      margin-right: 0;
+      padding-right: 0;
+    }
+    .why-stat-num {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: 3.2rem;
+      color: #FFDA00;
+      line-height: 1;
+      letter-spacing: -.03em;
+      margin-bottom: 6px;
+    }
+    .why-stat-label {
+      font-size: .9rem;
+      color: rgba(255,255,255,.6);
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    /* ── CTA STRIP ───────────────────────────────────── */
+    .cta-strip {
+      background: var(--blue);
+      padding: 72px 0;
+      text-align: center;
+    }
+    .cta-strip-headline {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .cta-strip-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.78);
+      margin-bottom: 36px;
+    }
+    .cta-strip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFDA00;
+      color: #00297a;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 15px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .cta-strip-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+
+    /* ── REVEAL ANIMATION ─────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hiw-steps { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .hiw-step { padding: 32px 24px; }
+      .why-stats { gap: 0; }
+      .why-stat { padding-right: 28px; margin-right: 28px; }
+    }
+    @media (max-width: 768px) {
+      .hiw-steps { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .qualifies-grid { grid-template-columns: 1fr; }
+      .why-stats { flex-direction: column; gap: 32px; border-top: none; padding-top: 0; }
+      .why-stat { border-right: none; margin-right: 0; padding-right: 0; border-top: 1px solid rgba(255,255,255,.1); padding-top: 28px; }
+      .why-stat:first-child { border-top: none; padding-top: 0; }
+      .bpp-hero { padding: 120px 0 72px; }
+    }
+    @media (max-width: 640px) {
+      .qual-card { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ─────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="Big Box Outlet Store Home">
+        <img src="images/logo.png" alt="Big Box Outlet Store" />
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="flyer.html">Weekly Deals</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="rewards.html" class="btn btn-member">Become a Member</a>
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Store Locator
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="bpp-hero">
+    <div class="container">
+      <div class="bpp-hero-inner">
+        <div class="bpp-badge">
+          <span class="bpp-badge-block main">BIG BOX</span>
+          <span class="bpp-badge-block sub">Best Price</span>
+        </div>
+        <h1>Found a Better Price?<br><em>We'll Beat It.</em></h1>
+        <p class="bpp-hero-sub">At Big Box Outlet Store, we're committed to giving you the lowest price — every day, in every store. If you find a lower price anywhere nearby, bring us proof and we'll beat it.</p>
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="bpp-hero-cta">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Find a Store
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ──────────────────────────────────── -->
+  <section class="hiw-section">
+    <div class="container">
+      <div class="section-eyebrow reveal">How It Works</div>
+      <div class="section-heading reveal" style="transition-delay:.07s">Three simple steps to your best price.</div>
+      <div class="hiw-steps">
+
+        <div class="hiw-step reveal" style="transition-delay:.10s">
+          <div class="hiw-step-num">01</div>
+          <div class="hiw-step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+          </div>
+          <div class="hiw-step-title">Find a Lower Price</div>
+          <div class="hiw-step-body">Spot a lower price on the exact same item at a local competitor? Take a photo or bring the flyer.</div>
+        </div>
+
+        <div class="hiw-step reveal" style="transition-delay:.17s">
+          <div class="hiw-step-num">02</div>
+          <div class="hiw-step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          </div>
+          <div class="hiw-step-title">Show Us In Store</div>
+          <div class="hiw-step-body">Bring your proof to any Big Box Outlet Store location. Show a team member the competing price.</div>
+        </div>
+
+        <div class="hiw-step reveal" style="transition-delay:.24s">
+          <div class="hiw-step-num">03</div>
+          <div class="hiw-step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          </div>
+          <div class="hiw-step-title">We Beat It</div>
+          <div class="hiw-step-body">We'll verify the price and beat it on the spot. No haggling. No forms. Just savings.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHAT QUALIFIES ────────────────────────────────── -->
+  <section class="qualifies-section">
+    <div class="container">
+      <div class="section-eyebrow reveal">The Details</div>
+      <div class="section-heading reveal" style="transition-delay:.07s">What qualifies for the Best Price Promise?</div>
+      <div class="qualifies-grid">
+
+        <div class="qual-card included reveal" style="transition-delay:.12s">
+          <div class="qual-card-header">
+            <div class="qual-card-icon">✓</div>
+            <div class="qual-card-title">What's Included</div>
+          </div>
+          <ul class="qual-list">
+            <li><span class="qual-marker">✓</span> Same product, same model/SKU</li>
+            <li><span class="qual-marker">✓</span> Competitor must be a local physical retail store</li>
+            <li><span class="qual-marker">✓</span> Item must be in stock at both locations</li>
+            <li><span class="qual-marker">✓</span> Advertised retail price (not clearance or liquidation)</li>
+            <li><span class="qual-marker">✓</span> Price must be current and verifiable</li>
+          </ul>
+        </div>
+
+        <div class="qual-card excluded reveal" style="transition-delay:.20s">
+          <div class="qual-card-header">
+            <div class="qual-card-icon">✗</div>
+            <div class="qual-card-title">What's Excluded</div>
+          </div>
+          <ul class="qual-list">
+            <li><span class="qual-marker">✗</span> Online-only prices (Amazon, eBay, etc.)</li>
+            <li><span class="qual-marker">✗</span> Limited-time flash sales under 24 hours</li>
+            <li><span class="qual-marker">✗</span> Liquidation or going-out-of-business sales</li>
+            <li><span class="qual-marker">✗</span> Open-box or used item prices</li>
+            <li><span class="qual-marker">✗</span> Prices that cannot be verified by our team</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY WE DO THIS ────────────────────────────────── -->
+  <section class="why-section">
+    <div class="container">
+      <div class="why-eyebrow reveal">Our Promise</div>
+      <h2 class="why-headline reveal" style="transition-delay:.08s">You shouldn't have to shop around for a great deal.</h2>
+      <p class="why-body reveal" style="transition-delay:.15s">We source directly and keep our overhead lean so we can pass real savings to you — every day. The Best Price Promise is our guarantee that you'll always walk out feeling like you got the best deal in the city.</p>
+      <div class="why-stats reveal" style="transition-delay:.22s">
+        <div class="why-stat">
+          <div class="why-stat-num">20</div>
+          <div class="why-stat-label">Locations</div>
+        </div>
+        <div class="why-stat">
+          <div class="why-stat-num">30+</div>
+          <div class="why-stat-label">Years</div>
+        </div>
+        <div class="why-stat">
+          <div class="why-stat-num">100%</div>
+          <div class="why-stat-label">In-Store</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA STRIP ─────────────────────────────────────── -->
+  <section class="cta-strip">
+    <div class="container">
+      <div class="cta-strip-headline reveal">Ready to Find Your Deal?</div>
+      <p class="cta-strip-sub reveal" style="transition-delay:.08s">20 locations across BC and Alberta. Come in and see for yourself.</p>
+      <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="cta-strip-btn reveal" style="transition-delay:.15s">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Find a Store
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Big Box Outlet" />
+        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About Us</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Customer Service</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location.</div>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<script>
+(function(){
+  var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
+  if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
+  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
+  var btn=document.getElementById('scrollTop');
+  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+})();
+</script>
+</body>
+</html>

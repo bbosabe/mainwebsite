@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — Big Box Outlet Store</title>
+  <meta name="description" content="Frequently asked questions about Big Box Outlet Store — shopping, pricing, returns, rewards, store info, and gift cards." />
+  <link rel="stylesheet" href="base.css" />
+  <style>
+    :root { --page-color: #003DA6; --page-color-dark: #00297a; }
+    .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
+    .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
+    .navbar-nav a { color: var(--blue) !important; }
+    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
+    .navbar-nav a.active { color: var(--blue-dark) !important; }
+    .btn-find-store { background: var(--blue) !important; color: #fff !important; }
+    .btn-member { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .nav-toggle span { background: var(--blue) !important; }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .faq-hero {
+      background: linear-gradient(135deg, #00297a 0%, #003DA6 55%, #0055cc 100%);
+      padding: 140px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .faq-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 70% at 90% 50%, rgba(255,218,0,.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .faq-hero-inner {
+      position: relative;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .faq-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,218,0,.12);
+      border: 1.5px solid rgba(255,218,0,.35);
+      border-radius: 8px;
+      padding: 8px 18px;
+      margin-bottom: 24px;
+    }
+    .faq-badge-block {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .faq-badge-block.main { background: #FFDA00; color: #00297a; }
+    .faq-badge-block.sub { background: rgba(255,255,255,.15); color: #fff; }
+    .faq-hero h1 {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -.025em;
+      margin-bottom: 16px;
+    }
+    .faq-hero-sub {
+      font-size: clamp(.97rem, 2vw, 1.1rem);
+      color: rgba(255,255,255,.78);
+      line-height: 1.68;
+      margin-bottom: 32px;
+    }
+    .faq-hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,.5);
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: .97rem;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .18s, border-color .18s, transform .18s;
+    }
+    .faq-hero-cta:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.8);
+      transform: translateY(-2px);
+    }
+
+    /* ── FAQ BODY ─────────────────────────────────────── */
+    .faq-body {
+      background: #f4f6f9;
+      padding: 80px 0 96px;
+    }
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR NAV ──────────────────────────────────── */
+    .faq-sidebar {
+      position: sticky;
+      top: 96px;
+    }
+    .faq-sidebar-label {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+    .faq-sidebar-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .faq-sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      color: #4b5563;
+      transition: background .15s, color .15s;
+    }
+    .faq-sidebar-nav a:hover {
+      background: rgba(0,61,166,.07);
+      color: var(--blue);
+    }
+    .faq-sidebar-nav a .cat-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── CATEGORY BLOCKS ──────────────────────────────── */
+    .faq-categories {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .faq-category {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+    }
+    .faq-cat-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 28px 32px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .faq-cat-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .faq-cat-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+    .faq-cat-title {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #111827;
+    }
+    .faq-cat-count {
+      margin-left: auto;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: .82rem;
+      color: #9ca3af;
+      background: #f1f5f9;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── ACCORDION (details/summary) ─────────────────── */
+    .faq-item {
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 32px;
+      cursor: pointer;
+      list-style: none;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #1f2937;
+      transition: color .15s, background .15s;
+      user-select: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::marker { display: none; }
+    .faq-item summary:hover {
+      background: #fafbfc;
+      color: var(--blue);
+    }
+    .faq-item[open] summary {
+      color: var(--blue);
+      background: rgba(0,61,166,.03);
+    }
+    .faq-arrow {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background .15s, transform .2s;
+    }
+    .faq-arrow svg {
+      width: 14px;
+      height: 14px;
+      fill: #6b7280;
+      transition: fill .15s;
+    }
+    .faq-item[open] .faq-arrow {
+      background: var(--blue);
+      transform: rotate(180deg);
+    }
+    .faq-item[open] .faq-arrow svg { fill: #fff; }
+    .faq-answer {
+      padding: 0 32px 24px 32px;
+      font-size: .97rem;
+      color: #4b5563;
+      line-height: 1.76;
+    }
+    .faq-answer p { margin: 0; }
+
+    /* Category color dots */
+    .dot-blue   { background: #3b82f6; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green  { background: #10b981; }
+    .dot-purple { background: #8b5cf6; }
+    .dot-teal   { background: #06b6d4; }
+    .dot-rose   { background: #f43f5e; }
+
+    /* Category icon backgrounds */
+    .icon-blue   { background: #eff6ff; color: #3b82f6; }
+    .icon-yellow { background: #fffbeb; color: #d97706; }
+    .icon-green  { background: #f0fdf4; color: #16a34a; }
+    .icon-purple { background: #faf5ff; color: #7c3aed; }
+    .icon-teal   { background: #f0fdfa; color: #0891b2; }
+    .icon-rose   { background: #fff1f2; color: #e11d48; }
+
+    /* ── REVEAL ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .faq-layout { grid-template-columns: 1fr; }
+      .faq-sidebar { position: static; margin-bottom: 8px; }
+      .faq-sidebar-nav { flex-direction: row; flex-wrap: wrap; }
+    }
+    @media (max-width: 640px) {
+      .faq-cat-header { padding: 22px 20px; }
+      .faq-item summary { padding: 18px 20px; font-size: .95rem; }
+      .faq-answer { padding: 0 20px 20px 20px; }
+      .faq-body { padding: 48px 0 72px; }
+      .faq-hero { padding: 120px 0 64px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ─────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="Big Box Outlet Store Home">
+        <img src="images/logo.png" alt="Big Box Outlet Store" />
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="flyer.html">Weekly Deals</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="rewards.html" class="btn btn-member">Become a Member</a>
+        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Store Locator
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="faq-hero">
+    <div class="container">
+      <div class="faq-hero-inner">
+        <div class="faq-badge">
+          <span class="faq-badge-block main">BIG BOX</span>
+          <span class="faq-badge-block sub">Help</span>
+        </div>
+        <h1>Frequently Asked Questions</h1>
+        <p class="faq-hero-sub">Can't find what you're looking for? Our team is happy to help.</p>
+        <a href="contact.html" class="faq-hero-cta">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ BODY ──────────────────────────────────────── -->
+  <section class="faq-body">
+    <div class="container">
+      <div class="faq-layout">
+
+        <!-- Sidebar -->
+        <nav class="faq-sidebar" aria-label="FAQ categories">
+          <div class="faq-sidebar-label">Categories</div>
+          <ul class="faq-sidebar-nav">
+            <li><a href="#cat-shopping"><span class="cat-dot dot-blue"></span>Shopping &amp; Products</a></li>
+            <li><a href="#cat-pricing"><span class="cat-dot dot-yellow"></span>Pricing &amp; Deals</a></li>
+            <li><a href="#cat-returns"><span class="cat-dot dot-green"></span>Returns &amp; Exchanges</a></li>
+            <li><a href="#cat-rewards"><span class="cat-dot dot-purple"></span>Rewards Program</a></li>
+            <li><a href="#cat-store"><span class="cat-dot dot-teal"></span>Store Information</a></li>
+            <li><a href="#cat-giftcards"><span class="cat-dot dot-rose"></span>Gift Cards</a></li>
+          </ul>
+        </nav>
+
+        <!-- Categories -->
+        <div class="faq-categories">
+
+          <!-- Shopping & Products -->
+          <div class="faq-category reveal" id="cat-shopping">
+            <div class="faq-cat-header">
+              <div class="faq-cat-icon icon-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm0 10c-1.66 0-3-1.34-3-3h2c0 .55.45 1 1 1s1-.45 1-1h2c0 1.66-1.34 3-3 3z"/></svg>
+              </div>
+              <div class="faq-cat-title">Shopping &amp; Products</div>
+              <div class="faq-cat-count">5 questions</div>
+            </div>
+
+            <details class="faq-item">
+              <summary>
+                What products do you carry?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>We carry appliances, furniture, clothing, electronics, outdoor gear, tools, kitchenware, and more — all at outlet prices. Inventory varies by location and changes weekly.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Do you have an online store?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>We are primarily in-store only. Visit any of our 20 BC and Alberta locations to shop. Check our <a href="flyer.html" style="color:var(--blue);font-weight:700;">Weekly Deals</a> page for current highlights.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                When does new inventory arrive?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Fresh stock arrives every Thursday at all locations. Members get early access — sign up for the <a href="rewards.html" style="color:var(--blue);font-weight:700;">Rewards Club</a> to stay ahead.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Do you carry brand-name products?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Yes! We carry major name brands across all categories. Our inventory comes from manufacturer overruns, end-of-season stock, and open-box items.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Can I check if a specific item is in stock?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Inventory changes rapidly. Your best bet is to call or visit your nearest store. Our team can check availability for you.</p></div>
+            </details>
+
+          </div>
+
+          <!-- Pricing & Deals -->
+          <div class="faq-category reveal" id="cat-pricing" style="transition-delay:.06s">
+            <div class="faq-cat-header">
+              <div class="faq-cat-icon icon-yellow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+              </div>
+              <div class="faq-cat-title">Pricing &amp; Deals</div>
+              <div class="faq-cat-count">4 questions</div>
+            </div>
+
+            <details class="faq-item">
+              <summary>
+                How are your prices so low?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>We source directly from manufacturers and purchase overstock, clearance, and open-box inventory in volume. Low overhead plus direct sourcing = outlet prices.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                What is your Best Price Promise?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>If you find the exact same item at a lower price at a local competitor, show us proof and we'll beat it. In-store only, verifiable prices only. <a href="best-price-promise.html" style="color:var(--blue);font-weight:700;">Learn more.</a></p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Do prices vary by location?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Yes, prices and availability may vary between locations due to different inventory.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Do you offer senior discounts?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Yes! We have regular Seniors Day events with special discounts. Ask in-store for the current schedule.</p></div>
+            </details>
+
+          </div>
+
+          <!-- Returns & Exchanges -->
+          <div class="faq-category reveal" id="cat-returns" style="transition-delay:.10s">
+            <div class="faq-cat-header">
+              <div class="faq-cat-icon icon-green">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+              </div>
+              <div class="faq-cat-title">Returns &amp; Exchanges</div>
+              <div class="faq-cat-count">4 questions</div>
+            </div>
+
+            <details class="faq-item">
+              <summary>
+                What is your return policy?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Most items can be returned within 30 days of purchase with the original receipt, in original condition. See our full Return Policy for details.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Can I return items by mail?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>We accept in-store returns only. Please bring your item and receipt to any Big Box Outlet location.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                What if my item is defective?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Bring the item and receipt to any location. We'll exchange it or offer store credit at our team's discretion.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Can I exchange for a different size?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Yes, exchanges are available within 30 days with receipt, subject to availability.</p></div>
+            </details>
+
+          </div>
+
+          <!-- Rewards Program -->
+          <div class="faq-category reveal" id="cat-rewards" style="transition-delay:.14s">
+            <div class="faq-cat-header">
+              <div class="faq-cat-icon icon-purple">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l2.75 5.57L21 7.57l-4.5 4.38 1.06 6.18L12 15.27l-5.56 2.86 1.06-6.18L3 7.57l6.25-1L12 1z"/></svg>
+              </div>
+              <div class="faq-cat-title">Rewards Program</div>
+              <div class="faq-cat-count">5 questions</div>
+            </div>
+
+            <details class="faq-item">
+              <summary>
+                Is the Rewards program free?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Yes — signing up is completely free. No credit card needed.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                How do I earn points?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>You earn 1 point for every $2 spent in-store at any Big Box Outlet Store location.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                How do I redeem points?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Points can be redeemed for savings on future in-store purchases. Ask at the checkout counter.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Do points expire?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Points do not expire as long as your account is active.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                How do I sign up?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Sign up in-store at any location, or visit bigboxoutletstore.ca to create your account online.</p></div>
+            </details>
+
+          </div>
+
+          <!-- Store Information -->
+          <div class="faq-category reveal" id="cat-store" style="transition-delay:.18s">
+            <div class="faq-cat-header">
+              <div class="faq-cat-icon icon-teal">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </div>
+              <div class="faq-cat-title">Store Information</div>
+              <div class="faq-cat-count">4 questions</div>
+            </div>
+
+            <details class="faq-item">
+              <summary>
+                How many locations do you have?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>We have 20 locations across BC and Alberta. Use our <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;">Store Locator</a> to find the one nearest you.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                What are your store hours?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Hours vary by location. Check the <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;">Store Locator</a> for your nearest store's hours.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Do you have wheelchair-accessible stores?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Yes. All locations have accessible parking, wide aisles, and staff available to assist. See our <a href="accessibility.html" style="color:var(--blue);font-weight:700;">Accessibility</a> page for details.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Do you offer delivery?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>We do not currently offer delivery. All purchases must be picked up in-store.</p></div>
+            </details>
+
+          </div>
+
+          <!-- Gift Cards -->
+          <div class="faq-category reveal" id="cat-giftcards" style="transition-delay:.22s">
+            <div class="faq-cat-header">
+              <div class="faq-cat-icon icon-rose">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.07-.23.18-.45.18-.7C18 3.48 16.52 2 14.7 2c-.9 0-1.68.37-2.24.96L12 3.45l-.46-.49A3.18 3.18 0 0 0 9.3 2C7.48 2 6 3.48 6 5.3c0 .25.11.47.18.7H4C2.9 6 2 6.9 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-5.3-2.5c.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3h-2.59l.01-.09C12.15 4.65 13.26 3.5 14.7 3.5zM9.3 3.5c1.44 0 2.55 1.15 2.58 1.21l.01.09H9.3C8.58 4.8 8 4.22 8 3.5 8 2.78 8.58 3.5 9.3 3.5zM11 19H4V8h7v11zm9 0h-7V8h7v11z"/></svg>
+              </div>
+              <div class="faq-cat-title">Gift Cards</div>
+              <div class="faq-cat-count">3 questions</div>
+            </div>
+
+            <details class="faq-item">
+              <summary>
+                Do you sell gift cards?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Yes! Big Box Outlet Store gift cards are available for purchase in-store at all locations. <a href="gift-cards.html" style="color:var(--blue);font-weight:700;">Learn more about gift cards.</a></p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Can I check my gift card balance?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>Visit any store location and a team member will check your balance for you.</p></div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                Do gift cards expire?
+                <span class="faq-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+              </summary>
+              <div class="faq-answer"><p>No. Big Box Outlet Store gift cards do not expire.</p></div>
+            </details>
+
+          </div>
+
+        </div><!-- /faq-categories -->
+      </div><!-- /faq-layout -->
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Big Box Outlet" />
+        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About Us</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Customer Service</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location.</div>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<script>
+(function(){
+  var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
+  if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
+  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
+  var btn=document.getElementById('scrollTop');
+  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+})();
+</script>
+</body>
+</html>
