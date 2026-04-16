@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Big Box Life — Electronics, Outdoor &amp; More | Big Box Outlet</title>
+  <title>Big Box Electronics — TVs, E-Bikes &amp; More | Big Box Outlet</title>
   <link rel="stylesheet" href="base.css" />
   <style>
-    :root { --page-color: #FF8040; --page-color-dark: #E06020; }
+    :root { --page-color: #003DA6; --page-color-dark: #00297a; }
     .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
     .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
     .navbar-nav a { color: var(--blue) !important; }
@@ -15,6 +15,292 @@
     .btn-find-store { background: var(--blue) !important; color: #fff !important; }
     .btn-member { background: var(--yellow) !important; color: var(--blue-dark) !important; }
     .nav-toggle span { background: var(--blue) !important; }
+
+    /* ── PAGE HERO (white editorial) ──────────────────── */
+    .cat-hero {
+      background: #fff;
+      padding-top: calc(72px + 48px);
+      padding-bottom: 0;
+    }
+    .cat-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 80px;
+      align-items: end;
+      padding-bottom: 48px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    .cat-hero-eyebrow-pill {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: #8B6914;
+      background: #FFFBDD; border: 1.5px solid #FFE055;
+      border-radius: 20px; padding: 4px 14px; margin-bottom: 20px;
+    }
+    .cat-hero-headline {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      color: #0d1b2a; line-height: .98; letter-spacing: -.03em; margin: 0;
+    }
+    .cat-hero-headline span { color: var(--blue); }
+    .cat-hero-right { padding-bottom: 8px; }
+    .cat-hero-tagline {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1.25rem; color: #0d1b2a; line-height: 1.25; margin-bottom: 12px;
+    }
+    .cat-hero-sub {
+      font-size: 1.02rem; color: #6b7280; line-height: 1.76; margin-bottom: 28px;
+    }
+    .cat-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-blue {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .95rem; padding: 13px 28px; border-radius: 50px;
+      text-decoration: none; transition: background .2s, transform .15s;
+    }
+    .btn-blue:hover { background: var(--blue-dark); transform: translateY(-2px); }
+    .btn-outline-blue {
+      display: inline-flex; align-items: center;
+      border: 2px solid var(--blue); color: var(--blue);
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .95rem; padding: 13px 28px; border-radius: 50px;
+      text-decoration: none; transition: border-color .2s, background .2s;
+    }
+    .btn-outline-blue:hover { background: rgba(0,61,165,.06); }
+
+    /* ── SECTION NAV PILLS ──────────────────────────── */
+    .cat-section-nav {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding: 20px 0 0;
+    }
+    .cat-section-nav a {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .82rem; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--blue); text-decoration: none;
+      padding: 7px 18px; border-radius: 50px;
+      border: 1.5px solid #c7d4ef;
+      transition: background .2s, border-color .2s;
+    }
+    .cat-section-nav a:hover { background: #e8edf8; border-color: var(--blue); }
+
+    /* ══ E-BIKES PROMO SECTION ════════════════════════ */
+    .ebike-promo {
+      background: #060f1e;
+      position: relative; overflow: hidden;
+    }
+    .ebike-promo::before {
+      content: '';
+      position: absolute; right: -80px; top: -80px;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: rgba(0,61,165,.3); pointer-events: none;
+    }
+    .ebike-promo-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 560px;
+      position: relative; z-index: 1;
+    }
+    .ebike-promo-left {
+      padding: 72px 56px 72px 0;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .ebike-discount-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.1rem; letter-spacing: -.01em;
+      padding: 10px 22px; border-radius: 50px;
+      width: fit-content; margin-bottom: 24px;
+    }
+    .ebike-discount-badge svg { width: 18px; height: 18px; fill: var(--blue-dark); }
+    .ebike-eyebrow {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+      color: rgba(255,255,255,.5); margin-bottom: 14px;
+    }
+    .ebike-headline {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: #fff; line-height: .96; letter-spacing: -.03em;
+      margin-bottom: 20px;
+    }
+    .ebike-headline span { color: var(--yellow); }
+    .ebike-sub {
+      font-size: 1.02rem; color: rgba(255,255,255,.65);
+      line-height: 1.75; margin-bottom: 28px; max-width: 440px;
+    }
+    .ebike-checklist {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 36px;
+    }
+    .ebike-checklist li {
+      list-style: none;
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Work Sans', sans-serif; font-weight: 600;
+      font-size: .95rem; color: rgba(255,255,255,.8);
+    }
+    .ebike-checklist li::before {
+      content: '';
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--yellow);
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300297a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: 12px 12px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .ebike-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1rem; padding: 15px 32px; border-radius: 50px;
+      text-decoration: none; width: fit-content;
+      transition: background .2s, transform .15s;
+    }
+    .ebike-cta:hover { background: #e6c400; transform: translateY(-2px); }
+    .ebike-cta svg { width: 16px; height: 16px; fill: var(--blue-dark); }
+    .ebike-promo-right {
+      position: relative; overflow: hidden;
+    }
+    .ebike-promo-right img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+    /* "While Quantities Last" ribbon */
+    .ebike-ribbon {
+      position: absolute; top: 28px; right: -36px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: 8px 56px; transform: rotate(35deg);
+      box-shadow: 0 2px 12px rgba(0,0,0,.3);
+    }
+
+    /* ── CATEGORY SECTION ───────────────────────────── */
+    .cat-section { padding: 72px 0 60px; }
+    .cat-section:nth-child(odd) { background: #fff; }
+    .cat-section:nth-child(even) { background: #f5f7fc; }
+
+    .cat-section-intro {
+      display: flex; align-items: baseline; gap: 24px;
+      margin-bottom: 36px; flex-wrap: wrap;
+    }
+    .cat-section-num {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      color: var(--yellow); line-height: 1;
+      -webkit-text-stroke: 2px var(--blue);
+      text-stroke: 2px var(--blue);
+      letter-spacing: -.04em; flex-shrink: 0;
+    }
+    .cat-section-titles { flex: 1; }
+    .cat-section-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 4px;
+    }
+    .cat-section-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2rem, 4.5vw, 3.4rem); color: #0d1b2a;
+      line-height: 1.0; margin: 0;
+    }
+    .cat-section-sub { font-size: 1.05rem; color: #6b7280; margin-top: 6px; }
+
+    /* ── SECTION LIFESTYLE IMAGE ────────────────────── */
+    .cat-section-img {
+      width: 100%; height: 460px; border-radius: 16px;
+      overflow: hidden; margin-bottom: 36px;
+    }
+    .cat-section-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    /* ── AUTO-SCROLL CAROUSEL ────────────────────────── */
+    .auto-carousel-outer {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+    }
+    .cat-carousel {
+      display: flex; gap: 16px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 14px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--blue) #e5e7eb;
+    }
+    .cat-carousel::-webkit-scrollbar { height: 4px; }
+    .cat-carousel::-webkit-scrollbar-track { background: #f0f2f8; border-radius: 2px; }
+    .cat-carousel::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+    .cat-carousel-active {
+      overflow-x: visible !important;
+      scroll-snap-type: none !important;
+      scrollbar-width: none !important;
+      width: max-content;
+      animation: catScroll 50s linear infinite;
+    }
+    .cat-carousel-active::-webkit-scrollbar { display: none !important; }
+    .cat-carousel-active:hover { animation-play-state: paused; }
+    @keyframes catScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .auto-carousel-outer { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+      .cat-carousel-active { animation: none !important; overflow-x: auto !important; width: auto !important; }
+    }
+
+    .cat-item {
+      flex: 0 0 190px; scroll-snap-align: start;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      background: #fff; border-radius: 16px;
+      padding: 20px 14px 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      border: 1.5px solid #eef0f8;
+      transition: box-shadow .2s, transform .2s;
+      cursor: default;
+    }
+    .cat-item:hover {
+      box-shadow: 0 10px 28px rgba(0,61,165,.11);
+      transform: translateY(-4px);
+      border-color: #c7d4ef;
+    }
+    .cat-item-visual {
+      width: 152px; height: 126px; border-radius: 10px;
+      overflow: hidden; background: #f5f7fc;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cat-item-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .cat-item-ph {
+      width: 152px; height: 126px; border-radius: 10px;
+      background: linear-gradient(135deg, #e8edf8 0%, #dce5f4 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cat-item-ph svg { width: 48px; height: 48px; opacity: .26; fill: var(--blue); }
+    .cat-item-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .88rem; color: var(--blue-dark);
+      text-align: center; line-height: 1.3;
+    }
+
+    @media (max-width: 900px) {
+      .cat-hero-inner { grid-template-columns: 1fr; gap: 24px; }
+      .ebike-promo-inner { grid-template-columns: 1fr; }
+      .ebike-promo-left { padding: 56px 0 0; }
+      .ebike-promo-right { height: 320px; }
+      .ebike-ribbon { display: none; }
+    }
+    @media (max-width: 768px) {
+      .cat-hero { padding-top: calc(64px + 32px); }
+      .cat-section-img { height: 260px; }
+      .cat-item { flex: 0 0 158px; }
+      .cat-item-visual, .cat-item-ph { width: 126px; height: 104px; }
+    }
   </style>
 </head>
 <body>
@@ -46,101 +332,271 @@
   </div>
 </nav>
 
-<!-- ── MAIN CONTENT ──────────────────────────────────── -->
 <main>
 
-  <!-- 1. Hero -->
-  <section class="sub-hero">
-    <div class="sub-hero-accent sub-hero-accent-1"></div>
-    <div class="sub-hero-accent sub-hero-accent-2"></div>
+  <!-- ── PAGE HERO ─────────────────────────────────────── -->
+  <section class="cat-hero">
     <div class="container">
-      <div class="sub-hero-inner">
-        <div class="sub-hero-brand">
-          <div class="sub-hero-brand-box">BIG<br>BOX</div>
-          <div class="sub-hero-brand-tab">Life</div>
-        </div>
-        <h1 class="sub-hero-headline">Everything You Need<br><span style="color:#FF8040">to Live Well</span></h1>
-        <p class="sub-hero-sub">Electronics, outdoor gear, sports equipment, tools and more — all the essentials of everyday life at outlet prices.</p>
-        <div class="sub-hero-actions">
-          <a href="https://bigboxoutletstore.ca" class="btn btn-primary" target="_blank" rel="noopener">Shop Big Box Life</a>
-          <a href="https://bigboxoutletstore.ca/locations" class="btn btn-outline" target="_blank" rel="noopener">Find a Store</a>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="cat-hero-inner">
 
-  <!-- 2. Product Chips -->
-  <section class="products-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">What's In Store</span>
-        <h2 class="section-heading">Browse Life Categories</h2>
-      </div>
-      <div class="product-grid reveal" style="transition-delay:.1s">
-        <span class="product-chip">TVs &amp; Displays</span>
-        <span class="product-chip">Headphones &amp; Audio</span>
-        <span class="product-chip">Smart Home</span>
-        <span class="product-chip">Outdoor &amp; Camping</span>
-        <span class="product-chip">Sports &amp; Fitness</span>
-        <span class="product-chip">Power Tools</span>
-        <span class="product-chip">Hand Tools</span>
-        <span class="product-chip">Health &amp; Beauty</span>
-        <span class="product-chip">Toys &amp; Games</span>
-        <span class="product-chip">Seasonal Décor</span>
-        <span class="product-chip">Pet Supplies</span>
-        <span class="product-chip">Luggage &amp; Travel</span>
-      </div>
-    </div>
-  </section>
+        <div>
+          <div class="cat-hero-eyebrow-pill">Big Box Electronics</div>
+          <h1 class="cat-hero-headline">Live more.<br><span>Spend less.</span></h1>
+        </div>
 
-  <!-- 3. Value Props -->
-  <section class="value-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">Why Big Box Life</span>
-        <h2 class="section-heading">Live More for Less</h2>
-      </div>
-      <div class="value-grid">
-        <div class="value-card reveal">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="cat-hero-right">
+          <p class="cat-hero-tagline">Electronics, outdoor gear, tools &amp; more.</p>
+          <p class="cat-hero-sub">TVs, e-bikes, smart home, power tools, health &amp; beauty — all the things that make everyday life better, at outlet prices. New stock hits the floor every Thursday at all 20 Big Box Outlet locations.</p>
+          <div class="cat-hero-actions">
+            <a href="https://bigboxoutletstore.ca/locations" class="btn-blue" target="_blank" rel="noopener">Find a Store</a>
+            <a href="flyer.html" class="btn-outline-blue">Weekly Deals</a>
           </div>
-          <div class="value-title">More Than Appliances</div>
-          <div class="value-desc">Electronics, tools, outdoor gear and seasonal items. One stop for everything life throws at you — at prices that make sense.</div>
         </div>
-        <div class="value-card reveal" style="transition-delay:.1s">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+
+      </div>
+
+      <nav class="cat-section-nav" aria-label="Jump to section">
+        <a href="#ebikes">E-Bikes &amp; Scooters</a>
+        <a href="#electronics">Electronics</a>
+        <a href="#outdoor">Outdoor &amp; Sporting</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- E-BIKES PROMO — 20% OFF                           -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <section class="ebike-promo" id="ebikes">
+    <div class="container">
+      <div class="ebike-promo-inner">
+
+        <div class="ebike-promo-left">
+          <div class="ebike-discount-badge">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 1.5a2 2 0 0 1 5 0l.5.5h3a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h3l.5-.5zM4 7h16l-1.5 14H5.5L4 7z" opacity=".8"/><text x="7" y="18" font-family="Work Sans" font-weight="900" font-size="7" fill="#00297a">20%</text></svg>
+            20% OFF — This Week Only
           </div>
-          <div class="value-title">Recertified Tech</div>
-          <div class="value-desc">Our electronics are tested and recertified by our team. Backed by our quality inspection guarantee so you can buy with confidence.</div>
+          <div class="ebike-eyebrow">Limited Time Offer</div>
+          <h2 class="ebike-headline">E-Bikes &amp;<br><span>Electric Scooters</span></h2>
+          <p class="ebike-sub">Get moving for less. Our full lineup of e-bikes and electric scooters is 20% off this week — in-store only while quantities last. The perfect ride for commuting, recreation, or just getting outside more.</p>
+          <ul class="ebike-checklist">
+            <li>All brands and models included</li>
+            <li>In-store only — all 20 locations</li>
+            <li>While quantities last</li>
+            <li>Best Price Promise applies</li>
+          </ul>
+          <a href="https://bigboxoutletstore.ca/locations" class="ebike-cta" target="_blank" rel="noopener">
+            Find a Store Near You
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M12 5l7 7-7 7" stroke="#00297a" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+          </a>
         </div>
-        <div class="value-card reveal" style="transition-delay:.2s">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-          </div>
-          <div class="value-title">Deals Change Weekly</div>
-          <div class="value-desc">Stock rotates constantly. Join the Rewards Club or follow us on social to stay ahead of the best finds before they're gone.</div>
+
+        <div class="ebike-promo-right">
+          <img src="images/store/IMG_9265.jpg" alt="E-bikes and electric scooters at Big Box Outlet — 20% off" />
+          <div class="ebike-ribbon">While Quantities Last</div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- 4. Brand Promise -->
-  <section class="brand-promise">
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION 1: ELECTRONICS                            -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <section class="cat-section" id="electronics">
     <div class="container">
-      <div class="brand-promise-eyebrow">Our Promise</div>
-      <h2>Life is expensive enough.<br>The stuff that makes it worth living shouldn't be.</h2>
-      <p>Life is expensive enough. The stuff that makes it worth living shouldn't be.</p>
-      <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store Near You</a>
+      <div class="cat-section-intro">
+        <div class="cat-section-num">01</div>
+        <div class="cat-section-titles">
+          <div class="cat-section-label">Electronics</div>
+          <h2 class="cat-section-title">For Connecting</h2>
+          <p class="cat-section-sub">the tech you want, at prices that make sense.</p>
+        </div>
+      </div>
+
+      <div class="cat-section-img">
+        <img src="images/store/DSC_8500.jpg" alt="Electronics and tech at Big Box Outlet" />
+      </div>
+
+      <div class="cat-carousel" role="list" aria-label="Electronics products">
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- TV icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="10" width="56" height="36" rx="4"/><rect x="20" y="46" width="24" height="6" rx="2"/><rect x="14" y="52" width="36" height="4" rx="2"/></svg>
+          </div>
+          <span class="cat-item-label">TVs &amp; Displays</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Headphones icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M16 36 L16 30 Q16 14 32 14 Q48 14 48 30 L48 36" fill="none" stroke="#003DA6" stroke-width="4"/><rect x="8" y="34" width="12" height="16" rx="4"/><rect x="44" y="34" width="12" height="16" rx="4"/></svg>
+          </div>
+          <span class="cat-item-label">Headphones &amp; Audio</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Smart home / hub icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="18"/><circle cx="32" cy="32" r="10" opacity=".5"/><circle cx="32" cy="32" r="4"/><path d="M32 14 L32 8M32 56 L32 50M14 32 L8 32M56 32 L50 32" stroke="#003DA6" stroke-width="3" fill="none" opacity=".6"/></svg>
+          </div>
+          <span class="cat-item-label">Smart Home</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Laptop icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="12" width="48" height="32" rx="4"/><rect x="12" y="16" width="40" height="24" rx="2" opacity=".45"/><rect x="2" y="44" width="60" height="8" rx="4"/></svg>
+          </div>
+          <span class="cat-item-label">Laptops &amp; Tablets</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Gaming controller -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M8 28 Q6 44 16 48 Q24 52 28 44 L36 44 Q40 52 48 48 Q58 44 56 28 Q54 18 44 18 L20 18 Q10 18 8 28 Z"/><line x1="20" y1="28" x2="20" y2="38" stroke="#fff" stroke-width="3" opacity=".5"/><line x1="15" y1="33" x2="25" y2="33" stroke="#fff" stroke-width="3" opacity=".5"/><circle cx="42" cy="29" r="3" fill="#fff" opacity=".5"/><circle cx="48" cy="35" r="3" fill="#fff" opacity=".5"/></svg>
+          </div>
+          <span class="cat-item-label">Gaming &amp; Toys</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Camera icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="18" width="56" height="38" rx="5"/><circle cx="32" cy="37" r="12" opacity=".4"/><circle cx="32" cy="37" r="7" opacity=".55"/><rect x="20" y="10" width="24" height="10" rx="4"/></svg>
+          </div>
+          <span class="cat-item-label">Cameras &amp; Photo</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-visual">
+            <img src="images/store/DSC_8320.jpg" alt="Bikes" loading="lazy" />
+          </div>
+          <span class="cat-item-label">Bikes</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-visual">
+            <img src="images/store/IMG_9265.jpg" alt="E-Bikes" loading="lazy" />
+          </div>
+          <span class="cat-item-label">E-Bikes &amp; Scooters</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Vacuum robot -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="36" r="22"/><circle cx="32" cy="36" r="14" opacity=".4"/><circle cx="32" cy="36" r="6" opacity=".6"/><rect x="28" y="8" width="8" height="6" rx="3" opacity=".7"/></svg>
+          </div>
+          <span class="cat-item-label">Robot Vacuums</span>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- 5. CTA Strip -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION 2: OUTDOOR & SPORTING                     -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <section class="cat-section" id="outdoor">
+    <div class="container">
+      <div class="cat-section-intro">
+        <div class="cat-section-num">02</div>
+        <div class="cat-section-titles">
+          <div class="cat-section-label">Outdoor &amp; Sporting</div>
+          <h2 class="cat-section-title">For Getting Out</h2>
+          <p class="cat-section-sub">and staying active.</p>
+        </div>
+      </div>
+
+      <div class="cat-section-img">
+        <img src="images/store/IMG_9320.jpg" alt="Outdoor and sporting goods at Big Box Outlet" />
+      </div>
+
+      <div class="cat-carousel" role="list" aria-label="Outdoor and Sporting products">
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-visual">
+            <img src="images/store/IMG_9265.jpg" alt="E-Bikes and Scooters" loading="lazy" />
+          </div>
+          <span class="cat-item-label">E-Bikes &amp; Scooters</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-visual">
+            <img src="images/store/DSC_8320.jpg" alt="Bikes" loading="lazy" />
+          </div>
+          <span class="cat-item-label">Bikes</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Tent icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M4 54 L32 10 L60 54 Z"/><path d="M22 54 L32 30 L42 54 Z" opacity=".5"/></svg>
+          </div>
+          <span class="cat-item-label">Camping &amp; Outdoor</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Dumbbell icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="26" width="10" height="12" rx="3"/><rect x="48" y="26" width="10" height="12" rx="3"/><rect x="4" y="22" width="12" height="20" rx="4"/><rect x="48" y="22" width="12" height="20" rx="4"/><rect x="16" y="30" width="32" height="4" rx="2"/></svg>
+          </div>
+          <span class="cat-item-label">Sports &amp; Fitness</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Power drill icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="26" width="30" height="16" rx="4"/><rect x="36" y="28" width="20" height="12" rx="4"/><rect x="14" y="42" width="14" height="12" rx="3"/><line x1="56" y1="34" x2="60" y2="34" stroke="#003DA6" stroke-width="4" stroke-linecap="round"/></svg>
+          </div>
+          <span class="cat-item-label">Power Tools</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-visual">
+            <img src="images/store/IMG_9107.jpg" alt="Hardware and Extension Cords" loading="lazy" />
+          </div>
+          <span class="cat-item-label">Hardware &amp; Electrical</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- Lawn mower -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="24" width="36" height="18" rx="4"/><circle cx="16" cy="48" r="8"/><circle cx="48" cy="48" r="8"/><rect x="44" y="18" width="4" height="16" rx="2" transform="rotate(-15 44 18)"/></svg>
+          </div>
+          <span class="cat-item-label">Lawn &amp; Garden</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph">
+            <!-- BBQ grill icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M10 28 Q10 14 32 14 Q54 14 54 28" fill="none" stroke="#003DA6" stroke-width="4"/><ellipse cx="32" cy="28" rx="22" ry="6"/><rect x="30" y="34" width="4" height="14" rx="2"/><rect x="16" y="48" width="32" height="6" rx="2"/><line x1="20" y1="48" x2="16" y2="58" stroke="#003DA6" stroke-width="3"/><line x1="44" y1="48" x2="48" y2="58" stroke="#003DA6" stroke-width="3"/></svg>
+          </div>
+          <span class="cat-item-label">BBQs &amp; Patio</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-visual">
+            <img src="images/store/IMG_9125.jpg" alt="Health and Beauty" loading="lazy" />
+          </div>
+          <span class="cat-item-label">Health &amp; Beauty</span>
+        </div>
+
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-visual">
+            <img src="images/store/IMG_9014.jpg" alt="Home Decor" loading="lazy" />
+          </div>
+          <span class="cat-item-label">Home Décor</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA STRIP ──────────────────────────────────────── -->
   <section class="cta-strip">
     <div class="container">
-      <h2>Find Big Box Life Near You</h2>
-      <p>Electronics, outdoor and lifestyle products in-store at all 20 locations.</p>
+      <h2>Find Big Box Electronics Near You</h2>
+      <p>E-bikes, tech, tools and more — in-store at all 20 locations across BC and Alberta.</p>
       <div class="cta-strip-actions">
         <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
         <a href="index.html#categories" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Browse All Categories</a>
@@ -162,6 +618,7 @@
         <div class="footer-col-title">Explore</div>
         <ul class="footer-links">
           <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="deals.html">Flash Sale</a></li>
           <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
           <li><a href="rewards.html">Rewards</a></li>
         </ul>
@@ -178,15 +635,16 @@
         <div class="footer-col-title">Customer Service</div>
         <ul class="footer-links">
           <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
+          <li><a href="returns.html">Return Policy</a></li>
+          <li><a href="faq.html">FAQ</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Legal</div>
         <ul class="footer-links">
           <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Terms of Use</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Accessibility</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
         </ul>
       </div>
       <div>
@@ -208,8 +666,8 @@
       <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location.</div>
       <div class="footer-bottom-links">
         <a href="privacy.html">Privacy Policy</a>
-        <a href="https://bigboxoutletstore.ca">Terms of Use</a>
-        <a href="https://bigboxoutletstore.ca">Accessibility</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="accessibility.html">Accessibility</a>
       </div>
     </div>
   </div>
@@ -227,8 +685,28 @@
   if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
   var btn=document.getElementById('scrollTop');
   if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+
+  // ── Auto-scroll product carousels ──────────────────
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('.cat-carousel').forEach(function(carousel){
+      Array.from(carousel.children).forEach(function(item){
+        var clone=item.cloneNode(true);
+        clone.setAttribute('aria-hidden','true');
+        carousel.appendChild(clone);
+      });
+      carousel.classList.add('cat-carousel-active');
+      var outer=document.createElement('div');
+      outer.className='auto-carousel-outer';
+      if(carousel.getAttribute('role')){
+        outer.setAttribute('role',carousel.getAttribute('role'));
+        outer.setAttribute('aria-label',carousel.getAttribute('aria-label')||'');
+        carousel.removeAttribute('role');carousel.removeAttribute('aria-label');
+      }
+      carousel.parentNode.insertBefore(outer,carousel);
+      outer.appendChild(carousel);
+    });
+  }
 })();
 </script>
-
 </body>
 </html>

@@ -183,16 +183,33 @@
       font-size: .88rem; color: var(--blue-dark);
       text-align: center; line-height: 1.3;
     }
-    .cat-scroll-hint {
-      display: flex; gap: 8px; justify-content: flex-end;
-      margin-bottom: 14px;
+    .cat-scroll-hint { display: none; } /* hidden — auto-scroll is on */
+
+    /* ── AUTO-SCROLL CAROUSEL ────────────────────────── */
+    .auto-carousel-outer {
+      overflow: hidden;
+      /* fade left/right edges */
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
     }
-    .cat-scroll-hint span {
-      font-family: 'Work Sans', sans-serif; font-size: .78rem;
-      color: var(--blue); font-weight: 600;
-      display: flex; align-items: center; gap: 6px;
+    .cat-carousel-active {
+      overflow-x: visible !important;
+      scroll-snap-type: none !important;
+      scrollbar-width: none !important;
+      width: max-content;
+      animation: catScroll 52s linear infinite;
     }
-    .cat-scroll-hint svg { width: 16px; height: 16px; fill: var(--blue); }
+    .cat-carousel-active::-webkit-scrollbar { display: none !important; }
+    .cat-carousel-active:hover { animation-play-state: paused; }
+    @keyframes catScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .auto-carousel-outer { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+      .cat-carousel-active { animation: none !important; overflow-x: auto !important; width: auto !important; }
+      .cat-scroll-hint { display: flex !important; }
+    }
 
     @media (max-width: 900px) {
       .cat-hero-inner { grid-template-columns: 1fr; gap: 24px; }
@@ -667,6 +684,30 @@
   if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
   var btn=document.getElementById('scrollTop');
   if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+
+  // ── Auto-scroll product carousels ──────────────────
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('.cat-carousel').forEach(function(carousel){
+      // Duplicate items for seamless loop
+      Array.from(carousel.children).forEach(function(item){
+        var clone=item.cloneNode(true);
+        clone.setAttribute('aria-hidden','true');
+        carousel.appendChild(clone);
+      });
+      // Add active class (overrides overflow/snap)
+      carousel.classList.add('cat-carousel-active');
+      // Wrap in outer clip+fade container
+      var outer=document.createElement('div');
+      outer.className='auto-carousel-outer';
+      if(carousel.getAttribute('role')){
+        outer.setAttribute('role',carousel.getAttribute('role'));
+        outer.setAttribute('aria-label',carousel.getAttribute('aria-label')||'');
+        carousel.removeAttribute('role');carousel.removeAttribute('aria-label');
+      }
+      carousel.parentNode.insertBefore(outer,carousel);
+      outer.appendChild(carousel);
+    });
+  }
 })();
 </script>
 </body>
