@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find a Store — Big Box Outlet Store</title>
+  <meta name="description" content="Find your nearest Big Box Outlet Store. 20 locations across BC and Alberta. New inventory every Thursday." />
+  <link rel="stylesheet" href="base.css" />
+  <style>
+    /* ── NAV ─────────────────────────────────────────── */
+    .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
+    .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
+    .navbar-nav a { color: var(--blue) !important; }
+    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
+    .navbar-nav a.active { color: var(--blue-dark) !important; font-weight: 700; }
+    .btn-find-store { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .btn-member { background: var(--blue) !important; color: #fff !important; }
+    .nav-toggle span { background: var(--blue) !important; }
+
+    /* ══ HERO ═════════════════════════════════════════ */
+    .stores-hero {
+      background: var(--blue);
+      padding: calc(72px + 48px) 0 48px;
+      position: relative; overflow: hidden;
+    }
+    .stores-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 80%, rgba(255,218,0,.07) 0%, transparent 55%);
+    }
+    .stores-hero-inner {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 32px; align-items: end;
+    }
+    .stores-hero-eyebrow {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--yellow); background: rgba(255,218,0,.12);
+      border: 1px solid rgba(255,218,0,.25); border-radius: 20px;
+      padding: 4px 14px; margin-bottom: 16px;
+    }
+    .stores-hero-title {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      color: #fff; line-height: .95; letter-spacing: -.03em;
+      margin-bottom: 14px;
+    }
+    .stores-hero-title span { color: var(--yellow); }
+    .stores-hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,.65); line-height: 1.65;
+    }
+    .stores-hero-stat {
+      text-align: right; padding-bottom: 6px;
+    }
+    .stores-hero-stat-num {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 3.5rem; color: var(--yellow); line-height: 1; letter-spacing: -.03em;
+    }
+    .stores-hero-stat-label {
+      font-size: .85rem; color: rgba(255,255,255,.5);
+      font-family: 'Work Sans', sans-serif; font-weight: 600;
+      margin-top: 4px;
+    }
+    @media (max-width: 640px) {
+      .stores-hero-inner { grid-template-columns: 1fr; }
+      .stores-hero-stat { text-align: left; }
+    }
+
+    /* ══ PROVINCE TABS ════════════════════════════════ */
+    .province-bar {
+      background: #fff;
+      border-bottom: 1.5px solid var(--gray-200);
+      position: sticky; top: 72px; z-index: 90;
+    }
+    .province-bar-inner {
+      display: flex; align-items: center; gap: 0;
+      padding: 0;
+    }
+    .province-tab {
+      display: flex; align-items: center; gap: 8px;
+      padding: 16px 28px;
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .88rem; color: var(--gray-500);
+      border-bottom: 3px solid transparent;
+      cursor: pointer; background: none; border-top: none;
+      border-left: none; border-right: none;
+      transition: color .18s, border-color .18s;
+      white-space: nowrap;
+    }
+    .province-tab:hover { color: var(--blue); }
+    .province-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .province-tab .tab-count {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--gray-100); color: var(--gray-500);
+      font-size: .72rem; font-weight: 800;
+      transition: background .18s, color .18s;
+    }
+    .province-tab.active .tab-count {
+      background: var(--blue); color: #fff;
+    }
+    .province-search {
+      margin-left: auto; padding: 8px 16px; display: flex; align-items: center;
+    }
+    .province-search input {
+      padding: 8px 14px 8px 36px; border: 1.5px solid var(--gray-200);
+      border-radius: 50px; font-family: 'Work Sans', sans-serif;
+      font-size: .84rem; color: var(--gray-800); background: #f9fafb;
+      width: 200px; transition: border-color .18s, width .25s;
+    }
+    .province-search input:focus {
+      outline: none; border-color: var(--blue); width: 260px;
+      background: #fff;
+    }
+    .province-search-wrap { position: relative; }
+    .province-search-wrap svg {
+      position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+      width: 16px; height: 16px; fill: var(--gray-400); pointer-events: none;
+    }
+    @media (max-width: 640px) {
+      .province-tab { padding: 13px 16px; font-size: .8rem; }
+      .province-search { display: none; }
+    }
+
+    /* ══ STORES GRID ══════════════════════════════════ */
+    .stores-section {
+      background: #f3f6fa; padding: 48px 0 72px;
+      min-height: 60vh;
+    }
+    .province-panel { display: none; }
+    .province-panel.active { display: block; }
+
+    .province-heading {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.5rem; color: var(--gray-900);
+      margin-bottom: 28px; display: flex; align-items: center; gap: 12px;
+    }
+    .province-heading-badge {
+      font-size: .75rem; font-weight: 700;
+      background: #e8edf5; color: var(--blue);
+      padding: 4px 12px; border-radius: 20px; letter-spacing: .04em;
+    }
+
+    .stores-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .store-card {
+      background: #fff; border: 1.5px solid var(--gray-200);
+      border-radius: 16px; padding: 22px 22px 20px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: box-shadow .22s, border-color .22s, transform .22s;
+    }
+    .store-card:hover {
+      box-shadow: 0 4px 28px rgba(0,61,165,.10);
+      border-color: rgba(0,61,165,.2); transform: translateY(-2px);
+    }
+    .store-card.new-store { border-color: rgba(255,218,0,.5); }
+    .store-card-head {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 10px;
+    }
+    .store-card-name {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.05rem; color: var(--gray-900); line-height: 1.2;
+    }
+    .store-new-badge {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .65rem; letter-spacing: .08em; text-transform: uppercase;
+      background: var(--yellow); color: var(--blue-dark);
+      padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .store-card-info {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .store-info-row {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: .84rem; color: var(--gray-600); line-height: 1.45;
+    }
+    .store-info-row svg {
+      width: 14px; height: 14px; flex-shrink: 0;
+      fill: var(--blue); margin-top: 2px;
+    }
+    .store-card-actions {
+      display: flex; gap: 10px; margin-top: 2px;
+    }
+    .btn-store {
+      flex: 1; display: inline-flex; align-items: center; justify-content: center;
+      gap: 6px; padding: 9px 14px; border-radius: 50px;
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .78rem; text-decoration: none; cursor: pointer;
+      transition: background .18s, border-color .18s, color .18s;
+      border: 1.5px solid;
+    }
+    .btn-store svg { width: 13px; height: 13px; }
+    .btn-store-map {
+      background: var(--blue); color: #fff; border-color: var(--blue);
+    }
+    .btn-store-map:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+    .btn-store-deals {
+      background: #fff; color: var(--blue); border-color: var(--gray-200);
+    }
+    .btn-store-deals:hover { border-color: var(--blue); background: #f0f4ff; }
+
+    .no-results {
+      text-align: center; padding: 60px 20px;
+      color: var(--gray-500);
+      font-family: 'Work Sans', sans-serif; font-weight: 600;
+      display: none;
+    }
+    .no-results svg { width: 40px; height: 40px; fill: var(--gray-300); margin-bottom: 12px; }
+
+    /* ══ THURSDAY BANNER ══════════════════════════════ */
+    .thursday-banner {
+      background: var(--yellow);
+      padding: 20px 0;
+    }
+    .thursday-banner-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap; text-align: center;
+    }
+    .thursday-banner svg { width: 22px; height: 22px; fill: var(--blue-dark); flex-shrink: 0; }
+    .thursday-banner-text {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .95rem; color: var(--blue-dark);
+    }
+    .thursday-banner-sub {
+      font-family: 'Work Sans', sans-serif; font-size: .82rem;
+      color: rgba(0,29,78,.65);
+    }
+    .thursday-banner-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue); color: #fff;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .82rem; padding: 9px 20px; border-radius: 50px;
+      text-decoration: none; transition: background .18s;
+    }
+    .thursday-banner-cta:hover { background: var(--blue-dark); }
+
+    /* Responsive */
+    @media (max-width: 960px) { .stores-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 600px) { .stores-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ─────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="Big Box Outlet Store Home">
+        <img src="images/logo.png" alt="Big Box Outlet Store" />
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="flyer.html">Weekly Deals</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="rewards.html" class="btn btn-member">Become a Member</a>
+        <a href="stores.html" class="btn btn-find-store active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Find My Store
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <section class="stores-hero">
+    <div class="container">
+      <div class="stores-hero-inner">
+        <div>
+          <span class="stores-hero-eyebrow">Store Locator</span>
+          <h1 class="stores-hero-title">Find Your Nearest<br><span>Big Box.</span></h1>
+          <p class="stores-hero-sub">20 locations across BC and Alberta — with new stores opening soon. New inventory arrives every Thursday at every location.</p>
+        </div>
+        <div class="stores-hero-stat">
+          <div class="stores-hero-stat-num">20</div>
+          <div class="stores-hero-stat-label">Locations<br>BC &amp; Alberta</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROVINCE TABS ══════════════════════════════════ -->
+  <div class="province-bar" role="navigation" aria-label="Province selector">
+    <div class="container">
+      <div class="province-bar-inner">
+        <button class="province-tab active" data-province="BC" aria-selected="true">
+          British Columbia
+          <span class="tab-count">15</span>
+        </button>
+        <button class="province-tab" data-province="AB" aria-selected="false">
+          Alberta
+          <span class="tab-count">6</span>
+        </button>
+        <div class="province-search">
+          <div class="province-search-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="search" id="storeSearch" placeholder="Search by city…" aria-label="Search stores by city" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ STORES ══════════════════════════════════════════ -->
+  <section class="stores-section">
+    <div class="container">
+
+      <!-- BC Panel -->
+      <div class="province-panel active" id="panel-BC">
+        <div class="province-heading">
+          British Columbia
+          <span class="province-heading-badge">15 Locations</span>
+        </div>
+        <div class="stores-grid" id="grid-BC">
+
+          <div class="store-card reveal" data-city="abbotsford">
+            <div class="store-card-head">
+              <div class="store-card-name">Abbotsford</div>
+            </div>
+            <div class="store-card-info">
+              <div class="store-info-row">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>2070 Sumas Way, Abbotsford, BC V2S 2C5</span>
+              </div>
+              <div class="store-info-row">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+                <span><!-- Add phone number -->(604) XXX-XXXX</span>
+              </div>
+              <div class="store-info-row">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+                <span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span>
+              </div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=2070+Sumas+Way+Abbotsford+BC" target="_blank" rel="noopener" class="btn-store btn-store-map">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Get Directions
+              </a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="burnaby" style="transition-delay:.04s">
+            <div class="store-card-head"><div class="store-card-name">Burnaby</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span><!-- Address TBD -->Burnaby, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(604) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Burnaby+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="chilliwack" style="transition-delay:.08s">
+            <div class="store-card-head"><div class="store-card-name">Chilliwack</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Chilliwack, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(604) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Chilliwack+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="coquitlam" style="transition-delay:.12s">
+            <div class="store-card-head"><div class="store-card-name">Coquitlam</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Coquitlam, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(604) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Coquitlam+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="kelowna" style="transition-delay:.16s">
+            <div class="store-card-head"><div class="store-card-name">Kelowna</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Kelowna, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(250) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Kelowna+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="langley" style="transition-delay:.2s">
+            <div class="store-card-head"><div class="store-card-name">Langley</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>26868 56 Ave, Langley, BC V4W 3X5</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(604) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=26868+56+Ave+Langley+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="maple ridge" style="transition-delay:.24s">
+            <div class="store-card-head"><div class="store-card-name">Maple Ridge</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Maple Ridge, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(604) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Maple+Ridge+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="nanaimo">
+            <div class="store-card-head"><div class="store-card-name">Nanaimo</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Nanaimo, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(250) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Nanaimo+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="penticton">
+            <div class="store-card-head"><div class="store-card-name">Penticton</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Penticton, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(250) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Penticton+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="surrey">
+            <div class="store-card-head"><div class="store-card-name">Surrey</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Surrey, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(604) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Surrey+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="vancouver">
+            <div class="store-card-head"><div class="store-card-name">Vancouver</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>3059 Grandview Hwy, Vancouver, BC V5M 2E3</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(604) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=3059+Grandview+Hwy+Vancouver+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="vernon">
+            <div class="store-card-head"><div class="store-card-name">Vernon</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Vernon, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(250) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Vernon+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="victoria">
+            <div class="store-card-head"><div class="store-card-name">Victoria</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Victoria, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(250) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Victoria+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <!-- Remaining 3 BC locations -->
+          <div class="store-card reveal" data-city="kamloops">
+            <div class="store-card-head"><div class="store-card-name">Kamloops</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Kamloops, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Kamloops+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="mission">
+            <div class="store-card-head"><div class="store-card-name">Mission</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Mission, BC</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Mission+BC" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+        </div><!-- /grid-BC -->
+        <div class="no-results" id="noResultsBC">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <p>No BC stores match "<span id="bcSearchTerm"></span>"</p>
+        </div>
+      </div>
+
+      <!-- Alberta Panel -->
+      <div class="province-panel" id="panel-AB">
+        <div class="province-heading">
+          Alberta
+          <span class="province-heading-badge">6 Locations</span>
+        </div>
+        <div class="stores-grid" id="grid-AB">
+
+          <div class="store-card reveal" data-city="calgary">
+            <div class="store-card-head"><div class="store-card-name">Calgary</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Calgary, AB</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(403) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Calgary+AB" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html?region=AB" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="edmonton" style="transition-delay:.06s">
+            <div class="store-card-head"><div class="store-card-name">Edmonton</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Edmonton, AB — First AB location (Feb 2023)</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(780) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Edmonton+AB" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html?region=AB" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal new-store" data-city="lethbridge" style="transition-delay:.12s">
+            <div class="store-card-head">
+              <div class="store-card-name">Lethbridge</div>
+              <span class="store-new-badge">New</span>
+            </div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Lethbridge, AB — 20th location</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(403) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Lethbridge+AB" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html?region=AB" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="red deer" style="transition-delay:.18s">
+            <div class="store-card-head"><div class="store-card-name">Red Deer</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Red Deer, AB</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(403) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Red+Deer+AB" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html?region=AB" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal new-store" data-city="sherwood park" style="transition-delay:.24s">
+            <div class="store-card-head">
+              <div class="store-card-name">Sherwood Park</div>
+              <span class="store-new-badge">New</span>
+            </div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Sherwood Park Mall, Sherwood Park, AB — 19th location</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(780) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–8PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Sherwood+Park+Mall+Big+Box+Outlet+Store+AB" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html?region=AB" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+          <div class="store-card reveal" data-city="fort mcmurray" style="transition-delay:.30s">
+            <div class="store-card-head"><div class="store-card-name">Fort McMurray</div></div>
+            <div class="store-card-info">
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Fort McMurray, AB</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>(780) XXX-XXXX</span></div>
+              <div class="store-info-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Sat 10AM–7PM · Sun 11AM–6PM</span></div>
+            </div>
+            <div class="store-card-actions">
+              <a href="https://maps.google.com/?q=Big+Box+Outlet+Store+Fort+McMurray+AB" target="_blank" rel="noopener" class="btn-store btn-store-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Get Directions</a>
+              <a href="flyer.html?region=AB" class="btn-store btn-store-deals">This Week's Deals</a>
+            </div>
+          </div>
+
+        </div><!-- /grid-AB -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ THURSDAY BANNER ════════════════════════════════ -->
+  <div class="thursday-banner">
+    <div class="container">
+      <div class="thursday-banner-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+        <div>
+          <div class="thursday-banner-text">New inventory drops every Thursday at every location.</div>
+          <div class="thursday-banner-sub">Members get early access — it pays to be on the list.</div>
+        </div>
+        <a href="flyer.html" class="thursday-banner-cta">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+          View This Week's Deals
+        </a>
+        <a href="rewards.html" class="thursday-banner-cta" style="background:rgba(0,0,0,.25);">Join Rewards</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Big Box Outlet" />
+        <p style="margin-bottom:18px;">Helping People Afford Everyday Life.</p>
+        <div class="footer-connect-icons">
+          <a href="https://www.instagram.com/bboscanada/" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/bboscanada" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@bbos.ca" class="footer-connect-link" aria-label="Email us">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="stores.html">Find A Store</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About Us</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Customer Service</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Terms of Use</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Hours may vary by location — call ahead to confirm.</div>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="https://bigboxoutletstore.ca">Terms of Use</a>
+        <a href="https://bigboxoutletstore.ca">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<script>
+(function(){
+  var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
+  if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
+  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.08});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
+  var btn=document.getElementById('scrollTop');
+  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+
+  /* ── Province tabs ───────────────────────────────── */
+  document.querySelectorAll('.province-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var prov = this.dataset.province;
+      document.querySelectorAll('.province-tab').forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      document.querySelectorAll('.province-panel').forEach(function(p){ p.classList.remove('active'); });
+      this.classList.add('active'); this.setAttribute('aria-selected','true');
+      document.getElementById('panel-'+prov).classList.add('active');
+    });
+  });
+
+  /* ── Auto-select province from flyer.html ?region= param ── */
+  var params = new URLSearchParams(window.location.search);
+  if(params.get('region') === 'AB'){
+    document.querySelector('[data-province="AB"]').click();
+  }
+
+  /* ── City search ─────────────────────────────────── */
+  var searchInput = document.getElementById('storeSearch');
+  if(searchInput){
+    searchInput.addEventListener('input', function(){
+      var q = this.value.toLowerCase().trim();
+      var activePanel = document.querySelector('.province-panel.active');
+      if(!activePanel) return;
+      var cards = activePanel.querySelectorAll('.store-card');
+      var found = 0;
+      cards.forEach(function(card){
+        var city = card.dataset.city || '';
+        var show = !q || city.indexOf(q) >= 0;
+        card.style.display = show ? '' : 'none';
+        if(show) found++;
+      });
+      var noRes = activePanel.querySelector('.no-results');
+      if(noRes){ noRes.style.display = found ? 'none' : 'block'; var span = noRes.querySelector('span'); if(span) span.textContent = q; }
+    });
+  }
+})();
+</script>
+</body>
+</html>

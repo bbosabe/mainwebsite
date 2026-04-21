@@ -4,59 +4,361 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weekly Deals — Big Box Outlet Store</title>
+  <meta name="description" content="Big Box Outlet Store weekly deals and flyer. Fresh deals every Thursday across 20 BC and Alberta locations." />
   <link rel="stylesheet" href="base.css" />
   <style>
-    :root { --page-color: #003DA5; --page-color-dark: #00297a; }
+    /* ── NAV: white ─────────────────────────────────── */
     .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
     .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
     .navbar-nav a { color: var(--blue) !important; }
     .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
-    .navbar-nav a.active { color: var(--blue-dark) !important; }
+    .navbar-nav a.active { color: var(--blue-dark) !important; font-weight: 700; }
     .btn-find-store { background: var(--blue) !important; color: #fff !important; }
     .btn-member { background: var(--yellow) !important; color: var(--blue-dark) !important; }
     .nav-toggle span { background: var(--blue) !important; }
 
-    .eflyer-section {
-      background: #f3f4f6;
-      padding: 96px 0 56px;
+    /* ══ HERO BANNER ══════════════════════════════════ */
+    .flyer-hero {
+      background: var(--blue);
+      padding: calc(72px + 48px) 0 44px;
+      position: relative; overflow: hidden;
     }
-    .eflyer-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      box-shadow: 0 4px 32px rgba(0,0,0,.18);
-      line-height: 0;
-      overflow: visible;
+    .flyer-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(255,218,0,.08) 0%, transparent 60%);
+      pointer-events: none;
     }
-    .eflyer-wrap img {
-      width: 100%;
-      height: auto;
-      display: block;
-      max-width: 100%;
+    .flyer-hero-inner {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; gap: 24px; flex-wrap: wrap;
     }
-    .eflyer-actions {
-      text-align: center;
-      margin-top: 24px;
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
+    .flyer-hero-left {}
+    .flyer-hero-eyebrow {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--yellow); background: rgba(255,218,0,.12);
+      border: 1px solid rgba(255,218,0,.25); border-radius: 20px;
+      padding: 4px 14px; margin-bottom: 16px;
     }
-    .btn-eflyer {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 28px; border-radius: 8px;
+    .flyer-hero-title {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      color: #fff; line-height: .92; letter-spacing: -.03em;
+      margin-bottom: 14px;
+    }
+    .flyer-hero-title span { color: var(--yellow); }
+    .flyer-hero-sub {
+      font-family: 'Work Sans', sans-serif; font-weight: 600;
+      font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,.75);
+    }
+    .flyer-hero-right {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+      padding-bottom: 4px;
+    }
+    .flyer-hero-date {
       font-family: 'Work Sans', sans-serif; font-weight: 700;
-      font-size: .95rem; text-decoration: none;
-      transition: background .2s, transform .15s;
+      font-size: .82rem; color: rgba(255,255,255,.5);
+      letter-spacing: .06em; text-transform: uppercase;
     }
-    .btn-eflyer-primary {
+    .flyer-hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .9rem; padding: 12px 24px; border-radius: 50px;
+      text-decoration: none; transition: transform .15s, box-shadow .15s;
+    }
+    .flyer-hero-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,218,0,.4); }
+
+    /* ══ REGION BAR ═══════════════════════════════════ */
+    .region-bar {
+      background: #fff;
+      border-bottom: 1.5px solid var(--gray-200);
+      position: sticky; top: 72px; z-index: 90;
+    }
+    .region-bar-inner {
+      display: flex; align-items: center; gap: 16px;
+      padding: 12px 0; flex-wrap: wrap;
+    }
+    .region-label-text {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .82rem; color: var(--gray-600); white-space: nowrap;
+    }
+    .region-toggle {
+      display: flex; gap: 8px;
+    }
+    .region-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px; border-radius: 50px;
+      border: 1.5px solid var(--gray-200);
+      background: #fff; color: var(--gray-700);
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .82rem; cursor: pointer;
+      transition: background .18s, border-color .18s, color .18s;
+    }
+    .region-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .region-btn.active {
+      background: var(--blue); border-color: var(--blue); color: #fff;
+    }
+    .region-status {
+      font-family: 'Work Sans', sans-serif; font-size: .76rem;
+      color: var(--gray-400); margin-left: auto; display: flex;
+      align-items: center; gap: 5px;
+    }
+    .region-status svg { width: 12px; height: 12px; fill: var(--gray-400); flex-shrink: 0; }
+    @media (max-width: 640px) {
+      .region-bar { top: 64px; }
+      .region-status { display: none; }
+    }
+
+    /* ══ FLYER SECTION ════════════════════════════════ */
+    .flyer-section {
+      background: #f3f6fa; padding: 44px 0 56px;
+    }
+    .flyer-outer {
+      max-width: 920px; margin: 0 auto;
+    }
+
+    /* Region containers */
+    .flyer-region { display: none; }
+    .flyer-region.active { display: block; }
+
+    /* Image + hotspot layer */
+    .flyer-frame {
+      position: relative; line-height: 0;
+      box-shadow: 0 8px 48px rgba(0,0,0,.18); border-radius: 6px;
+      overflow: hidden;
+    }
+    .flyer-img {
+      width: 100%; height: auto; display: block;
+      border-radius: 6px;
+    }
+    /* Placeholder when no real flyer is uploaded */
+    .flyer-placeholder {
+      width: 100%; aspect-ratio: 8.5 / 11;
+      background: linear-gradient(145deg, #e8edf5 0%, #d0daf0 100%);
+      border-radius: 6px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px;
+    }
+    .flyer-placeholder-icon {
+      width: 64px; height: 64px; fill: rgba(0,61,165,.25);
+    }
+    .flyer-placeholder-text {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: 1.05rem; color: rgba(0,61,165,.45); text-align: center;
+      line-height: 1.5;
+    }
+
+    /* Hotspot overlay */
+    .hotspot-layer {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .hotspot {
+      position: absolute; transform: translate(-50%,-50%);
+      pointer-events: all; text-decoration: none;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .hotspot-dot {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--yellow); border: 3px solid #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,.22);
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.1rem; color: var(--blue-dark); line-height: 1;
+      animation: hotpulse 2.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    .hotspot-dot.blue-dot {
       background: var(--blue); color: #fff;
     }
-    .btn-eflyer-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
-    .btn-eflyer-outline {
+    @keyframes hotpulse {
+      0%, 100% { box-shadow: 0 2px 12px rgba(0,0,0,.22), 0 0 0 0 rgba(255,218,0,.7); }
+      50% { box-shadow: 0 2px 12px rgba(0,0,0,.22), 0 0 0 10px rgba(255,218,0,0); }
+    }
+    .hotspot-tip {
+      position: absolute; bottom: calc(100% + 6px); left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue); color: #fff;
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .72rem; white-space: nowrap;
+      padding: 5px 11px; border-radius: 6px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .18s, transform .18s;
+      transform: translateX(-50%) translateY(4px);
+    }
+    .hotspot-tip::after {
+      content: ''; position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--blue);
+    }
+    .hotspot:hover .hotspot-tip,
+    .hotspot:focus .hotspot-tip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .hotspot-tip.tip-yellow {
+      background: var(--yellow); color: var(--blue-dark);
+    }
+    .hotspot-tip.tip-yellow::after { border-top-color: var(--yellow); }
+
+    /* Mobile hotspot hint */
+    .hotspot-hint {
+      display: none; text-align: center; margin: 12px 0 0;
+      font-size: .78rem; color: var(--gray-500);
+      font-family: 'Work Sans', sans-serif;
+    }
+    @media (max-width: 640px) {
+      .hotspot-hint { display: block; }
+      .hotspot-dot { width: 44px; height: 44px; font-size: 1.2rem; }
+    }
+
+    /* Flyer CTA row */
+    .flyer-actions {
+      display: flex; align-items: center; gap: 14px;
+      justify-content: center; flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .btn-flyer {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; border-radius: 50px;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .9rem; text-decoration: none; cursor: pointer;
+      border: none; transition: transform .15s, box-shadow .15s;
+    }
+    .btn-flyer svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .btn-flyer-yellow {
+      background: var(--yellow); color: var(--blue-dark);
+    }
+    .btn-flyer-yellow:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,218,0,.4); }
+    .btn-flyer-outline {
       background: #fff; color: var(--blue);
       border: 2px solid var(--blue);
     }
-    .btn-eflyer-outline:hover { background: var(--blue); color: #fff; }
+    .btn-flyer-outline:hover { background: var(--blue); color: #fff; transform: translateY(-1px); }
+    .flyer-disclaimer {
+      text-align: center; margin-top: 14px;
+      font-size: .75rem; color: var(--gray-400);
+      font-family: 'Work Sans', sans-serif;
+    }
+
+    /* ══ SHOP THESE DEALS ═════════════════════════════ */
+    .shop-section {
+      background: #fff; padding: 64px 0;
+    }
+    .shop-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; margin-top: 36px;
+    }
+    .shop-card {
+      border-radius: 16px; overflow: hidden;
+      border: 1.5px solid var(--gray-200);
+      text-decoration: none;
+      transition: box-shadow .22s, transform .22s, border-color .22s;
+      background: #fff;
+      display: flex; flex-direction: column;
+    }
+    .shop-card:hover {
+      box-shadow: 0 6px 32px rgba(0,61,165,.12);
+      transform: translateY(-3px); border-color: rgba(0,61,165,.2);
+    }
+    .shop-card-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+    }
+    .shop-card-img-ph {
+      width: 100%; aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .shop-card-img-ph svg { width: 48px; height: 48px; }
+    .shop-card-body {
+      padding: 16px 18px 18px; flex: 1;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .shop-card-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gray-400);
+    }
+    .shop-card-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1.02rem; color: var(--gray-900); line-height: 1.2;
+    }
+    .shop-card-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .8rem; color: var(--blue); margin-top: 4px;
+    }
+    .shop-card-link svg { width: 14px; height: 14px; }
+    @media (max-width: 768px) { .shop-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 480px) { .shop-grid { grid-template-columns: repeat(2,1fr); gap: 12px; } }
+
+    /* ══ SOCIAL STRIP ═════════════════════════════════ */
+    .flyer-social {
+      background: #060f1e; padding: 52px 0;
+    }
+    .flyer-social-inner {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 40px; align-items: center;
+    }
+    .flyer-social-left h3 {
+      font-family: 'Rubik', sans-serif; font-weight: 900;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: #fff; line-height: 1.05; margin-bottom: 10px;
+    }
+    .flyer-social-left h3 span { color: var(--yellow); }
+    .flyer-social-left p {
+      font-size: .95rem; color: rgba(255,255,255,.55);
+      line-height: 1.65; margin-bottom: 20px; max-width: 460px;
+    }
+    .btn-review {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .88rem; padding: 12px 24px; border-radius: 50px;
+      text-decoration: none; transition: background .18s, box-shadow .18s;
+    }
+    .btn-review:hover { background: var(--yellow); box-shadow: 0 4px 20px rgba(255,218,0,.3); }
+    .btn-review svg { width: 16px; height: 16px; fill: #f59e0b; }
+    .flyer-social-right {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 16px;
+    }
+    .social-follow-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+    .social-icons-row {
+      display: flex; gap: 12px;
+    }
+    .social-icon-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      transition: background .18s, border-color .18s, transform .15s;
+    }
+    .social-icon-btn:hover {
+      background: var(--yellow); border-color: var(--yellow);
+      transform: translateY(-2px);
+    }
+    .social-icon-btn svg { width: 20px; height: 20px; }
+    .social-icon-btn:hover svg { stroke: var(--blue-dark); }
+    .social-share-note {
+      font-size: .76rem; color: rgba(255,255,255,.3);
+      text-align: right; font-family: 'Work Sans', sans-serif;
+    }
+    @media (max-width: 768px) {
+      .flyer-social-inner { grid-template-columns: 1fr; gap: 28px; }
+      .flyer-social-right { align-items: flex-start; }
+      .social-share-note { text-align: left; }
+    }
+    @media (max-width: 600px) {
+      .flyer-hero-inner { flex-direction: column; align-items: flex-start; }
+      .flyer-hero-right { align-items: flex-start; }
+      .region-bar-inner { gap: 10px; }
+    }
   </style>
 </head>
 <body>
@@ -75,7 +377,8 @@
         <li><a href="careers.html">Careers</a></li>
       </ul>
       <div class="navbar-actions">
-        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
+        <a href="rewards.html" class="btn btn-member">Become a Member</a>
+        <a href="stores.html" class="btn btn-find-store">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           Find My Store
         </a>
@@ -87,25 +390,251 @@
   </div>
 </nav>
 
-<!-- ── EFLYER VIEWER ──────────────────────────────────── -->
 <main>
-  <section class="eflyer-section">
-    <div style="text-align:center; margin-bottom:32px;">
-      <h1 style="font-family:'Work Sans',sans-serif; font-weight:900; font-size:clamp(2.4rem,6vw,4rem); color:#003DA5; text-transform:uppercase; letter-spacing:-.02em; line-height:1; margin-bottom:10px;">Weekly Deals</h1>
-      <p style="font-family:'Work Sans',sans-serif; font-weight:500; font-size:clamp(1rem,2vw,1.25rem); color:#111827;">New deals every Thursday</p>
-    </div>
-    <div class="eflyer-wrap">
-      <!-- Drop your weekly eflyer JPG at images/eflyer.jpg -->
-      <img src="images/eflyer.jpg" alt="Big Box Outlet Weekly Deals Flyer" />
-    </div>
-    <div class="eflyer-actions">
-      <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn-eflyer btn-eflyer-primary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        Find My Store
-      </a>
-      <a href="rewards.html" class="btn-eflyer btn-eflyer-outline">Join Rewards</a>
+
+  <!-- ══ HERO BANNER ══════════════════════════════════ -->
+  <section class="flyer-hero">
+    <div class="container">
+      <div class="flyer-hero-inner">
+        <div class="flyer-hero-left">
+          <span class="flyer-hero-eyebrow">Big Box Outlet Store</span>
+          <h1 class="flyer-hero-title">Weekly<br><span>Deals.</span></h1>
+          <!-- CMS: update this subtext when flyer cadence changes -->
+          <p class="flyer-hero-sub">Fresh deals every Thursday.</p>
+        </div>
+        <div class="flyer-hero-right">
+          <!-- CMS: update date each week -->
+          <span class="flyer-hero-date" id="flyerDateLabel">Current Flyer</span>
+          <a href="stores.html" class="flyer-hero-cta">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Find My Store
+          </a>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- ══ REGION BAR ════════════════════════════════════ -->
+  <div class="region-bar" role="navigation" aria-label="Regional flyer selector">
+    <div class="container">
+      <div class="region-bar-inner">
+        <span class="region-label-text">Showing flyer for:</span>
+        <div class="region-toggle" role="group" aria-label="Select your region">
+          <button class="region-btn active" data-region="BC" aria-pressed="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+            British Columbia
+          </button>
+          <button class="region-btn" data-region="AB" aria-pressed="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+            Alberta
+          </button>
+        </div>
+        <span class="region-status" id="regionStatus">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span id="regionStatusText">Detecting location…</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FLYER VIEWER ══════════════════════════════════ -->
+  <section class="flyer-section">
+    <div class="container">
+      <div class="flyer-outer">
+
+        <!-- ── BC Flyer ─────────────────────────────── -->
+        <!-- CMS: replace images/eflyer-bc.jpg with this week's BC flyer -->
+        <div class="flyer-region active" id="flyer-BC">
+          <div class="flyer-frame">
+            <!-- If eflyer.jpg not present, the placeholder below shows automatically via onerror -->
+            <img src="images/eflyer.jpg"
+                 alt="Big Box Outlet Store — BC Weekly Deals Flyer"
+                 class="flyer-img" id="flyerImgBC"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="flyer-placeholder" style="display:none">
+              <svg class="flyer-placeholder-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+              <div class="flyer-placeholder-text">BC Flyer<br>Upload <code>images/eflyer.jpg</code><br>to display this week's deals</div>
+            </div>
+            <!-- ── Hotspots — update positions/links when real flyer is uploaded ── -->
+            <div class="hotspot-layer" aria-hidden="true">
+              <!-- CMS: Each hotspot = % position from top/left + destination URL -->
+              <a href="clothing.html" class="hotspot" style="top:24%;left:18%">
+                <span class="hotspot-dot">+</span>
+                <span class="hotspot-tip">Shop Apparel</span>
+              </a>
+              <a href="life.html" class="hotspot" style="top:24%;left:74%">
+                <span class="hotspot-dot">+</span>
+                <span class="hotspot-tip">Shop Electronics</span>
+              </a>
+              <a href="appliances.html" class="hotspot" style="top:52%;left:28%">
+                <span class="hotspot-dot">+</span>
+                <span class="hotspot-tip">Shop Appliances</span>
+              </a>
+              <a href="furniture.html" class="hotspot" style="top:52%;left:68%">
+                <span class="hotspot-dot">+</span>
+                <span class="hotspot-tip">Shop Furniture</span>
+              </a>
+              <a href="stores.html" class="hotspot" style="top:80%;left:50%">
+                <span class="hotspot-dot blue-dot">→</span>
+                <span class="hotspot-tip tip-yellow">Find My Store</span>
+              </a>
+            </div>
+          </div>
+          <p class="hotspot-hint">Tap a <strong>+</strong> to explore that deal category</p>
+        </div>
+
+        <!-- ── Alberta Flyer ─────────────────────────── -->
+        <!-- CMS: replace images/eflyer-ab.jpg with this week's AB flyer -->
+        <div class="flyer-region" id="flyer-AB">
+          <div class="flyer-frame">
+            <img src="images/eflyer.jpg"
+                 alt="Big Box Outlet Store — Alberta Weekly Deals Flyer"
+                 class="flyer-img"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="flyer-placeholder" style="display:none">
+              <svg class="flyer-placeholder-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+              <div class="flyer-placeholder-text">Alberta Flyer<br>Upload <code>images/eflyer-ab.jpg</code><br>to display this week's deals</div>
+            </div>
+            <div class="hotspot-layer" aria-hidden="true">
+              <a href="clothing.html" class="hotspot" style="top:24%;left:18%">
+                <span class="hotspot-dot">+</span>
+                <span class="hotspot-tip">Shop Apparel</span>
+              </a>
+              <a href="life.html" class="hotspot" style="top:24%;left:74%">
+                <span class="hotspot-dot">+</span>
+                <span class="hotspot-tip">Shop Electronics</span>
+              </a>
+              <a href="appliances.html" class="hotspot" style="top:52%;left:28%">
+                <span class="hotspot-dot">+</span>
+                <span class="hotspot-tip">Shop Appliances</span>
+              </a>
+              <a href="furniture.html" class="hotspot" style="top:52%;left:68%">
+                <span class="hotspot-dot">+</span>
+                <span class="hotspot-tip">Shop Furniture</span>
+              </a>
+              <a href="stores.html" class="hotspot" style="top:80%;left:50%">
+                <span class="hotspot-dot blue-dot">→</span>
+                <span class="hotspot-tip tip-yellow">Find My Store</span>
+              </a>
+            </div>
+          </div>
+          <p class="hotspot-hint">Tap a <strong>+</strong> to explore that deal category</p>
+        </div>
+
+        <!-- CTA row below flyer -->
+        <div class="flyer-actions">
+          <a href="stores.html" class="btn-flyer btn-flyer-yellow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Find My Store
+          </a>
+          <button class="btn-flyer btn-flyer-outline" onclick="window.print()" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Save / Print Flyer
+          </button>
+          <a href="rewards.html" class="btn-flyer btn-flyer-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Join Rewards
+          </a>
+        </div>
+        <p class="flyer-disclaimer">Deals valid while quantities last. Prices and availability may vary by location. New flyer drops every Thursday.</p>
+
+      </div><!-- /flyer-outer -->
+    </div>
+  </section>
+
+  <!-- ══ SHOP THESE DEALS ══════════════════════════════ -->
+  <section class="shop-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">In This Week's Flyer</span>
+        <h2 class="section-heading">Shop These Deals In Store</h2>
+      </div>
+      <div class="shop-grid">
+        <a href="clothing.html" class="shop-card reveal">
+          <img src="images/store/IMG_9144.jpg" alt="Apparel" class="shop-card-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="shop-card-img-ph" style="display:none;background:#e8f0fc;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,61,165,.3)"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/></svg>
+          </div>
+          <div class="shop-card-body">
+            <span class="shop-card-label">This Week</span>
+            <div class="shop-card-title">Apparel &amp; Footwear</div>
+            <span class="shop-card-link">Shop In Store <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></span>
+          </div>
+        </a>
+        <a href="life.html" class="shop-card reveal" style="transition-delay:.07s">
+          <img src="images/store/DSC_8500.jpg" alt="Electronics" class="shop-card-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="shop-card-img-ph" style="display:none;background:#e8f0fc;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,61,165,.3)"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zm-8-9l5 3-5 3V9z"/></svg>
+          </div>
+          <div class="shop-card-body">
+            <span class="shop-card-label">This Week</span>
+            <div class="shop-card-title">Electronics &amp; E-Bikes</div>
+            <span class="shop-card-link">Shop In Store <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></span>
+          </div>
+        </a>
+        <a href="furniture.html" class="shop-card reveal" style="transition-delay:.14s">
+          <img src="images/store/IMG_9004.jpg" alt="Furniture" class="shop-card-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="shop-card-img-ph" style="display:none;background:#e8f0fc;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,61,165,.3)"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+          </div>
+          <div class="shop-card-body">
+            <span class="shop-card-label">This Week</span>
+            <div class="shop-card-title">Furniture &amp; Mattresses</div>
+            <span class="shop-card-link">Shop In Store <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></span>
+          </div>
+        </a>
+        <a href="appliances.html" class="shop-card reveal" style="transition-delay:.21s">
+          <img src="images/store/IMG_9096.jpg" alt="Appliances" class="shop-card-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="shop-card-img-ph" style="display:none;background:#e8f0fc;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,61,165,.3)"><path d="M18 2.01L6 2c-1.1 0-2 .89-2 2v16c0 1.11.9 2 2 2h12c1.1 0 2-.89 2-2V4c0-1.11-.9-1.99-2-1.99zM18 20H6V4h12v16zm-5-9h-2v2H9v2h2v2h2v-2h2v-2h-2z"/></svg>
+          </div>
+          <div class="shop-card-body">
+            <span class="shop-card-label">This Week</span>
+            <div class="shop-card-title">Appliances &amp; Kitchen</div>
+            <span class="shop-card-link">Shop In Store <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SOCIAL / REVIEW STRIP ════════════════════════ -->
+  <section class="flyer-social">
+    <div class="container">
+      <div class="flyer-social-inner reveal">
+        <div class="flyer-social-left">
+          <h3>Love Your <span>Deal?</span></h3>
+          <p>Tell others what you found. A quick Google review helps more shoppers discover Big Box Outlet — and lets us know we're doing our job.</p>
+          <!-- CMS: update Google review URL -->
+          <a href="https://g.page/r/bigboxoutletstore/review" target="_blank" rel="noopener" class="btn-review">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Write a Google Review
+          </a>
+        </div>
+        <div class="flyer-social-right">
+          <span class="social-follow-label">Follow for early deal previews</span>
+          <div class="social-icons-row">
+            <!-- CMS: URLs controlled by Marketing -->
+            <a href="https://www.instagram.com/bboscanada/" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.facebook.com/bboscanada" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="mailto:info@bbos.ca" class="social-icon-btn" aria-label="Email us">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+          <span class="social-share-note">@bboscanada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- ── FOOTER ────────────────────────────────────────── -->
@@ -114,13 +643,24 @@
     <div class="footer-top">
       <div class="footer-brand">
         <img src="images/logo-white.png" alt="Big Box Outlet" />
-        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+        <p style="margin-bottom:18px;">Helping People Afford Everyday Life.</p>
+        <div class="footer-connect-icons">
+          <a href="https://www.instagram.com/bboscanada/" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/bboscanada" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@bbos.ca" class="footer-connect-link" aria-label="Email us">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
       </div>
       <div>
         <div class="footer-col-title">Explore</div>
         <ul class="footer-links">
           <li><a href="flyer.html">Weekly Deals</a></li>
-          <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
+          <li><a href="stores.html">Find A Store</a></li>
           <li><a href="rewards.html">Rewards</a></li>
         </ul>
       </div>
@@ -139,9 +679,17 @@
           <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
         </ul>
       </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Terms of Use</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Accessibility</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location.</div>
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices and availability may vary by location.</div>
       <div class="footer-bottom-links">
         <a href="privacy.html">Privacy Policy</a>
         <a href="https://bigboxoutletstore.ca">Terms of Use</a>
@@ -157,13 +705,84 @@
 
 <script>
 (function(){
+  /* ── Nav / scroll / reveal ─────────────────────── */
   var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
   if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
   window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.1});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
   var btn=document.getElementById('scrollTop');
   if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+
+  /* ── Region selection ──────────────────────────── */
+  var currentRegion = localStorage.getItem('bbos-flyer-region') || null;
+  var statusText = document.getElementById('regionStatusText');
+
+  function setRegion(region, source){
+    currentRegion = region;
+    localStorage.setItem('bbos-flyer-region', region);
+    // Update buttons
+    document.querySelectorAll('.region-btn').forEach(function(b){
+      var active = b.dataset.region === region;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', String(active));
+    });
+    // Show correct flyer panel
+    document.querySelectorAll('.flyer-region').forEach(function(p){
+      p.classList.toggle('active', p.id === 'flyer-' + region);
+    });
+    // Update status label
+    if(statusText){
+      statusText.textContent = source === 'geo'
+        ? 'Location detected — ' + (region === 'BC' ? 'BC' : 'Alberta')
+        : source === 'stored'
+        ? 'Showing ' + (region === 'BC' ? 'BC' : 'Alberta') + ' flyer'
+        : 'Showing ' + (region === 'BC' ? 'BC' : 'Alberta') + ' flyer';
+    }
+    // CMS: if swapping flyer images per region, add img src swap logic here
+  }
+
+  // Restore saved region immediately (no flash)
+  if(currentRegion){ setRegion(currentRegion, 'stored'); }
+
+  // Try geolocation if no saved preference
+  if(!currentRegion && navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(pos){
+      // Alberta: roughly lng > -114 | BC: lng <= -114
+      var region = pos.coords.longitude > -114 ? 'AB' : 'BC';
+      setRegion(region, 'geo');
+    }, function(){
+      // Denied or unavailable — default to BC
+      setRegion('BC', 'default');
+      if(statusText) statusText.textContent = 'Select your region above';
+    }, { timeout: 5000 });
+  } else if(!currentRegion){
+    setRegion('BC', 'default');
+    if(statusText) statusText.textContent = 'Select your region above';
+  }
+
+  // Manual toggle buttons
+  document.querySelectorAll('.region-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      setRegion(this.dataset.region, 'manual');
+    });
+  });
+
+  /* ── Flyer date label ──────────────────────────── */
+  // CMS: replace this with a real CMS-driven date
+  var dateEl = document.getElementById('flyerDateLabel');
+  if(dateEl){
+    var now = new Date();
+    // Find most recent Thursday
+    var day = now.getDay(); // 0=Sun
+    var daysBack = (day >= 4) ? (day - 4) : (day + 3);
+    var thu = new Date(now); thu.setDate(now.getDate() - daysBack);
+    var nextThu = new Date(thu); nextThu.setDate(thu.getDate() + 7);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    dateEl.textContent = 'Valid ' + months[thu.getMonth()] + ' ' + thu.getDate() + ' – ' + months[nextThu.getMonth()] + ' ' + nextThu.getDate();
+  }
+
 })();
 </script>
-
 </body>
 </html>
