@@ -3,240 +3,306 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Big Box Furniture — Sofas, Beds &amp; Dining | Big Box Outlet</title>
+  <title>Big Box Furniture — Sofas, Beds &amp; More | Big Box Outlet</title>
+  <meta name="description" content="Shop brand-name furniture at Big Box Outlet Store. Sofas, beds, dining sets and more — at prices that make your home look expensive. 20 locations across BC and Alberta." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="base.css" />
   <style>
     :root { --page-color: #003DA6; --page-color-dark: #00297a; }
-    .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    .navbar { background: transparent !important; box-shadow: none !important; }
     .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
-    .navbar-nav a { color: var(--blue) !important; }
-    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
-    .navbar-nav a.active { color: var(--blue-dark) !important; }
-    .btn-find-store { background: var(--blue) !important; color: #fff !important; }
-    .btn-member { background: var(--yellow) !important; color: var(--blue-dark) !important; }
-    .nav-toggle span { background: var(--blue) !important; }
+    .navbar.scrolled .navbar-nav a { color: var(--blue) !important; }
+    .navbar.scrolled .btn-find-store { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .navbar.scrolled .btn-member { background: var(--blue) !important; color: #fff !important; }
+    .navbar.scrolled .nav-toggle span { background: var(--blue) !important; }
+    /* hero nav — white text */
+    .navbar-nav a { color: rgba(255,255,255,.9) !important; }
+    .navbar-nav a:hover { color: #fff !important; background: rgba(255,255,255,.12) !important; }
+    .navbar-logo img { filter: brightness(0) invert(1); }
+    .navbar.scrolled .navbar-logo img { filter: none; }
+    .btn-find-store { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .btn-member { border: 2px solid rgba(255,255,255,.6) !important; background: transparent !important; color: #fff !important; }
+    .navbar.scrolled .btn-member { border-color: var(--blue) !important; color: var(--blue) !important; }
+    .nav-toggle span { background: #fff !important; }
 
-    /* ── PAGE HERO (white editorial — matches about.html) ── */
-    .cat-hero {
-      background: #fff;
-      padding-top: calc(72px + 48px);
-      padding-bottom: 0;
+    /* ══ HERO ═════════════════════════════════════════ */
+    .furn-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 560px; max-height: 800px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
     }
-    .cat-hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px 80px;
-      align-items: end;
-      padding-bottom: 48px;
-      border-bottom: 2px solid #e5e7eb;
+    .furn-hero-bg {
+      position: absolute; inset: 0;
+      background: url('images/store/IMG_9055.jpg') center/cover no-repeat;
+      /* Replace with a dedicated furniture lifestyle image when available */
     }
-    .cat-hero-eyebrow-pill {
-      display: inline-block;
-      font-family: 'Work Sans', sans-serif; font-weight: 800;
-      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
-      color: #8B6914;
-      background: #FFFBDD; border: 1.5px solid #FFE055;
-      border-radius: 20px; padding: 4px 14px; margin-bottom: 20px;
+    .furn-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(6,15,30,.88) 0%, rgba(6,15,30,.35) 55%, rgba(6,15,30,.1) 100%);
     }
-    .cat-hero-headline {
-      font-family: 'Work Sans', sans-serif; font-weight: 900;
-      font-size: clamp(3rem, 5.5vw, 5rem);
-      color: #0d1b2a; line-height: .98; letter-spacing: -.03em; margin: 0;
+    .furn-hero-content {
+      position: relative; z-index: 2;
+      padding-bottom: 72px;
     }
-    .cat-hero-headline span { color: var(--blue); }
-    .cat-hero-right { padding-bottom: 8px; }
-    .cat-hero-tagline {
-      font-family: 'Work Sans', sans-serif; font-weight: 800;
-      font-size: 1.25rem; color: #0d1b2a; line-height: 1.25; margin-bottom: 12px;
-    }
-    .cat-hero-sub {
-      font-size: 1.02rem; color: #6b7280; line-height: 1.76; margin-bottom: 28px;
-    }
-    .cat-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-blue {
+    .furn-hero-cat-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--blue); color: #fff;
-      font-family: 'Work Sans', sans-serif; font-weight: 800;
-      font-size: .95rem; padding: 13px 28px; border-radius: 50px;
-      text-decoration: none; transition: background .2s, transform .15s;
-    }
-    .btn-blue:hover { background: var(--blue-dark); transform: translateY(-2px); }
-    .btn-outline-blue {
-      display: inline-flex; align-items: center;
-      border: 2px solid var(--blue); color: var(--blue);
-      font-family: 'Work Sans', sans-serif; font-weight: 700;
-      font-size: .95rem; padding: 13px 28px; border-radius: 50px;
-      text-decoration: none; transition: border-color .2s, background .2s;
-    }
-    .btn-outline-blue:hover { background: rgba(0,61,165,.06); }
-
-    /* ── SECTION NAV PILLS ──────────────────────────── */
-    .cat-section-nav {
-      display: flex; gap: 8px; flex-wrap: wrap;
-      padding: 20px 0 0;
-    }
-    .cat-section-nav a {
-      font-family: 'Work Sans', sans-serif; font-weight: 700;
-      font-size: .82rem; letter-spacing: .06em; text-transform: uppercase;
-      color: var(--blue); text-decoration: none;
-      padding: 7px 18px; border-radius: 50px;
-      border: 1.5px solid #c7d4ef;
-      transition: background .2s, border-color .2s;
-    }
-    .cat-section-nav a:hover { background: #e8edf8; border-color: var(--blue); }
-
-    /* ── BIG LIFESTYLE IMAGE ────────────────────────── */
-    .cat-lifestyle-hero {
-      width: 100%; overflow: hidden; display: block;
-    }
-    .cat-lifestyle-hero img {
-      width: 100%; height: 580px; object-fit: cover; display: block;
-    }
-
-    /* ── CATEGORY SECTION ───────────────────────────── */
-    .cat-section { padding: 72px 0 60px; }
-    .cat-section:nth-child(odd) { background: #fff; }
-    .cat-section:nth-child(even) { background: #f5f7fc; }
-
-    .cat-section-intro {
-      display: flex; align-items: baseline; gap: 24px;
-      margin-bottom: 36px; flex-wrap: wrap;
-    }
-    .cat-section-num {
-      font-family: 'Work Sans', sans-serif; font-weight: 900;
-      font-size: clamp(3.5rem, 8vw, 6.5rem);
-      color: var(--yellow); line-height: 1;
-      -webkit-text-stroke: 2px var(--blue);
-      text-stroke: 2px var(--blue);
-      letter-spacing: -.04em; flex-shrink: 0;
-    }
-    .cat-section-titles { flex: 1; }
-    .cat-section-label {
       font-family: 'Work Sans', sans-serif; font-weight: 800;
       font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--blue); margin-bottom: 4px;
+      color: var(--yellow); background: rgba(255,218,0,.12);
+      border: 1px solid rgba(255,218,0,.3); border-radius: 20px;
+      padding: 5px 16px; margin-bottom: 22px;
     }
-    .cat-section-title {
+    .furn-hero-title {
       font-family: 'Work Sans', sans-serif; font-weight: 900;
-      font-size: clamp(2rem, 4.5vw, 3.4rem); color: #0d1b2a;
-      line-height: 1.0; margin: 0;
+      font-size: clamp(3rem, 7vw, 6rem);
+      color: #fff; line-height: .92; letter-spacing: -.04em;
+      margin: 0 0 20px;
+      max-width: 720px;
     }
-    .cat-section-sub {
-      font-size: 1.05rem; color: #6b7280; margin-top: 6px;
+    .furn-hero-sub {
+      font-size: 1.1rem; color: rgba(255,255,255,.7);
+      font-family: 'Nunito Sans', sans-serif; line-height: 1.6;
+      max-width: 540px; margin-bottom: 32px;
+    }
+    .furn-hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800; font-size: .95rem;
+      padding: 14px 32px; border-radius: 50px;
+      text-decoration: none; transition: background .2s, transform .15s;
+    }
+    .furn-hero-cta:hover { background: #f0cc00; transform: translateY(-2px); }
+    @media (max-width: 768px) {
+      .furn-hero { height: 75vh; min-height: 480px; }
+      .furn-hero-content { padding-bottom: 48px; }
+      .furn-hero-title { font-size: clamp(2.4rem, 9vw, 3.5rem); }
     }
 
-    /* ── SECTION LIFESTYLE IMAGE ────────────────────── */
-    .cat-section-img {
-      width: 100%; height: 460px; border-radius: 16px;
-      overflow: hidden; margin-bottom: 36px;
+    /* ══ BRAND LOGOS ══════════════════════════════════ */
+    /*
+     * BRAND LOGOS SECTION
+     * Replace the text logo items below with <img> tags pointing to actual brand logo files.
+     * Recommended: SVG or PNG at ~160×60px, white/grey background, consistent height.
+     * To add/remove a brand: add or delete a .brand-logo-item in the HTML.
+     */
+    .brands-section {
+      background: #f5f7fc;
+      padding: 40px 0;
+      border-bottom: 1.5px solid #e5e9f2;
     }
-    .cat-section-img img {
+    .brands-eyebrow {
+      text-align: center;
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: #9aa3b2; margin-bottom: 22px;
+    }
+    .brands-track {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 10px 6px;
+    }
+    .brand-logo-item {
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px 26px;
+      background: #fff; border: 1.5px solid #e5e9f2; border-radius: 12px;
+      min-width: 130px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .brand-logo-item:hover {
+      border-color: rgba(0,61,165,.25);
+      box-shadow: 0 2px 14px rgba(0,61,165,.08);
+    }
+    .brand-logo-item img {
+      height: 36px; width: auto; max-width: 120px;
+      object-fit: contain; display: block;
+    }
+    /* Text fallback when image is not yet available */
+    .brand-logo-text {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .88rem; color: #2d3748; letter-spacing: -.01em;
+      white-space: nowrap;
+    }
+    @media (max-width: 640px) {
+      .brand-logo-item { min-width: 110px; padding: 10px 18px; }
+      .brand-logo-text { font-size: .8rem; }
+    }
+
+    /* ══ CATEGORY MODULES ═════════════════════════════ */
+    /*
+     * CATEGORY MODULE TEMPLATE
+     * Each module = label + big heading + lifestyle image + manual carousel.
+     * To add a 4th module: duplicate a .cat-module block and update the content.
+     * To hide a module: add style="display:none" to the .cat-module element.
+     */
+    .cat-module {
+      padding: 80px 0 60px;
+    }
+    .cat-module:nth-child(odd) { background: #fff; }
+    .cat-module:nth-child(even) { background: #f5f7fc; }
+
+    .cat-mod-header {
+      display: flex; align-items: flex-end; gap: 32px;
+      margin-bottom: 36px; flex-wrap: wrap;
+    }
+    .cat-mod-number {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(5rem, 12vw, 10rem);
+      color: var(--yellow); line-height: 1;
+      -webkit-text-stroke: 2px var(--blue);
+      letter-spacing: -.05em; flex-shrink: 0;
+    }
+    .cat-mod-titles { flex: 1; padding-bottom: 12px; }
+    .cat-mod-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 6px;
+    }
+    .cat-mod-heading {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: #0d1b2a; line-height: 1.05; letter-spacing: -.03em;
+      margin: 0;
+    }
+
+    /* ── Lifestyle image ──────────────────────────────── */
+    /*
+     * LIFESTYLE IMAGE
+     * Replace src="images/..." with a category-appropriate lifestyle photo.
+     * Recommended: landscape, ~1400×700px or 2:1 ratio.
+     * data-desktop-src and data-mobile-src attributes are left for future CMS use.
+     */
+    .cat-mod-lifestyle {
+      width: 100%; height: 500px; border-radius: 20px;
+      overflow: hidden; margin-bottom: 36px;
+      background: #e8edf5;
+    }
+    .cat-mod-lifestyle img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
-
-    /* ── CAROUSEL ────────────────────────────────────── */
-    .cat-carousel {
-      display: flex; gap: 16px;
-      overflow-x: auto; scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 14px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--blue) #e5e7eb;
-    }
-    .cat-carousel::-webkit-scrollbar { height: 4px; }
-    .cat-carousel::-webkit-scrollbar-track { background: #f0f2f8; border-radius: 2px; }
-    .cat-carousel::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
-
-    .cat-item {
-      flex: 0 0 190px; scroll-snap-align: start;
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
-      background: #fff; border-radius: 16px;
-      padding: 20px 14px 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.06);
-      border: 1.5px solid #eef0f8;
-      transition: box-shadow .2s, transform .2s;
-      cursor: default;
-    }
-    .cat-item:hover {
-      box-shadow: 0 10px 28px rgba(0,61,165,.11);
-      transform: translateY(-4px);
-      border-color: #c7d4ef;
-    }
-    .cat-item-visual {
-      width: 152px; height: 126px; border-radius: 10px;
-      overflow: hidden; background: #f5f7fc;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .cat-item-visual img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    .cat-item-ph {
-      width: 152px; height: 126px; border-radius: 10px;
-      background: linear-gradient(135deg, #e8edf8 0%, #dce5f4 100%);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .cat-item-ph svg { width: 48px; height: 48px; opacity: .26; fill: var(--blue); }
-    .cat-item-label {
-      font-family: 'Work Sans', sans-serif; font-weight: 700;
-      font-size: .88rem; color: var(--blue-dark);
-      text-align: center; line-height: 1.3;
-    }
-    .cat-scroll-hint { display: none; } /* hidden — auto-scroll is on */
-
-    /* ── AUTO-SCROLL CAROUSEL + ARROWS ──────────────── */
-    .auto-carousel-outer {
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
-    }
-    .cat-carousel-active {
-      overflow-x: visible !important;
-      scroll-snap-type: none !important;
-      scrollbar-width: none !important;
-      width: max-content;
-      /* animation driven by JS requestAnimationFrame */
-    }
-    .cat-carousel-active::-webkit-scrollbar { display: none !important; }
-    /* ── Arrow buttons ─────────────── */
-    .carousel-wrapper { position: relative; }
-    .carousel-arrow {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      z-index: 10; width: 44px; height: 44px; border-radius: 50%;
-      background: rgba(255,255,255,.96); border: 1.5px solid rgba(0,61,165,.15);
-      box-shadow: 0 2px 16px rgba(0,0,0,.14);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; padding: 0;
-      transition: background .2s, box-shadow .2s, transform .15s;
-    }
-    .carousel-arrow:hover {
-      background: var(--yellow); box-shadow: 0 4px 24px rgba(0,61,165,.2);
-      transform: translateY(-50%) scale(1.08);
-    }
-    .carousel-arrow svg { width: 22px; height: 22px; fill: var(--blue); pointer-events: none; }
-    .carousel-arrow-prev { left: 10px; }
-    .carousel-arrow-next { right: 10px; }
-    @media (max-width: 640px) {
-      .carousel-arrow { width: 36px; height: 36px; }
-      .carousel-arrow svg { width: 18px; height: 18px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .auto-carousel-outer { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
-      .cat-carousel-active { overflow-x: auto !important; width: auto !important; }
-      .cat-scroll-hint { display: flex !important; }
-      .carousel-arrow { display: none !important; }
-    }
-
-    @media (max-width: 900px) {
-      .cat-hero-inner { grid-template-columns: 1fr; gap: 24px; }
-    }
     @media (max-width: 768px) {
-      .cat-hero { padding-top: calc(64px + 32px); }
-      .cat-section-img { height: 280px; }
-      .cat-lifestyle-hero img { height: 380px; }
-      .cat-item { flex: 0 0 158px; }
-      .cat-item-visual, .cat-item-ph { width: 126px; height: 104px; }
+      .cat-mod-lifestyle { height: 280px; border-radius: 14px; }
+    }
+
+    /* ── Manual carousel ──────────────────────────────── */
+    /*
+     * CAROUSEL ITEMS
+     * Add/remove/reorder .carousel-item elements inside .carousel-track.
+     * Each item: replace the placeholder <div> with an <img> or product card.
+     * The carousel is MANUAL — no auto-advance. Left/right arrows + swipe on mobile.
+     */
+    .carousel-outer {
+      position: relative;
+    }
+    .carousel-viewport {
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      transition: transform .38s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    .carousel-item {
+      flex: 0 0 calc(25% - 12px);
+      border-radius: 14px; overflow: hidden;
+      background: #e8edf5; aspect-ratio: 3/4;
+      position: relative;
+    }
+    .carousel-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    /* Placeholder when image is not yet available */
+    .carousel-ph {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg,#e0e7f5 0%,#cdd7f0 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 10px;
+      padding: 20px; text-align: center;
+    }
+    .carousel-ph svg { width: 40px; height: 40px; fill: #9aa3b2; opacity: .5; }
+    .carousel-ph-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .8rem; color: #9aa3b2; line-height: 1.3;
+    }
+
+    /* Carousel arrows */
+    .carousel-nav {
+      display: flex; gap: 10px;
+      margin-top: 20px; justify-content: flex-end;
+    }
+    .carousel-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1.5px solid #dde3ed; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background .2s, border-color .2s, transform .15s;
+    }
+    .carousel-btn:hover:not(:disabled) {
+      background: var(--yellow); border-color: var(--yellow); transform: scale(1.08);
+    }
+    .carousel-btn:disabled { opacity: .35; cursor: default; }
+    .carousel-btn svg { width: 22px; height: 22px; fill: var(--blue); pointer-events: none; }
+    .carousel-btn:hover:not(:disabled) svg { fill: var(--blue-dark); }
+
+    @media (max-width: 960px) {
+      .carousel-item { flex: 0 0 calc(33.33% - 11px); }
+    }
+    @media (max-width: 640px) {
+      .carousel-item { flex: 0 0 75vw; }
+      .carousel-nav { justify-content: center; }
+    }
+
+    /* ══ CAT MODULE RESPONSIVE ════════════════════════ */
+    @media (max-width: 768px) {
+      .cat-module { padding: 56px 0 48px; }
+      .cat-mod-header { gap: 16px; }
+      .cat-mod-number { font-size: clamp(4rem, 14vw, 6rem); }
+      .cat-mod-heading { font-size: clamp(1.7rem, 6vw, 2.4rem); }
+    }
+
+    /* ══ FIND MY STORE CTA ════════════════════════════ */
+    .fms-section {
+      background: #060f1e;
+      padding: 80px 0;
+    }
+    .fms-inner {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 32px 48px; align-items: center;
+    }
+    .fms-eyebrow {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--yellow); background: rgba(255,218,0,.1);
+      border: 1px solid rgba(255,218,0,.25); border-radius: 20px;
+      padding: 4px 14px; margin-bottom: 16px;
+    }
+    .fms-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      color: #fff; line-height: .95; letter-spacing: -.035em; margin: 0 0 12px;
+    }
+    .fms-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,.5);
+      font-family: 'Nunito Sans', sans-serif; line-height: 1.65;
+    }
+    .btn-fms {
+      display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800; font-size: 1rem;
+      padding: 16px 36px; border-radius: 50px;
+      text-decoration: none; white-space: nowrap;
+      transition: background .2s, transform .15s;
+    }
+    .btn-fms:hover { background: #f0cc00; transform: translateY(-2px); }
+    @media (max-width: 768px) {
+      .fms-inner { grid-template-columns: 1fr; }
+      .btn-fms { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -257,9 +323,9 @@
       </ul>
       <div class="navbar-actions">
         <a href="rewards.html" class="btn btn-member">Become a Member</a>
-        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
+        <a href="stores.html" class="btn btn-find-store">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          Store Locator
+          Find My Store
         </a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -271,371 +337,301 @@
 
 <main>
 
-  <!-- ── PAGE HERO ─────────────────────────────────────── -->
-  <section class="cat-hero">
-    <div class="container">
-      <div class="cat-hero-inner">
+  <!-- ══ HERO ════════════════════════════════════════════ -->
+  <!--
+    HERO IMAGE: Replace the background-image in .furn-hero-bg (via CSS above, or add inline style here).
+    Recommended: Wide lifestyle image showing a living room or furnished space — ~1920×1080px.
+    The gradient overlay ensures text stays readable regardless of image brightness.
+  -->
+  <section class="furn-hero" aria-label="Furniture category hero">
+    <div class="furn-hero-bg"></div>
+    <div class="furn-hero-overlay"></div>
+    <div class="container furn-hero-content">
+      <div class="furn-hero-cat-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21 9V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v2c-1.1 0-2 .9-2 2v5h1.33L3 18h1l.67-2h14.67l.66 2H21l.67-2H23v-5c0-1.1-.9-2-2-2zm-2 0H5V7h14v2z"/></svg>
+        Big Box Furniture
+      </div>
+      <h1 class="furn-hero-title">Create Your Space<br>Your Way.</h1>
+      <p class="furn-hero-sub">Brand-name furniture at prices that make your home look expensive — without the showroom markup.</p>
+      <a href="stores.html" class="furn-hero-cta">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Find My Store
+      </a>
+    </div>
+  </section>
 
-        <!-- Left: eyebrow + headline -->
+  <!-- ══ BRAND LOGOS ══════════════════════════════════════ -->
+  <!--
+    BRAND LOGOS
+    Replace each .brand-logo-text span with: <img src="images/brands/brand-name.svg" alt="Brand Name" />
+    To add a brand: duplicate a .brand-logo-item and update content.
+    To remove: delete the .brand-logo-item element.
+    Images should be provided by Marketing as SVG or transparent PNG at ~160×60px.
+  -->
+  <section class="brands-section" aria-label="Brands we carry">
+    <div class="container">
+      <div class="brands-eyebrow">Brands You'll Find In Store</div>
+      <div class="brands-track">
+        <div class="brand-logo-item">
+          <span class="brand-logo-text">Stearns &amp; Foster</span>
+        </div>
+        <div class="brand-logo-item">
+          <span class="brand-logo-text">Casper</span>
+        </div>
+        <div class="brand-logo-item">
+          <span class="brand-logo-text">Serta</span>
+        </div>
+        <div class="brand-logo-item">
+          <span class="brand-logo-text">Sealy</span>
+        </div>
+        <div class="brand-logo-item">
+          <span class="brand-logo-text">Simmons</span>
+        </div>
+        <div class="brand-logo-item">
+          <span class="brand-logo-text">Restwell</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MODULE 1: LIVING ROOM ════════════════════════════ -->
+  <!--
+    MODULE TEMPLATE — repeat this block for each sub-category.
+    To hide this module: add style="display:none" to the <section> tag.
+    To reorder: cut/paste this section block.
+  -->
+  <section class="cat-module" id="living-room" aria-labelledby="mod1-heading">
+    <div class="container">
+
+      <div class="cat-mod-header">
+        <div class="cat-mod-number" aria-hidden="true">01</div>
+        <div class="cat-mod-titles">
+          <div class="cat-mod-label">Living Room</div>
+          <!-- EDITABLE HEADING — update this line to change the module headline -->
+          <h2 class="cat-mod-heading" id="mod1-heading">For Living the Way You Want.</h2>
+        </div>
+      </div>
+
+      <!--
+        LIFESTYLE IMAGE — replace src with a living room lifestyle photo (~1400×700px)
+        Use data-desktop-src and data-mobile-src for future responsive image handling.
+      -->
+      <div class="cat-mod-lifestyle">
+        <img src="images/store/IMG_9096.jpg"
+             alt="Living room furniture at Big Box Outlet Store — sofas, sectionals, and accent pieces"
+             data-desktop-src="images/lifestyle/living-room-desktop.jpg"
+             data-mobile-src="images/lifestyle/living-room-mobile.jpg"
+             loading="lazy" />
+      </div>
+
+      <!--
+        CAROUSEL
+        Add items: duplicate a .carousel-item inside .carousel-track.
+        Remove items: delete a .carousel-item.
+        Replace placeholder divs with <img> tags when product images are available.
+        Items are non-clickable by default — add href/links later if needed.
+      -->
+      <div class="carousel-outer" data-carousel="mod1">
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="track-mod1">
+            <div class="carousel-item">
+              <img src="images/store/IMG_9107.jpg" alt="Sectional sofa — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9114.jpg" alt="Living room set — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9125.jpg" alt="Accent chair — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9133.jpg" alt="Coffee table — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9144.jpg" alt="Sofa set — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-ph">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 9V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v2c-1.1 0-2 .9-2 2v5h1.33L3 18h1l.67-2h14.67l.66 2H21l.67-2H23v-5c0-1.1-.9-2-2-2zm-2 0H5V7h14v2z"/></svg>
+                <div class="carousel-ph-label">Replace with product image</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-nav" aria-label="Living room carousel navigation">
+          <button class="carousel-btn" data-dir="-1" data-target="mod1" aria-label="Previous items" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>
+          </button>
+          <button class="carousel-btn" data-dir="1" data-target="mod1" aria-label="Next items">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ MODULE 2: DINING ROOM ════════════════════════════ -->
+  <section class="cat-module" id="dining-room" aria-labelledby="mod2-heading">
+    <div class="container">
+
+      <div class="cat-mod-header">
+        <div class="cat-mod-number" aria-hidden="true">02</div>
+        <div class="cat-mod-titles">
+          <div class="cat-mod-label">Dining Room</div>
+          <h2 class="cat-mod-heading" id="mod2-heading">For Enjoying Moments Together.</h2>
+        </div>
+      </div>
+
+      <div class="cat-mod-lifestyle">
+        <img src="images/store/IMG_9150.jpg"
+             alt="Dining room furniture at Big Box Outlet Store — dining sets, tables, and chairs"
+             data-desktop-src="images/lifestyle/dining-room-desktop.jpg"
+             data-mobile-src="images/lifestyle/dining-room-mobile.jpg"
+             loading="lazy" />
+      </div>
+
+      <div class="carousel-outer" data-carousel="mod2">
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="track-mod2">
+            <div class="carousel-item">
+              <img src="images/store/IMG_9152.jpg" alt="Dining table set — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9168.jpg" alt="Chairs and table — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9169.jpg" alt="Dining chairs — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9176.jpg" alt="Buffet and hutch — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9179.jpg" alt="Bar stools — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-ph">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 9V7c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v2c-1.1 0-2 .9-2 2v5h1.33L3 18h1l.67-2h14.67l.66 2H21l.67-2H23v-5c0-1.1-.9-2-2-2zm-2 0H5V7h14v2z"/></svg>
+                <div class="carousel-ph-label">Replace with product image</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-nav" aria-label="Dining room carousel navigation">
+          <button class="carousel-btn" data-dir="-1" data-target="mod2" aria-label="Previous items" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>
+          </button>
+          <button class="carousel-btn" data-dir="1" data-target="mod2" aria-label="Next items">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ MODULE 3: BEDROOM ════════════════════════════════ -->
+  <section class="cat-module" id="bedroom" aria-labelledby="mod3-heading">
+    <div class="container">
+
+      <div class="cat-mod-header">
+        <div class="cat-mod-number" aria-hidden="true">03</div>
+        <div class="cat-mod-titles">
+          <div class="cat-mod-label">Bedroom</div>
+          <h2 class="cat-mod-heading" id="mod3-heading">For Dreaming of All the Possibilities.</h2>
+        </div>
+      </div>
+
+      <div class="cat-mod-lifestyle">
+        <img src="images/store/IMG_9207.jpg"
+             alt="Bedroom furniture at Big Box Outlet Store — beds, mattresses, dressers, and nightstands"
+             data-desktop-src="images/lifestyle/bedroom-desktop.jpg"
+             data-mobile-src="images/lifestyle/bedroom-mobile.jpg"
+             loading="lazy" />
+      </div>
+
+      <div class="carousel-outer" data-carousel="mod3">
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="track-mod3">
+            <div class="carousel-item">
+              <img src="images/store/IMG_9239.jpg" alt="Bed frame and mattress — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9247.jpg" alt="Dresser — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9249.jpg" alt="Nightstand — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9265.jpg" alt="Bedroom set — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <img src="images/store/IMG_9280.jpg" alt="Mattress — Big Box Outlet" loading="lazy" />
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-ph">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+                <div class="carousel-ph-label">Replace with product image</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-nav" aria-label="Bedroom carousel navigation">
+          <button class="carousel-btn" data-dir="-1" data-target="mod3" aria-label="Previous items" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>
+          </button>
+          <button class="carousel-btn" data-dir="1" data-target="mod3" aria-label="Next items">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ FIND MY STORE CTA ════════════════════════════════ -->
+  <section class="fms-section" aria-label="Find a store">
+    <div class="container">
+      <div class="fms-inner">
         <div>
-          <div class="cat-hero-eyebrow-pill">Big Box Furniture</div>
-          <h1 class="cat-hero-headline">Furnish your space<br><span>your way.</span></h1>
+          <div class="fms-eyebrow">20 Locations · BC &amp; Alberta</div>
+          <h2 class="fms-title">See It In Person.</h2>
+          <p class="fms-sub">Inventory changes every Thursday. The best way to find what you're looking for is to come in — our team knows what's on the floor.</p>
         </div>
-
-        <!-- Right: tagline + sub + CTAs -->
-        <div class="cat-hero-right">
-          <p class="cat-hero-tagline">Brand-name pieces at outlet prices.</p>
-          <p class="cat-hero-sub">Sofas, beds, dining sets, and everything in between — all from names you trust, at a fraction of retail. In-store at 20 Big Box Outlet locations across BC and Alberta.</p>
-          <div class="cat-hero-actions">
-            <a href="https://bigboxoutletstore.ca/locations" class="btn-blue" target="_blank" rel="noopener">Find a Store</a>
-            <a href="flyer.html" class="btn-outline-blue">Weekly Deals</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Section nav pills -->
-      <nav class="cat-section-nav" aria-label="Jump to section">
-        <a href="#living-room">Living Room</a>
-        <a href="#dining-kitchen">Dining &amp; Kitchen</a>
-        <a href="#bedroom">Bedroom</a>
-      </nav>
-    </div>
-  </section>
-
-  <!-- ── BIG LIFESTYLE PHOTO ───────────────────────────── -->
-  <div class="cat-lifestyle-hero">
-    <img src="images/store/IMG_9004.jpg" alt="Big Box Outlet furniture showroom floor — sofas and sectionals" />
-  </div>
-
-  <!-- ══════════════════════════════════════════════════ -->
-  <!-- SECTION 1: LIVING ROOM                            -->
-  <!-- ══════════════════════════════════════════════════ -->
-  <section class="cat-section" id="living-room">
-    <div class="container">
-      <div class="cat-section-intro">
-        <div class="cat-section-num">01</div>
-        <div class="cat-section-titles">
-          <div class="cat-section-label">Living Room</div>
-          <h2 class="cat-section-title">For Living</h2>
-          <p class="cat-section-sub">the way you want.</p>
-        </div>
-      </div>
-
-      <div class="cat-section-img">
-        <img src="images/store/IMG_9066.jpg" alt="Living room furniture — sectionals and sofas at Big Box Outlet" />
-      </div>
-
-      <div class="cat-scroll-hint">
-        <span>
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-          Scroll to explore
-        </span>
-      </div>
-      <div class="cat-carousel" role="list" aria-label="Living Room products">
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/store/IMG_9176.jpg" alt="Sofas" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Sofas</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/store/IMG_9004.jpg" alt="Sectionals" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Sectionals</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/store/IMG_9280.jpg" alt="Recliners and chairs" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Recliners &amp; Chairs</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/store/DSC_8522.jpg" alt="Living room sets" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Living Room Sets</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/store/IMG_9114.jpg" alt="Area Rugs" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Area Rugs</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="32" width="56" height="20" rx="3"/><rect x="8" y="36" width="16" height="12" rx="2"/><rect x="28" y="36" width="16" height="12" rx="2"/><rect x="4" y="26" width="56" height="8" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">TV Stands</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="30" width="52" height="10" rx="3"/><rect x="10" y="40" width="6" height="14" rx="2"/><rect x="48" y="40" width="6" height="14" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Coffee Tables</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="28" width="36" height="8" rx="3"/><rect x="18" y="36" width="6" height="18" rx="2"/><rect x="40" y="36" width="6" height="18" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">End Tables</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/flash-sale/curtains.png" alt="Curtains and Drapes" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Curtains &amp; Drapes</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="12" width="20" height="4" rx="2"/><rect x="29" y="16" width="6" height="30" rx="2"/><ellipse cx="32" cy="50" rx="12" ry="4"/></svg>
-          </div>
-          <span class="cat-item-label">Lamps &amp; Lighting</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="48" height="50" rx="3"/><line x1="8" y1="22" x2="56" y2="22" stroke="#003DA6" stroke-width="3"/><line x1="8" y1="36" x2="56" y2="36" stroke="#003DA6" stroke-width="3"/><line x1="8" y1="50" x2="56" y2="50" stroke="#003DA6" stroke-width="3"/></svg>
-          </div>
-          <span class="cat-item-label">Bookcases</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="36" rx="3"/><rect x="12" y="20" width="16" height="14" rx="2" opacity=".5"/><rect x="36" y="20" width="16" height="14" rx="2" opacity=".5"/><rect x="12" y="38" width="40" height="4" rx="2" opacity=".4"/></svg>
-          </div>
-          <span class="cat-item-label">Storage Units</span>
-        </div>
-
-      </div><!-- /carousel -->
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════ -->
-  <!-- SECTION 2: DINING & KITCHEN                       -->
-  <!-- ══════════════════════════════════════════════════ -->
-  <section class="cat-section" id="dining-kitchen">
-    <div class="container">
-      <div class="cat-section-intro">
-        <div class="cat-section-num">02</div>
-        <div class="cat-section-titles">
-          <div class="cat-section-label">Dining &amp; Kitchen</div>
-          <h2 class="cat-section-title">For Enjoying</h2>
-          <p class="cat-section-sub">moments shared together.</p>
-        </div>
-      </div>
-
-      <div class="cat-section-img">
-        <img src="images/store/IMG_9179.jpg" alt="Dining table set at Big Box Outlet" style="object-position: center 40%;" />
-      </div>
-
-      <div class="cat-scroll-hint">
-        <span>
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-          Scroll to explore
-        </span>
-      </div>
-      <div class="cat-carousel" role="list" aria-label="Dining and Kitchen products">
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><ellipse cx="32" cy="24" rx="28" ry="8"/><rect x="28" y="30" width="8" height="22" rx="3"/><ellipse cx="32" cy="52" rx="18" ry="4" opacity=".4"/></svg>
-          </div>
-          <span class="cat-item-label">Dining Tables</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="18" y="24" width="28" height="16" rx="5"/><rect x="26" y="40" width="6" height="16" rx="2"/><rect x="12" y="20" width="40" height="6" rx="3"/></svg>
-          </div>
-          <span class="cat-item-label">Dining Chairs</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="20" width="32" height="14" rx="4"/><rect x="28" y="34" width="8" height="22" rx="2"/><rect x="16" y="55" width="32" height="4" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Bar Stools</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="22" width="56" height="30" rx="4"/><rect x="8" y="28" width="16" height="18" rx="2" opacity=".5"/><rect x="28" y="28" width="14" height="18" rx="2" opacity=".5"/><rect x="4" y="18" width="56" height="6" rx="3" opacity=".7"/></svg>
-          </div>
-          <span class="cat-item-label">Buffets &amp; Sideboards</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="20" width="48" height="32" rx="4"/><rect x="12" y="24" width="18" height="12" rx="2" opacity=".5"/><rect x="34" y="24" width="18" height="12" rx="2" opacity=".5"/><rect x="8" y="52" width="48" height="4" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Kitchen Islands</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/flash-sale/open-box-pots-pans-etc.png" alt="Cookware" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Cookware</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="18" y="10" width="28" height="44" rx="4"/><rect x="22" y="14" width="20" height="14" rx="2" opacity=".5"/><rect x="22" y="32" width="20" height="14" rx="2" opacity=".5"/><circle cx="32" cy="55" r="3"/></svg>
-          </div>
-          <span class="cat-item-label">China Cabinets</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><ellipse cx="32" cy="36" rx="20" ry="16"/><rect x="28" y="12" width="8" height="24" rx="3"/><ellipse cx="32" cy="36" rx="12" ry="8" opacity=".4"/></svg>
-          </div>
-          <span class="cat-item-label">Serving Carts</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="30" r="18"/><circle cx="32" cy="30" r="10" opacity=".4"/><rect x="30" y="48" width="4" height="10" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Table Lamps</span>
-        </div>
-
-      </div><!-- /carousel -->
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════ -->
-  <!-- SECTION 3: BEDROOM & MATTRESSES                   -->
-  <!-- ══════════════════════════════════════════════════ -->
-  <section class="cat-section" id="bedroom">
-    <div class="container">
-      <div class="cat-section-intro">
-        <div class="cat-section-num">03</div>
-        <div class="cat-section-titles">
-          <div class="cat-section-label">Bedroom &amp; Mattresses</div>
-          <h2 class="cat-section-title">For Dreaming</h2>
-          <p class="cat-section-sub">of all the possibilities.</p>
-        </div>
-      </div>
-
-      <div class="cat-section-img">
-        <img src="images/store/IMG_9032.jpg" alt="Bedroom furniture and cozy living at Big Box Outlet" style="object-position: center 60%;" />
-      </div>
-
-      <div class="cat-scroll-hint">
-        <span>
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-          Scroll to explore
-        </span>
-      </div>
-      <div class="cat-carousel" role="list" aria-label="Bedroom and Mattress products">
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="32" width="56" height="20" rx="4"/><rect x="4" y="20" width="56" height="14" rx="4" opacity=".5"/><rect x="4" y="48" width="8" height="10" rx="2"/><rect x="52" y="48" width="8" height="10" rx="2"/><rect x="4" y="14" width="56" height="8" rx="3"/></svg>
-          </div>
-          <span class="cat-item-label">Beds &amp; Frames</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="24" width="52" height="28" rx="6"/><rect x="6" y="18" width="52" height="8" rx="4" opacity=".6"/><rect x="6" y="48" width="8" height="10" rx="2"/><rect x="50" y="48" width="8" height="10" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Mattresses</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="12" width="48" height="44" rx="4"/><rect x="12" y="16" width="18" height="14" rx="2" opacity=".5"/><rect x="34" y="16" width="18" height="14" rx="2" opacity=".5"/><rect x="12" y="34" width="40" height="14" rx="2" opacity=".4"/></svg>
-          </div>
-          <span class="cat-item-label">Dressers</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="20" width="36" height="34" rx="4"/><rect x="18" y="24" width="12" height="10" rx="2" opacity=".5"/><rect x="34" y="24" width="12" height="10" rx="2" opacity=".5"/><rect x="14" y="54" width="10" height="6" rx="2"/><rect x="40" y="54" width="10" height="6" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Nightstands</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="8" width="44" height="50" rx="4"/><rect x="14" y="12" width="36" height="20" rx="3" opacity=".5"/><rect x="14" y="36" width="36" height="16" rx="3" opacity=".4"/></svg>
-          </div>
-          <span class="cat-item-label">Wardrobes</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-visual">
-            <img src="images/flash-sale/bedding.png" alt="Pillows and Bedding" loading="lazy" />
-          </div>
-          <span class="cat-item-label">Pillows &amp; Bedding</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="18" width="44" height="30" rx="4"/><rect x="10" y="8" width="44" height="12" rx="3" opacity=".6"/><rect x="14" y="48" width="8" height="10" rx="2"/><rect x="42" y="48" width="8" height="10" rx="2"/></svg>
-          </div>
-          <span class="cat-item-label">Platform Beds</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="14" width="48" height="40" rx="4"/><circle cx="32" cy="34" r="10" opacity=".5"/><circle cx="32" cy="34" r="5" opacity=".3"/></svg>
-          </div>
-          <span class="cat-item-label">Mirrors</span>
-        </div>
-
-        <div class="cat-item" role="listitem">
-          <div class="cat-item-ph">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="20" width="36" height="36" rx="4"/><rect x="18" y="24" width="28" height="4" rx="2" opacity=".5"/><rect x="18" y="32" width="28" height="4" rx="2" opacity=".5"/><rect x="18" y="40" width="28" height="4" rx="2" opacity=".5"/></svg>
-          </div>
-          <span class="cat-item-label">Chest of Drawers</span>
-        </div>
-
-      </div><!-- /carousel -->
-    </div>
-  </section>
-
-  <!-- ── CTA STRIP ──────────────────────────────────────── -->
-  <section class="cta-strip">
-    <div class="container">
-      <h2>Find Big Box Furniture Near You</h2>
-      <p>Shop in-store at any of our 20 locations across BC and Alberta.</p>
-      <div class="cta-strip-actions">
-        <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
-        <a href="index.html#categories" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Browse All Categories</a>
+        <!-- EDITABLE: Update href and button label if needed -->
+        <a href="stores.html" class="btn-fms">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Find My Store
+        </a>
       </div>
     </div>
   </section>
 
 </main>
 
-<!-- ── FOOTER ────────────────────────────────────────── -->
+<!-- ── FOOTER ─────────────────────────────────────────── -->
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
         <img src="images/logo-white.png" alt="Big Box Outlet" />
-        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+        <p style="margin-bottom:18px;">Helping People Afford Everyday Life.</p>
+        <div class="footer-connect-icons">
+          <a href="https://www.instagram.com/bboscanada/" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/bboscanada" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@bbos.ca" class="footer-connect-link" aria-label="Email us">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
       </div>
       <div>
         <div class="footer-col-title">Explore</div>
         <ul class="footer-links">
           <li><a href="flyer.html">Weekly Deals</a></li>
-          <li><a href="deals.html">Flash Sale</a></li>
-          <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
+          <li><a href="stores.html">Find a Store</a></li>
           <li><a href="rewards.html">Rewards</a></li>
         </ul>
       </div>
@@ -643,7 +639,6 @@
         <div class="footer-col-title">About</div>
         <ul class="footer-links">
           <li><a href="about.html">Our Story</a></li>
-          <li><a href="community.html">Community</a></li>
           <li><a href="careers.html">Careers</a></li>
         </ul>
       </div>
@@ -651,39 +646,24 @@
         <div class="footer-col-title">Customer Service</div>
         <ul class="footer-links">
           <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="returns.html">Return Policy</a></li>
-          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Legal</div>
         <ul class="footer-links">
           <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Use</a></li>
-          <li><a href="accessibility.html">Accessibility</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Terms of Use</a></li>
+          <li><a href="https://bigboxoutletstore.ca">Accessibility</a></li>
         </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Connect with BBO</div>
-        <div class="footer-connect-icons">
-          <a href="https://instagram.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="https://facebook.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="mailto:info@bigboxoutlet.ca" class="footer-connect-link" aria-label="Email us">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </a>
-        </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location.</div>
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Product availability varies by location.</div>
       <div class="footer-bottom-links">
         <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
-        <a href="accessibility.html">Accessibility</a>
+        <a href="https://bigboxoutletstore.ca">Terms of Use</a>
+        <a href="https://bigboxoutletstore.ca">Accessibility</a>
       </div>
     </div>
   </div>
@@ -692,61 +672,97 @@
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
 </button>
+
 <script>
 (function(){
+  /* ── Navbar scroll + mobile toggle ───────────────── */
   var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
   if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
-  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
-  var reveals=document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
-  var btn=document.getElementById('scrollTop');
-  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>60);});
+  var sbtn=document.getElementById('scrollTop');
+  if(sbtn){window.addEventListener('scroll',function(){sbtn.classList.toggle('visible',window.scrollY>400);});sbtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
 
-  // ── Auto-scroll carousels + arrow navigation ───────
-  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    document.querySelectorAll('.cat-carousel').forEach(function(carousel){
-      // Clone items for seamless infinite loop
-      Array.from(carousel.children).forEach(function(item){
-        var clone=item.cloneNode(true); clone.setAttribute('aria-hidden','true'); carousel.appendChild(clone);
+  /* ── Manual carousel engine ───────────────────────
+     Each .carousel-outer[data-carousel="ID"] is independent.
+     Clicking prev/next advances by one item width + gap.
+     Touch swipe is supported on mobile.
+  ─────────────────────────────────────────────────── */
+  document.querySelectorAll('.carousel-outer').forEach(function(outer){
+    var id = outer.dataset.carousel;
+    var track = document.getElementById('track-'+id);
+    if(!track) return;
+
+    var btns = outer.querySelectorAll('.carousel-btn');
+    var prevBtn = outer.querySelector('[data-dir="-1"]');
+    var nextBtn = outer.querySelector('[data-dir="1"]');
+
+    var pos = 0; /* current translateX in px (0 = leftmost) */
+    var gap = 16;
+
+    function itemWidth(){
+      var item = track.querySelector('.carousel-item');
+      return item ? item.offsetWidth + gap : 0;
+    }
+
+    function maxScroll(){
+      /* how far we can scroll: total track width minus viewport width */
+      var vp = track.parentElement.offsetWidth;
+      return Math.max(0, track.scrollWidth - vp + gap);
+    }
+
+    function updateButtons(){
+      if(prevBtn) prevBtn.disabled = pos <= 0;
+      if(nextBtn) nextBtn.disabled = pos >= maxScroll() - 1;
+    }
+
+    function moveTo(newPos, animate){
+      pos = Math.max(0, Math.min(newPos, maxScroll()));
+      track.style.transition = animate===false ? 'none' : 'transform .38s cubic-bezier(.4,0,.2,1)';
+      track.style.transform = 'translateX(-'+pos+'px)';
+      updateButtons();
+    }
+
+    /* Arrow clicks */
+    btns.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var dir = parseInt(this.dataset.dir);
+        moveTo(pos + dir * itemWidth(), true);
+        /* Analytics hook */
+        if(typeof gtag!=='undefined') gtag('event','carousel_nav',{carousel_id:id,direction:dir>0?'next':'prev'});
       });
-      carousel.classList.add('cat-carousel-active');
-      // Build: .carousel-wrapper > [prev] [.auto-carousel-outer > carousel] [next]
-      var outer=document.createElement('div'); outer.className='auto-carousel-outer';
-      if(carousel.getAttribute('role')){
-        outer.setAttribute('role',carousel.getAttribute('role'));
-        outer.setAttribute('aria-label',carousel.getAttribute('aria-label')||'');
-        carousel.removeAttribute('role'); carousel.removeAttribute('aria-label');
-      }
-      var wrapper=document.createElement('div'); wrapper.className='carousel-wrapper';
-      function mkBtn(d,path){var b=document.createElement('button');b.className='carousel-arrow carousel-arrow-'+d;b.setAttribute('aria-label',d==='prev'?'Previous':'Next');b.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="'+path+'"/></svg>';return b;}
-      var prevBtn=mkBtn('prev','M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z');
-      var nextBtn=mkBtn('next','M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z');
-      carousel.parentNode.insertBefore(wrapper,carousel);
-      wrapper.appendChild(prevBtn); wrapper.appendChild(outer); wrapper.appendChild(nextBtn);
-      outer.appendChild(carousel);
-      // RAF-driven scroll state
-      var pos=0,paused=false,inTransit=false,halfW=0,spd=0,last=null;
-      function tick(ts){
-        if(!paused&&!inTransit){
-          if(last!==null){pos-=spd*(ts-last);if(pos<=-halfW)pos+=halfW;carousel.style.transform='translateX('+pos+'px)';}
-          last=ts;
-        }else{last=null;}
-        requestAnimationFrame(tick);
-      }
-      setTimeout(function(){halfW=carousel.scrollWidth/2;spd=halfW/52000;requestAnimationFrame(tick);},200);
-      outer.addEventListener('mouseenter',function(){paused=true;});
-      outer.addEventListener('mouseleave',function(){paused=false;});
-      function navigate(dir){
-        var g=parseInt(window.getComputedStyle(carousel).columnGap)||16;
-        var f=carousel.querySelector('.cat-item'); var cw=f?f.offsetWidth+g:236;
-        var target=Math.min(0,Math.max(-(halfW-1),pos+dir*cw));
-        inTransit=true; carousel.style.transition='transform 0.38s ease'; carousel.style.transform='translateX('+target+'px)';
-        setTimeout(function(){carousel.style.transition='none';pos=target;inTransit=false;},400);
-      }
-      prevBtn.addEventListener('click',function(){navigate(1);});
-      nextBtn.addEventListener('click',function(){navigate(-1);});
     });
-  }
+
+    /* Touch swipe */
+    var touchStartX = null;
+    track.addEventListener('touchstart',function(e){ touchStartX = e.touches[0].clientX; },{passive:true});
+    track.addEventListener('touchend',function(e){
+      if(touchStartX===null) return;
+      var delta = touchStartX - e.changedTouches[0].clientX;
+      if(Math.abs(delta) > 40) moveTo(pos + (delta > 0 ? itemWidth() : -itemWidth()), true);
+      touchStartX = null;
+    },{passive:true});
+
+    /* Keyboard support */
+    outer.setAttribute('tabindex','0');
+    outer.addEventListener('keydown',function(e){
+      if(e.key==='ArrowLeft') moveTo(pos - itemWidth(), true);
+      if(e.key==='ArrowRight') moveTo(pos + itemWidth(), true);
+    });
+
+    /* Recalculate on resize */
+    window.addEventListener('resize',function(){ moveTo(0, false); updateButtons(); });
+
+    /* Init */
+    updateButtons();
+  });
+
+  /* ── Reveal on scroll ─────────────────────────────── */
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.08});
+    reveals.forEach(function(el){obs.observe(el);});
+  } else { reveals.forEach(function(el){el.classList.add('visible');}); }
+
 })();
 </script>
 </body>
