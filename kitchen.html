@@ -4,17 +4,235 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Big Box Kitchen — Cookware &amp; Appliances | Big Box Outlet</title>
+  <meta name="description" content="KitchenAid, Ninja, Cuisinart and more at outlet prices. Shop air fryers, stand mixers, cookware sets, and kitchen essentials at Big Box Outlet — 20 locations across BC and Alberta." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="base.css" />
   <style>
-    :root { --page-color: #DA70C8; --page-color-dark: #BB52AA; }
+    :root { --page-color: #DA70C8; --page-color-dark: #BB52AA; --cat-accent: #DA70C8; }
     .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
     .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
     .navbar-nav a { color: var(--blue) !important; }
     .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
-    .navbar-nav a.active { color: var(--blue-dark) !important; }
-    .btn-find-store { background: var(--blue) !important; color: #fff !important; }
-    .btn-member { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .btn-find-store { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .btn-member { background: var(--blue) !important; color: #fff !important; }
     .nav-toggle span { background: var(--blue) !important; }
+
+    /* ── HERO ───────────────────────────────────────── */
+    .cat-hero {
+      background: #fff;
+      padding-top: calc(72px + 48px);
+      padding-bottom: 0;
+    }
+    .cat-hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px 80px; align-items: end;
+      padding-bottom: 48px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    .cat-hero-eyebrow-pill {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: #7B1E6E;
+      background: #FBF0FA; border: 1.5px solid #DA70C8;
+      border-radius: 20px; padding: 4px 14px; margin-bottom: 20px;
+    }
+    .cat-hero-headline {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      color: #0d1b2a; line-height: .98; letter-spacing: -.03em; margin: 0;
+    }
+    .cat-hero-headline span { color: #DA70C8; }
+    .cat-hero-right { padding-bottom: 8px; }
+    .cat-hero-tagline {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1.25rem; color: #0d1b2a; line-height: 1.25; margin-bottom: 12px;
+    }
+    .cat-hero-sub {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 1.02rem; color: #6b7280; line-height: 1.76; margin-bottom: 28px;
+    }
+    .cat-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-blue {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .95rem; padding: 13px 28px; border-radius: 50px;
+      text-decoration: none; transition: background .2s, transform .15s;
+    }
+    .btn-blue:hover { background: var(--blue-dark); transform: translateY(-2px); }
+    .btn-outline-blue {
+      display: inline-flex; align-items: center;
+      border: 2px solid var(--blue); color: var(--blue);
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .95rem; padding: 13px 28px; border-radius: 50px;
+      text-decoration: none; transition: border-color .2s, background .2s;
+    }
+    .btn-outline-blue:hover { background: rgba(0,61,165,.06); }
+
+    /* ── SECTION NAV PILLS ──────────────────────────── */
+    .cat-section-nav {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding: 20px 0 0;
+    }
+    .cat-section-nav a {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .82rem; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--blue); text-decoration: none;
+      padding: 7px 18px; border-radius: 50px;
+      border: 1.5px solid #c7d4ef;
+      transition: background .2s, border-color .2s;
+    }
+    .cat-section-nav a:hover { background: #e8edf8; border-color: var(--blue); }
+
+    /* ── LIFESTYLE IMAGE ────────────────────────────── */
+    .cat-lifestyle-hero { width: 100%; overflow: hidden; display: block; }
+
+    /* ── CATEGORY SECTIONS ──────────────────────────── */
+    .cat-section { padding: 72px 0 60px; }
+    .cat-section:nth-child(odd) { background: #fff; }
+    .cat-section:nth-child(even) { background: #f5f7fc; }
+    .cat-section-intro {
+      display: flex; align-items: baseline; gap: 20px;
+      margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .cat-section-num {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      color: #DA70C8; line-height: 1;
+      -webkit-text-stroke: 2px #BB52AA;
+      letter-spacing: -.04em; flex-shrink: 0;
+    }
+    .cat-section-titles { flex: 1; }
+    .cat-section-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 4px;
+    }
+    .cat-section-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 3rem); color: #0d1b2a;
+      line-height: 1.0; margin: 0;
+    }
+    .cat-section-sub {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 1rem; color: var(--gray-600); margin-top: 4px;
+    }
+
+    /* ── SECTION IMAGE PLACEHOLDER ──────────────────── */
+    .cat-section-img-placeholder {
+      width: 100%; height: 380px; border-radius: 16px;
+      background: linear-gradient(135deg, #DA70C8 0%, #BB52AA 40%, #7B1E6E 100%);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 32px; overflow: hidden; position: relative;
+    }
+    .cat-section-img-placeholder::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(255,218,0,.1) 0%, transparent 65%);
+    }
+    .cat-section-img-placeholder span {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(3rem, 8vw, 6rem); color: rgba(255,255,255,.08);
+      letter-spacing: -.03em; z-index: 1;
+    }
+
+    /* ── CAROUSEL ────────────────────────────────────── */
+    .carousel-wrapper { position: relative; }
+    .cat-carousel {
+      display: flex; gap: 14px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 12px;
+      scrollbar-width: thin;
+      scrollbar-color: #DA70C8 #e5e7eb;
+    }
+    .cat-carousel::-webkit-scrollbar { height: 4px; }
+    .cat-carousel::-webkit-scrollbar-track { background: #f0f2f8; border-radius: 2px; }
+    .cat-carousel::-webkit-scrollbar-thumb { background: #DA70C8; border-radius: 2px; }
+    .cat-item {
+      flex: 0 0 180px; scroll-snap-align: start;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      background: #fff; border-radius: 14px;
+      padding: 18px 12px 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      border: 1.5px solid #eef0f8;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .cat-item:hover {
+      box-shadow: 0 8px 24px rgba(218,112,200,.15);
+      transform: translateY(-3px);
+      border-color: #DA70C8;
+    }
+    .cat-item-ph {
+      width: 144px; height: 120px; border-radius: 10px;
+      background: linear-gradient(135deg, #fdf0fc 0%, #f5d9f1 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cat-item-ph svg { width: 44px; height: 44px; opacity: .4; fill: #BB52AA; }
+    .cat-item-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .85rem; color: var(--blue-dark);
+      text-align: center; line-height: 1.3;
+    }
+    .carousel-arrow {
+      position: absolute; top: 44%; transform: translateY(-50%);
+      z-index: 10; width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,.96); border: 1.5px solid rgba(218,112,200,.25);
+      box-shadow: 0 2px 16px rgba(0,0,0,.14);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; padding: 0;
+      transition: background .2s, box-shadow .2s, transform .15s;
+    }
+    .carousel-arrow:hover {
+      background: var(--yellow); box-shadow: 0 4px 24px rgba(218,112,200,.2);
+      transform: translateY(-50%) scale(1.08);
+    }
+    .carousel-arrow:disabled { opacity: .35; pointer-events: none; }
+    .carousel-arrow svg { width: 22px; height: 22px; fill: var(--blue); }
+    .carousel-arrow-prev { left: -20px; }
+    .carousel-arrow-next { right: -20px; }
+
+    /* ── BRANDS BAND ────────────────────────────────── */
+    .brands-band {
+      background: #f5f7fc;
+      border-top: 1.5px solid #e5e7eb;
+      border-bottom: 1.5px solid #e5e7eb;
+      padding: 24px 0;
+    }
+    .brands-band-inner { display: flex; align-items: center; gap: 0; overflow: hidden; }
+    .brands-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      color: #9aa3b2; white-space: nowrap;
+      padding-right: 28px; border-right: 1.5px solid #e5e7eb; flex-shrink: 0;
+    }
+    .brands-list {
+      display: flex; gap: 40px; align-items: center;
+      padding-left: 28px; overflow-x: auto;
+      scrollbar-width: none; flex: 1;
+    }
+    .brands-list::-webkit-scrollbar { display: none; }
+    .brand-name {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1rem; color: #9aa3b2;
+      white-space: nowrap; letter-spacing: -.01em;
+      transition: color .2s;
+    }
+    .brand-name:hover { color: var(--blue); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .cat-hero-inner { grid-template-columns: 1fr; gap: 24px; }
+    }
+    @media (max-width: 768px) {
+      .cat-hero { padding-top: calc(64px + 32px); }
+      .cat-section-img-placeholder { height: 240px; }
+      .cat-item { flex: 0 0 150px; }
+      .cat-item-ph { width: 120px; height: 96px; }
+    }
   </style>
 </head>
 <body>
@@ -34,7 +252,7 @@
       </ul>
       <div class="navbar-actions">
         <a href="rewards.html" class="btn btn-member">Become a Member</a>
-        <a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener" class="btn btn-find-store">
+        <a href="stores.html" class="btn btn-find-store">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           Store Locator
         </a>
@@ -46,107 +264,262 @@
   </div>
 </nav>
 
-<!-- ── MAIN CONTENT ──────────────────────────────────── -->
 <main>
 
-  <!-- 1. Hero -->
-  <section class="sub-hero">
-    <div class="sub-hero-accent sub-hero-accent-1"></div>
-    <div class="sub-hero-accent sub-hero-accent-2"></div>
-    <div class="container">
-      <div class="sub-hero-inner">
-        <div class="sub-hero-brand">
-          <div class="sub-hero-brand-box">BIG<br>BOX</div>
-          <div class="sub-hero-brand-tab">Kitchen</div>
-        </div>
-        <h1 class="sub-hero-headline">Stock Your Kitchen with<br><span style="color:#DA70C8">Brands You Trust</span></h1>
-        <p class="sub-hero-sub">Top-brand cookware, small appliances and kitchen essentials — new deals landing every Thursday.</p>
-        <div class="sub-hero-actions">
-          <a href="https://bigboxoutletstore.ca" class="btn btn-primary" target="_blank" rel="noopener">Shop Big Box Kitchen</a>
-          <a href="https://bigboxoutletstore.ca/locations" class="btn btn-outline" target="_blank" rel="noopener">Find a Store</a>
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="cat-hero">
+  <div class="container">
+    <div class="cat-hero-inner">
+      <div>
+        <div class="cat-hero-eyebrow-pill">Big Box Kitchen</div>
+        <h1 class="cat-hero-headline">Cook More.<br><span>Spend Less.</span></h1>
+        <nav class="cat-section-nav" aria-label="Section navigation">
+          <a href="#appliances">Small Appliances</a>
+          <a href="#cookware">Cookware &amp; Bakeware</a>
+          <a href="#gadgets">Gadgets &amp; Storage</a>
+        </nav>
+      </div>
+      <div class="cat-hero-right">
+        <p class="cat-hero-tagline">Top-brand kitchen gear at outlet prices.</p>
+        <p class="cat-hero-sub">KitchenAid stand mixers, Ninja air fryers, Cuisinart cookware — the brands you love, sourced directly so the savings go straight to you. New deals every Thursday.</p>
+        <div class="cat-hero-actions">
+          <a href="stores.html" class="btn-blue">Find a Store Near You</a>
+          <a href="flyer.html" class="btn-outline-blue">This Week's Deals</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 2. Product Chips -->
-  <section class="products-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">What's In Store</span>
-        <h2 class="section-heading">Browse Kitchen Categories</h2>
-      </div>
-      <div class="product-grid reveal" style="transition-delay:.1s">
-        <span class="product-chip">Air Fryers</span>
-        <span class="product-chip">Stand Mixers</span>
-        <span class="product-chip">Coffee Makers</span>
-        <span class="product-chip">Espresso Machines</span>
-        <span class="product-chip">Blenders</span>
-        <span class="product-chip">Toasters &amp; Toaster Ovens</span>
-        <span class="product-chip">Instant Pots</span>
-        <span class="product-chip">Cookware Sets</span>
-        <span class="product-chip">Knives &amp; Cutlery</span>
-        <span class="product-chip">Bakeware</span>
-        <span class="product-chip">Food Storage</span>
-        <span class="product-chip">Kitchen Gadgets</span>
+<!-- ── BRANDS BAND ────────────────────────────────────── -->
+<div class="brands-band">
+  <div class="container">
+    <div class="brands-band-inner">
+      <div class="brands-label">Brands We Carry</div>
+      <div class="brands-list" aria-label="Featured brands">
+        <span class="brand-name">KitchenAid</span>
+        <span class="brand-name">Ninja</span>
+        <span class="brand-name">Cuisinart</span>
+        <span class="brand-name">Instant Pot</span>
+        <span class="brand-name">Breville</span>
+        <span class="brand-name">De'Longhi</span>
+        <span class="brand-name">Hamilton Beach</span>
+        <span class="brand-name">T-fal</span>
+        <span class="brand-name">Keurig</span>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- 3. Value Props -->
-  <section class="value-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">Why Big Box Kitchen</span>
-        <h2 class="section-heading">Name Brands. Outlet Prices.</h2>
-      </div>
-      <div class="value-grid">
-        <div class="value-card reveal">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <div class="value-title">Top Brands</div>
-          <div class="value-desc">KitchenAid, Cuisinart, Ninja, Instant Pot and more. Name-brand quality at outlet savings you won't find at regular retail.</div>
-        </div>
-        <div class="value-card reveal" style="transition-delay:.1s">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div class="value-title">Up to 70% Off</div>
-          <div class="value-desc">Overstock and open-box kitchen items mean you never have to pay full retail again. Same product. Better price.</div>
-        </div>
-        <div class="value-card reveal" style="transition-delay:.2s">
-          <div class="value-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <div class="value-title">Weekly Fresh Inventory</div>
-          <div class="value-desc">New kitchen arrivals every Thursday. Stock moves fast — if you see something you love, grab it before it's gone.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ── LIFESTYLE IMAGE ────────────────────────────────── -->
+<!-- CMS: Replace this placeholder with a wide lifestyle photo of a bright, modern kitchen -->
+<div class="cat-lifestyle-hero" aria-hidden="true">
+  <div style="width:100%;height:480px;background:linear-gradient(135deg,#DA70C8 0%,#BB52AA 50%,#7B1E6E 100%);display:flex;align-items:center;justify-content:center;">
+    <span style="font-family:'Work Sans',sans-serif;font-weight:900;font-size:clamp(2.5rem,7vw,5.5rem);color:rgba(255,255,255,.12);letter-spacing:-.03em;">BIG BOX KITCHEN</span>
+  </div>
+</div>
 
-  <!-- 4. Brand Promise -->
-  <section class="brand-promise">
-    <div class="container">
-      <div class="brand-promise-eyebrow">Our Promise</div>
-      <h2>A well-stocked kitchen<br>shouldn't cost a fortune.</h2>
-      <p>A well-stocked kitchen shouldn't cost a fortune. We make sure it doesn't.</p>
-      <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store Near You</a>
-    </div>
-  </section>
-
-  <!-- 5. CTA Strip -->
-  <section class="cta-strip">
-    <div class="container">
-      <h2>Find Big Box Kitchen Near You</h2>
-      <p>New kitchen arrivals every Thursday at all 20 locations.</p>
-      <div class="cta-strip-actions">
-        <a href="https://bigboxoutletstore.ca/locations" class="btn btn-primary" target="_blank" rel="noopener">Find a Store</a>
-        <a href="index.html#categories" class="btn" style="background:var(--gray-200);color:var(--gray-800);padding:14px 28px;border-radius:50px;font-size:1rem;">Browse All Categories</a>
+<!-- ── SECTION 1: SMALL APPLIANCES ───────────────────── -->
+<section class="cat-section" id="appliances">
+  <div class="container">
+    <div class="cat-section-intro reveal">
+      <div class="cat-section-num">01</div>
+      <div class="cat-section-titles">
+        <div class="cat-section-label">Category</div>
+        <h2 class="cat-section-title">Small Appliances</h2>
+        <p class="cat-section-sub">The countertop essentials that make weeknight cooking easier — from air fryers to espresso machines.</p>
       </div>
     </div>
-  </section>
+    <!-- CMS: Replace placeholder with a bright kitchen counter lifestyle image showing small appliances -->
+    <div class="cat-section-img-placeholder" aria-hidden="true">
+      <span>Appliances</span>
+    </div>
+    <div class="carousel-wrapper reveal">
+      <button class="carousel-arrow carousel-arrow-prev" aria-label="Scroll left" data-target="carousel-appliances">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <div class="cat-carousel" id="carousel-appliances" role="list">
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M12 7V5M12 17v2"/></svg></div>
+          <div class="cat-item-label">Air Fryers</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3H5l-2 8h18L19 3h-4m-6 0h6M9 3v18m6-18v18"/></svg></div>
+          <div class="cat-item-label">Stand Mixers</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+          <div class="cat-item-label">Coffee Makers</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><rect x="3" y="8" width="14" height="10" rx="2"/><line x1="7" y1="8" x2="7" y2="18"/></svg></div>
+          <div class="cat-item-label">Espresso Machines</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div class="cat-item-label">Blenders</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+          <div class="cat-item-label">Toasters &amp; Toaster Ovens</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div>
+          <div class="cat-item-label">Instant Pots</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12V6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v6"/><path d="M3 12h18v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg></div>
+          <div class="cat-item-label">Food Processors</div>
+        </div>
+      </div>
+      <button class="carousel-arrow carousel-arrow-next" aria-label="Scroll right" data-target="carousel-appliances">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: COOKWARE & BAKEWARE ────────────────── -->
+<section class="cat-section" id="cookware">
+  <div class="container">
+    <div class="cat-section-intro reveal">
+      <div class="cat-section-num">02</div>
+      <div class="cat-section-titles">
+        <div class="cat-section-label">Category</div>
+        <h2 class="cat-section-title">Cookware &amp; Bakeware</h2>
+        <p class="cat-section-sub">Professional-grade pots, pans, and bakeware — for home cooks who take their kitchen seriously.</p>
+      </div>
+    </div>
+    <!-- CMS: Replace placeholder with a lifestyle image of cookware on a stove -->
+    <div class="cat-section-img-placeholder" aria-hidden="true">
+      <span>Cookware</span>
+    </div>
+    <div class="carousel-wrapper reveal">
+      <button class="carousel-arrow carousel-arrow-prev" aria-label="Scroll left" data-target="carousel-cookware">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <div class="cat-carousel" id="carousel-cookware" role="list">
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div class="cat-item-label">Cookware Sets</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="3" x2="12" y2="1"/><line x1="3" y1="12" x2="1" y2="12"/></svg></div>
+          <div class="cat-item-label">Frying Pans</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12V6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v6"/><path d="M3 12h18v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg></div>
+          <div class="cat-item-label">Bakeware</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="8" y1="6" x2="8" y2="21"/><line x1="8" y1="2" x2="21" y2="2"/><line x1="21" y1="2" x2="21" y2="12"/><line x1="20" y1="12" x2="8" y2="12"/><line x1="16" y1="6" x2="16" y2="2"/></svg></div>
+          <div class="cat-item-label">Knives &amp; Cutlery</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+          <div class="cat-item-label">Cast Iron</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 16.5a3.5 3.5 0 1 1 7 0c0 2-3.5 5.5-3.5 5.5S7 18.5 7 16.5z"/><path d="M15 9.5a3.5 3.5 0 1 1 7 0c0 2-3.5 5.5-3.5 5.5S15 11.5 15 9.5z"/><line x1="7" y1="8" x2="7" y2="16.5"/><line x1="15" y1="2" x2="15" y2="9.5"/></svg></div>
+          <div class="cat-item-label">Roasting Pans</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1" y="7" width="22" height="10" rx="2"/><line x1="12" y1="7" x2="12" y2="17"/></svg></div>
+          <div class="cat-item-label">Cutting Boards</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div class="cat-item-label">Mixing Bowls</div>
+        </div>
+      </div>
+      <button class="carousel-arrow carousel-arrow-next" aria-label="Scroll right" data-target="carousel-cookware">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: GADGETS & STORAGE ──────────────────── -->
+<section class="cat-section" id="gadgets">
+  <div class="container">
+    <div class="cat-section-intro reveal">
+      <div class="cat-section-num">03</div>
+      <div class="cat-section-titles">
+        <div class="cat-section-label">Category</div>
+        <h2 class="cat-section-title">Gadgets &amp; Kitchen Storage</h2>
+        <p class="cat-section-sub">The little things that make a big difference — from smart food storage to the gadgets that make cooking fun.</p>
+      </div>
+    </div>
+    <!-- CMS: Replace placeholder with a styled pantry/organized kitchen image -->
+    <div class="cat-section-img-placeholder" aria-hidden="true">
+      <span>Gadgets</span>
+    </div>
+    <div class="carousel-wrapper reveal">
+      <button class="carousel-arrow carousel-arrow-prev" aria-label="Scroll left" data-target="carousel-gadgets">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <div class="cat-carousel" id="carousel-gadgets" role="list">
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+          <div class="cat-item-label">Food Storage Containers</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+          <div class="cat-item-label">Kitchen Gadgets</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="cat-item-label">Measuring Tools</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+          <div class="cat-item-label">Pantry Organization</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div class="cat-item-label">Kitchen Scales</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <div class="cat-item-label">Recipe Books</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div class="cat-item-label">Specialty Cookware</div>
+        </div>
+        <div class="cat-item" role="listitem">
+          <div class="cat-item-ph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="cat-item-label">Tabletop &amp; Serveware</div>
+        </div>
+      </div>
+      <button class="carousel-arrow carousel-arrow-next" aria-label="Scroll right" data-target="carousel-gadgets">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── BRAND PROMISE ───────────────────────────────────── -->
+<section class="brand-promise">
+  <div class="container">
+    <div class="brand-promise-eyebrow">Our Promise</div>
+    <h2>A well-stocked kitchen<br>shouldn't cost a fortune.</h2>
+    <p>We source top brands directly so the savings go straight to you. Every week. Every location.</p>
+    <a href="stores.html" class="btn btn-primary">Find a Store Near You</a>
+  </div>
+</section>
+
+<!-- ── CTA STRIP ─────────────────────────────────────── -->
+<section class="cta-strip">
+  <div class="container">
+    <h2>New Kitchen Arrivals Every Thursday</h2>
+    <p>Deals change weekly — visit your nearest Big Box Outlet to see what just came in.</p>
+    <div class="cta-strip-actions">
+      <a href="stores.html" class="btn btn-primary">Find a Store</a>
+      <a href="flyer.html" class="btn" style="background:rgba(255,255,255,.12);color:#fff;padding:14px 28px;border-radius:50px;font-weight:700;font-size:1rem;border:1.5px solid rgba(255,255,255,.25);text-decoration:none;">View Weekly Deals</a>
+    </div>
+  </div>
+</section>
 
 </main>
 
@@ -162,7 +535,7 @@
         <div class="footer-col-title">Explore</div>
         <ul class="footer-links">
           <li><a href="flyer.html">Weekly Deals</a></li>
-          <li><a href="https://bigboxoutletstore.ca/locations" target="_blank" rel="noopener">Find A Store</a></li>
+          <li><a href="stores.html">Find A Store</a></li>
           <li><a href="rewards.html">Rewards</a></li>
         </ul>
       </div>
@@ -178,27 +551,27 @@
         <div class="footer-col-title">Customer Service</div>
         <ul class="footer-links">
           <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Return Policy</a></li>
+          <li><a href="returns.html">Return Policy</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Legal</div>
         <ul class="footer-links">
           <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Terms of Use</a></li>
-          <li><a href="https://bigboxoutletstore.ca">Accessibility</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Connect with BBO</div>
         <div class="footer-connect-icons">
-          <a href="https://instagram.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+          <a href="https://instagram.com/bboscanada" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          <a href="https://facebook.com/bigboxoutletstore" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+          <a href="https://facebook.com/bboscanada" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-          <a href="mailto:info@bigboxoutlet.ca" class="footer-connect-link" aria-label="Email us">
+          <a href="mailto:info@bbos.ca" class="footer-connect-link" aria-label="Email us">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </a>
         </div>
@@ -208,8 +581,8 @@
       <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Prices may vary by location.</div>
       <div class="footer-bottom-links">
         <a href="privacy.html">Privacy Policy</a>
-        <a href="https://bigboxoutletstore.ca">Terms of Use</a>
-        <a href="https://bigboxoutletstore.ca">Accessibility</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="accessibility.html">Accessibility</a>
       </div>
     </div>
   </div>
@@ -218,15 +591,32 @@
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
 </button>
+
 <script>
 (function(){
+  /* Nav */
   var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
   if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
   window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
-  var reveals=document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
+
+  /* Scroll-top */
   var btn=document.getElementById('scrollTop');
   if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+
+  /* Reveal */
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
+
+  /* Carousel arrows */
+  document.querySelectorAll('.carousel-arrow').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var id=this.dataset.target;
+      var carousel=document.getElementById(id);
+      if(!carousel)return;
+      var dir=this.classList.contains('carousel-arrow-next')?1:-1;
+      carousel.scrollBy({left:dir*200,behavior:'smooth'});
+    });
+  });
 })();
 </script>
 
