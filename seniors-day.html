@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seniors Day — 20% Off for Members 65+ | Big Box Outlet Store</title>
+  <meta name="description" content="Big Box Outlet Seniors Day: Members aged 65 and over save 20% on every in-store purchase, up to $100 off. Free to join. Every week at all 20 BC and Alberta locations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="base.css" />
+
+  <!-- ── KLAVIYO INTEGRATION ────────────────────────────────────────────
+       Replace KLAVIYO_COMPANY_ID below with your account ID from:
+       Klaviyo → Settings → Account → API Keys → Public API Key
+       Then uncomment the script tag to activate onsite forms.
+  ──────────────────────────────────────────────────────────────────── -->
+  <!-- <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=KLAVIYO_COMPANY_ID"></script> -->
+
+  <style>
+    :root { --page-color: #D97706; --page-color-dark: #B45309; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
+    .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
+    .navbar-nav a { color: var(--blue) !important; }
+    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
+    .btn-find-store { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .btn-member { background: var(--blue) !important; color: #fff !important; }
+    .nav-toggle span { background: var(--blue) !important; }
+
+    /* ══ HERO ════════════════════════════════════════ */
+    .sd-hero {
+      background: linear-gradient(135deg, #060f1e 0%, #0d1f3c 55%, #1a0d00 100%);
+      padding: 130px 0 72px;
+      position: relative; overflow: hidden;
+    }
+    .sd-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 75% 45%, rgba(217,119,6,.3) 0%, transparent 62%);
+      pointer-events: none;
+    }
+    .sd-hero::after {
+      content: ''; position: absolute;
+      top: -160px; right: -160px;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: rgba(217,119,6,.08); pointer-events: none;
+    }
+    .sd-hero-inner {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 40px 60px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .sd-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,218,0,.1); border: 1px solid rgba(255,218,0,.22);
+      border-radius: 8px; padding: 9px 16px; margin-bottom: 24px;
+    }
+    .sd-badge-icon { width: 28px; height: 28px; flex-shrink: 0; }
+    .sd-badge-icon svg { width: 28px; height: 28px; fill: var(--yellow); }
+    .sd-badge-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--yellow); display: block; line-height: 1;
+    }
+    .sd-badge-name {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: .95rem; color: #fff; display: block; line-height: 1;
+    }
+    .sd-hero h1 {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      color: #fff; line-height: 1.0; margin: 0 0 18px;
+      letter-spacing: -.02em;
+    }
+    .sd-hero h1 span { color: var(--yellow); }
+    .sd-hero-sub {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 1.1rem; color: rgba(255,255,255,.72);
+      line-height: 1.75; margin-bottom: 32px; max-width: 520px;
+    }
+    .sd-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .sd-btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1rem; padding: 14px 30px; border-radius: 50px;
+      text-decoration: none; transition: background .2s, transform .15s;
+      box-shadow: 0 4px 20px rgba(255,218,0,.35);
+    }
+    .sd-btn-primary:hover { background: #ffe44d; transform: translateY(-2px); }
+    .sd-btn-outline {
+      display: inline-flex; align-items: center;
+      border: 2px solid rgba(255,255,255,.35); color: rgba(255,255,255,.85);
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: 1rem; padding: 14px 28px; border-radius: 50px;
+      text-decoration: none; transition: border-color .2s, color .2s;
+    }
+    .sd-btn-outline:hover { border-color: #fff; color: #fff; }
+
+    /* Big discount badge */
+    .sd-discount-badge {
+      flex-shrink: 0;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: var(--yellow);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      box-shadow: 0 0 0 12px rgba(255,218,0,.15), 0 0 0 24px rgba(255,218,0,.06);
+      text-align: center;
+      animation: sd-pulse 3.5s ease-in-out infinite;
+    }
+    @keyframes sd-pulse {
+      0%, 100% { box-shadow: 0 0 0 12px rgba(255,218,0,.15), 0 0 0 24px rgba(255,218,0,.06); }
+      50% { box-shadow: 0 0 0 16px rgba(255,218,0,.2), 0 0 0 32px rgba(255,218,0,.08); }
+    }
+    .sd-discount-num {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 3.8rem; color: var(--blue-dark);
+      line-height: 1; letter-spacing: -.04em;
+    }
+    .sd-discount-pct {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.6rem; color: var(--blue-dark); line-height: 1;
+      letter-spacing: -.02em; margin-top: -4px;
+    }
+    .sd-discount-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--blue-dark); margin-top: 4px; opacity: .75;
+    }
+
+    @media (max-width: 760px) {
+      .sd-hero-inner { grid-template-columns: 1fr; }
+      .sd-discount-badge { width: 150px; height: 150px; order: -1; }
+      .sd-discount-num { font-size: 2.8rem; }
+      .sd-discount-pct { font-size: 1.2rem; }
+      .sd-hero { padding: 110px 0 60px; }
+    }
+
+    /* ══ DEAL HIGHLIGHTS BAND ════════════════════════ */
+    .sd-highlights {
+      background: var(--yellow);
+      padding: 0;
+    }
+    .sd-highlights-inner {
+      display: flex; align-items: stretch;
+    }
+    .sd-highlight-item {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 4px; padding: 28px 20px; text-align: center;
+      border-right: 1.5px solid rgba(0,41,122,.12);
+    }
+    .sd-highlight-item:last-child { border-right: none; }
+    .sd-highlight-num {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 2rem; color: var(--blue-dark);
+      line-height: 1; letter-spacing: -.02em;
+    }
+    .sd-highlight-label {
+      font-family: 'Nunito Sans', sans-serif; font-weight: 600;
+      font-size: .82rem; color: var(--blue-dark);
+      opacity: .7; line-height: 1.3;
+    }
+    @media (max-width: 640px) {
+      .sd-highlights-inner { flex-wrap: wrap; }
+      .sd-highlight-item { flex: 0 0 50%; border-bottom: 1.5px solid rgba(0,41,122,.12); }
+      .sd-highlight-item:nth-child(even) { border-right: none; }
+      .sd-highlight-item:nth-last-child(-n+2) { border-bottom: none; }
+    }
+
+    /* ══ HOW IT WORKS ═══════════════════════════════ */
+    .sd-how-section {
+      background: #fff;
+      padding: 72px 0 80px;
+    }
+    .sd-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px; margin-top: 48px;
+    }
+    .sd-step {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .sd-step-num {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(4rem, 8vw, 6.5rem);
+      color: #f0f2f8;
+      -webkit-text-stroke: 2px #D97706;
+      line-height: 1; letter-spacing: -.04em;
+      margin-bottom: 16px;
+    }
+    .sd-step-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1.2rem; color: #0d1b2a;
+      margin-bottom: 10px;
+    }
+    .sd-step-desc {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .95rem; color: #4b5563; line-height: 1.78;
+    }
+    @media (max-width: 760px) {
+      .sd-steps { grid-template-columns: 1fr; gap: 40px; }
+      .sd-step { flex-direction: row; align-items: flex-start; gap: 20px; }
+      .sd-step-num { font-size: 3.2rem; flex-shrink: 0; }
+    }
+
+    /* ══ KLAVIYO / EMAIL SIGNUP ══════════════════════ */
+    .sd-signup-section {
+      background: linear-gradient(135deg, #060f1e 0%, #1a0a00 100%);
+      padding: 72px 0;
+      position: relative; overflow: hidden;
+    }
+    .sd-signup-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(217,119,6,.22) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .sd-signup-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px 80px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .sd-signup-copy .section-label { color: var(--yellow); }
+    .sd-signup-copy h2 {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem); color: #fff;
+      line-height: 1.1; margin: 0 0 16px;
+    }
+    .sd-signup-copy p {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 1rem; color: rgba(255,255,255,.65);
+      line-height: 1.78; margin: 0 0 24px;
+    }
+    .sd-signup-perks { display: flex; flex-direction: column; gap: 10px; }
+    .sd-signup-perk {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .92rem; color: rgba(255,255,255,.8);
+    }
+    .sd-signup-perk-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--yellow); flex-shrink: 0;
+    }
+
+    /* Form card */
+    .sd-form-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 36px 32px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.4);
+    }
+    .sd-form-card h3 {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.3rem; color: #0d1b2a;
+      margin: 0 0 6px;
+    }
+    .sd-form-card .sd-form-sub {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .88rem; color: #6b7280; margin-bottom: 24px;
+    }
+
+    /* Klaviyo embed slot */
+    .klaviyo-form-slot {
+      /* Klaviyo embed form renders here — uncomment the div below and replace FORM_ID */
+      /* <div class="klaviyo-form-FORM_ID"></div> */
+    }
+
+    /* Fallback static form — shown when Klaviyo isn't loaded */
+    .sd-form {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .sd-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .sd-form input,
+    .sd-form select {
+      width: 100%; padding: 13px 18px;
+      border-radius: 10px;
+      border: 1.5px solid #e5e7eb;
+      font-family: 'Nunito Sans', sans-serif; font-size: .95rem;
+      color: #0d1b2a; background: #fff; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .sd-form input::placeholder { color: #9ca3af; }
+    .sd-form input:focus,
+    .sd-form select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,61,165,.12);
+    }
+    .sd-form-dob-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+      color: #6b7280; margin-bottom: 4px; display: block;
+    }
+    .sd-form-dob-hint {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .75rem; color: #9ca3af; margin-top: 4px;
+    }
+    .sd-form-submit {
+      width: 100%; padding: 15px 24px;
+      border-radius: 50px; border: none;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1.05rem; cursor: pointer;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 16px rgba(255,218,0,.4);
+      margin-top: 4px;
+    }
+    .sd-form-submit:hover { background: #ffe44d; transform: translateY(-2px); }
+    .sd-form-note {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .75rem; color: #9ca3af; text-align: center; margin-top: 8px;
+    }
+    .sd-form-note a { color: var(--blue); }
+
+    @media (max-width: 840px) {
+      .sd-signup-inner { grid-template-columns: 1fr; gap: 40px; }
+      .sd-form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .sd-form-card { padding: 28px 20px; }
+    }
+
+    /* ══ ELIGIBILITY SECTION ═════════════════════════ */
+    .sd-eligibility-section {
+      background: #fff;
+      padding: 72px 0 80px;
+    }
+    .sd-elig-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 32px; margin-top: 40px;
+    }
+    .sd-elig-card {
+      border-radius: 16px; padding: 36px 32px;
+      border: 1.5px solid #e5e7eb;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+    }
+    .sd-elig-card.dark {
+      background: #060f1e; border-color: transparent;
+    }
+    .sd-elig-card-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.15rem; color: #0d1b2a; margin-bottom: 20px;
+    }
+    .sd-elig-card.dark .sd-elig-card-title { color: #fff; }
+    .sd-elig-list {
+      display: flex; flex-direction: column; gap: 14px;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .sd-elig-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .95rem; color: #374151; line-height: 1.65;
+    }
+    .sd-elig-card.dark .sd-elig-list li { color: rgba(255,255,255,.72); }
+    .sd-elig-check {
+      flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+      background: #D97706; margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sd-elig-check svg { width: 11px; height: 11px; fill: none; stroke: #fff; stroke-width: 2.5; }
+    .sd-elig-card.dark .sd-elig-check { background: var(--yellow); }
+    .sd-elig-card.dark .sd-elig-check svg { stroke: var(--blue-dark); }
+    .sd-locations-note {
+      margin-top: 28px; padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .sd-locations-note p {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .88rem; color: rgba(255,255,255,.55);
+      line-height: 1.65; margin: 0 0 16px;
+    }
+    .sd-locations-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .9rem; padding: 11px 22px; border-radius: 50px;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .sd-locations-link:hover { opacity: .88; }
+    @media (max-width: 720px) {
+      .sd-elig-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ══ FAQ ═════════════════════════════════════════ */
+    .sd-faq-section {
+      background: #dce9f5;
+      padding: 72px 0 80px;
+    }
+    .sd-faq-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px; margin-top: 40px;
+    }
+    .sd-faq-card {
+      background: #fff; border-radius: 14px;
+      padding: 28px 24px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .sd-faq-card:hover { box-shadow: 0 8px 28px rgba(0,61,165,.1); transform: translateY(-3px); }
+    .sd-faq-q {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1rem; color: var(--blue); margin-bottom: 10px;
+    }
+    .sd-faq-a {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .9rem; color: #4b5563; line-height: 1.68;
+    }
+    @media (max-width: 640px) {
+      .sd-faq-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ─────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="Big Box Outlet Store Home">
+        <img src="images/logo.png" alt="Big Box Outlet Store" />
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="flyer.html">Weekly Deals</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="rewards.html" class="btn btn-member">Become a Member</a>
+        <a href="stores.html" class="btn btn-find-store">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Store Locator
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── 1. HERO ──────────────────────────────────── -->
+  <section class="sd-hero">
+    <div class="container">
+      <div class="sd-hero-inner">
+        <div>
+          <div class="sd-badge">
+            <div class="sd-badge-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <span class="sd-badge-label">Big Box</span>
+              <span class="sd-badge-name">Seniors Day</span>
+            </div>
+          </div>
+          <h1>More Savings.<br><span>Every Week.</span></h1>
+          <p class="sd-hero-sub">Members aged 65 and over save 20% on their entire in-store purchase — up to $100 off per visit. Free membership, no fine print, every week at all 20 of our BC and Alberta locations.</p>
+          <div class="sd-hero-actions">
+            <a href="#signup" class="sd-btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              Get Seniors Day Alerts
+            </a>
+            <a href="stores.html" class="sd-btn-outline">Find a Store</a>
+          </div>
+        </div>
+        <div class="sd-discount-badge" aria-label="20% off discount">
+          <div class="sd-discount-num">20</div>
+          <div class="sd-discount-pct">% Off</div>
+          <div class="sd-discount-label">Up to $100</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. DEAL HIGHLIGHTS BAND ─────────────────── -->
+  <div class="sd-highlights" role="region" aria-label="Deal highlights">
+    <div class="container" style="padding-left:0;padding-right:0;max-width:100%;">
+      <div class="sd-highlights-inner">
+        <div class="sd-highlight-item">
+          <div class="sd-highlight-num">20%</div>
+          <div class="sd-highlight-label">Off your entire<br>in-store purchase</div>
+        </div>
+        <div class="sd-highlight-item">
+          <div class="sd-highlight-num">$100</div>
+          <div class="sd-highlight-label">Maximum savings<br>per visit</div>
+        </div>
+        <div class="sd-highlight-item">
+          <div class="sd-highlight-num">65+</div>
+          <div class="sd-highlight-label">Open to all<br>qualifying members</div>
+        </div>
+        <div class="sd-highlight-item">
+          <div class="sd-highlight-num">Free</div>
+          <div class="sd-highlight-label">BBOS Rewards<br>membership required</div>
+        </div>
+        <div class="sd-highlight-item">
+          <div class="sd-highlight-num">20</div>
+          <div class="sd-highlight-label">Locations across<br>BC &amp; Alberta</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. HOW IT WORKS ──────────────────────────── -->
+  <section class="sd-how-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Getting Started</span>
+        <h2 class="section-heading">Three Steps to Your Discount</h2>
+        <p class="section-sub">It takes minutes to set up and lasts a lifetime.</p>
+      </div>
+      <div class="sd-steps">
+        <div class="sd-step reveal">
+          <div class="sd-step-num">01</div>
+          <div>
+            <div class="sd-step-title">Join for Free</div>
+            <p class="sd-step-desc">Sign up for your free Big Box Rewards membership — in-store at any location, or online by entering your details below. No fees, no credit card, no expiry.</p>
+          </div>
+        </div>
+        <div class="sd-step reveal" style="transition-delay:.1s">
+          <div class="sd-step-num">02</div>
+          <div>
+            <div class="sd-step-title">Shop In-Store</div>
+            <p class="sd-step-desc">Visit any of our 20 BC and Alberta locations on Seniors Day. Browse thousands of brand-name appliances, furniture, kitchen gear, clothing, and home essentials at outlet prices.</p>
+          </div>
+        </div>
+        <div class="sd-step reveal" style="transition-delay:.2s">
+          <div class="sd-step-num">03</div>
+          <div>
+            <div class="sd-step-title">Save at Checkout</div>
+            <p class="sd-step-desc">Show your Rewards membership and a valid government-issued ID confirming you're 65 or older. Your 20% discount — up to $100 — is applied to your total automatically by our team.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. KLAVIYO EMAIL SIGNUP ──────────────────── -->
+  <section class="sd-signup-section" id="signup">
+    <div class="container">
+      <div class="sd-signup-inner">
+        <div class="sd-signup-copy reveal">
+          <span class="section-label">Stay in the Loop</span>
+          <h2>Get Seniors Day Reminders &amp; Exclusive Deals</h2>
+          <p>Sign up to receive a weekly reminder before Seniors Day, plus early access to new arrivals, member-only pricing, and flyer deals — delivered straight to your inbox.</p>
+          <div class="sd-signup-perks">
+            <div class="sd-signup-perk"><div class="sd-signup-perk-dot"></div>Weekly Seniors Day reminder</div>
+            <div class="sd-signup-perk"><div class="sd-signup-perk-dot"></div>Early access to Thursday new inventory</div>
+            <div class="sd-signup-perk"><div class="sd-signup-perk-dot"></div>Member-only deals &amp; exclusive pricing</div>
+            <div class="sd-signup-perk"><div class="sd-signup-perk-dot"></div>Flyer deals before they go public</div>
+          </div>
+        </div>
+
+        <div class="sd-form-card reveal" style="transition-delay:.12s">
+          <h3>Join Big Box Rewards</h3>
+          <p class="sd-form-sub">Takes less than 60 seconds. Free forever.</p>
+
+          <!-- ── KLAVIYO EMBED SLOT ──────────────────────
+               1. Uncomment the line below and replace FORM_ID with your Klaviyo
+                  Seniors Day signup form ID (Klaviyo → Forms → embed code)
+               2. The fallback form below will be hidden automatically when
+                  Klaviyo loads. Add class="klav-loaded" to <body> via Klaviyo
+                  JS callback to hide .sd-form-fallback.
+          ─────────────────────────────────────────────── -->
+          <!-- <div class="klaviyo-form-FORM_ID"></div> -->
+
+          <!-- Static fallback form — wire to backend or Klaviyo API later -->
+          <form class="sd-form sd-form-fallback" id="seniorsSignupForm" action="#" novalidate>
+            <div class="sd-form-row">
+              <input type="text" name="first_name" placeholder="First Name" required autocomplete="given-name" aria-label="First name" />
+              <input type="text" name="last_name" placeholder="Last Name" required autocomplete="family-name" aria-label="Last name" />
+            </div>
+            <input type="email" name="email" placeholder="Email Address" required autocomplete="email" aria-label="Email address" />
+            <input type="tel" name="phone" placeholder="Phone Number (optional)" autocomplete="tel" aria-label="Phone number" />
+            <input type="text" name="postal_code" placeholder="Postal Code" autocomplete="postal-code" aria-label="Postal code" />
+            <div>
+              <label class="sd-form-dob-label" for="dob">Date of Birth</label>
+              <input type="date" name="dob" id="dob" required autocomplete="bday" aria-label="Date of birth" aria-describedby="dob-hint" />
+              <p class="sd-form-dob-hint" id="dob-hint">Used to verify Seniors Day eligibility (ages 65+)</p>
+            </div>
+            <button type="submit" class="sd-form-submit">
+              Join Free &amp; Get Seniors Day Deals
+            </button>
+            <p class="sd-form-note">
+              By signing up you agree to receive marketing emails from Big Box Outlet Store.
+              Unsubscribe anytime. View our <a href="privacy.html">Privacy Policy</a>.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. ELIGIBILITY & DETAILS ────────────────── -->
+  <section class="sd-eligibility-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Eligibility</span>
+        <h2 class="section-heading">Who Qualifies &amp; How It Works</h2>
+      </div>
+      <div class="sd-elig-grid">
+        <div class="sd-elig-card reveal">
+          <div class="sd-elig-card-title">Eligibility Requirements</div>
+          <ul class="sd-elig-list" aria-label="Eligibility requirements">
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Must be a Big Box Rewards member (free to join in-store or online)
+            </li>
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Must be 65 years of age or older at the time of purchase
+            </li>
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Valid government-issued ID required at checkout (driver's licence, passport, or provincial ID)
+            </li>
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              In-store purchases only — discount not applicable to online orders
+            </li>
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Discount applies to your entire purchase; maximum savings of $100 per visit
+            </li>
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Limit one Seniors Day discount per member per visit
+            </li>
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Cannot be combined with other promotions or coupons unless otherwise noted
+            </li>
+          </ul>
+        </div>
+        <div class="sd-elig-card dark reveal" style="transition-delay:.1s">
+          <div class="sd-elig-card-title">Where &amp; When</div>
+          <ul class="sd-elig-list" aria-label="Where and when details">
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Seniors Day runs every week — check with your local store for the exact day at your location
+            </li>
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Available at all 20 Big Box Outlet locations across BC and Alberta
+            </li>
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Valid during regular store hours — no appointment needed
+            </li>
+            <li>
+              <span class="sd-elig-check"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Thursday is our biggest new-inventory day — many members visit then for the best selection
+            </li>
+          </ul>
+          <div class="sd-locations-note">
+            <p>Find your nearest Big Box Outlet store, get directions, and check local hours.</p>
+            <a href="stores.html" class="sd-locations-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Find a Store Near You
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6. FAQ ────────────────────────────────────── -->
+  <section class="sd-faq-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Common Questions</span>
+        <h2 class="section-heading">Seniors Day FAQ</h2>
+      </div>
+      <div class="sd-faq-grid">
+        <div class="sd-faq-card reveal">
+          <div class="sd-faq-q">Is Seniors Day every week?</div>
+          <p class="sd-faq-a">Yes — Seniors Day is a recurring weekly event at all 20 of our BC and Alberta locations. Sign up for email alerts and we'll remind you each week before the day arrives.</p>
+        </div>
+        <div class="sd-faq-card reveal" style="transition-delay:.06s">
+          <div class="sd-faq-q">Do I need a Rewards membership?</div>
+          <p class="sd-faq-a">Yes. The 20% Seniors Day discount is exclusive to Big Box Rewards members. Membership is completely free — sign up above, or at the service desk at any store location.</p>
+        </div>
+        <div class="sd-faq-card reveal" style="transition-delay:.12s">
+          <div class="sd-faq-q">Is there a minimum purchase amount?</div>
+          <p class="sd-faq-a">No minimum required. The 20% discount applies to your entire in-store purchase. The maximum savings per visit is $100 — so on a $500 purchase, you'd save the full $100.</p>
+        </div>
+        <div class="sd-faq-card reveal" style="transition-delay:.18s">
+          <div class="sd-faq-q">Can I use my discount on the same day I sign up?</div>
+          <p class="sd-faq-a">Yes — your Rewards membership is active immediately upon sign-up in-store. If signing up online, bring your confirmation email and a valid ID on your next Seniors Day visit.</p>
+        </div>
+        <div class="sd-faq-card reveal" style="transition-delay:.06s">
+          <div class="sd-faq-q">What ID is accepted?</div>
+          <p class="sd-faq-a">Any valid government-issued photo ID showing your date of birth is accepted — driver's licence, BC Services Card, provincial ID card, or Canadian passport.</p>
+        </div>
+        <div class="sd-faq-card reveal" style="transition-delay:.12s">
+          <div class="sd-faq-q">Can I use the discount more than once per week?</div>
+          <p class="sd-faq-a">The discount applies once per visit per member. You're welcome to visit a store on any Seniors Day — if you visit multiple times on different days, each qualifying visit is eligible.</p>
+        </div>
+        <div class="sd-faq-card reveal" style="transition-delay:.18s">
+          <div class="sd-faq-q">Can I use the Seniors Day discount with other promotions?</div>
+          <p class="sd-faq-a">The Seniors Day discount cannot be combined with other promotions, coupons, or sale prices unless specifically stated. Ask your local store team for details on current promotions.</p>
+        </div>
+        <div class="sd-faq-card reveal" style="transition-delay:.24s">
+          <div class="sd-faq-q">Are there any excluded products?</div>
+          <p class="sd-faq-a">The 20% Seniors Day discount applies to your entire eligible in-store purchase. Certain vendor restrictions may occasionally apply — store staff will let you know at checkout if any item is excluded.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 7. CTA STRIP ──────────────────────────────── -->
+  <section class="cta-strip">
+    <div class="container">
+      <h2>Ready to Start Saving?</h2>
+      <p>Join thousands of Big Box Rewards members across BC and Alberta who save every week.</p>
+      <div class="cta-strip-actions">
+        <a href="#signup" class="btn btn-primary">Join Free — Get Seniors Day Deals</a>
+        <a href="stores.html" class="btn" style="background:rgba(255,255,255,.12);color:#fff;padding:14px 28px;border-radius:50px;font-weight:700;font-size:1rem;border:1.5px solid rgba(255,255,255,.25);text-decoration:none;">Find a Store</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Big Box Outlet" />
+        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="stores.html">Find A Store</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Customer Service</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="returns.html">Return Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect with BBO</div>
+        <div class="footer-connect-icons">
+          <a href="https://instagram.com/bboscanada" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://facebook.com/bboscanada" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@bbos.ca" class="footer-connect-link" aria-label="Email us">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Seniors Day discount available to qualifying Rewards members 65+ in-store only. Prices may vary by location.</div>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<script>
+(function(){
+  /* Nav */
+  var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
+  if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
+  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
+
+  /* Scroll-top */
+  var btn=document.getElementById('scrollTop');
+  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+
+  /* Reveal on scroll */
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+    reveals.forEach(function(el){obs.observe(el);});
+  } else { reveals.forEach(function(el){el.classList.add('visible');}); }
+
+  /* Smooth scroll for #signup anchor */
+  document.querySelectorAll('a[href="#signup"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var target=document.getElementById('signup');
+      if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+
+  /* Form submit handler (fallback form — replace with Klaviyo when live) */
+  var form=document.getElementById('seniorsSignupForm');
+  if(form){
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var email=form.querySelector('[name="email"]').value;
+      var dob=form.querySelector('[name="dob"]').value;
+      if(!email){ alert('Please enter your email address.'); return; }
+      if(dob){
+        var birth=new Date(dob);
+        var today=new Date();
+        var age=today.getFullYear()-birth.getFullYear();
+        var m=today.getMonth()-birth.getMonth();
+        if(m<0||(m===0&&today.getDate()<birth.getDate()))age--;
+        /* Under-65 warning — still submit, eligibility verified in-store */
+        if(age<65 && age>0){
+          var ok=confirm('It looks like you may be under 65. You can still join the Rewards program and enjoy other member benefits! The Seniors Day discount will apply once you reach 65. Continue signing up?');
+          if(!ok)return;
+        }
+      }
+      /* ── TODO: Replace with Klaviyo API call or form submission endpoint ──
+         Example Klaviyo list subscribe (server-side recommended):
+         POST https://a.klaviyo.com/api/v2/list/LIST_ID/subscribe
+         { "profiles": [{ "email": email, "first_name": ..., "dob": dob }] }
+      ───────────────────────────────────────────────────────────────────── */
+      var submitBtn=form.querySelector('.sd-form-submit');
+      submitBtn.textContent='You\'re Signed Up!';
+      submitBtn.style.background='#22c55e';
+      submitBtn.style.color='#fff';
+      submitBtn.disabled=true;
+      form.querySelectorAll('input').forEach(function(i){i.disabled=true;});
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
