@@ -237,6 +237,19 @@
       .cat-item { flex: 0 0 150px; }
       .cat-item-ph { width: 120px; height: 96px; }
     }
+
+    /* ── ENHANCED ANIMATIONS ───────────────────────── */
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .65s ease, transform .65s ease; }
+    .reveal-scale { opacity: 0; transform: scale(.93);         transition: opacity .55s ease, transform .55s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    [data-delay="1"] { transition-delay: .08s !important; }
+    [data-delay="2"] { transition-delay: .16s !important; }
+    [data-delay="3"] { transition-delay: .24s !important; }
+    [data-delay="4"] { transition-delay: .32s !important; }
+    [data-delay="5"] { transition-delay: .40s !important; }
+    [data-delay="6"] { transition-delay: .50s !important; }
   </style>
 </head>
 <body>
@@ -275,7 +288,7 @@
 <section class="cat-hero">
   <div class="container">
     <div class="cat-hero-inner">
-      <div>
+      <div class="reveal-left">
         <div class="cat-hero-eyebrow-pill">Big Box Home</div>
         <h1 class="cat-hero-headline">Your Home.<br><span>Better Prices.</span></h1>
         <nav class="cat-section-nav" aria-label="Section navigation">
@@ -284,7 +297,7 @@
           <a href="#decor">Décor &amp; Storage</a>
         </nav>
       </div>
-      <div class="cat-hero-right">
+      <div class="cat-hero-right reveal-right">
         <p class="cat-hero-tagline">Brand-name appliances and home essentials at outlet prices.</p>
         <p class="cat-hero-sub">From refrigerators to air purifiers — we carry the brands you rely on at savings you won't find at regular retail. New inventory lands every Thursday at all 20 locations.</p>
         <div class="cat-hero-actions">
@@ -318,7 +331,7 @@
 
 <!-- ── LIFESTYLE IMAGE ────────────────────────────────── -->
 <!-- CMS: Replace this placeholder with a wide lifestyle photo of a bright, furnished living room -->
-<div class="cat-lifestyle-hero" aria-hidden="true">
+<div class="cat-lifestyle-hero reveal-scale" aria-hidden="true">
   <div style="width:100%;height:480px;background:linear-gradient(135deg,#A8CAEC 0%,#7AAED8 40%,#003DA6 100%);display:flex;align-items:center;justify-content:center;">
     <span style="font-family:'Work Sans',sans-serif;font-weight:900;font-size:clamp(2.5rem,7vw,5.5rem);color:rgba(255,255,255,.12);letter-spacing:-.03em;">BIG BOX HOME</span>
   </div>
@@ -336,7 +349,7 @@
       </div>
     </div>
     <!-- CMS: Replace placeholder with a kitchen/laundry room lifestyle image -->
-    <div class="cat-section-img-placeholder" aria-hidden="true">
+    <div class="cat-section-img-placeholder reveal-scale" aria-hidden="true">
       <span>Appliances</span>
     </div>
     <div class="carousel-wrapper reveal">
@@ -396,7 +409,7 @@
       </div>
     </div>
     <!-- CMS: Replace placeholder with a cozy living space lifestyle image -->
-    <div class="cat-section-img-placeholder" aria-hidden="true">
+    <div class="cat-section-img-placeholder reveal-scale" aria-hidden="true">
       <span>Comfort</span>
     </div>
     <div class="carousel-wrapper reveal">
@@ -456,7 +469,7 @@
       </div>
     </div>
     <!-- CMS: Replace placeholder with a styled home décor lifestyle image -->
-    <div class="cat-section-img-placeholder" aria-hidden="true">
+    <div class="cat-section-img-placeholder reveal-scale" aria-hidden="true">
       <span>Décor</span>
     </div>
     <div class="carousel-wrapper reveal">
@@ -505,7 +518,7 @@
 </section>
 
 <!-- ── BRAND PROMISE ───────────────────────────────────── -->
-<section class="brand-promise">
+<section class="brand-promise reveal-scale">
   <div class="container">
     <div class="brand-promise-eyebrow">Our Promise</div>
     <h2>Quality home essentials<br>shouldn't be a luxury.</h2>
@@ -515,7 +528,7 @@
 </section>
 
 <!-- ── CTA STRIP ─────────────────────────────────────── -->
-<section class="cta-strip">
+<section class="cta-strip reveal-scale">
   <div class="container">
     <h2>New Home Arrivals Every Thursday</h2>
     <p>Stock changes weekly — visit your nearest Big Box Outlet to see what just came in.</p>
@@ -610,7 +623,7 @@
   if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
 
   /* Reveal */
-  var reveals=document.querySelectorAll('.reveal');
+  var reveals=document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
 
   /* Carousel arrows — simple scroll helper */

@@ -253,6 +253,19 @@
       .cat-item { flex: 0 0 150px; }
       .cat-item-visual, .cat-item-ph { width: 120px; height: 96px; }
     }
+
+    /* ── ENHANCED ANIMATIONS ───────────────────────── */
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .65s ease, transform .65s ease; }
+    .reveal-scale { opacity: 0; transform: scale(.93);         transition: opacity .55s ease, transform .55s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    [data-delay="1"] { transition-delay: .08s !important; }
+    [data-delay="2"] { transition-delay: .16s !important; }
+    [data-delay="3"] { transition-delay: .24s !important; }
+    [data-delay="4"] { transition-delay: .32s !important; }
+    [data-delay="5"] { transition-delay: .40s !important; }
+    [data-delay="6"] { transition-delay: .50s !important; }
   </style>
 </head>
 <body>
@@ -292,12 +305,12 @@
     <div class="container">
       <div class="cat-hero-inner">
 
-        <div>
+        <div class="reveal-left">
           <div class="cat-hero-eyebrow-pill">Big Box Apparel</div>
           <h1 class="cat-hero-headline">Style that fits<br><span>your budget.</span></h1>
         </div>
 
-        <div class="cat-hero-right">
+        <div class="cat-hero-right reveal-right">
           <p class="cat-hero-tagline">Brand-name clothing for the whole family.</p>
           <p class="cat-hero-sub">Men's, women's, and kids — name brands you know at outlet prices you'll love. New arrivals hit the floor every Thursday at all 20 Big Box Outlet locations across BC and Alberta.</p>
           <div class="cat-hero-actions">
@@ -316,7 +329,7 @@
   </section>
 
   <!-- ── BIG LIFESTYLE PHOTO ───────────────────────── -->
-  <div class="cat-lifestyle-hero">
+  <div class="cat-lifestyle-hero reveal-scale">
     <img src="images/store/IMG_9207.jpg" alt="Big Box Outlet apparel floor — brand name clothing" />
   </div>
 
@@ -325,7 +338,7 @@
   <!-- ══════════════════════════════════════════════ -->
   <section class="cat-section" id="mens">
     <div class="container">
-      <div class="cat-section-intro">
+      <div class="cat-section-intro reveal">
         <div class="cat-section-num">01</div>
         <div class="cat-section-titles">
           <div class="cat-section-label">Men's</div>
@@ -334,7 +347,7 @@
         </div>
       </div>
 
-      <div class="cat-section-img">
+      <div class="cat-section-img reveal-scale">
         <img src="images/store/IMG_9144.jpg" alt="Men's shirts and apparel at Big Box Outlet" />
       </div>
 
@@ -425,7 +438,7 @@
   <!-- ══════════════════════════════════════════════ -->
   <section class="cat-section" id="womens">
     <div class="container">
-      <div class="cat-section-intro">
+      <div class="cat-section-intro reveal">
         <div class="cat-section-num">02</div>
         <div class="cat-section-titles">
           <div class="cat-section-label">Women's</div>
@@ -434,7 +447,7 @@
         </div>
       </div>
 
-      <div class="cat-section-img">
+      <div class="cat-section-img reveal-scale">
         <img src="images/store/IMG_9075.jpg" alt="Women's clothing at Big Box Outlet" />
       </div>
 
@@ -518,7 +531,7 @@
   <!-- ══════════════════════════════════════════════ -->
   <section class="cat-section" id="kids">
     <div class="container">
-      <div class="cat-section-intro">
+      <div class="cat-section-intro reveal">
         <div class="cat-section-num">03</div>
         <div class="cat-section-titles">
           <div class="cat-section-label">Kids</div>
@@ -527,7 +540,7 @@
         </div>
       </div>
 
-      <div class="cat-section-img">
+      <div class="cat-section-img reveal-scale">
         <img src="images/store/IMG_9070.jpg" alt="Kids' outerwear and jackets at Big Box Outlet" />
       </div>
 
@@ -607,7 +620,7 @@
   </section>
 
   <!-- ── CTA STRIP ──────────────────────────────────── -->
-  <section class="cta-strip">
+  <section class="cta-strip reveal-scale">
     <div class="container">
       <h2>Find Big Box Apparel Near You</h2>
       <p>Shop in-store at any of our 20 locations across BC and Alberta.</p>
@@ -696,7 +709,7 @@
   var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
   if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
   window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
-  var reveals=document.querySelectorAll('.reveal');
+  var reveals=document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
   var btn=document.getElementById('scrollTop');
   if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}

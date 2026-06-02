@@ -199,6 +199,19 @@
     @media (max-width: 700px) {
       .involved-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── ENHANCED ANIMATIONS ───────────────────────── */
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .65s ease, transform .65s ease; }
+    .reveal-scale { opacity: 0; transform: scale(.93);         transition: opacity .55s ease, transform .55s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    [data-delay="1"] { transition-delay: .08s !important; }
+    [data-delay="2"] { transition-delay: .16s !important; }
+    [data-delay="3"] { transition-delay: .24s !important; }
+    [data-delay="4"] { transition-delay: .32s !important; }
+    [data-delay="5"] { transition-delay: .40s !important; }
+    [data-delay="6"] { transition-delay: .50s !important; }
   </style>
 </head>
 <body>
@@ -257,13 +270,13 @@
   <section class="impact-section">
     <div class="container">
       <div class="impact-inner">
-        <div class="impact-copy reveal">
+        <div class="impact-copy reveal-left">
           <span class="section-label">Our Impact</span>
           <h2>Giving Back Where<br>It Matters Most</h2>
           <p>Since our founding, Big Box Outlet has been committed to doing more than offering great prices. We actively invest in the cities and towns where our customers live, work, and raise their families.</p>
           <a href="about.html" class="btn btn-primary">Our Story</a>
         </div>
-        <div class="impact-stats-grid reveal" style="transition-delay:.1s">
+        <div class="impact-stats-grid reveal-right" data-delay="2">
           <div class="impact-stat">
             <div class="impact-stat-num">20+</div>
             <div class="impact-stat-label">Communities we serve across BC &amp; Alberta</div>
@@ -294,42 +307,42 @@
         <p class="section-sub">From food security to youth recreation, here's how Big Box Outlet makes a difference in every community we call home.</p>
       </div>
       <div class="initiatives-grid">
-        <div class="initiative-card reveal">
+        <div class="initiative-card reveal-scale" data-delay="1">
           <div class="initiative-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
           </div>
           <div class="initiative-title">Food Bank Partnerships</div>
           <p class="initiative-desc">We partner with local food banks across BC and Alberta to donate overstocked non-perishable goods. Surplus inventory that would otherwise go to waste instead goes to families in need — every week, at every location.</p>
         </div>
-        <div class="initiative-card reveal" style="transition-delay:.08s">
+        <div class="initiative-card reveal-scale" data-delay="2">
           <div class="initiative-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
           </div>
           <div class="initiative-title">Youth Sports Sponsorships</div>
           <p class="initiative-desc">Big Box Outlet is proud to sponsor youth sports leagues and community teams across our regions. We believe every kid deserves a chance to play — regardless of their family's budget. We cover registration fees, jerseys, and equipment needs.</p>
         </div>
-        <div class="initiative-card reveal" style="transition-delay:.16s">
+        <div class="initiative-card reveal-scale" data-delay="3">
           <div class="initiative-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>
           </div>
           <div class="initiative-title">Local Event Support</div>
           <p class="initiative-desc">From community festivals to school fundraisers, we show up to support the events that make our neighbourhoods great. We donate prizes, sponsor booths, and send teams out to volunteer alongside the people who make each community special.</p>
         </div>
-        <div class="initiative-card reveal" style="transition-delay:.08s">
+        <div class="initiative-card reveal-scale" data-delay="1">
           <div class="initiative-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
           </div>
           <div class="initiative-title">Shelter & Outreach Support</div>
           <p class="initiative-desc">We donate household items, bedding, and furniture to shelters and outreach organizations serving vulnerable residents. When closeout items come in, we prioritize getting them to organizations doing the most good on the ground.</p>
         </div>
-        <div class="initiative-card reveal" style="transition-delay:.16s">
+        <div class="initiative-card reveal-scale" data-delay="2">
           <div class="initiative-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
           </div>
           <div class="initiative-title">School Supply Drives</div>
           <p class="initiative-desc">Each fall, our stores run school supply collection drives and donate directly to local elementary and secondary schools. Students shouldn't have to worry about showing up without the basics — and with our customers' help, many don't have to.</p>
         </div>
-        <div class="initiative-card reveal" style="transition-delay:.24s">
+        <div class="initiative-card reveal-scale" data-delay="3">
           <div class="initiative-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
           </div>
@@ -349,28 +362,28 @@
         <p class="section-sub">We're proud to work alongside the organizations doing the real work in our communities.</p>
       </div>
       <div class="partners-types">
-        <div class="partner-type reveal">
+        <div class="partner-type reveal-scale" data-delay="1">
           <div class="partner-type-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
           </div>
           <div class="partner-type-name">Food Banks</div>
           <div class="partner-type-desc">Regional and local food banks across BC and Alberta receive regular product donations from all 20 of our locations.</div>
         </div>
-        <div class="partner-type reveal" style="transition-delay:.06s">
+        <div class="partner-type reveal-scale" data-delay="2">
           <div class="partner-type-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg>
           </div>
           <div class="partner-type-name">Youth Leagues</div>
           <div class="partner-type-desc">Soccer, hockey, basketball, and more. We sponsor teams in the cities and towns where our stores are located.</div>
         </div>
-        <div class="partner-type reveal" style="transition-delay:.12s">
+        <div class="partner-type reveal-scale" data-delay="3">
           <div class="partner-type-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
           </div>
           <div class="partner-type-name">Schools</div>
           <div class="partner-type-desc">Elementary and secondary schools receive supply donations and fundraising support through our annual back-to-school drives.</div>
         </div>
-        <div class="partner-type reveal" style="transition-delay:.18s">
+        <div class="partner-type reveal-scale" data-delay="4">
           <div class="partner-type-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
           </div>
@@ -390,17 +403,17 @@
         <p class="section-sub">Our customers are part of everything we do. Here's how you can help make a difference next time you visit.</p>
       </div>
       <div class="involved-grid">
-        <div class="involved-card reveal">
+        <div class="involved-card reveal-left" data-delay="1">
           <div class="involved-step">01</div>
           <div class="involved-title">Donate at Checkout</div>
           <p class="involved-desc">Many of our store locations have donation bins at the checkout. Drop off non-perishable food items when you shop and we'll deliver them to our local food bank partner.</p>
         </div>
-        <div class="involved-card reveal" style="transition-delay:.1s">
+        <div class="involved-card reveal-scale" data-delay="2">
           <div class="involved-step">02</div>
           <div class="involved-title">Follow &amp; Share</div>
           <p class="involved-desc">Follow us on Instagram and Facebook for updates on local events, donation drives, and community news. Sharing our posts helps us reach more people and do more good.</p>
         </div>
-        <div class="involved-card reveal" style="transition-delay:.2s">
+        <div class="involved-card reveal-right" data-delay="3">
           <div class="involved-step">03</div>
           <div class="involved-title">Tell Your Store</div>
           <p class="involved-desc">Know of a local organization that could use our help? Tell our store team. We're always looking for new community partners and we take every suggestion seriously.</p>
@@ -507,7 +520,7 @@
   var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
   if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
   window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
-  var reveals=document.querySelectorAll('.reveal');
+  var reveals=document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
   var btn=document.getElementById('scrollTop');
   if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}

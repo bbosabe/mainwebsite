@@ -8,6 +8,19 @@
   <link rel="stylesheet" href="base.css" />
   <style>
 
+    /* ── ENHANCED ANIMATIONS ───────────────────────────────── */
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .65s ease, transform .65s ease; }
+    .reveal-scale { opacity: 0; transform: scale(.93);         transition: opacity .55s ease, transform .55s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    [data-delay="1"] { transition-delay: .08s !important; }
+    [data-delay="2"] { transition-delay: .16s !important; }
+    [data-delay="3"] { transition-delay: .24s !important; }
+    [data-delay="4"] { transition-delay: .32s !important; }
+    [data-delay="5"] { transition-delay: .40s !important; }
+    [data-delay="6"] { transition-delay: .50s !important; }
+
     /* ── NAV: white ─────────────────────────────────── */
     .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09); }
     .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
@@ -449,12 +462,12 @@
     <div class="container">
 
       <!-- Intro: headline + context -->
-      <div class="timeline-intro-block reveal">
-        <div class="timeline-intro-left">
+      <div class="timeline-intro-block">
+        <div class="timeline-intro-left reveal-left">
           <span class="timeline-page-eyebrow">Our Story</span>
           <h1 class="timeline-page-headline">40 Years<br>in the<br><span>Making.</span></h1>
         </div>
-        <div class="timeline-intro-right">
+        <div class="timeline-intro-right reveal-right">
           <p class="timeline-tagline">Helping People Afford Everyday Life — that's not a tagline. It's what we've been doing since 1985.</p>
           <p class="timeline-intro-body">From a salvage contract in Surrey in 1985 to 20 locations across BC and Alberta, this story was built on a single belief — that Canadians deserve quality brands at prices that actually move the needle. Three rebrands, one acquisition, and four decades later, we're still just getting started.</p>
         </div>
@@ -464,7 +477,7 @@
       <div class="timeline-track">
 
         <!-- 1985 -->
-        <div class="timeline-entry reveal">
+        <div class="timeline-entry reveal" data-delay="1">
           <div class="timeline-left">
             <div class="timeline-year">1985</div>
             <div class="timeline-milestone-title">Borrowed money. A big idea. Everything to prove.</div>
@@ -476,7 +489,7 @@
         </div>
 
         <!-- 2006 -->
-        <div class="timeline-entry reveal" style="transition-delay:.06s">
+        <div class="timeline-entry reveal" data-delay="2">
           <div class="timeline-left">
             <div class="timeline-year">2006</div>
             <div class="timeline-milestone-title">MTF Price Matters — our first rebrand.</div>
@@ -488,7 +501,7 @@
         </div>
 
         <!-- 2014 -->
-        <div class="timeline-entry reveal" style="transition-delay:.10s">
+        <div class="timeline-entry reveal" data-delay="3">
           <div class="timeline-left">
             <div class="timeline-year">2014</div>
             <div class="timeline-milestone-title">Big Box Outlet Store is born.</div>
@@ -500,7 +513,7 @@
         </div>
 
         <!-- 2023 -->
-        <div class="timeline-entry reveal" style="transition-delay:.14s">
+        <div class="timeline-entry reveal" data-delay="4">
           <div class="timeline-left">
             <div class="timeline-year">2023</div>
             <div class="timeline-milestone-title">Into Alberta. Bigger than ever.</div>
@@ -512,7 +525,7 @@
         </div>
 
         <!-- 2024 -->
-        <div class="timeline-entry reveal" style="transition-delay:.18s">
+        <div class="timeline-entry reveal" data-delay="5">
           <div class="timeline-left">
             <div class="timeline-year">2024</div>
             <div class="timeline-milestone-title">New ownership. Fastest growth yet.</div>
@@ -524,22 +537,22 @@
         </div>
 
         <!-- Story continues card -->
-        <div class="timeline-continues reveal" style="transition-delay:.22s">
+        <div class="timeline-continues reveal-scale">
           <div>
             <span class="continues-eyebrow">What's Next</span>
             <h2 class="continues-heading">20 locations today.<br>40 on the horizon.</h2>
             <p class="continues-body">With 15 BC locations and 6 Alberta locations already open, leadership has set a bold target of 40 stores across Western Canada — and eventual national expansion. New cities, new partnerships, and the same belief that started in a Surrey warehouse in 1985: that quality shouldn't be a privilege. The model works. We're just getting to the good part.</p>
           </div>
           <div class="continues-right">
-            <div class="continues-stat">
+            <div class="continues-stat reveal-scale" data-delay="1">
               <div class="continues-stat-num">20</div>
               <div class="continues-stat-label">Locations across BC &amp; Alberta</div>
             </div>
-            <div class="continues-stat">
+            <div class="continues-stat reveal-scale" data-delay="2">
               <div class="continues-stat-num">40+</div>
               <div class="continues-stat-label">Target locations across Western Canada</div>
             </div>
-            <div class="continues-stat">
+            <div class="continues-stat reveal-scale" data-delay="3">
               <div class="continues-stat-num">1985</div>
               <div class="continues-stat-label">Year it all began in Surrey, BC</div>
             </div>
@@ -557,34 +570,34 @@
     <div class="container">
 
       <!-- Who We Are -->
-      <div class="story-row reveal">
-        <div class="story-text-col">
+      <div class="story-row">
+        <div class="story-text-col reveal-left">
           <h2 class="story-heading">Who We Are</h2>
           <p class="story-body">Big Box Outlet is a proudly Canadian retailer serving communities across BC and Alberta with quality brand-name finds at prices that make everyday life easier. We're here for people who want good products without the usual markup. No fuss, no gimmicks — just real value, helpful people, and a shopping experience that feels honest.<br><br>Since 1984, we've built something simple: a store where your dollar goes further. With 20 locations and counting, we're proud to be a part of the neighbourhoods we serve — not just a place to shop, but a place people trust.</p>
         </div>
-        <div class="story-img-col">
+        <div class="story-img-col reveal-right">
           <img src="images/store-front.jpg" alt="Big Box Outlet store front" loading="lazy" />
         </div>
       </div>
 
       <!-- What We Do -->
-      <div class="story-row img-first reveal" style="transition-delay:.08s">
-        <div class="story-text-col">
+      <div class="story-row img-first">
+        <div class="story-text-col reveal-left" data-delay="1">
           <h2 class="story-heading">What We Do</h2>
           <p class="story-body">We source overstock, closeout, and end-of-line products from brands people already know and trust, then pass those savings along in store. That means everything from furniture and appliances to clothing, patio, and everyday home essentials. Because our inventory changes all the time, every visit brings something new to discover.<br><br>Our buyers work hard to find the best deals so you don't have to. When a brand has surplus stock or a product line ends, we step in — and you walk out with something great at a price that makes sense. It's a smarter way to shop, and it works.</p>
         </div>
-        <div class="story-img-col">
+        <div class="story-img-col reveal-right" data-delay="1">
           <img src="images/store-interior.jpg" alt="Big Box Outlet store interior" loading="lazy" />
         </div>
       </div>
 
       <!-- Why We Do It -->
-      <div class="story-row reveal" style="transition-delay:.16s">
-        <div class="story-text-col">
+      <div class="story-row">
+        <div class="story-text-col reveal-left" data-delay="2">
           <h2 class="story-heading">Why We Do It</h2>
           <p class="story-body">We started because we saw an opportunity to do retail differently. We believe smart shopping shouldn't mean sacrificing quality. By giving great products a second chance at reaching customers, we reduce waste and make quality accessible. Every dollar saved by our customers is proof that this model works.<br><br>At the end of the day, we're motivated by the people who walk through our doors. Families furnishing a first home. Seniors stretching a fixed income. Anyone who wants something real without paying a premium for it. That's who we do this for — and that's who keeps us going.</p>
         </div>
-        <div class="story-img-col">
+        <div class="story-img-col reveal-right" data-delay="2">
           <img src="images/rewards-banner.jpg" alt="Big Box Outlet team member helping customer" loading="lazy" />
         </div>
       </div>
@@ -603,7 +616,7 @@
         <p class="community-body">From school food programs and student initiatives to partnering with organizations like Habitat for Humanity, Big Box Outlet is proud to give back to the neighbourhoods we call home. Because caring about our communities isn't extra — it's who we are.</p>
         <a href="community.html" class="btn btn-primary">Learn More</a>
       </div>
-      <div class="community-photos reveal" style="transition-delay:.15s">
+      <div class="community-photos reveal" data-delay="2">
         <img src="images/hero-banner-1.png"   alt="Community involvement" class="community-photo" loading="lazy" />
         <img src="images/store-interior.jpg"  alt="Community event"       class="community-photo" loading="lazy" />
         <img src="images/rewards-banner.jpg"  alt="Giving back"           class="community-photo" loading="lazy" />
@@ -678,7 +691,7 @@
   var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
   if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
   window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
-  var reveals=document.querySelectorAll('.reveal');
+  var reveals=document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   if('IntersectionObserver' in window){
     var obs=new IntersectionObserver(function(entries){
       entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});

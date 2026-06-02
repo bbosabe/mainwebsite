@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spring Long Weekend Tent Sale — May 15–18 | Big Box Outlet Store</title>
+  <meta name="description" content="Big Box Outlet Spring Long Weekend Tent Sale — May 15–18. Massive savings on furniture, electronics, patio, beds, and more. Deals get bigger every day." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="base.css" />
+
+  <style>
+    /* ── NAV: white ─────────────────────────────────────── */
+    .navbar { background: #fff !important; box-shadow: 0 1px 0 rgba(0,0,0,.09) !important; }
+    .navbar.scrolled { background: #fff !important; box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
+    .navbar-nav a { color: var(--blue) !important; }
+    .navbar-nav a:hover { color: var(--blue-dark) !important; background: rgba(0,61,165,.06) !important; }
+    .navbar-nav a.active { color: var(--blue-dark) !important; }
+    .btn-find-store { background: var(--yellow) !important; color: var(--blue-dark) !important; }
+    .btn-member { background: var(--blue) !important; color: #fff !important; }
+    .nav-toggle span { background: var(--blue) !important; }
+
+    /* ══ HERO ══════════════════════════════════════════════ */
+    .ts-hero {
+      margin-top: 72px;
+      background: linear-gradient(135deg, #00297a 0%, #003DA6 55%, #004ec8 100%);
+      position: relative; overflow: hidden;
+      padding: 80px 0 72px;
+    }
+    .ts-hero::before {
+      content: '';
+      position: absolute; right: -160px; top: -160px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: rgba(255,218,0,.07);
+      pointer-events: none;
+    }
+    .ts-hero::after {
+      content: '';
+      position: absolute; left: -80px; bottom: -100px;
+      width: 380px; height: 380px; border-radius: 50%;
+      background: rgba(255,255,255,.04);
+      pointer-events: none;
+    }
+    .ts-hero-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 40px 64px; align-items: center;
+    }
+    .ts-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .82rem; letter-spacing: .08em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .ts-hero h1 {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      color: #fff; line-height: 1.08;
+      letter-spacing: -.03em; margin-bottom: 16px;
+    }
+    .ts-hero h1 span { color: var(--yellow); }
+    .ts-hero-sub {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 1.08rem; color: rgba(255,255,255,.82);
+      line-height: 1.7; max-width: 520px; margin-bottom: 32px;
+    }
+    .ts-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .ts-hero-btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yellow); color: var(--blue-dark);
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .98rem; padding: 15px 30px; border-radius: 999px;
+      text-decoration: none; transition: transform .18s, box-shadow .18s;
+    }
+    .ts-hero-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,218,0,.35); }
+    .ts-hero-btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #fff;
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .98rem; padding: 14px 28px; border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.38); text-decoration: none;
+      transition: border-color .18s, background .18s;
+    }
+    .ts-hero-btn-outline:hover { border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.06); }
+
+    /* Date badge */
+    .ts-date-badge {
+      background: rgba(255,255,255,.07);
+      border: 1.5px solid rgba(255,255,255,.15);
+      border-radius: 20px; padding: 32px 36px;
+      text-align: center; flex-shrink: 0;
+    }
+    .ts-date-badge-label {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--yellow); margin-bottom: 10px;
+    }
+    .ts-date-badge-dates {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 2.4rem; color: #fff; letter-spacing: -.03em;
+      line-height: 1; margin-bottom: 6px;
+    }
+    .ts-date-badge-month {
+      font-family: 'Nunito Sans', sans-serif; font-weight: 700;
+      font-size: .9rem; color: rgba(255,255,255,.7);
+    }
+    .ts-date-badge-days {
+      display: flex; gap: 6px; margin-top: 16px; justify-content: center;
+    }
+    .ts-day-pill {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .7rem; padding: 4px 10px; border-radius: 999px;
+      background: var(--yellow); color: var(--blue-dark);
+    }
+
+    @media (max-width: 840px) {
+      .ts-hero-inner { grid-template-columns: 1fr; }
+      .ts-date-badge { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; padding: 24px 28px; }
+      .ts-date-badge-label { margin-bottom: 0; }
+    }
+
+    /* ══ DAILY PRICE DROP BAND ══════════════════════════════ */
+    .ts-price-band {
+      background: #060f1e;
+      padding: 48px 0 52px;
+    }
+    .ts-price-band-header {
+      text-align: center; margin-bottom: 36px;
+    }
+    .ts-price-band-eyebrow {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--yellow); margin-bottom: 10px;
+    }
+    .ts-price-band-heading {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(1.5rem, 3vw, 2.2rem); color: #fff;
+      letter-spacing: -.02em;
+    }
+    .ts-price-band-sub {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .95rem; color: rgba(255,255,255,.6);
+      margin-top: 6px;
+    }
+    .ts-day-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; max-width: 860px; margin: 0 auto;
+    }
+    .ts-day-card {
+      background: rgba(255,255,255,.05);
+      border: 1.5px solid rgba(255,255,255,.10);
+      border-radius: 16px; padding: 28px 20px;
+      text-align: center; transition: border-color .2s, background .2s;
+    }
+    .ts-day-card:hover { border-color: rgba(255,218,0,.4); background: rgba(255,218,0,.05); }
+    .ts-day-card-day {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.55); margin-bottom: 10px;
+    }
+    .ts-day-card-price {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 2.8rem; color: var(--yellow);
+      letter-spacing: -.04em; line-height: 1;
+    }
+    .ts-day-card-date {
+      font-family: 'Nunito Sans', sans-serif; font-weight: 600;
+      font-size: .78rem; color: rgba(255,255,255,.4);
+      margin-top: 8px;
+    }
+    .ts-day-card.featured {
+      border-color: var(--yellow); background: rgba(255,218,0,.08);
+    }
+    .ts-day-card.featured .ts-day-card-day { color: var(--yellow); }
+    @media (max-width: 640px) {
+      .ts-day-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ══ SECTION SHARED STYLES ══════════════════════════════ */
+    .ts-section { padding: 72px 0 80px; }
+    .ts-section-light { background: #fff; }
+    .ts-section-gray { background: var(--gray-50, #f5f7fc); }
+    .ts-section-tint { background: #dce9f5; }
+    .ts-section-dark { background: #060f1e; }
+    .ts-section-header { margin-bottom: 44px; }
+    .ts-section-eyebrow {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--blue); background: rgba(0,61,165,.08);
+      padding: 5px 14px; border-radius: 999px; margin-bottom: 12px;
+    }
+    .ts-section-dark .ts-section-eyebrow { color: var(--yellow); background: rgba(255,218,0,.12); }
+    .ts-section-heading {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--blue-dark);
+      letter-spacing: -.025em; line-height: 1.1;
+    }
+    .ts-section-dark .ts-section-heading { color: #fff; }
+    .ts-section-sub {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 1rem; color: #4b5563; line-height: 1.7;
+      max-width: 580px; margin-top: 10px;
+    }
+    .ts-section-dark .ts-section-sub { color: rgba(255,255,255,.65); }
+
+    /* Discount badge */
+    .ts-badge {
+      display: inline-block;
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1rem; letter-spacing: -.01em;
+      background: var(--yellow); color: var(--blue-dark);
+      padding: 4px 14px; border-radius: 999px;
+    }
+    .ts-badge-red {
+      background: #ef4444; color: #fff;
+    }
+
+    /* ══ FURNITURE ══════════════════════════════════════════ */
+    .ts-furniture-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 16px; margin-top: 8px;
+    }
+    .ts-furn-card {
+      background: #fff; border-radius: 16px;
+      border: 1.5px solid #e5e7eb;
+      padding: 28px 20px 24px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 12px;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .ts-furn-card:hover { box-shadow: 0 8px 28px rgba(0,61,165,.10); transform: translateY(-3px); }
+    .ts-furn-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: rgba(0,61,165,.07);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ts-furn-icon svg { width: 26px; height: 26px; stroke: var(--blue); fill: none; stroke-width: 1.8; }
+    .ts-furn-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .95rem; color: var(--blue-dark); line-height: 1.35;
+    }
+    .ts-furn-off {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 2rem; color: var(--blue);
+      letter-spacing: -.04em; line-height: 1;
+    }
+    .ts-furn-off span { font-size: 1.1rem; letter-spacing: 0; }
+    .ts-furn-50 .ts-furn-off { color: #dc2626; }
+    .ts-furn-30 .ts-furn-off { color: #ea580c; }
+    @media (max-width: 900px) { .ts-furniture-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px) { .ts-furniture-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ══ PRODUCT SPOTLIGHT CARDS ════════════════════════════ */
+    .ts-product-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 8px;
+    }
+    .ts-product-grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
+    .ts-product-card {
+      background: #fff; border-radius: 16px;
+      border: 1.5px solid #e5e7eb; overflow: hidden;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .ts-product-card:hover { box-shadow: 0 10px 32px rgba(0,61,165,.11); transform: translateY(-4px); }
+    .ts-product-img {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #e8f0fb 0%, #d1e0f5 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .ts-product-img svg { width: 60px; height: 60px; stroke: rgba(0,61,165,.22); fill: none; stroke-width: 1.2; }
+    .ts-product-img-badge {
+      position: absolute; top: 14px; right: 14px;
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: .9rem; background: var(--yellow); color: var(--blue-dark);
+      padding: 4px 12px; border-radius: 999px;
+    }
+    .ts-product-img-badge.red { background: #ef4444; color: #fff; }
+    .ts-product-body { padding: 22px 22px 24px; }
+    .ts-product-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1.05rem; color: var(--blue-dark); margin-bottom: 6px;
+    }
+    .ts-product-desc {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .88rem; color: #6b7280; line-height: 1.65; margin-bottom: 14px;
+    }
+    .ts-product-price-row {
+      display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;
+    }
+    .ts-product-price {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.5rem; color: var(--blue-dark); letter-spacing: -.03em;
+    }
+    .ts-product-was {
+      font-family: 'Nunito Sans', sans-serif; font-weight: 600;
+      font-size: .9rem; color: #9ca3af; text-decoration: line-through;
+    }
+    .ts-product-save {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .78rem; color: #16a34a;
+    }
+    .ts-product-upc {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .72rem; color: #9ca3af; margin-top: 6px;
+    }
+    @media (max-width: 860px) { .ts-product-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .ts-product-grid, .ts-product-grid-2 { grid-template-columns: 1fr; } }
+
+    /* ══ BEDS SECTION ═══════════════════════════════════════ */
+    .ts-beds-grid {
+      display: grid; grid-template-columns: 2fr 1fr;
+      gap: 24px; margin-top: 8px;
+    }
+    .ts-beds-spotlight {
+      background: #fff; border-radius: 16px;
+      border: 1.5px solid #e5e7eb; overflow: hidden;
+    }
+    .ts-beds-spotlight-img {
+      width: 100%; aspect-ratio: 16/7;
+      background: linear-gradient(135deg, #e8f0fb 0%, #c7d8f5 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .ts-beds-spotlight-img svg { width: 80px; height: 80px; stroke: rgba(0,61,165,.2); fill: none; stroke-width: 1.2; }
+    .ts-beds-spotlight-img-badge {
+      position: absolute; top: 14px; right: 14px;
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: .92rem; background: var(--yellow); color: var(--blue-dark);
+      padding: 5px 14px; border-radius: 999px;
+    }
+    .ts-beds-spotlight-body { padding: 28px; }
+    .ts-beds-spotlight-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.25rem; color: var(--blue-dark); margin-bottom: 8px;
+    }
+    .ts-beds-spotlight-desc {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .92rem; color: #6b7280; line-height: 1.65; margin-bottom: 18px;
+    }
+    .ts-beds-sizes {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .ts-beds-size-row {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #f5f7fc; border-radius: 10px; padding: 10px 16px;
+    }
+    .ts-beds-size-name {
+      font-family: 'Work Sans', sans-serif; font-weight: 700;
+      font-size: .9rem; color: var(--blue-dark);
+    }
+    .ts-beds-size-price {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1rem; color: var(--blue);
+    }
+    .ts-beds-side { display: flex; flex-direction: column; gap: 16px; }
+    .ts-beds-side-card {
+      background: #fff; border-radius: 14px;
+      border: 1.5px solid #e5e7eb;
+      padding: 20px 20px 18px; flex: 1;
+    }
+    .ts-beds-side-card-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .92rem; color: var(--blue-dark); margin-bottom: 6px;
+    }
+    .ts-beds-side-card-off {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 2rem; color: #ea580c; letter-spacing: -.04em; line-height: 1;
+    }
+    .ts-beds-side-card-desc {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .82rem; color: #6b7280; margin-top: 6px; line-height: 1.5;
+    }
+    @media (max-width: 760px) { .ts-beds-grid { grid-template-columns: 1fr; } }
+
+    /* Anko sheets blowout */
+    .ts-anko-card {
+      background: var(--yellow); border-radius: 16px;
+      padding: 32px 36px; display: flex; align-items: center;
+      gap: 32px; margin-top: 24px;
+    }
+    .ts-anko-icon {
+      flex-shrink: 0; width: 64px; height: 64px; border-radius: 14px;
+      background: rgba(0,41,122,.12); display: flex; align-items: center; justify-content: center;
+    }
+    .ts-anko-icon svg { width: 32px; height: 32px; stroke: var(--blue-dark); fill: none; stroke-width: 1.8; }
+    .ts-anko-text { flex: 1; }
+    .ts-anko-name {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.3rem; color: var(--blue-dark); margin-bottom: 4px;
+    }
+    .ts-anko-desc {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .92rem; color: rgba(0,41,122,.7); line-height: 1.5;
+    }
+    .ts-anko-price {
+      flex-shrink: 0; text-align: center;
+    }
+    .ts-anko-price-num {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 3rem; color: var(--blue-dark); letter-spacing: -.04em; line-height: 1;
+    }
+    .ts-anko-price-label {
+      font-family: 'Nunito Sans', sans-serif; font-weight: 700;
+      font-size: .78rem; color: rgba(0,41,122,.6); text-transform: uppercase; letter-spacing: .08em;
+    }
+    @media (max-width: 640px) {
+      .ts-anko-card { flex-direction: column; align-items: flex-start; padding: 24px; }
+    }
+
+    /* ══ ELECTRONICS ════════════════════════════════════════ */
+    .ts-elec-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 24px; margin-bottom: 32px;
+    }
+    .ts-elec-cat-card {
+      background: rgba(255,255,255,.05);
+      border: 1.5px solid rgba(255,255,255,.1);
+      border-radius: 16px; padding: 28px 28px 24px;
+      display: flex; align-items: flex-start; gap: 20px;
+      transition: border-color .2s, background .2s;
+    }
+    .ts-elec-cat-card:hover { border-color: rgba(255,218,0,.35); background: rgba(255,218,0,.05); }
+    .ts-elec-cat-icon {
+      flex-shrink: 0; width: 52px; height: 52px; border-radius: 12px;
+      background: rgba(255,218,0,.12); display: flex; align-items: center; justify-content: center;
+    }
+    .ts-elec-cat-icon svg { width: 26px; height: 26px; stroke: var(--yellow); fill: none; stroke-width: 1.8; }
+    .ts-elec-cat-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1.05rem; color: #fff; margin-bottom: 4px;
+    }
+    .ts-elec-cat-note {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .85rem; color: rgba(255,255,255,.55); line-height: 1.55;
+    }
+    .ts-elec-cat-off {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 2rem; color: var(--yellow); letter-spacing: -.04em;
+      line-height: 1; margin-top: 10px;
+    }
+    @media (max-width: 640px) { .ts-elec-grid { grid-template-columns: 1fr; } }
+
+    /* Electronics product spotlights — dark cards */
+    .ts-elec-product-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .ts-elec-product-card {
+      background: rgba(255,255,255,.04);
+      border: 1.5px solid rgba(255,255,255,.09);
+      border-radius: 14px; overflow: hidden;
+    }
+    .ts-elec-product-img {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, rgba(0,61,165,.3) 0%, rgba(0,41,122,.4) 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .ts-elec-product-img svg { width: 56px; height: 56px; stroke: rgba(255,218,0,.5); fill: none; stroke-width: 1.2; }
+    .ts-elec-product-img-badge {
+      position: absolute; top: 12px; right: 12px;
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: .85rem; background: var(--yellow); color: var(--blue-dark);
+      padding: 4px 12px; border-radius: 999px;
+    }
+    .ts-elec-product-body { padding: 20px 22px 22px; }
+    .ts-elec-product-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: 1rem; color: #fff; margin-bottom: 4px;
+    }
+    .ts-elec-product-desc {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .84rem; color: rgba(255,255,255,.5); line-height: 1.6; margin-bottom: 12px;
+    }
+    .ts-elec-product-price-row {
+      display: flex; align-items: baseline; gap: 10px;
+    }
+    .ts-elec-product-price {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.4rem; color: var(--yellow); letter-spacing: -.03em;
+    }
+    .ts-elec-product-was {
+      font-family: 'Nunito Sans', sans-serif; font-weight: 600;
+      font-size: .85rem; color: rgba(255,255,255,.3); text-decoration: line-through;
+    }
+    .ts-elec-product-upc {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .7rem; color: rgba(255,255,255,.25); margin-top: 6px;
+    }
+    @media (max-width: 640px) { .ts-elec-product-grid { grid-template-columns: 1fr; } }
+
+    /* ══ OUTDOOR / GARDEN ═══════════════════════════════════ */
+    .ts-outdoor-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 20px; margin-bottom: 28px;
+    }
+    .ts-outdoor-cat-card {
+      background: #fff; border-radius: 14px;
+      border: 1.5px solid #e5e7eb; padding: 24px 18px;
+      text-align: center; transition: box-shadow .2s, transform .2s;
+    }
+    .ts-outdoor-cat-card:hover { box-shadow: 0 8px 24px rgba(0,61,165,.10); transform: translateY(-3px); }
+    .ts-outdoor-cat-icon {
+      width: 50px; height: 50px; border-radius: 12px;
+      background: rgba(0,61,165,.07);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+    }
+    .ts-outdoor-cat-icon svg { width: 24px; height: 24px; stroke: var(--blue); fill: none; stroke-width: 1.8; }
+    .ts-outdoor-cat-title {
+      font-family: 'Work Sans', sans-serif; font-weight: 800;
+      font-size: .88rem; color: var(--blue-dark); line-height: 1.35; margin-bottom: 10px;
+    }
+    .ts-outdoor-cat-off {
+      font-family: 'Work Sans', sans-serif; font-weight: 900;
+      font-size: 1.9rem; color: var(--blue); letter-spacing: -.04em; line-height: 1;
+    }
+    .ts-outdoor-cat-off.big { color: #dc2626; }
+    @media (max-width: 760px) { .ts-outdoor-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 440px) { .ts-outdoor-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* Greenworks + Yeedi spotlight */
+    .ts-outdoor-products {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 640px) { .ts-outdoor-products { grid-template-columns: 1fr; } }
+
+    /* ══ REVEAL ANIMATION ═══════════════════════════════════ */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .52s ease, transform .52s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ─────────────────────────────────────────── -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" aria-label="Big Box Outlet Store Home">
+        <img src="images/logo.png" alt="Big Box Outlet Store" />
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="flyer.html">Weekly Deals</a></li>
+        <li><a href="seniors-day.html">Seniors Day</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="rewards.html" class="btn btn-member">Become a Member</a>
+        <a href="stores.html" class="btn btn-find-store">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Store Locator
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── 1. HERO ───────────────────────────────────────── -->
+  <section class="ts-hero" aria-label="Spring Tent Sale promotion">
+    <div class="container">
+      <div class="ts-hero-inner">
+        <div>
+          <div class="ts-hero-eyebrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+            Long Weekend Flash Sale
+          </div>
+          <h1>Spring Tent Sale<br><span>Massive Deals.</span><br>4&nbsp;Days Only.</h1>
+          <p class="ts-hero-sub">Our biggest sale of the season — deep discounts on furniture, electronics, patio, beds, outdoor power and more across all 20 BC and Alberta locations.</p>
+          <div class="ts-hero-btns">
+            <a href="#deals" class="ts-hero-btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+              Shop the Deals
+            </a>
+            <a href="stores.html" class="ts-hero-btn-outline">Find a Store</a>
+          </div>
+        </div>
+        <div class="ts-date-badge" aria-label="Sale dates: May 15 to 18">
+          <div class="ts-date-badge-label">Sale Dates</div>
+          <div class="ts-date-badge-dates">May 15–18</div>
+          <div class="ts-date-badge-month">2026 Long Weekend</div>
+          <div class="ts-date-badge-days">
+            <span class="ts-day-pill">Fri</span>
+            <span class="ts-day-pill">Sat</span>
+            <span class="ts-day-pill">Sun</span>
+            <span class="ts-day-pill">Mon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. DAILY PROMO PRICING ─────────────────────────── -->
+  <section class="ts-price-band" aria-label="Tent Sale daily promo pricing">
+    <div class="container">
+      <div class="ts-price-band-header reveal">
+        <div class="ts-price-band-eyebrow">Tent Sale Promo</div>
+        <h2 class="ts-price-band-heading">The Price Drops Every Day</h2>
+        <p class="ts-price-band-sub">Come early for first pick — or come back as the weekend goes on for an even better deal.</p>
+      </div>
+      <div class="ts-day-grid">
+        <div class="ts-day-card featured reveal">
+          <div class="ts-day-card-day">Friday</div>
+          <div class="ts-day-card-price">$12</div>
+          <div class="ts-day-card-date">May 15</div>
+        </div>
+        <div class="ts-day-card reveal" style="transition-delay:.08s">
+          <div class="ts-day-card-day">Saturday</div>
+          <div class="ts-day-card-price">$10</div>
+          <div class="ts-day-card-date">May 16</div>
+        </div>
+        <div class="ts-day-card reveal" style="transition-delay:.16s">
+          <div class="ts-day-card-day">Sunday</div>
+          <div class="ts-day-card-price">$9</div>
+          <div class="ts-day-card-date">May 17</div>
+        </div>
+        <div class="ts-day-card reveal" style="transition-delay:.24s">
+          <div class="ts-day-card-day">Monday</div>
+          <div class="ts-day-card-price">$8</div>
+          <div class="ts-day-card-date">May 18</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. FURNITURE ───────────────────────────────────── -->
+  <section class="ts-section ts-section-light" id="deals" aria-label="Furniture deals">
+    <div class="container">
+      <div class="ts-section-header reveal">
+        <span class="ts-section-eyebrow">Furniture</span>
+        <h2 class="ts-section-heading">Big Savings on Every Room</h2>
+        <p class="ts-section-sub">From living room to bedroom — the deeper the discount, the more you save.</p>
+      </div>
+      <div class="ts-furniture-grid">
+
+        <div class="ts-furn-card reveal">
+          <div class="ts-furn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 9V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"/><path d="M4 9a2 2 0 0 0-2 2v2h20v-2a2 2 0 0 0-2-2H4z"/><path d="M2 13v4h2m16 0v-4M6 17h12"/></svg>
+          </div>
+          <div class="ts-furn-title">Sofas, Loveseats &amp; Sectionals</div>
+          <div class="ts-furn-off">10<span>% Off</span></div>
+        </div>
+
+        <div class="ts-furn-card reveal" style="transition-delay:.06s">
+          <div class="ts-furn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M5 8V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/><line x1="7" y1="18" x2="7" y2="21"/><line x1="17" y1="18" x2="17" y2="21"/></svg>
+          </div>
+          <div class="ts-furn-title">Bedroom Furniture</div>
+          <div class="ts-furn-off">20<span>% Off</span></div>
+        </div>
+
+        <div class="ts-furn-card ts-furn-30 reveal" style="transition-delay:.12s">
+          <div class="ts-furn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 9V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"/><path d="M4 9a2 2 0 0 0-2 2v2h20v-2a2 2 0 0 0-2-2H4z"/><path d="M2 13v4"/><path d="M22 13v4"/></svg>
+          </div>
+          <div class="ts-furn-title">Recliners &amp; Occasional Chairs</div>
+          <div class="ts-furn-off">30<span>% Off</span></div>
+        </div>
+
+        <div class="ts-furn-card ts-furn-30 reveal" style="transition-delay:.18s">
+          <div class="ts-furn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="8" rx="2"/><path d="M7 11V7a2 2 0 0 1 4 0"/><path d="M13 11V7a2 2 0 0 1 4 0"/></svg>
+          </div>
+          <div class="ts-furn-title">End Tables &amp; Coffee Tables</div>
+          <div class="ts-furn-off">30<span>% Off</span></div>
+        </div>
+
+        <div class="ts-furn-card ts-furn-50 reveal" style="transition-delay:.24s">
+          <div class="ts-furn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 17h18M5 17V8a1 1 0 0 1 1-1h4v4h4V7h4a1 1 0 0 1 1 1v9"/><line x1="9" y1="7" x2="9" y2="11"/><line x1="15" y1="7" x2="15" y2="11"/></svg>
+          </div>
+          <div class="ts-furn-title">Barstools &amp; Dining Chairs</div>
+          <div class="ts-furn-off">50<span>% Off</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. PATIO FURNITURE ─────────────────────────────── -->
+  <section class="ts-section ts-section-gray" aria-label="Patio furniture deals">
+    <div class="container">
+      <div class="ts-section-header reveal">
+        <span class="ts-section-eyebrow">Patio Furniture — Select Styles</span>
+        <h2 class="ts-section-heading">Outdoor Living, Upgraded</h2>
+        <p class="ts-section-sub">20% off select patio furniture — including two featured styles below.</p>
+      </div>
+      <div class="ts-product-grid ts-product-grid-2 reveal">
+
+        <div class="ts-product-card">
+          <div class="ts-product-img">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 19a7 7 0 0 1 14 0"/></svg>
+            <span class="ts-product-img-badge">20% OFF</span>
+          </div>
+          <div class="ts-product-body">
+            <div class="ts-product-title">Arlow Pod Chair — Natural White</div>
+            <div class="ts-product-desc">A statement piece for any outdoor space. Weather-resistant pod chair with all-season appeal.</div>
+            <div class="ts-product-price-row">
+              <span class="ts-product-save">20% Off</span>
+            </div>
+            <div class="ts-product-upc">UPC: 056348933753</div>
+          </div>
+        </div>
+
+        <div class="ts-product-card">
+          <div class="ts-product-img">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="8" rx="2"/><path d="M7 11V7a2 2 0 0 1 4 0"/><path d="M13 11V7a2 2 0 0 1 4 0"/></svg>
+            <span class="ts-product-img-badge">20% OFF</span>
+          </div>
+          <div class="ts-product-body">
+            <div class="ts-product-title">Valle 5pc Dining Set</div>
+            <div class="ts-product-desc">Complete patio dining — table plus 4 chairs. Perfect for decks, backyards, and balconies.</div>
+            <div class="ts-product-price-row">
+              <span class="ts-product-save">20% Off</span>
+            </div>
+            <div class="ts-product-upc">UPC: 056348933883</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. BEDS & BEDDING ──────────────────────────────── -->
+  <section class="ts-section ts-section-light" aria-label="Bed and bedding deals">
+    <div class="container">
+      <div class="ts-section-header reveal">
+        <span class="ts-section-eyebrow">Beds &amp; Bedding</span>
+        <h2 class="ts-section-heading">Sleep Better for Less</h2>
+        <p class="ts-section-sub">Restwell Bed in a Box — Canadian-made comfort at unbeatable tent sale pricing.</p>
+      </div>
+
+      <div class="ts-beds-grid">
+        <!-- Restwell spotlight -->
+        <div class="ts-beds-spotlight reveal">
+          <div class="ts-beds-spotlight-img">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M5 8V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/></svg>
+            <span class="ts-beds-spotlight-img-badge">20% OFF</span>
+          </div>
+          <div class="ts-beds-spotlight-body">
+            <div class="ts-beds-spotlight-title">All Restwell Bed in a Box</div>
+            <p class="ts-beds-spotlight-desc">Two premium comfort levels — save 20% on every size. Harrison (Firm) and Thompson (Plush) available in Queen and King.</p>
+            <div class="ts-beds-sizes">
+              <div class="ts-beds-size-row">
+                <span class="ts-beds-size-name">Harrison (Firm) — Queen</span>
+                <span class="ts-beds-size-price">$699.99 <small style="font-weight:700;color:#16a34a;font-size:.8rem">+20% Off</small></span>
+              </div>
+              <div class="ts-beds-size-row">
+                <span class="ts-beds-size-name">Harrison (Firm) — King</span>
+                <span class="ts-beds-size-price">$899.99 <small style="font-weight:700;color:#16a34a;font-size:.8rem">+20% Off</small></span>
+              </div>
+              <div class="ts-beds-size-row">
+                <span class="ts-beds-size-name">Thompson (Plush) — Queen</span>
+                <span class="ts-beds-size-price">$699.99 <small style="font-weight:700;color:#16a34a;font-size:.8rem">+20% Off</small></span>
+              </div>
+              <div class="ts-beds-size-row">
+                <span class="ts-beds-size-name">Thompson (Plush) — King</span>
+                <span class="ts-beds-size-price">$899.99 <small style="font-weight:700;color:#16a34a;font-size:.8rem">+20% Off</small></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Side cards -->
+        <div class="ts-beds-side">
+          <div class="ts-beds-side-card reveal" style="transition-delay:.1s">
+            <div class="ts-beds-side-card-title">All Other Bed in a Box!</div>
+            <div class="ts-beds-side-card-off">30% Off</div>
+            <div class="ts-beds-side-card-desc">Every other Bed in a Box model — cleared out at 30% off during the tent sale weekend only.</div>
+          </div>
+          <div class="ts-beds-side-card reveal" style="transition-delay:.18s" style="background:#f5f7fc">
+            <div class="ts-beds-side-card-title" style="color:var(--blue)">Patio / Outdoor Beds</div>
+            <div class="ts-beds-side-card-off" style="color:var(--blue)">20% Off</div>
+            <div class="ts-beds-side-card-desc">Select styles. Ask in-store for current availability at your location.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Anko Sheets Blowout -->
+      <div class="ts-anko-card reveal" style="transition-delay:.08s">
+        <div class="ts-anko-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="ts-anko-text">
+          <div class="ts-anko-name">Anko Sheets — All Sizes</div>
+          <div class="ts-anko-desc">Blow-out deal on Anko sheet sets — every size, one unbeatable price. Stock is limited — grab yours while supplies last.</div>
+        </div>
+        <div class="ts-anko-price">
+          <div class="ts-anko-price-num">$19<sup style="font-size:1.2rem">.99</sup></div>
+          <div class="ts-anko-price-label">Blow Out Price</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 6. ELECTRONICS MEGA SALE ───────────────────────── -->
+  <section class="ts-section ts-section-dark" aria-label="Electronics mega sale">
+    <div class="container">
+      <div class="ts-section-header reveal">
+        <span class="ts-section-eyebrow">Electronics MEGA SALE</span>
+        <h2 class="ts-section-heading">Tech Deals You Won't Find Online</h2>
+        <p class="ts-section-sub">Sentry electronics, tablets, speakers, and robo vacs — all discounted deep for the long weekend.</p>
+      </div>
+
+      <!-- Category overview -->
+      <div class="ts-elec-grid reveal">
+        <div class="ts-elec-cat-card">
+          <div class="ts-elec-cat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="ts-elec-cat-title">All Sentry Electronics</div>
+            <div class="ts-elec-cat-note">Full Sentry lineup across all categories.</div>
+            <div class="ts-elec-cat-off">25% Off</div>
+          </div>
+        </div>
+        <div class="ts-elec-cat-card">
+          <div class="ts-elec-cat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="16" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+          </div>
+          <div>
+            <div class="ts-elec-cat-title">All Tablets, Computers &amp; Laptops</div>
+            <div class="ts-elec-cat-note" style="color:#ef4444;font-weight:700">★ Limited Selection — Never Put on Sale Before!</div>
+            <div class="ts-elec-cat-off">20% Off</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product spotlights -->
+      <div class="ts-elec-product-grid reveal" style="transition-delay:.1s">
+
+        <div class="ts-elec-product-card">
+          <div class="ts-elec-product-img">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <span class="ts-elec-product-img-badge">25% OFF</span>
+          </div>
+          <div class="ts-elec-product-body">
+            <div class="ts-elec-product-title">Apex ION Speaker</div>
+            <div class="ts-elec-product-desc">Portable wireless speaker with powerful bass. Part of the ION Speakers lineup — all ION models 25% off.</div>
+            <div class="ts-elec-product-price-row">
+              <span class="ts-elec-product-price">$159.99</span>
+              <span class="ts-elec-product-was">$212.99</span>
+            </div>
+            <div class="ts-elec-product-upc">UPC: 0842655104074 | All ION Speakers: 25% Off</div>
+          </div>
+        </div>
+
+        <div class="ts-elec-product-card">
+          <div class="ts-elec-product-img">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v2M12 18v2M4 12H2M22 12h-2"/><circle cx="12" cy="12" r="3"/></svg>
+            <span class="ts-elec-product-img-badge">25% OFF</span>
+          </div>
+          <div class="ts-elec-product-body">
+            <div class="ts-elec-product-title">yeedi by ecovacs Vacuum &amp; Mop</div>
+            <div class="ts-elec-product-desc">New markdown price + an additional 25% off. Vacuums and mops in one — the smartest floor care at the best price of the year.</div>
+            <div class="ts-elec-product-price-row">
+              <span class="ts-elec-product-price">$399.99</span>
+              <span class="ts-elec-product-was">$599.99</span>
+            </div>
+            <div class="ts-elec-product-upc">UPC: 6972790741941 / 6972790741736 | All Robo Vacs: 25% Off</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 7. OUTDOOR & GARDEN ───────────────────────────── -->
+  <section class="ts-section ts-section-tint" aria-label="Outdoor and garden deals">
+    <div class="container">
+      <div class="ts-section-header reveal">
+        <span class="ts-section-eyebrow">Outdoor &amp; Garden</span>
+        <h2 class="ts-section-heading">Get Outside for Less</h2>
+        <p class="ts-section-sub">Greenworks power tools, umbrellas, and raised garden beds — all on deep discount for the long weekend.</p>
+      </div>
+
+      <!-- Category tiles -->
+      <div class="ts-outdoor-grid reveal">
+        <div class="ts-outdoor-cat-card">
+          <div class="ts-outdoor-cat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 20h18M7 20V10l5-6 5 6v10"/><path d="M9 20v-5h6v5"/></svg>
+          </div>
+          <div class="ts-outdoor-cat-title">All Greenworks Lawnmowers</div>
+          <div class="ts-outdoor-cat-off">25% Off</div>
+        </div>
+        <div class="ts-outdoor-cat-card">
+          <div class="ts-outdoor-cat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+          </div>
+          <div class="ts-outdoor-cat-title">Greenworks Blowers &amp; Trimmers</div>
+          <div class="ts-outdoor-cat-off big">50% Off</div>
+        </div>
+        <div class="ts-outdoor-cat-card">
+          <div class="ts-outdoor-cat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="6"/></svg>
+          </div>
+          <div class="ts-outdoor-cat-title">Season Sentry &amp; Sunbrella Umbrellas</div>
+          <div class="ts-outdoor-cat-off big">50% Off</div>
+        </div>
+        <div class="ts-outdoor-cat-card">
+          <div class="ts-outdoor-cat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V6a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="ts-outdoor-cat-title">Raised Garden Beds</div>
+          <div class="ts-outdoor-cat-off big">50% Off</div>
+        </div>
+      </div>
+
+      <!-- Greenworks spotlight -->
+      <div class="ts-outdoor-products reveal" style="transition-delay:.1s">
+
+        <div class="ts-product-card">
+          <div class="ts-product-img">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 20h18M7 20V10l5-6 5 6v10"/></svg>
+            <span class="ts-product-img-badge">25% OFF</span>
+          </div>
+          <div class="ts-product-body">
+            <div class="ts-product-title">Greenworks Self Propelled Lawnmower</div>
+            <div class="ts-product-desc">Cordless power, self-propelled ease. A full season of mowing on one charge. Part of the complete Greenworks outdoor lineup.</div>
+            <div class="ts-product-price-row">
+              <span class="ts-product-price">$549.99</span>
+              <span class="ts-product-was">$733.99</span>
+            </div>
+            <div class="ts-product-save">Save $184 this weekend</div>
+            <div class="ts-product-upc">UPC: 195526018179 | Costco #: 1660508</div>
+          </div>
+        </div>
+
+        <div class="ts-product-card">
+          <div class="ts-product-img" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+            <span class="ts-product-img-badge">50% OFF</span>
+          </div>
+          <div class="ts-product-body">
+            <div class="ts-product-title">Greenworks Blowers &amp; Trimmers</div>
+            <div class="ts-product-desc">Half off the full Greenworks blower and trimmer range. Battery-powered, low noise, zero emissions — perfect for spring yard work.</div>
+            <div class="ts-product-price-row">
+              <span class="ts-product-save" style="font-size:.95rem">50% Off entire lineup</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 8. CTA STRIP ───────────────────────────────────── -->
+  <section class="cta-strip" aria-label="Visit us in store">
+    <div class="container">
+      <div class="cta-strip-inner">
+        <div>
+          <h2>Don't Miss the Long Weekend Sale</h2>
+          <p>May 15–18 only. 20 locations across BC and Alberta. In-store only — no online pricing.</p>
+        </div>
+        <div class="cta-strip-btns">
+          <a href="stores.html" class="btn-cta-yellow">Find a Store</a>
+          <a href="flyer.html" class="btn-cta-gray">View Weekly Flyer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Big Box Outlet" />
+        <p>Western Canada's favourite outlet store. Big name brands at outlet prices — across 20 BC and Alberta locations.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="flyer.html">Weekly Deals</a></li>
+          <li><a href="tent-sale.html" class="active">Tent Sale</a></li>
+          <li><a href="seniors-day.html">Seniors Day</a></li>
+          <li><a href="stores.html">Find A Store</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Customer Service</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="returns.html">Return Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect with BBO</div>
+        <div class="footer-connect-icons">
+          <a href="https://instagram.com/bboscanada" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://facebook.com/bboscanada" class="footer-connect-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:info@bbos.ca" class="footer-connect-link" aria-label="Email us">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">&copy; 2026 Big Box Outlet. All rights reserved. Tent sale pricing valid May 15–18, 2026 at all BC and Alberta locations only. While quantities last. No rainchecks. Select exclusions may apply.</div>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<script>
+(function(){
+  /* Nav */
+  var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
+  if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
+  window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
+
+  /* Scroll-top */
+  var btn=document.getElementById('scrollTop');
+  if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+
+  /* Reveal on scroll */
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+    reveals.forEach(function(el){obs.observe(el);});
+  } else { reveals.forEach(function(el){el.classList.add('visible');}); }
+
+  /* Smooth scroll to #deals */
+  document.querySelectorAll('a[href="#deals"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var target=document.getElementById('deals');
+      if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+})();
+</script>
+</body>
+</html>

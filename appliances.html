@@ -230,6 +230,19 @@
       .cat-item { flex: 0 0 158px; }
       .cat-item-visual, .cat-item-ph { width: 126px; height: 104px; }
     }
+
+    /* ── ENHANCED ANIMATIONS ───────────────────────── */
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .65s ease, transform .65s ease; }
+    .reveal-scale { opacity: 0; transform: scale(.93);         transition: opacity .55s ease, transform .55s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    [data-delay="1"] { transition-delay: .08s !important; }
+    [data-delay="2"] { transition-delay: .16s !important; }
+    [data-delay="3"] { transition-delay: .24s !important; }
+    [data-delay="4"] { transition-delay: .32s !important; }
+    [data-delay="5"] { transition-delay: .40s !important; }
+    [data-delay="6"] { transition-delay: .50s !important; }
   </style>
 </head>
 <body>
@@ -269,12 +282,12 @@
     <div class="container">
       <div class="cat-hero-inner">
 
-        <div>
+        <div class="reveal-left">
           <div class="cat-hero-eyebrow-pill">Big Box Appliances</div>
           <h1 class="cat-hero-headline">Big brands.<br><span>Outlet prices.</span></h1>
         </div>
 
-        <div class="cat-hero-right">
+        <div class="cat-hero-right reveal-right">
           <p class="cat-hero-tagline">Brand-name appliances at a fraction of retail.</p>
           <p class="cat-hero-sub">From Samsung fridges to Maytag washers — shop name-brand large appliances, ranges, and laundry at outlet prices. Open-box, overstock, and closeout deals in-store every week.</p>
           <div class="cat-hero-actions">
@@ -297,22 +310,22 @@
   <div class="appliance-highlight">
     <div class="container">
       <div class="appliance-highlight-inner">
-        <div class="appliance-highlight-stat">
+        <div class="appliance-highlight-stat reveal-scale" data-delay="1">
           <span class="appliance-highlight-num">20</span>
           <span class="appliance-highlight-label">Locations BC &amp; AB</span>
         </div>
         <div class="appliance-highlight-divider"></div>
-        <div class="appliance-highlight-stat">
+        <div class="appliance-highlight-stat reveal-scale" data-delay="2">
           <span class="appliance-highlight-num">New</span>
           <span class="appliance-highlight-label">Stock Every Thursday</span>
         </div>
         <div class="appliance-highlight-divider"></div>
-        <div class="appliance-highlight-stat">
+        <div class="appliance-highlight-stat reveal-scale" data-delay="3">
           <span class="appliance-highlight-num">Best</span>
           <span class="appliance-highlight-label">Price Promise</span>
         </div>
         <div class="appliance-highlight-divider"></div>
-        <div class="appliance-highlight-stat">
+        <div class="appliance-highlight-stat reveal-scale" data-delay="4">
           <span class="appliance-highlight-num">Open</span>
           <span class="appliance-highlight-label">Box Deals Available</span>
         </div>
@@ -321,7 +334,7 @@
   </div>
 
   <!-- ── BIG LIFESTYLE PHOTO ───────────────────────────── -->
-  <div class="cat-lifestyle-hero">
+  <div class="cat-lifestyle-hero reveal-scale">
     <img src="images/store/IMG_9096.jpg" alt="Ranges and stoves at Big Box Outlet" />
   </div>
 
@@ -330,7 +343,7 @@
   <!-- ══════════════════════════════════════════════════ -->
   <section class="cat-section" id="large-appliances">
     <div class="container">
-      <div class="cat-section-intro">
+      <div class="cat-section-intro reveal">
         <div class="cat-section-num">01</div>
         <div class="cat-section-titles">
           <div class="cat-section-label">Large Appliances</div>
@@ -339,7 +352,7 @@
         </div>
       </div>
 
-      <div class="cat-section-img">
+      <div class="cat-section-img reveal-scale">
         <img src="images/store/IMG_9096.jpg" alt="Ranges and stoves at Big Box Outlet" />
       </div>
 
@@ -415,7 +428,7 @@
   <!-- ══════════════════════════════════════════════════ -->
   <section class="cat-section" id="refrigeration">
     <div class="container">
-      <div class="cat-section-intro">
+      <div class="cat-section-intro reveal">
         <div class="cat-section-num">02</div>
         <div class="cat-section-titles">
           <div class="cat-section-label">Refrigeration</div>
@@ -424,7 +437,7 @@
         </div>
       </div>
 
-      <div class="cat-section-img">
+      <div class="cat-section-img reveal-scale">
         <img src="images/store/DSC_8423.jpg" alt="Refrigerators and freezers at Big Box Outlet" style="object-position: left center;" />
       </div>
 
@@ -500,7 +513,7 @@
   <!-- ══════════════════════════════════════════════════ -->
   <section class="cat-section" id="laundry">
     <div class="container">
-      <div class="cat-section-intro">
+      <div class="cat-section-intro reveal">
         <div class="cat-section-num">03</div>
         <div class="cat-section-titles">
           <div class="cat-section-label">Laundry</div>
@@ -509,7 +522,7 @@
         </div>
       </div>
 
-      <div class="cat-section-img">
+      <div class="cat-section-img reveal-scale">
         <img src="images/store/DSC_8419.jpg" alt="Washers and dryers at Big Box Outlet" />
       </div>
 
@@ -572,7 +585,7 @@
   </section>
 
   <!-- ── CTA STRIP ──────────────────────────────────────── -->
-  <section class="cta-strip">
+  <section class="cta-strip reveal-scale">
     <div class="container">
       <h2>Find Big Box Appliances Near You</h2>
       <p>Open-box deals and brand-name appliances in-store at all 20 locations.</p>
@@ -661,7 +674,7 @@
   var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
   if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
   window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
-  var reveals=document.querySelectorAll('.reveal');
+  var reveals=document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
   var btn=document.getElementById('scrollTop');
   if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}

@@ -290,6 +290,19 @@
       transform: translateY(0);
     }
 
+    /* ── ENHANCED ANIMATIONS ───────────────────────── */
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .65s ease, transform .65s ease; }
+    .reveal-scale { opacity: 0; transform: scale(.93);         transition: opacity .55s ease, transform .55s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    [data-delay="1"] { transition-delay: .08s !important; }
+    [data-delay="2"] { transition-delay: .16s !important; }
+    [data-delay="3"] { transition-delay: .24s !important; }
+    [data-delay="4"] { transition-delay: .32s !important; }
+    [data-delay="5"] { transition-delay: .40s !important; }
+    [data-delay="6"] { transition-delay: .50s !important; }
+
     /* ── RESPONSIVE ──────────────────────────────────── */
     @media (max-width: 900px) {
       .faq-layout { grid-template-columns: 1fr; }
@@ -345,9 +358,9 @@
           <span class="faq-badge-block main">BIG BOX</span>
           <span class="faq-badge-block sub">Help</span>
         </div>
-        <h1>Frequently Asked Questions</h1>
-        <p class="faq-hero-sub">Can't find what you're looking for? Our team is happy to help.</p>
-        <a href="contact.html" class="faq-hero-cta">Contact Us</a>
+        <h1 class="reveal-left">Frequently Asked Questions</h1>
+        <p class="faq-hero-sub reveal-left" data-delay="2">Can't find what you're looking for? Our team is happy to help.</p>
+        <a href="contact.html" class="faq-hero-cta reveal-left" data-delay="4">Contact Us</a>
       </div>
     </div>
   </section>
@@ -426,7 +439,7 @@
           </div>
 
           <!-- Pricing & Deals -->
-          <div class="faq-category reveal" id="cat-pricing" style="transition-delay:.06s">
+          <div class="faq-category reveal" id="cat-pricing" data-delay="1">
             <div class="faq-cat-header">
               <div class="faq-cat-icon icon-yellow">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
@@ -470,7 +483,7 @@
           </div>
 
           <!-- Returns & Exchanges -->
-          <div class="faq-category reveal" id="cat-returns" style="transition-delay:.10s">
+          <div class="faq-category reveal" id="cat-returns" data-delay="2">
             <div class="faq-cat-header">
               <div class="faq-cat-icon icon-green">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
@@ -514,7 +527,7 @@
           </div>
 
           <!-- Rewards Program -->
-          <div class="faq-category reveal" id="cat-rewards" style="transition-delay:.14s">
+          <div class="faq-category reveal" id="cat-rewards" data-delay="3">
             <div class="faq-cat-header">
               <div class="faq-cat-icon icon-purple">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l2.75 5.57L21 7.57l-4.5 4.38 1.06 6.18L12 15.27l-5.56 2.86 1.06-6.18L3 7.57l6.25-1L12 1z"/></svg>
@@ -566,7 +579,7 @@
           </div>
 
           <!-- Store Information -->
-          <div class="faq-category reveal" id="cat-store" style="transition-delay:.18s">
+          <div class="faq-category reveal" id="cat-store" data-delay="4">
             <div class="faq-cat-header">
               <div class="faq-cat-icon icon-teal">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -610,7 +623,7 @@
           </div>
 
           <!-- Gift Cards -->
-          <div class="faq-category reveal" id="cat-giftcards" style="transition-delay:.22s">
+          <div class="faq-category reveal" id="cat-giftcards" data-delay="5">
             <div class="faq-cat-header">
               <div class="faq-cat-icon icon-rose">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.07-.23.18-.45.18-.7C18 3.48 16.52 2 14.7 2c-.9 0-1.68.37-2.24.96L12 3.45l-.46-.49A3.18 3.18 0 0 0 9.3 2C7.48 2 6 3.48 6 5.3c0 .25.11.47.18.7H4C2.9 6 2 6.9 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-5.3-2.5c.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3h-2.59l.01-.09C12.15 4.65 13.26 3.5 14.7 3.5zM9.3 3.5c1.44 0 2.55 1.15 2.58 1.21l.01.09H9.3C8.58 4.8 8 4.22 8 3.5 8 2.78 8.58 3.5 9.3 3.5zM11 19H4V8h7v11zm9 0h-7V8h7v11z"/></svg>
@@ -705,7 +718,7 @@
   var toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu'),navbar=document.getElementById('navbar');
   if(toggle&&menu){toggle.addEventListener('click',function(){var o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);});}
   window.addEventListener('scroll',function(){if(navbar)navbar.classList.toggle('scrolled',window.scrollY>40);});
-  var reveals=document.querySelectorAll('.reveal');
+  var reveals=document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
   var btn=document.getElementById('scrollTop');
   if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}

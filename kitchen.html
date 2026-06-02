@@ -233,6 +233,19 @@
       .cat-item { flex: 0 0 150px; }
       .cat-item-ph { width: 120px; height: 96px; }
     }
+
+    /* ── ENHANCED ANIMATIONS ───────────────────────── */
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .65s ease, transform .65s ease; }
+    .reveal-scale { opacity: 0; transform: scale(.93);         transition: opacity .55s ease, transform .55s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    [data-delay="1"] { transition-delay: .08s !important; }
+    [data-delay="2"] { transition-delay: .16s !important; }
+    [data-delay="3"] { transition-delay: .24s !important; }
+    [data-delay="4"] { transition-delay: .32s !important; }
+    [data-delay="5"] { transition-delay: .40s !important; }
+    [data-delay="6"] { transition-delay: .50s !important; }
   </style>
 </head>
 <body>
@@ -271,7 +284,7 @@
 <section class="cat-hero">
   <div class="container">
     <div class="cat-hero-inner">
-      <div>
+      <div class="reveal-left">
         <div class="cat-hero-eyebrow-pill">Big Box Kitchen</div>
         <h1 class="cat-hero-headline">Cook More.<br><span>Spend Less.</span></h1>
         <nav class="cat-section-nav" aria-label="Section navigation">
@@ -280,7 +293,7 @@
           <a href="#gadgets">Gadgets &amp; Storage</a>
         </nav>
       </div>
-      <div class="cat-hero-right">
+      <div class="cat-hero-right reveal-right">
         <p class="cat-hero-tagline">Top-brand kitchen gear at outlet prices.</p>
         <p class="cat-hero-sub">KitchenAid stand mixers, Ninja air fryers, Cuisinart cookware — the brands you love, sourced directly so the savings go straight to you. New deals every Thursday.</p>
         <div class="cat-hero-actions">
@@ -314,7 +327,7 @@
 
 <!-- ── LIFESTYLE IMAGE ────────────────────────────────── -->
 <!-- CMS: Replace this placeholder with a wide lifestyle photo of a bright, modern kitchen -->
-<div class="cat-lifestyle-hero" aria-hidden="true">
+<div class="cat-lifestyle-hero reveal-scale" aria-hidden="true">
   <div style="width:100%;height:480px;background:linear-gradient(135deg,#DA70C8 0%,#BB52AA 50%,#7B1E6E 100%);display:flex;align-items:center;justify-content:center;">
     <span style="font-family:'Work Sans',sans-serif;font-weight:900;font-size:clamp(2.5rem,7vw,5.5rem);color:rgba(255,255,255,.12);letter-spacing:-.03em;">BIG BOX KITCHEN</span>
   </div>
@@ -332,7 +345,7 @@
       </div>
     </div>
     <!-- CMS: Replace placeholder with a bright kitchen counter lifestyle image showing small appliances -->
-    <div class="cat-section-img-placeholder" aria-hidden="true">
+    <div class="cat-section-img-placeholder reveal-scale" aria-hidden="true">
       <span>Appliances</span>
     </div>
     <div class="carousel-wrapper reveal">
@@ -392,7 +405,7 @@
       </div>
     </div>
     <!-- CMS: Replace placeholder with a lifestyle image of cookware on a stove -->
-    <div class="cat-section-img-placeholder" aria-hidden="true">
+    <div class="cat-section-img-placeholder reveal-scale" aria-hidden="true">
       <span>Cookware</span>
     </div>
     <div class="carousel-wrapper reveal">
@@ -452,7 +465,7 @@
       </div>
     </div>
     <!-- CMS: Replace placeholder with a styled pantry/organized kitchen image -->
-    <div class="cat-section-img-placeholder" aria-hidden="true">
+    <div class="cat-section-img-placeholder reveal-scale" aria-hidden="true">
       <span>Gadgets</span>
     </div>
     <div class="carousel-wrapper reveal">
@@ -501,7 +514,7 @@
 </section>
 
 <!-- ── BRAND PROMISE ───────────────────────────────────── -->
-<section class="brand-promise">
+<section class="brand-promise reveal-scale">
   <div class="container">
     <div class="brand-promise-eyebrow">Our Promise</div>
     <h2>A well-stocked kitchen<br>shouldn't cost a fortune.</h2>
@@ -511,7 +524,7 @@
 </section>
 
 <!-- ── CTA STRIP ─────────────────────────────────────── -->
-<section class="cta-strip">
+<section class="cta-strip reveal-scale">
   <div class="container">
     <h2>New Kitchen Arrivals Every Thursday</h2>
     <p>Deals change weekly — visit your nearest Big Box Outlet to see what just came in.</p>
@@ -606,7 +619,7 @@
   if(btn){window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
 
   /* Reveal */
-  var reveals=document.querySelectorAll('.reveal');
+  var reveals=document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});reveals.forEach(function(el){obs.observe(el);});}else{reveals.forEach(function(el){el.classList.add('visible');});}
 
   /* Carousel arrows */
